@@ -11,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.InsertDriveFile
 import androidx.compose.material.icons.outlined.PeopleAlt
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material.icons.outlined.PrivacyTip
 import androidx.compose.material.icons.outlined.Translate
@@ -48,10 +49,10 @@ fun OptionsPage(
 
     val optionsList = listOf<OptionsCard>(
         OptionsCard(
-            imageVector = Icons.Outlined.PeopleAlt,
-            contentDescription = "Family Information",
-            itemText = "Family Information",
-            onClick = { navController.navigate("FamilyInformation") }
+            imageVector = Icons.Outlined.Person,
+            contentDescription = "User Information",
+            itemText = "User Information",
+            onClick = { navController.navigate("UserInformation") }
         ),
         OptionsCard(
             imageVector = Icons.Outlined.Translate,
@@ -102,6 +103,7 @@ fun OptionsPage(
     )
 
     BottomSheetScaffold(
+        modifier = Modifier.background(Color.White),
         sheetShadowElevation = 10.dp,
         sheetTonalElevation = 10.dp,
         sheetContainerColor = Color.White,
@@ -140,7 +142,7 @@ fun OptionsPage(
             ) {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
-                    modifier = Modifier.padding(5.dp),
+                    modifier = Modifier.padding(5.dp).background(Color.White),
                     horizontalArrangement = Arrangement.Center,
                     verticalArrangement = Arrangement.Top
                 ) {

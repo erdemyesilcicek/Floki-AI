@@ -1,5 +1,6 @@
 package com.erdemyesilcicek.flokiai.pages
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -58,7 +59,8 @@ fun ReadTalePage(navController: NavController, id: Int?) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(padding),
+                .padding(padding)
+                .background(Color.White),
             Arrangement.Center,
             Alignment.CenterHorizontally
         ) {
