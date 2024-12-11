@@ -66,4 +66,13 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Extended Icons
+    implementation("androidx.compose.material:material-icons-extended:1.7.5")
+
+    //Navigation
+    implementation("androidx.navigation:navigation-compose:2.8.4")
+
+    //Lottie Animation
+    implementation("com.airbnb.android:lottie-compose:6.1.0")
 }
