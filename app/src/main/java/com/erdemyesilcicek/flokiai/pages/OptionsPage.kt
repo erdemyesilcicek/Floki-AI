@@ -1,5 +1,6 @@
 package com.erdemyesilcicek.flokiai.pages
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -45,77 +46,29 @@ fun OptionsPage(
 ) {
     val scaffoldState = rememberBottomSheetScaffoldState()
     val scope = rememberCoroutineScope()
-    var sheetContent by remember { mutableStateOf<@Composable () -> Unit>({}) }
-
-    val optionsList = listOf<OptionsCard>(
-        OptionsCard(
-            imageVector = Icons.Outlined.Person,
-            contentDescription = "User Information",
-            itemText = "User Information",
-            onClick = { navController.navigate("UserInformation") }
-        ),
-        OptionsCard(
-            imageVector = Icons.Outlined.Translate,
-            contentDescription = "Language",
-            itemText = "Language",
-            onClick = {
-                sheetContent = {
-                    LanguageSheetContent { selectedLanguage ->
-                        println("Selected Language: $selectedLanguage")
-                        scope.launch { scaffoldState.bottomSheetState.hide() }
-                    }
-                }
-                scope.launch { scaffoldState.bottomSheetState.expand() }
-            }
-        ),
-        OptionsCard(
-            imageVector = Icons.Outlined.Phone,
-            contentDescription = "Feedback, Contact",
-            itemText = "Contact",
-            onClick = { navController.navigate("Feedback") }
-        ),
-        OptionsCard(
-            imageVector = Icons.Outlined.DarkMode,
-            contentDescription = "dark mode",
-            itemText = "Dark Mode",
-            onClick = {
-                sheetContent = {
-                    DarkModeSheetContent { selectedOption ->
-                        println("Dark Mode: $selectedOption")
-                        scope.launch { scaffoldState.bottomSheetState.hide() }
-                    }
-                }
-                scope.launch { scaffoldState.bottomSheetState.expand() }
-            }
-        ),
-        OptionsCard(
-            imageVector = Icons.Outlined.PrivacyTip,
-            contentDescription = "Privacy Policy",
-            itemText = "Privacy Policy",
-            onClick = { navController.navigate("PrivacyPolicy") }
-        ),
-        OptionsCard(
-            imageVector = Icons.Outlined.InsertDriveFile,
-            contentDescription = "Terms of Use",
-            itemText = "Terms of Use",
-            onClick = { navController.navigate("TermOfUse") }
-        )
-    )
+    var currentSheet by remember { mutableStateOf<BottomSheetType?>(null) }
 
     BottomSheetScaffold(
+        scaffoldState = scaffoldState,
         sheetShadowElevation = 10.dp,
         sheetTonalElevation = 10.dp,
         sheetContainerColor = Color.White,
         containerColor = Color.White,
         contentColor = MaterialTheme.colorScheme.onPrimary,
-        scaffoldState = scaffoldState,
+        sheetPeekHeight = 0.dp,
         sheetContent = {
-            Column(
-            ) {
-                sheetContent()
+            when (currentSheet) {
+                BottomSheetType.Language -> LanguageSheetContent { selectedLanguage ->
+                    println("Selected Language: $selectedLanguage")
+                    scope.launch { scaffoldState.bottomSheetState.hide() }
+                }
+                BottomSheetType.DarkMode -> DarkModeSheetContent { selectedOption ->
+                    println("Dark Mode: $selectedOption")
+                    scope.launch { scaffoldState.bottomSheetState.hide() }
+                }
+                null -> {}
             }
         },
-        sheetPeekHeight = 0.dp,
     ) { innerPadding ->
         Scaffold(
             topBar = {
@@ -136,6 +89,51 @@ fun OptionsPage(
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                val optionsList = listOf<OptionsCard>(
+                    OptionsCard(
+                        imageVector = Icons.Outlined.Person,
+                        contentDescription = "User Information",
+                        itemText = "User Information",
+                        onClick = { navController.navigate("UserInformation") }
+                    ),
+                    OptionsCard(
+                        imageVector = Icons.Outlined.Translate,
+                        contentDescription = "Language",
+                        itemText = "Language",
+                        onClick = {
+                            currentSheet = BottomSheetType.Language
+                            scope.launch { scaffoldState.bottomSheetState.expand() }
+                        }
+                    ),
+                    OptionsCard(
+                        imageVector = Icons.Outlined.Phone,
+                        contentDescription = "Feedback, Contact",
+                        itemText = "Contact",
+                        onClick = { navController.navigate("Feedback") }
+                    ),
+                    OptionsCard(
+                        imageVector = Icons.Outlined.DarkMode,
+                        contentDescription = "dark mode",
+                        itemText = "Dark Mode",
+                        onClick = {
+                            currentSheet = BottomSheetType.DarkMode
+                            scope.launch { scaffoldState.bottomSheetState.expand() }
+                        }
+                    ),
+                    OptionsCard(
+                        imageVector = Icons.Outlined.PrivacyTip,
+                        contentDescription = "Privacy Policy",
+                        itemText = "Privacy Policy",
+                        onClick = { println("privacy policy") }
+                    ),
+                    OptionsCard(
+                        imageVector = Icons.Outlined.InsertDriveFile,
+                        contentDescription = "Terms of Use",
+                        itemText = "Terms of Use",
+                        onClick = { println("term of use") }
+                    )
+                )
+
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
                     modifier = Modifier.padding(5.dp).background(Color.White),
@@ -154,4 +152,9 @@ fun OptionsPage(
             }
         }
     }
+}
+
+// Enum to manage BottomSheet types
+enum class BottomSheetType {
+    Language, DarkMode
 }
