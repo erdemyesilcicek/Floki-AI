@@ -142,8 +142,12 @@ public val familyList = listOf(
         "Mom"
     ),
     CategoryCard(
-        R.drawable.familysis,
-        "Sis"
+        R.drawable.familysibling,
+        "Sibling"
+    ),
+    CategoryCard(
+        R.drawable.familypet,
+        "Pet"
     )
 )
 

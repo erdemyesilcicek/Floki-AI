@@ -1,5 +1,6 @@
 package com.erdemyesilcicek.flokiai.pages
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -57,6 +58,7 @@ fun CreateTalePage(navController: NavController) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
+                .background(Color.White)
         ) {
             items(1) {
                 CustomText("Genre")

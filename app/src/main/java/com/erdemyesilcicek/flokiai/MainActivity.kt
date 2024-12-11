@@ -64,7 +64,7 @@ fun NavController() {
             ReadTalePage(navController, id)
         }
         composable(route = "TaleCard") {
-            TaleCard(navController, card = Tale(5, "", "", 0))
+            TaleCard(navController, card = Tale(5, "", "", 0,""))
         }
     }
 }

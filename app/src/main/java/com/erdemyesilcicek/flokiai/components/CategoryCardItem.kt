@@ -32,7 +32,8 @@ import com.erdemyesilcicek.flokiai.utils.myFont
 @Composable
 fun CategoryCardItem(index: Int, item: CategoryCard, isSelected: Boolean, onClick: () -> Unit) {
     val myButtonColor = colorScheme.primary
-    val buttonColor by remember { mutableStateOf(Color.White) }
+    val gray = colorScheme.background
+    val buttonColor by remember { mutableStateOf(gray) }
 
     val myTextColor = colorScheme.primary
     val textColor by remember { mutableStateOf(Color.Gray) }

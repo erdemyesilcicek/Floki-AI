@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.erdemyesilcicek.flokiai.utils.myFont
@@ -27,7 +28,7 @@ fun CustomExtendedFAB(
     ExtendedFloatingActionButton(
         onClick = onClick,
         containerColor = containerColor,
-        elevation = FloatingActionButtonDefaults.elevation(10.dp),
+        elevation = FloatingActionButtonDefaults.elevation(100.dp),
         modifier = Modifier
             .fillMaxWidth()
             .padding(20.dp)
