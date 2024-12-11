@@ -49,7 +49,7 @@ fun CustomOptionsCard(
             Column(
                 modifier = Modifier
                     .border(
-                        1.dp,
+                        0.2.dp,
                         MaterialTheme.colorScheme.onBackground,
                         shape = RoundedCornerShape(20.dp)
                     )
@@ -61,7 +61,7 @@ fun CustomOptionsCard(
                 Icon(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(10.dp),
+                        .padding(25.dp),
                     imageVector = imageVector,
                     contentDescription = contentDescription,
                     tint = MaterialTheme.colorScheme.onBackground

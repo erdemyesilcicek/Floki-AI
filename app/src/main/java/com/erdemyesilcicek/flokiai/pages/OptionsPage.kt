@@ -103,7 +103,6 @@ fun OptionsPage(
     )
 
     BottomSheetScaffold(
-        modifier = Modifier.background(Color.White),
         sheetShadowElevation = 10.dp,
         sheetTonalElevation = 10.dp,
         sheetContainerColor = Color.White,
@@ -112,9 +111,6 @@ fun OptionsPage(
         scaffoldState = scaffoldState,
         sheetContent = {
             Column(
-                modifier = Modifier
-                    .padding()
-                    .background(Color.White)
             ) {
                 sheetContent()
             }

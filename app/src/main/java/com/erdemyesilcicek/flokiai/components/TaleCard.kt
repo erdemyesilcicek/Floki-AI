@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.paddingFrom
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -23,7 +22,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,7 +34,7 @@ fun TaleCard(navController: NavController, card: Tale) {
     TaleCardTitle(card.title)
 
     OutlinedCard(
-        border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.onBackground),
+        border = BorderStroke(0.2.dp, MaterialTheme.colorScheme.onBackground),
         onClick = { },
         modifier = Modifier
             .fillMaxWidth()
