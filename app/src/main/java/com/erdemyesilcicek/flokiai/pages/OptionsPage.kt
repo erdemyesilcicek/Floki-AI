@@ -1,10 +1,10 @@
 package com.erdemyesilcicek.flokiai.pages
 
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -12,7 +12,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.InsertDriveFile
-import androidx.compose.material.icons.outlined.PeopleAlt
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material.icons.outlined.PrivacyTip
@@ -38,6 +37,7 @@ import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.datas.OptionsCard
 import com.erdemyesilcicek.flokiai.pages.optionspages.DarkModeSheetContent
 import com.erdemyesilcicek.flokiai.pages.optionspages.LanguageSheetContent
+import com.erdemyesilcicek.flokiai.utils.footer
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,8 +51,8 @@ fun OptionsPage(
 
     BottomSheetScaffold(
         scaffoldState = scaffoldState,
-        sheetShadowElevation = 10.dp,
-        sheetTonalElevation = 10.dp,
+        sheetShadowElevation = 8.dp,
+        sheetTonalElevation = 8.dp,
         sheetContainerColor = Color.White,
         containerColor = Color.White,
         contentColor = MaterialTheme.colorScheme.onPrimary,
@@ -153,6 +153,8 @@ fun OptionsPage(
                         )
                     }
                 }
+                Spacer(modifier = Modifier.weight(1f))
+                footer()
             }
         }
     }
