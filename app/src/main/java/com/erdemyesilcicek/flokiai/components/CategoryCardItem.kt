@@ -24,13 +24,21 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.erdemyesilcicek.flokiai.datas.CategoryCard
 import com.erdemyesilcicek.flokiai.utils.myFont
 
 @Composable
-fun CategoryCardItem(index: Int, item: CategoryCard, isSelected: Boolean, onClick: () -> Unit) {
+fun CategoryCardItem(
+    index: Int,
+    item: CategoryCard,
+    isSelected: Boolean,
+    cardWidth: Dp,
+    cardHeight: Dp,
+    onClick: () -> Unit
+) {
     val myButtonColor = colorScheme.primary
     val gray = colorScheme.background
     val buttonColor by remember { mutableStateOf(gray) }
@@ -51,8 +59,8 @@ fun CategoryCardItem(index: Int, item: CategoryCard, isSelected: Boolean, onClic
             Column(
                 modifier = Modifier
                     .clip(RoundedCornerShape(20.dp))
-                    .width(100.dp)
-                    .height(100.dp)
+                    .width(cardWidth)
+                    .height(cardHeight)
                     .background(if (isSelected) myButtonColor else buttonColor),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally

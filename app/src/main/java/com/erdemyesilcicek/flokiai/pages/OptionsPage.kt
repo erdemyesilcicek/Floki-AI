@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -136,9 +137,12 @@ fun OptionsPage(
 
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
-                    modifier = Modifier.padding(5.dp).background(Color.White),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalArrangement = Arrangement.Top
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp, vertical = 16.dp)
+                        .background(Color.White),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    contentPadding = PaddingValues(16.dp)
                 ) {
                     items(optionsList.size) { index ->
                         CustomOptionsCard(

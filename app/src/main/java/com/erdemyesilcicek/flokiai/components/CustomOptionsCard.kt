@@ -61,10 +61,10 @@ fun CustomOptionsCard(
                 Icon(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(25.dp),
+                        .padding(48.dp),
                     imageVector = imageVector,
                     contentDescription = contentDescription,
-                    tint = MaterialTheme.colorScheme.onBackground
+                    tint = MaterialTheme.colorScheme.onBackground,
                 )
             }
         }
@@ -72,10 +72,66 @@ fun CustomOptionsCard(
             modifier = Modifier.padding(),
             text = itemText,
             color = MaterialTheme.colorScheme.onBackground,
-            fontSize = 16.sp,
+            fontSize = 14.sp,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Normal,
             fontFamily = myFont
         )
     }
 }
+
+/*
+@Composable
+fun CustomOptionsCard(
+    imageVector: ImageVector,
+    contentDescription: String,
+    itemText: String,
+    onClick: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .clickable(
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() }
+            ) { onClick() }
+            .padding(2.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Box(
+            modifier = Modifier
+                .padding(1.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .border(
+                        0.2.dp,
+                        MaterialTheme.colorScheme.onBackground,
+                        shape = RoundedCornerShape(20.dp)
+                    )
+                    .width(180.dp)
+                    .height(180.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Icon(
+                    modifier = Modifier.size(50.dp),
+                    imageVector = imageVector,
+                    contentDescription = contentDescription,
+                    tint = MaterialTheme.colorScheme.onBackground,
+                )
+                Text(
+                    modifier = Modifier,
+                    text = itemText,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Normal,
+                    fontFamily = myFont
+                )
+            }
+        }
+
+    }
+}
+ */

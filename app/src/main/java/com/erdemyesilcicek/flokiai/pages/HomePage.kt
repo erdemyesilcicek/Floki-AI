@@ -17,7 +17,10 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.Archive
 import androidx.compose.material.icons.outlined.AutoAwesome
+import androidx.compose.material.icons.outlined.Book
 import androidx.compose.material.icons.outlined.Bookmark
+import androidx.compose.material.icons.outlined.BookmarkBorder
+import androidx.compose.material.icons.outlined.ZoomIn
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -47,7 +50,7 @@ import com.erdemyesilcicek.flokiai.pages.homepages.DefaultTalePage
 
 @Composable
 fun HomePage(navController: NavController) {
-    var selectedTab by remember { mutableIntStateOf(1) } // 0: Default, 1: Kullanıcı
+    var selectedTab by remember { mutableIntStateOf(1) }
 
     Scaffold(
         topBar = {
@@ -76,7 +79,7 @@ fun HomePage(navController: NavController) {
                 .padding(paddingValues)
                 .background(Color.White)
         ) {
-            // İkon Menü
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -92,7 +95,7 @@ fun HomePage(navController: NavController) {
                 Text(text = "|", fontSize = 20.sp)
 
                 CustomIconTab(
-                    icon = Icons.Outlined.Archive,
+                    icon = Icons.Outlined.Book,
                     isSelected = selectedTab == 1,
                     onClick = { selectedTab = 1 }
                 )

@@ -25,6 +25,8 @@ fun CustomCategorySection(list: List<CategoryCard>, isMultiple: Boolean) {
                     index = index,
                     item = item,
                     isSelected = selectedButtons.contains(index),
+                    cardWidth = 100.dp,
+                    cardHeight = 100.dp,
                     onClick = {
                         if (selectedButtons.contains(index)) {
                             selectedButtons.remove(index)

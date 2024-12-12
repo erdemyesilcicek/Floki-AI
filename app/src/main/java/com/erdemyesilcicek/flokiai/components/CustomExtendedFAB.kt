@@ -28,7 +28,7 @@ fun CustomExtendedFAB(
     ExtendedFloatingActionButton(
         onClick = onClick,
         containerColor = containerColor,
-        elevation = FloatingActionButtonDefaults.elevation(100.dp),
+        elevation = FloatingActionButtonDefaults.elevation(5.dp),
         modifier = Modifier
             .fillMaxWidth()
             .padding(20.dp)
