@@ -13,8 +13,8 @@ import androidx.navigation.navArgument
 import com.erdemyesilcicek.flokiai.components.TaleCard
 import com.erdemyesilcicek.flokiai.datas.Tale
 import com.erdemyesilcicek.flokiai.pages.CreateTalePage
+import com.erdemyesilcicek.flokiai.pages.GetStartedPage
 import com.erdemyesilcicek.flokiai.pages.HomePage
-import com.erdemyesilcicek.flokiai.pages.LoginPage
 import com.erdemyesilcicek.flokiai.pages.OptionsPage
 import com.erdemyesilcicek.flokiai.pages.ReadTalePage
 import com.erdemyesilcicek.flokiai.pages.optionspages.Feedback
@@ -39,7 +39,7 @@ fun NavController() {
 
     NavHost(
         navController = navController,
-        startDestination = "LoginPage"
+        startDestination = "GetStartedPage"
     ) {
         composable(route = "HomePage") {
             HomePage(navController)
@@ -56,9 +56,11 @@ fun NavController() {
         composable(route = "Feedback") {
             Feedback(navController)
         }
-        composable(route = "LoginPage") {
-            LoginPage(navController)
+
+        composable(route = "GetStartedPage") {
+            GetStartedPage(navController)
         }
+
 
         composable("ReadTalePage" + "?id={id}", arguments = listOf(navArgument("id") {
             type = NavType.IntType

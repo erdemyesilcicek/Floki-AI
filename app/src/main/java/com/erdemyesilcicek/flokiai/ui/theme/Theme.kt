@@ -16,7 +16,7 @@ private val DarkColorScheme = darkColorScheme(
     secondary = purple,
     tertiary = darkPurple,
     background = offWhite,
-    onPrimary = offWhite,
+    onPrimary = gray,
     onBackground = lightPurple
 )
 
@@ -25,7 +25,7 @@ private val LightColorScheme = lightColorScheme(
     secondary = purple,
     tertiary = extraLightPurple,
     background = offWhite,
-    onPrimary = offWhite,
+    onPrimary = gray,
     onBackground = lightPurple
 )
 
