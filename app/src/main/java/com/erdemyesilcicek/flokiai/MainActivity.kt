@@ -17,6 +17,8 @@ import com.erdemyesilcicek.flokiai.pages.GetStartedPage
 import com.erdemyesilcicek.flokiai.pages.HomePage
 import com.erdemyesilcicek.flokiai.pages.OptionsPage
 import com.erdemyesilcicek.flokiai.pages.ReadTalePage
+import com.erdemyesilcicek.flokiai.pages.SignInPage
+import com.erdemyesilcicek.flokiai.pages.SignUpPage
 import com.erdemyesilcicek.flokiai.pages.optionspages.Feedback
 import com.erdemyesilcicek.flokiai.pages.optionspages.UserInformation
 import com.erdemyesilcicek.flokiai.ui.theme.FlokiAITheme
@@ -59,6 +61,14 @@ fun NavController() {
 
         composable(route = "GetStartedPage") {
             GetStartedPage(navController)
+        }
+
+        composable(route = "SignUpPage") {
+            SignUpPage(navController)
+        }
+
+        composable(route = "SignInPage") {
+            SignInPage(navController)
         }
 
 

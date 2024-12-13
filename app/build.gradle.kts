@@ -75,4 +75,8 @@ dependencies {
 
     //Lottie Animation
     implementation("com.airbnb.android:lottie-compose:6.1.0")
+
+    //SplashApi
+    implementation(libs.androidx.core.splashscreen)
+
 }

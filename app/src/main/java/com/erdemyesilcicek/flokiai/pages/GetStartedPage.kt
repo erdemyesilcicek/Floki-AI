@@ -36,64 +36,74 @@ fun GetStartedPage(navController: NavController) {
     ) {
         LottieAnimation(animation = R.raw.bigstick)
 
-
-
-        Text(
+        Column(
             modifier = Modifier
-                .fillMaxWidth(),
-            textAlign = TextAlign.Center,
-            text = "Floki AI",
-            fontSize = 34.sp,
-            fontFamily = myFont,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onBackground
-        )
-
-        Text(
-            modifier = Modifier
-                .fillMaxWidth(),
-            textAlign = TextAlign.Center,
-            text = "Create your own tale with Floki.",
-            fontSize = 12.sp,
-            fontFamily = myFont,
-            fontWeight = FontWeight.SemiBold,
-            color = MaterialTheme.colorScheme.onPrimary
-        )
-
-        CustomExtendedFAB(
-            containerColor = MaterialTheme.colorScheme.primary,
-            text = "Get Started"
-        ) {
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+                .fillMaxWidth()
         ) {
             Text(
-                modifier = Modifier,
+                modifier = Modifier
+                    .fillMaxWidth(),
                 textAlign = TextAlign.Center,
-                text = "Already have an account?",
-                fontSize = 12.sp,
+                text = "Floki AI",
+                fontSize = 38.sp,
+                fontFamily = myFont,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                text = "Create your own tale with Floki.",
+                fontSize = 15.sp,
                 fontFamily = myFont,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.onPrimary
             )
+        }
 
-            TextButton(
-                modifier = Modifier,
-                onClick = { /*TODO*/ }) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            CustomExtendedFAB(
+                containerColor = MaterialTheme.colorScheme.primary,
+                text = "Get Started"
+            ) {
+                navController.navigate("SignUpPage")
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
                 Text(
                     modifier = Modifier,
-                    textAlign = TextAlign.Start,
-                    text = "Sign In",
+                    textAlign = TextAlign.Center,
+                    text = "Already have an account?",
                     fontSize = 12.sp,
                     fontFamily = myFont,
                     fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.primary
+                    color = MaterialTheme.colorScheme.onPrimary
                 )
+
+                TextButton(
+                    modifier = Modifier,
+                    onClick = { /*TODO*/ }) {
+                    Text(
+                        modifier = Modifier,
+                        textAlign = TextAlign.Start,
+                        text = "Sign In",
+                        fontSize = 12.sp,
+                        fontFamily = myFont,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
             }
         }
     }
