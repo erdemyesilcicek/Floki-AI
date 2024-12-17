@@ -5,8 +5,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -36,6 +39,8 @@ fun Feedback(
     val email = remember { mutableStateOf("") }
     val subject = remember { mutableStateOf("") }
     val message = remember { mutableStateOf("") }
+
+    val scrollState = rememberScrollState()
 
     Scaffold(
         topBar = {
@@ -76,40 +81,41 @@ fun Feedback(
                 fontFamily = FontFamily.Default,
                 fontSize = 22.sp
             )
-            LazyColumn(
-                modifier = Modifier,
+            Column(
+                modifier = Modifier
+                    .imePadding()
+                    .verticalScroll(scrollState),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                items(1) {
-                    CustomTextInput(
-                        title = "Email",
-                        label = "Email",
-                        text = email.value,
-                        onValueChange = { email.value = it },
-                        isSingleLine = true,
-                        isVisual = true,
-                        keyboardType = KeyboardType.Email
-                    )
-                    CustomTextInput(
-                        title = "Subject",
-                        label = "Enter Subject",
-                        text = subject.value,
-                        onValueChange = { subject.value = it },
-                        isSingleLine = true,
-                        isVisual = true,
-                        keyboardType = KeyboardType.Text
-                    )
-                    CustomTextInput(
-                        title = "Message",
-                        label = "Enter Message",
-                        text = message.value,
-                        onValueChange = { message.value = it },
-                        isSingleLine = true,
-                        isVisual = true,
-                        keyboardType = KeyboardType.Text
-                    )
-                }
+
+                CustomTextInput(
+                    title = "Email",
+                    label = "Email",
+                    text = email.value,
+                    onValueChange = { email.value = it },
+                    isSingleLine = true,
+                    isVisual = true,
+                    keyboardType = KeyboardType.Email
+                )
+                CustomTextInput(
+                    title = "Subject",
+                    label = "Enter Subject",
+                    text = subject.value,
+                    onValueChange = { subject.value = it },
+                    isSingleLine = true,
+                    isVisual = true,
+                    keyboardType = KeyboardType.Text
+                )
+                CustomTextInput(
+                    title = "Message",
+                    label = "Enter Message",
+                    text = message.value,
+                    onValueChange = { message.value = it },
+                    isSingleLine = true,
+                    isVisual = true,
+                    keyboardType = KeyboardType.Text
+                )
             }
         }
     }
