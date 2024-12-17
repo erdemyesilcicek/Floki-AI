@@ -23,7 +23,6 @@ fun LottieAnimation(animation: Int) {
         iterations = LottieConstants.IterateForever
     )
     Column(
-        modifier = Modifier.padding(10.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

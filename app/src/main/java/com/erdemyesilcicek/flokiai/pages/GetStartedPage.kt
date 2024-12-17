@@ -1,11 +1,15 @@
 package com.erdemyesilcicek.flokiai.pages
 
+import android.widget.Space
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -15,12 +19,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.animations.LottieAnimation
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 @Composable
 fun GetStartedPage(navController: NavController) {
@@ -28,10 +35,14 @@ fun GetStartedPage(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White),
-        verticalArrangement = Arrangement.SpaceBetween,
+        verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        LottieAnimation(animation = R.raw.bigstick)
+        //Spacer(modifier = Modifier.padding(10.dp))
+
+        Box() {
+            LottieAnimation(animation = R.raw.animationbook)
+        }
 
         Column(
             modifier = Modifier
@@ -58,6 +69,7 @@ fun GetStartedPage(navController: NavController) {
                 color = MaterialTheme.colorScheme.onPrimary
             )
         }
+        //Spacer(modifier = Modifier.padding(20.dp))
 
         Column(
             modifier = Modifier
@@ -88,11 +100,9 @@ fun GetStartedPage(navController: NavController) {
                     color = MaterialTheme.colorScheme.onPrimary,
                     maxLines = 2
                 )
-                Text(text = "")
-
                 TextButton(
                     modifier = Modifier,
-                    onClick = { navController.navigate( "HomePage" ) }) {
+                    onClick = { navController.navigate("SignInPage") }) {
                     Text(
                         modifier = Modifier,
                         textAlign = TextAlign.Start,

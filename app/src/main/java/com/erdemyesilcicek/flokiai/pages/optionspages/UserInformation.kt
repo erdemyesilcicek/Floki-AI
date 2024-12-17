@@ -21,6 +21,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -80,13 +81,55 @@ fun UserInformation(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 items(1) {
-                    CustomTextInput("Language", "Enter Language", true)
-                    CustomTextInput("Name", "Enter Name", true)
-                    CustomTextInput("Age", "Enter Age", true)
-                    CustomTextInput("Gender", "Enter Gender", true)
-                    CustomTextInput("Dad's Name", "Enter Dad's Name", true)
-                    CustomTextInput("Mom's Name", "Enter Mom's Name", true)
-                    CustomTextInput("Sis's Name", "Enter Sis's Name", true)
+                    CustomTextInput(
+                        "Language",
+                        "Enter Language",
+                        true,
+                        true,
+                        KeyboardType.Text
+                    )
+                    CustomTextInput(
+                        "Name",
+                        "Enter Name",
+                        true,
+                        true,
+                        KeyboardType.Text
+                    )
+                    CustomTextInput(
+                        "Age",
+                        "Enter Age",
+                        true,
+                        true,
+                        KeyboardType.Number
+                    )
+                    CustomTextInput(
+                        "Gender",
+                        "Enter Gender",
+                        true,
+                        true,
+                        KeyboardType.Text
+                    )
+                    CustomTextInput(
+                        "Dad's Name",
+                        "Enter Dad's Name",
+                        true,
+                        true,
+                        KeyboardType.Text
+                    )
+                    CustomTextInput(
+                        "Mom's Name",
+                        "Enter Mom's Name",
+                        true,
+                        true,
+                        KeyboardType.Text
+                    )
+                    CustomTextInput(
+                        "Sis's Name",
+                        "Enter Sis's Name",
+                        true,
+                        true,
+                        KeyboardType.Text
+                    )
 
                     Spacer(modifier = Modifier.padding(40.dp))
 

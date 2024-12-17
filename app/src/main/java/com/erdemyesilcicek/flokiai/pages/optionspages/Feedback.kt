@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -75,12 +76,24 @@ fun Feedback(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 items(1) {
-                    CustomTextInput("Email", "Enter Email", true)
-                    CustomTextInput("Subject", "Enter Subject", true)
+                    CustomTextInput(
+                        "Email",
+                        "Enter Email",
+                        true,
+                        true,
+                        KeyboardType.Email)
+                    CustomTextInput(
+                        "Subject",
+                        "Enter Subject",
+                        true,
+                        true,
+                        KeyboardType.Text)
                     CustomTextInput(
                         "Message",
                         "Enter Message",
-                        true
+                        true,
+                        true,
+                        KeyboardType.Text
                     )
                 }
             }
