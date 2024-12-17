@@ -10,10 +10,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.erdemyesilcicek.flokiai.datas.CategoryCard
+import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 
 @Composable
-fun CustomCategorySection(list: List<CategoryCard>, isMultiple: Boolean) {
-    val selectedButtons = remember { mutableStateListOf<Int>() }
+fun CustomCategorySection(
+    list: List<CategoryCard>,
+    isMultiple: Boolean,
+    selectedList: List<CategoryCard>,
+    onSelectionChange: (CategoryCard) -> Unit
+) {
+    //val selectedCategories = categoryViewModel.selectedCategories
 
     Box(
         modifier = Modifier
@@ -21,22 +27,15 @@ fun CustomCategorySection(list: List<CategoryCard>, isMultiple: Boolean) {
     ) {
         LazyRow {
             itemsIndexed(list) { index, item ->
+                val isSelected = selectedList.contains(item)
                 CategoryCardItem(
                     index = index,
                     item = item,
-                    isSelected = selectedButtons.contains(index),
+                    isSelected = isSelected,
                     cardWidth = 100.dp,
                     cardHeight = 100.dp,
                     onClick = {
-                        if (selectedButtons.contains(index)) {
-                            selectedButtons.remove(index)
-                        } else {
-                            if (isMultiple && selectedButtons.size < 3) {
-                                selectedButtons.add(index)
-                            } else if (!isMultiple && selectedButtons.size < 1) {
-                                selectedButtons.add(index)
-                            }
-                        }
+                        onSelectionChange(item)
                     }
                 )
             }

@@ -23,6 +23,7 @@ import com.erdemyesilcicek.flokiai.pages.optionspages.Feedback
 import com.erdemyesilcicek.flokiai.pages.optionspages.UserInformation
 import com.erdemyesilcicek.flokiai.ui.theme.FlokiAITheme
 import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,16 +31,17 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val authViewModel : AuthViewModel = AuthViewModel()
+            val categoryViewModel: CategoryViewModel = CategoryViewModel()
 
             FlokiAITheme() {
-                NavController(authViewModel)
+                NavController(authViewModel, categoryViewModel)
             }
         }
     }
 }
 
 @Composable
-fun NavController(authViewModel: AuthViewModel) {
+fun NavController(authViewModel: AuthViewModel, categoryViewModel: CategoryViewModel) {
     val navController = rememberNavController()
 
     NavHost(
@@ -48,7 +50,7 @@ fun NavController(authViewModel: AuthViewModel) {
     ) {
         composable(route = "HomePage") { HomePage(navController) }
 
-        composable(route = "CreateTalePage") { CreateTalePage(navController) }
+        composable(route = "CreateTalePage") { CreateTalePage(navController, categoryViewModel) }
 
         composable(route = "OptionsPage") { OptionsPage(navController) }
 

@@ -30,9 +30,10 @@ import com.erdemyesilcicek.flokiai.lists.familyList
 import com.erdemyesilcicek.flokiai.lists.genreList
 import com.erdemyesilcicek.flokiai.lists.seasonList
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 
 @Composable
-fun CreateTalePage(navController: NavController) {
+fun CreateTalePage(navController: NavController, categoryViewModel: CategoryViewModel) {
     Scaffold(
         topBar = {
             HeaderBar(
@@ -49,8 +50,13 @@ fun CreateTalePage(navController: NavController) {
                 MaterialTheme.colorScheme.primary,
                 "Create Tale",
                 onClick = {
-                    println("create tale screen fab clicked")
-                })
+                    println("Genre: ${categoryViewModel.selectedGenre}")
+                    println("Season: ${categoryViewModel.selectedSeason}")
+                    println("Animals: ${categoryViewModel.selectedAnimals}")
+                    println("Characters: ${categoryViewModel.selectedCharacters}")
+                    println("Family: ${categoryViewModel.selectedFamily}")
+                }
+            )
         },
         floatingActionButtonPosition = FabPosition.Center
     ) { padding ->
@@ -62,19 +68,53 @@ fun CreateTalePage(navController: NavController) {
         ) {
             items(1) {
                 CustomText("Genre")
-                CustomCategorySection(list = genreList, false)
+                CustomCategorySection(
+                    list = genreList,
+                    false,
+                    selectedList = categoryViewModel.selectedGenre,
+                    onSelectionChange = { category ->
+                        categoryViewModel.selectGenre(category)
+                })
 
                 CustomText("Season")
-                CustomCategorySection(list = seasonList, false)
+                CustomCategorySection(
+                    list = seasonList,
+                    false,
+                    selectedList = categoryViewModel.selectedSeason,
+                    onSelectionChange = { category ->
+                        categoryViewModel.selectSeason(category)
+                    }
+                )
 
                 CustomText("Animal")
-                CustomCategorySection(list = animalList, true)
+                CustomCategorySection(
+                    list = animalList,
+                    true,
+                    selectedList = categoryViewModel.selectedAnimals,
+                    onSelectionChange = { category ->
+                        categoryViewModel.selectAnimal(category)
+                    }
+                )
 
                 CustomText("Character")
-                CustomCategorySection(list = characterList, true)
+                CustomCategorySection(
+                    list = characterList,
+                    true,
+                    selectedList = categoryViewModel.selectedCharacters,
+                    onSelectionChange = { category ->
+                        categoryViewModel.selectCharacter(category)
+                    }
+                )
 
                 CustomText("Include in the tale")
-                CustomCategorySection(list = familyList, true)
+                CustomCategorySection(
+                    list = familyList,
+                    true,
+                    selectedList = categoryViewModel.selectedFamily,
+                    onSelectionChange = { category ->
+                        categoryViewModel.selectFamily(category)
+                    }
+                )
 
                 Spacer(modifier = Modifier.padding(50.dp))
 
