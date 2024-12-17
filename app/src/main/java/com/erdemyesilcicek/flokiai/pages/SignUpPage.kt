@@ -8,10 +8,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,9 +31,16 @@ import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomTextButton
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
 
 @Composable
-fun SignUpPage(navController: NavController) {
+fun SignUpPage(
+    navController: NavController,
+    authViewModel: AuthViewModel) {
+    val email = remember { mutableStateOf("") }
+    val password = remember { mutableStateOf("") }
+    val confirmPassword = remember { mutableStateOf("") }
+    val errorMessage = remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
@@ -86,25 +96,42 @@ fun SignUpPage(navController: NavController) {
             ) {
                 CustomTextInput(
                     title = "Email",
-                    label = "Email",
+                    label = "Enter your email",
+                    text = email.value, // State değeri
+                    onValueChange = { email.value = it }, // Değişim callback'i
                     isSingleLine = true,
-                    true,
-                    KeyboardType.Email
+                    isVisual = true,
+                    keyboardType = KeyboardType.Email
                 )
+
                 CustomTextInput(
                     title = "Password",
-                    label = "Password",
+                    label = "Enter your password",
+                    text = password.value,
+                    onValueChange = { password.value = it },
                     isSingleLine = true,
-                    false,
-                    KeyboardType.Password
+                    isVisual = false,
+                    keyboardType = KeyboardType.Password
                 )
+
                 CustomTextInput(
                     title = "Confirm Password",
                     label = "Confirm Password",
+                    text = confirmPassword.value,
+                    onValueChange = { confirmPassword.value = it },
                     isSingleLine = true,
-                    false,
-                    KeyboardType.Password
+                    isVisual = false,
+                    keyboardType = KeyboardType.Password
                 )
+
+                if (errorMessage.value.isNotEmpty()) {
+                    Text(
+                        text = errorMessage.value,
+                        color = Color.Red,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
             }
 
             Column(
@@ -118,6 +145,14 @@ fun SignUpPage(navController: NavController) {
                     containerColor = MaterialTheme.colorScheme.primary,
                     text = "Sign Up"
                 ) {
+                    if (password.value == confirmPassword.value) {
+                        errorMessage.value = ""
+                        authViewModel.register(email.value, password.value)
+                        navController.navigate("SignInPage")
+                        println("auth is over.")
+                    } else {
+                        errorMessage.value = "Passwords do not match!"
+                    }
                 }
                 CustomTextButton(
                     text = "Already have an account?",

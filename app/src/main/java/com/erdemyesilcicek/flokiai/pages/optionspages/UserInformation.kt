@@ -14,6 +14,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,6 +38,15 @@ import com.erdemyesilcicek.flokiai.utils.myFont
 fun UserInformation(
     navController: NavController
 ) {
+    // State'leri tanımla
+    val language = remember { mutableStateOf("") }
+    val name = remember { mutableStateOf("") }
+    val age = remember { mutableStateOf("") }
+    val gender = remember { mutableStateOf("") }
+    val dadName = remember { mutableStateOf("") }
+    val momName = remember { mutableStateOf("") }
+    val sisName = remember { mutableStateOf("") }
+
     Scaffold(
         topBar = {
             HeaderBar(
@@ -52,6 +63,13 @@ fun UserInformation(
                 "Save",
                 onClick = {
                     println("Save fab clicked")
+                    println("Language: ${language.value}")
+                    println("Name: ${name.value}")
+                    println("Age: ${age.value}")
+                    println("Gender: ${gender.value}")
+                    println("Dad's Name: ${dadName.value}")
+                    println("Mom's Name: ${momName.value}")
+                    println("Sis's Name: ${sisName.value}")
                 })
         },
         floatingActionButtonPosition = FabPosition.Center
@@ -82,53 +100,67 @@ fun UserInformation(
             ) {
                 items(1) {
                     CustomTextInput(
-                        "Language",
-                        "Enter Language",
-                        true,
-                        true,
-                        KeyboardType.Text
+                        title = "Language",
+                        label = "Enter Language",
+                        text = language.value, // State
+                        onValueChange = { language.value = it }, // Değişim callback'i
+                        isSingleLine = true,
+                        isVisual = true,
+                        keyboardType = KeyboardType.Text
                     )
                     CustomTextInput(
-                        "Name",
-                        "Enter Name",
-                        true,
-                        true,
-                        KeyboardType.Text
+                        title = "Name",
+                        label = "Enter Name",
+                        text = name.value,
+                        onValueChange = { name.value = it },
+                        isSingleLine = true,
+                        isVisual = true,
+                        keyboardType = KeyboardType.Text
                     )
                     CustomTextInput(
-                        "Age",
-                        "Enter Age",
-                        true,
-                        true,
-                        KeyboardType.Number
+                        title = "Age",
+                        label = "Enter Age",
+                        text = age.value,
+                        onValueChange = { age.value = it },
+                        isSingleLine = true,
+                        isVisual = true,
+                        keyboardType = KeyboardType.Number
                     )
                     CustomTextInput(
-                        "Gender",
-                        "Enter Gender",
-                        true,
-                        true,
-                        KeyboardType.Text
+                        title = "Gender",
+                        label = "Enter Gender",
+                        text = gender.value,
+                        onValueChange = { gender.value = it },
+                        isSingleLine = true,
+                        isVisual = true,
+                        keyboardType = KeyboardType.Text
                     )
                     CustomTextInput(
-                        "Dad's Name",
-                        "Enter Dad's Name",
-                        true,
-                        true,
-                        KeyboardType.Text
+                        title = "Dad's Name",
+                        label = "Enter Dad's Name",
+                        text = dadName.value,
+                        onValueChange = { dadName.value = it },
+                        isSingleLine = true,
+                        isVisual = true,
+                        keyboardType = KeyboardType.Text
                     )
                     CustomTextInput(
-                        "Mom's Name",
-                        "Enter Mom's Name",
-                        true,
-                        true,
-                        KeyboardType.Text
+                        title = "Mom's Name",
+                        label = "Enter Mom's Name",
+                        text = momName.value,
+                        onValueChange = { momName.value = it },
+                        isSingleLine = true,
+                        isVisual = true,
+                        keyboardType = KeyboardType.Text
                     )
                     CustomTextInput(
-                        "Sis's Name",
-                        "Enter Sis's Name",
-                        true,
-                        true,
-                        KeyboardType.Text
+                        title = "Sis's Name",
+                        label = "Enter Sis's Name",
+                        text = sisName.value,
+                        onValueChange = { sisName.value = it },
+                        isSingleLine = true,
+                        isVisual = true,
+                        keyboardType = KeyboardType.Text
                     )
 
                     Spacer(modifier = Modifier.padding(40.dp))

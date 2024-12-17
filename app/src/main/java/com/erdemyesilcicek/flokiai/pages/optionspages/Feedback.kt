@@ -12,6 +12,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,6 +33,10 @@ import com.erdemyesilcicek.flokiai.components.HeaderBar
 fun Feedback(
     navController: NavController
 ) {
+    val email = remember { mutableStateOf("") }
+    val subject = remember { mutableStateOf("") }
+    val message = remember { mutableStateOf("") }
+
     Scaffold(
         topBar = {
             HeaderBar(
@@ -77,23 +83,31 @@ fun Feedback(
             ) {
                 items(1) {
                     CustomTextInput(
-                        "Email",
-                        "Enter Email",
-                        true,
-                        true,
-                        KeyboardType.Email)
+                        title = "Email",
+                        label = "Email",
+                        text = email.value,
+                        onValueChange = { email.value = it },
+                        isSingleLine = true,
+                        isVisual = true,
+                        keyboardType = KeyboardType.Email
+                    )
                     CustomTextInput(
-                        "Subject",
-                        "Enter Subject",
-                        true,
-                        true,
-                        KeyboardType.Text)
+                        title = "Subject",
+                        label = "Enter Subject",
+                        text = subject.value,
+                        onValueChange = { subject.value = it },
+                        isSingleLine = true,
+                        isVisual = true,
+                        keyboardType = KeyboardType.Text
+                    )
                     CustomTextInput(
-                        "Message",
-                        "Enter Message",
-                        true,
-                        true,
-                        KeyboardType.Text
+                        title = "Message",
+                        label = "Enter Message",
+                        text = message.value,
+                        onValueChange = { message.value = it },
+                        isSingleLine = true,
+                        isVisual = true,
+                        keyboardType = KeyboardType.Text
                     )
                 }
             }

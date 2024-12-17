@@ -31,11 +31,13 @@ import androidx.compose.ui.unit.dp
 fun CustomTextInput(
     title: String,
     label: String,
+    text: String,
+    onValueChange: (String) -> Unit,
     isSingleLine: Boolean,
     isVisual: Boolean,
     keyboardType: KeyboardType
 ) {
-    val text = remember { mutableStateOf("") }
+    //val text = remember { mutableStateOf("") }
     var isFocused by remember { mutableStateOf(false) }
 
     Column(
@@ -48,8 +50,8 @@ fun CustomTextInput(
 
         TextField(
             singleLine = isSingleLine,
-            value = text.value,
-            onValueChange = { text.value = it },
+            value = text,
+            onValueChange = onValueChange,
             label = { Text(text = label) },
 
             visualTransformation = if (!isVisual) PasswordVisualTransformation() else VisualTransformation.None,

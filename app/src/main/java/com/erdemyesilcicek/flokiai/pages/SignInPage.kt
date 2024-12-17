@@ -15,10 +15,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -32,9 +35,21 @@ import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomTextButton
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun SignInPage(navController: NavController) {
+fun SignInPage(
+    navController: NavController,
+    authViewModel: AuthViewModel
+) {
+    val email = remember { mutableStateOf("") }
+    val password = remember { mutableStateOf("") }
+    val context = LocalContext.current
+
+    val errorMessage = remember { mutableStateOf("") }
+    val auth = FirebaseAuth.getInstance()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -90,17 +105,22 @@ fun SignInPage(navController: NavController) {
             ) {
                 CustomTextInput(
                     title = "Email",
-                    label = "Email",
+                    label = "Enter your email",
+                    text = email.value, // State değeri
+                    onValueChange = { email.value = it }, // Değişim callback'i
                     isSingleLine = true,
-                    true,
-                    KeyboardType.Email
+                    isVisual = true,
+                    keyboardType = KeyboardType.Email
                 )
+
                 CustomTextInput(
                     title = "Password",
-                    label = "Password",
+                    label = "Enter your password",
+                    text = password.value, // State değeri
+                    onValueChange = { password.value = it }, // Değişim callback'i
                     isSingleLine = true,
-                    false,
-                    KeyboardType.Password
+                    isVisual = false,
+                    keyboardType = KeyboardType.Password
                 )
             }
 
@@ -125,11 +145,30 @@ fun SignInPage(navController: NavController) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                // Hata Mesajı
+                if (errorMessage.value.isNotEmpty()) {
+                    Text(
+                        text = errorMessage.value,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+
                 CustomExtendedFAB(
                     containerColor = MaterialTheme.colorScheme.primary,
                     text = "Sign In"
                 ) {
-                    navController.navigate("HomePage")
+                    auth.signInWithEmailAndPassword(email.value, password.value)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                errorMessage.value = ""
+                                authViewModel.login(email.value, password.value)
+                                println("Login Successful!")
+                                navController.navigate("HomePage")
+                            } else {
+                                errorMessage.value = "Email or password is incorrect, or the user is not registered."
+                            }
+                        }
                 }
                 CustomTextButton(
                     text = "Create an account",
