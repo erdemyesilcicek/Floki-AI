@@ -116,8 +116,8 @@ fun SignInPage(
                 CustomTextInput(
                     title = "Password",
                     label = "Enter your password",
-                    text = password.value, // State değeri
-                    onValueChange = { password.value = it }, // Değişim callback'i
+                    text = password.value,
+                    onValueChange = { password.value = it },
                     isSingleLine = true,
                     isVisual = false,
                     keyboardType = KeyboardType.Password

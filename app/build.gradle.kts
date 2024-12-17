@@ -24,12 +24,23 @@ android {
 
     buildTypes {
         release {
+            //val geminiApiKey = project.findProperty("GEMINI_API_KEY") as String? ?: ""
+            //buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
+
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
+        /*
+        debug {
+            // Gradle properties'ten API anahtarını al
+            val geminiApiKey = project.findProperty("GEMINI_API_KEY") as String? ?: ""
+            buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
+        }
+
+         */
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -40,6 +51,7 @@ android {
     }
     buildFeatures {
         compose = true
+        //buildFeatures.buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -69,13 +81,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    //Gemini
+    implementation("com.google.ai.client.generativeai:generativeai:0.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
     //Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation("com.google.firebase:firebase-analytics")
 
-    implementation ("com.google.firebase:firebase-auth")
-    implementation ("com.google.firebase:firebase-firestore")
-    implementation ("com.google.firebase:firebase-storage")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-storage")
 
     // Extended Icons
     implementation("androidx.compose.material:material-icons-extended:1.7.5")
