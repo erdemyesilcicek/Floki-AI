@@ -14,6 +14,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,11 +27,24 @@ import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.animations.LottieAnimation
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 @Composable
-fun GetStartedPage(navController: NavController) {
+fun GetStartedPage(navController: NavController, authViewModel: AuthViewModel) {
+
+    LaunchedEffect(key1 = authViewModel.auth.currentUser) {
+        if (authViewModel.auth.currentUser != null) {
+            // Kullanıcı giriş yaptıysa HomePage'e yönlendir
+            authViewModel.loginState.value = true
+            navController.navigate("HomePage") {
+                // Geriye dönmeyi engellemek için stack'i temizle
+                popUpTo("CreateTalePage") { inclusive = true }
+            }
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()

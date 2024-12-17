@@ -56,7 +56,7 @@ fun NavController(authViewModel: AuthViewModel) {
 
         composable(route = "Feedback") { Feedback(navController) }
 
-        composable(route = "GetStartedPage") { GetStartedPage(navController) }
+        composable(route = "GetStartedPage") { GetStartedPage(navController, authViewModel) }
 
         composable(route = "SignUpPage") { SignUpPage(navController, authViewModel) }
 
