@@ -24,6 +24,7 @@ import com.erdemyesilcicek.flokiai.components.CustomCategorySection
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomText
 import com.erdemyesilcicek.flokiai.components.HeaderBar
+import com.erdemyesilcicek.flokiai.datas.CategoryCard
 import com.erdemyesilcicek.flokiai.lists.animalList
 import com.erdemyesilcicek.flokiai.lists.characterList
 import com.erdemyesilcicek.flokiai.lists.familyList
@@ -31,9 +32,16 @@ import com.erdemyesilcicek.flokiai.lists.genreList
 import com.erdemyesilcicek.flokiai.lists.seasonList
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 
 @Composable
-fun CreateTalePage(navController: NavController, categoryViewModel: CategoryViewModel) {
+fun CreateTalePage(
+    navController: NavController,
+    categoryViewModel: CategoryViewModel,
+    userInformationViewModel: UserInformationViewModel,
+    loadingViewModel: LoadingViewModel
+) {
     Scaffold(
         topBar = {
             HeaderBar(
@@ -50,11 +58,23 @@ fun CreateTalePage(navController: NavController, categoryViewModel: CategoryView
                 MaterialTheme.colorScheme.primary,
                 "Create Tale",
                 onClick = {
-                    println("Genre: ${categoryViewModel.selectedGenre}")
-                    println("Season: ${categoryViewModel.selectedSeason}")
-                    println("Animals: ${categoryViewModel.selectedAnimals}")
-                    println("Characters: ${categoryViewModel.selectedCharacters}")
-                    println("Family: ${categoryViewModel.selectedFamily}")
+                    var genre: String = categoryViewModel.selectedGenre.get(0).text
+                    var season: String = categoryViewModel.selectedSeason.get(0).text
+                    val animalTexts: List<String> = categoryViewModel.selectedAnimals.map { it.text }
+                    val characterTexts: List<String> = categoryViewModel.selectedCharacters.map { it.text }
+                    val familyTexts: List<String> = categoryViewModel.selectedFamily.map { it.text }
+                    val userInformation = userInformationViewModel.userInformation.value
+
+                    loadingViewModel.updateLoadingData(
+                        genre = genre,
+                        season = season,
+                        animals = animalTexts,
+                        characters = characterTexts,
+                        family = familyTexts,
+                        userInformation = userInformation
+                    )
+
+                    navController.navigate("LoadingPage")
                 }
             )
         },

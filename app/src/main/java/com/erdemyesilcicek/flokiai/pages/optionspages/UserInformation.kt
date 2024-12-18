@@ -20,8 +20,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,15 +41,30 @@ import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.components.HeaderBar
+import com.erdemyesilcicek.flokiai.datas.UserInformationModel
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 
 @Composable
 fun UserInformation(
     navController: NavController,
-    context: Context
+    context: Context,
+    userInformationViewModel: UserInformationViewModel
 ) {
-    val sharedPreferences = context.getSharedPreferences("character_info", Context.MODE_PRIVATE)
+    val userInfo by userInformationViewModel.userInformation.observeAsState(UserInformationModel())
 
+    val sharedPreferences = context.getSharedPreferences("character_info", Context.MODE_PRIVATE)
+    val language =
+        remember { mutableStateOf(sharedPreferences.getString("Language", "") ?: "") }
+    var name by remember { mutableStateOf(userInfo.yourName) }
+    var age by remember { mutableStateOf(userInfo.age.toString()) }
+    var gender by remember { mutableStateOf(userInfo.gender) }
+    var dadName by remember { mutableStateOf(userInfo.dadName) }
+    var momName by remember { mutableStateOf(userInfo.momName) }
+    var siblingName by remember { mutableStateOf(userInfo.siblingName) }
+
+    /*
+    val sharedPreferences = context.getSharedPreferences("character_info", Context.MODE_PRIVATE)
     val language =
         remember { mutableStateOf(sharedPreferences.getString("Language", "") ?: "") }
     val name =
@@ -61,6 +79,8 @@ fun UserInformation(
         remember { mutableStateOf(sharedPreferences.getString("Mom Name", "") ?: "") }
     val siblingName =
         remember { mutableStateOf(sharedPreferences.getString("Sibling Name", "") ?: "") }
+
+     */
 
     val scrollState = rememberScrollState()
 
@@ -79,6 +99,16 @@ fun UserInformation(
                 MaterialTheme.colorScheme.primary,
                 "Save",
                 onClick = {
+                    val updatedUserInfo = UserInformationModel(
+                        yourName = name,
+                        age = age.toIntOrNull() ?: 0,
+                        gender = gender,
+                        dadName = dadName,
+                        momName = momName,
+                        siblingName = siblingName
+                    )
+                    userInformationViewModel.updateUserInformation(updatedUserInfo)
+                    /*
                     with(sharedPreferences.edit()) {
                         putString("Your Name", name.value)
                         putInt("Age", age.value.toIntOrNull() ?: 0)
@@ -89,6 +119,7 @@ fun UserInformation(
                         putString("Sibling Name", siblingName.value)
                         apply()
                     }
+                     */
                 })
         },
         floatingActionButtonPosition = FabPosition.Center
@@ -140,8 +171,8 @@ fun UserInformation(
                 CustomTextInput(
                     title = "Name",
                     label = "Enter Name",
-                    text = name.value,
-                    onValueChange = { name.value = it },
+                    text = name,
+                    onValueChange = { name = it },
                     isSingleLine = true,
                     isVisual = true,
                     keyboardType = KeyboardType.Text
@@ -149,8 +180,8 @@ fun UserInformation(
                 CustomTextInput(
                     title = "Age",
                     label = "Enter Age",
-                    text = age.value,
-                    onValueChange = { age.value = it },
+                    text = age,
+                    onValueChange = { age = it },
                     isSingleLine = true,
                     isVisual = true,
                     keyboardType = KeyboardType.Number
@@ -158,8 +189,8 @@ fun UserInformation(
                 CustomTextInput(
                     title = "Gender",
                     label = "Enter Gender",
-                    text = gender.value,
-                    onValueChange = { gender.value = it },
+                    text = gender,
+                    onValueChange = { gender = it },
                     isSingleLine = true,
                     isVisual = true,
                     keyboardType = KeyboardType.Text
@@ -167,8 +198,8 @@ fun UserInformation(
                 CustomTextInput(
                     title = "Dad Name",
                     label = "Enter Dad Name",
-                    text = dadName.value,
-                    onValueChange = { dadName.value = it },
+                    text = dadName,
+                    onValueChange = { dadName = it },
                     isSingleLine = true,
                     isVisual = true,
                     keyboardType = KeyboardType.Text
@@ -176,8 +207,8 @@ fun UserInformation(
                 CustomTextInput(
                     title = "Mom Name",
                     label = "Enter Mom Name",
-                    text = momName.value,
-                    onValueChange = { momName.value = it },
+                    text = momName,
+                    onValueChange = { momName = it },
                     isSingleLine = true,
                     isVisual = true,
                     keyboardType = KeyboardType.Text
@@ -185,8 +216,8 @@ fun UserInformation(
                 CustomTextInput(
                     title = "Sibling Name",
                     label = "Enter Sibling Name",
-                    text = siblingName.value,
-                    onValueChange = { siblingName.value = it },
+                    text = siblingName,
+                    onValueChange = { siblingName = it },
                     isSingleLine = true,
                     isVisual = true,
                     keyboardType = KeyboardType.Text

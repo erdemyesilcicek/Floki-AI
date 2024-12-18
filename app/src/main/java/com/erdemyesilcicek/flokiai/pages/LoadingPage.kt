@@ -16,9 +16,19 @@ import androidx.compose.ui.unit.sp
 import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.animations.LottieAnimation
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 
 @Composable
-fun LoadingPage() {
+fun LoadingPage(loadingViewModel: LoadingViewModel) {
+    val genre = loadingViewModel.genre
+    val season = loadingViewModel.season
+    val animals = loadingViewModel.animals
+    val characters = loadingViewModel.characters
+    val family = loadingViewModel.family
+    val userInformation = loadingViewModel.userInformation
+
+    println("LoadingPage: genre: $genre, season: $season, animals: $animals, characters: $characters, family: $family, userInformation: $userInformation")
+
     Column(
         modifier = Modifier
             .fillMaxSize(),
