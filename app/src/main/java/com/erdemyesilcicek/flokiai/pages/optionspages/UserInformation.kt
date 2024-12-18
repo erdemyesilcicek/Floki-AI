@@ -1,5 +1,7 @@
 package com.erdemyesilcicek.flokiai.pages.optionspages
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -40,15 +42,25 @@ import com.erdemyesilcicek.flokiai.utils.myFont
 
 @Composable
 fun UserInformation(
-    navController: NavController
+    navController: NavController,
+    context: Context
 ) {
-    val language = remember { mutableStateOf("") }
-    val name = remember { mutableStateOf("") }
-    val age = remember { mutableStateOf("") }
-    val gender = remember { mutableStateOf("") }
-    val dadName = remember { mutableStateOf("") }
-    val momName = remember { mutableStateOf("") }
-    val sisName = remember { mutableStateOf("") }
+    val sharedPreferences = context.getSharedPreferences("character_info", Context.MODE_PRIVATE)
+
+    val language =
+        remember { mutableStateOf(sharedPreferences.getString("Language", "") ?: "") }
+    val name =
+        remember { mutableStateOf(sharedPreferences.getString("Your Name", "") ?: "") }
+    val age =
+        remember { mutableStateOf(sharedPreferences.getInt("Age", 0).toString()) }
+    val gender =
+        remember { mutableStateOf(sharedPreferences.getString("Gender", "") ?: "") }
+    val dadName =
+        remember { mutableStateOf(sharedPreferences.getString("Dad Name", "") ?: "") }
+    val momName =
+        remember { mutableStateOf(sharedPreferences.getString("Mom Name", "") ?: "") }
+    val siblingName =
+        remember { mutableStateOf(sharedPreferences.getString("Sibling Name", "") ?: "") }
 
     val scrollState = rememberScrollState()
 
@@ -67,14 +79,16 @@ fun UserInformation(
                 MaterialTheme.colorScheme.primary,
                 "Save",
                 onClick = {
-                    println("Save fab clicked")
-                    println("Language: ${language.value}")
-                    println("Name: ${name.value}")
-                    println("Age: ${age.value}")
-                    println("Gender: ${gender.value}")
-                    println("Dad's Name: ${dadName.value}")
-                    println("Mom's Name: ${momName.value}")
-                    println("Sis's Name: ${sisName.value}")
+                    with(sharedPreferences.edit()) {
+                        putString("Your Name", name.value)
+                        putInt("Age", age.value.toIntOrNull() ?: 0)
+                        putString("Gender", gender.value)
+
+                        putString("Dad Name", dadName.value)
+                        putString("Mom Name", momName.value)
+                        putString("Sibling Name", siblingName.value)
+                        apply()
+                    }
                 })
         },
         floatingActionButtonPosition = FabPosition.Center
@@ -87,16 +101,25 @@ fun UserInformation(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.defaultrapunzel),
-                contentDescription = "",
-                contentScale = ContentScale.Fit
-            )
-            Text(
-                text = "User Information",
-                fontFamily = FontFamily.Default,
-                fontSize = 18.sp
-            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth().padding(10.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.animalsseal),
+                    contentDescription = "",
+                    contentScale = ContentScale.Fit
+                )
+                Text(
+                    text = "User Information",
+                    fontFamily = FontFamily.Default,
+                    fontSize = 18.sp
+                )
+            }
+
+
             Column(
                 modifier = Modifier
                     .imePadding()
@@ -142,8 +165,8 @@ fun UserInformation(
                     keyboardType = KeyboardType.Text
                 )
                 CustomTextInput(
-                    title = "Dad's Name",
-                    label = "Enter Dad's Name",
+                    title = "Dad Name",
+                    label = "Enter Dad Name",
                     text = dadName.value,
                     onValueChange = { dadName.value = it },
                     isSingleLine = true,
@@ -151,8 +174,8 @@ fun UserInformation(
                     keyboardType = KeyboardType.Text
                 )
                 CustomTextInput(
-                    title = "Mom's Name",
-                    label = "Enter Mom's Name",
+                    title = "Mom Name",
+                    label = "Enter Mom Name",
                     text = momName.value,
                     onValueChange = { momName.value = it },
                     isSingleLine = true,
@@ -160,10 +183,10 @@ fun UserInformation(
                     keyboardType = KeyboardType.Text
                 )
                 CustomTextInput(
-                    title = "Sis's Name",
-                    label = "Enter Sis's Name",
-                    text = sisName.value,
-                    onValueChange = { sisName.value = it },
+                    title = "Sibling Name",
+                    label = "Enter Sibling Name",
+                    text = siblingName.value,
+                    onValueChange = { siblingName.value = it },
                     isSingleLine = true,
                     isVisual = true,
                     keyboardType = KeyboardType.Text

@@ -25,6 +25,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.erdemyesilcicek.flokiai.utils.myFont
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -53,10 +54,9 @@ fun CustomTextInput(
             value = text,
             onValueChange = onValueChange,
             label = { Text(text = label) },
-
             visualTransformation = if (!isVisual) PasswordVisualTransformation() else VisualTransformation.None,
-
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth()
@@ -66,6 +66,7 @@ fun CustomTextInput(
                     shape = RoundedCornerShape(20.dp)
                 )
                 .clip(RoundedCornerShape(20.dp)),
+
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = Color.White,
                 focusedIndicatorColor = Color.White,

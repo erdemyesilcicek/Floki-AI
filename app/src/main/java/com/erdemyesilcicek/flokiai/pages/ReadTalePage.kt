@@ -1,5 +1,7 @@
 package com.erdemyesilcicek.flokiai.pages
 
+import android.content.Context
+import android.speech.tts.TextToSpeech
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,9 +31,12 @@ import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.lists.TaleList
 import com.erdemyesilcicek.flokiai.utils.myFont
+import java.util.Locale
+
 
 @Composable
 fun ReadTalePage(navController: NavController, id: Int?) {
+
     val tale = TaleList.get(id!!)
 
     Scaffold(

@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val authViewModel : AuthViewModel = AuthViewModel()
-            val categoryViewModel: CategoryViewModel = CategoryViewModel()
+            val categoryViewModel : CategoryViewModel = CategoryViewModel()
 
             FlokiAITheme() {
                 NavController(authViewModel, categoryViewModel)
@@ -43,6 +44,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun NavController(authViewModel: AuthViewModel, categoryViewModel: CategoryViewModel) {
     val navController = rememberNavController()
+    val context = LocalContext.current
 
     NavHost(
         navController = navController,
@@ -54,7 +56,7 @@ fun NavController(authViewModel: AuthViewModel, categoryViewModel: CategoryViewM
 
         composable(route = "OptionsPage") { OptionsPage(navController) }
 
-        composable(route = "UserInformation") { UserInformation(navController) }
+        composable(route = "UserInformation") { UserInformation(navController, context) }
 
         composable(route = "Feedback") { Feedback(navController) }
 
