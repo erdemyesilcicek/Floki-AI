@@ -16,7 +16,7 @@ fun CustomIconTab(icon: ImageVector, isSelected: Boolean, onClick: () -> Unit) {
     Icon(
         imageVector = icon,
         contentDescription = null,
-        tint = if (isSelected) Color(0xFFFC587A) else Color(0xFF7879A5),
+        tint = if (isSelected) Color(0xFFFF6887) else Color(0xFF696899),
         modifier = Modifier
             .size(30.dp)
             .clickable(
