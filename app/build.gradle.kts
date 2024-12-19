@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.google.gms.google-services")
 
@@ -8,6 +10,9 @@ plugins {
 android {
     namespace = "com.erdemyesilcicek.flokiai"
     compileSdk = 34
+
+    val localProperties = gradleLocalProperties(rootDir, providers)
+    val apiKey: String = localProperties.getProperty("API_KEY") ?: ""
 
     defaultConfig {
         applicationId = "com.erdemyesilcicek.flokiai"
@@ -20,6 +25,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
     }
 
     buildTypes {
@@ -29,6 +35,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "API_KEY", "\"$apiKey\"")
         }
     }
     compileOptions {

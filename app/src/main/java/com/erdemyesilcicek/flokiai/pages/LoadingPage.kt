@@ -16,10 +16,11 @@ import androidx.compose.ui.unit.sp
 import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.animations.LottieAnimation
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.GeminiViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 
 @Composable
-fun LoadingPage(loadingViewModel: LoadingViewModel) {
+fun LoadingPage(loadingViewModel: LoadingViewModel, geminiViewModel: GeminiViewModel) {
     val genre = loadingViewModel.genre
     val season = loadingViewModel.season
     val animals = loadingViewModel.animals
@@ -59,10 +60,7 @@ fun LoadingPage(loadingViewModel: LoadingViewModel) {
             "Yazılan masal, Dil Tercihi parametresinde belirtilen dilde olmalı. Eğer belirtilen dil seçilmezse, varsayılan olarak İngilizce yazılmalı.\n" +
             "Lütfen yukarıdaki tüm talimatları takip ederek bir masal oluştur. Bana bunu gönderdiğim parametreleri de ekleyerek, JSON formatında geri döndür."
 
-    println(prompt)
-
-    //generateTale(prompt)
-    //println("LoadingPage: genre: $genre, season: $season, animals: $animals, characters: $characters, family: $family, userInformation: $userInformation")
+    geminiViewModel.getGeminiData(prompt)
 
     Column(
         modifier = Modifier

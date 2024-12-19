@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.erdemyesilcicek.flokiai.components.TaleCard
 import com.erdemyesilcicek.flokiai.datas.Tale
+import com.erdemyesilcicek.flokiai.navigation.NavController
 import com.erdemyesilcicek.flokiai.pages.CreateTalePage
 import com.erdemyesilcicek.flokiai.pages.GetStartedPage
 import com.erdemyesilcicek.flokiai.pages.HomePage
@@ -28,6 +29,7 @@ import com.erdemyesilcicek.flokiai.ui.theme.FlokiAITheme
 import com.erdemyesilcicek.flokiai.utils.UserInformationRepository
 import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.GeminiViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 
@@ -36,54 +38,29 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val userInformationViewModel : UserInformationViewModel = UserInformationViewModel(
+                UserInformationRepository(
+                    getSharedPreferences(
+                        "character_info",
+                        MODE_PRIVATE
+                    )
+                )
+            )
             val authViewModel : AuthViewModel = AuthViewModel()
             val categoryViewModel : CategoryViewModel = CategoryViewModel()
-            val userInformationViewModel = UserInformationViewModel(UserInformationRepository(getSharedPreferences("character_info", MODE_PRIVATE)))
-            val loadingViewModel = LoadingViewModel()
+            val loadingViewModel : LoadingViewModel = LoadingViewModel()
+            val geminiViewModel : GeminiViewModel = GeminiViewModel()
 
             FlokiAITheme() {
-                NavController(authViewModel, categoryViewModel, userInformationViewModel, loadingViewModel)
+                NavController(
+                    authViewModel,
+                    categoryViewModel,
+                    userInformationViewModel,
+                    loadingViewModel,
+                    geminiViewModel
+                )
             }
         }
     }
 }
 
-@Composable
-fun NavController(authViewModel: AuthViewModel, categoryViewModel: CategoryViewModel, userInformationViewModel: UserInformationViewModel, loadingViewModel: LoadingViewModel) {
-    val navController = rememberNavController()
-    val context = LocalContext.current
-
-    NavHost(
-        navController = navController,
-        startDestination = "GetStartedPage"
-    ) {
-        composable(route = "HomePage") { HomePage(navController) }
-
-        composable(route = "LoadingPage") { LoadingPage(loadingViewModel)}
-
-        composable(route = "CreateTalePage") { CreateTalePage(navController, categoryViewModel, userInformationViewModel, loadingViewModel) }
-
-        composable(route = "OptionsPage") { OptionsPage(navController) }
-
-        composable(route = "UserInformation") { UserInformation(navController, context, userInformationViewModel) }
-
-        composable(route = "Feedback") { Feedback(navController) }
-
-        composable(route = "GetStartedPage") { GetStartedPage(navController, authViewModel) }
-
-        composable(route = "SignUpPage") { SignUpPage(navController, authViewModel) }
-
-        composable(route = "SignInPage") { SignInPage(navController, authViewModel) }
-
-        composable(route = "ReadTalePage" + "?id={id}", arguments = listOf(navArgument("id") {
-            type = NavType.IntType
-            defaultValue = -1
-        })) {
-            val id = it.arguments?.getInt("id")!!
-            ReadTalePage(navController, id)
-        }
-        composable(route = "TaleCard") {
-            TaleCard(navController, card = Tale(5, "", "", 0, ""))
-        }
-    }
-}
