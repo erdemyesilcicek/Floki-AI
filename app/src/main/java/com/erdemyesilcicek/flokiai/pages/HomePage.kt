@@ -57,7 +57,11 @@ fun HomePage(navController: NavController) {
             HeaderBar(
                 isEnableBackButton = true,
                 isEnableBarButton = false,
-                "My Tales",
+                if (selectedTab == 1) {
+                    "World of Tales"
+                } else {
+                    "Created Tales"
+                },
                 navController
             )
         },

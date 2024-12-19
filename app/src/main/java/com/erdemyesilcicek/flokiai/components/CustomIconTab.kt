@@ -16,11 +16,11 @@ fun CustomIconTab(icon: ImageVector, isSelected: Boolean, onClick: () -> Unit) {
     Icon(
         imageVector = icon,
         contentDescription = null,
-        tint = if (isSelected) Color(0xFFFFAAE8) else Color(0xFF7879A5),
+        tint = if (isSelected) Color(0xFFFC587A) else Color(0xFF7879A5),
         modifier = Modifier
             .size(30.dp)
             .clickable(
-                indication = null, // Ripple efektini kaldırır
+                indication = null,
                 interactionSource = remember { MutableInteractionSource() },
                 onClick = onClick
             )

@@ -1,39 +1,32 @@
 package com.erdemyesilcicek.flokiai.utils
 
-import com.google.ai.client.generativeai.BuildConfig
+import android.util.Log
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
-import kotlinx.coroutines.runBlocking
+import com.google.ai.client.generativeai.type.generationConfig
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /*
+fun generateTale(prompt: String) {
+    // API client'ı başlatıyoruz
+    val apiKey = "YOUR_API_KEY" // Burada API anahtarınızı kullanın
+    val generativeAiClient = GenerativeAiClient.create(apiKey)
 
-fun generateTale() {
-    val apiKey = BuildConfig.GEMINI_API_KEY
-    println("Gemini API Key: $apiKey")
-
-    val model = GenerativeModel(
-        modelName = "gemini-1.5-flash",
-        apiKey = apiKey,
-        generationConfig = GenerativeModel.GenerationConfig(
-            temperature = 1f,
-            topK = 40,
-            topP = 0.95f,
-            maxOutputTokens = 8192
-        )
-    )
-
-    val chatHistory = listOf(
-        content("user") {
-            text(
-                "Bir masal yazmanı istiyorum.\nMasal, çocuklar için uygun, eğitici ve eğlenceli olmalı. ..."
-            )
+    try {
+        // API'ye promptu gönderip yanıtı alıyoruz
+        val response = withContext(Dispatchers.IO) {
+            // 'generate' metodu promptu alır ve yanıt döner
+            generativeAiClient.generate(prompt)
         }
-    )
 
-    runBlocking {
-        val chat = model.startChat(chatHistory)
-        val response = chat.sendMessage("Lütfen masalı oluştur ve JSON formatında döndür.")
-        println(response.text)
+        // Yanıtı logcat'e basıyoruz
+        Log.d("GeminiAPI", "Generated Response: ${response.text}")
+    } catch (e: Exception) {
+        // Hata durumunda loglama
+        Log.e("GeminiAPI", "Error generating response: ${e.message}")
     }
 }
 

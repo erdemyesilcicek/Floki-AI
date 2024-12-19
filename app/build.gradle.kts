@@ -24,23 +24,12 @@ android {
 
     buildTypes {
         release {
-            //val geminiApiKey = project.findProperty("GEMINI_API_KEY") as String? ?: ""
-            //buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
-
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
-        /*
-        debug {
-            // Gradle properties'ten API anahtarını al
-            val geminiApiKey = project.findProperty("GEMINI_API_KEY") as String? ?: ""
-            buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
-        }
-
-         */
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -51,7 +40,7 @@ android {
     }
     buildFeatures {
         compose = true
-        //buildFeatures.buildConfig = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -82,7 +71,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //Gemini
-    implementation("com.google.ai.client.generativeai:generativeai:0.6.0")
+    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 
     //Firebase
@@ -108,6 +97,5 @@ dependencies {
     //liveData
     implementation("androidx.compose.runtime:runtime-livedata:1.5.2")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
-
 
 }
