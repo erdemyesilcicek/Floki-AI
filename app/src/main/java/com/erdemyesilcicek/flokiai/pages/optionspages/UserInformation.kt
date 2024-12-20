@@ -62,25 +62,7 @@ fun UserInformation(
     var dadName by remember { mutableStateOf(userInfo.dadName) }
     var momName by remember { mutableStateOf(userInfo.momName) }
     var siblingName by remember { mutableStateOf(userInfo.siblingName) }
-
-    /*
-    val sharedPreferences = context.getSharedPreferences("character_info", Context.MODE_PRIVATE)
-    val language =
-        remember { mutableStateOf(sharedPreferences.getString("Language", "") ?: "") }
-    val name =
-        remember { mutableStateOf(sharedPreferences.getString("Your Name", "") ?: "") }
-    val age =
-        remember { mutableStateOf(sharedPreferences.getInt("Age", 0).toString()) }
-    val gender =
-        remember { mutableStateOf(sharedPreferences.getString("Gender", "") ?: "") }
-    val dadName =
-        remember { mutableStateOf(sharedPreferences.getString("Dad Name", "") ?: "") }
-    val momName =
-        remember { mutableStateOf(sharedPreferences.getString("Mom Name", "") ?: "") }
-    val siblingName =
-        remember { mutableStateOf(sharedPreferences.getString("Sibling Name", "") ?: "") }
-
-     */
+    var petName by remember { mutableStateOf(userInfo.petName) }
 
     val scrollState = rememberScrollState()
 
@@ -105,7 +87,8 @@ fun UserInformation(
                         gender = gender,
                         dadName = dadName,
                         momName = momName,
-                        siblingName = siblingName
+                        siblingName = siblingName,
+                        petName = petName
                     )
                     userInformationViewModel.updateUserInformation(updatedUserInfo)
                     /*
@@ -218,6 +201,15 @@ fun UserInformation(
                     label = "Enter Sibling Name",
                     text = siblingName,
                     onValueChange = { siblingName = it },
+                    isSingleLine = true,
+                    isVisual = true,
+                    keyboardType = KeyboardType.Text
+                )
+                CustomTextInput(
+                    title = "Pet Name",
+                    label = "Enter Pet Name",
+                    text = petName,
+                    onValueChange = { petName = it },
                     isSingleLine = true,
                     isVisual = true,
                     keyboardType = KeyboardType.Text

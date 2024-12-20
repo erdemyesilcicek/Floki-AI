@@ -12,6 +12,7 @@ class UserInformationRepository(private val sharedPreferences: SharedPreferences
         private const val KEY_DAD_NAME = "key_dad_name"
         private const val KEY_MOM_NAME = "key_mom_name"
         private const val KEY_SIBLING_NAME = "key_sibling_name"
+        private const val KEY_PET_NAME = "key_pet_name"
     }
 
     fun getUserInformation(): UserInformationModel {
@@ -21,7 +22,8 @@ class UserInformationRepository(private val sharedPreferences: SharedPreferences
         val dadName = sharedPreferences.getString(KEY_DAD_NAME, "") ?: ""
         val momName = sharedPreferences.getString(KEY_MOM_NAME, "") ?: ""
         val siblingName = sharedPreferences.getString(KEY_SIBLING_NAME, "") ?: ""
-        return UserInformationModel(yourName, age, gender, dadName, momName, siblingName)
+        val petName = sharedPreferences.getString(KEY_PET_NAME, "") ?: ""
+        return UserInformationModel(yourName, age, gender, dadName, momName, siblingName, petName)
     }
 
     fun saveUserInformation(userInformation: UserInformationModel) {
@@ -32,6 +34,7 @@ class UserInformationRepository(private val sharedPreferences: SharedPreferences
             putString(KEY_DAD_NAME, userInformation.dadName)
             putString(KEY_MOM_NAME, userInformation.momName)
             putString(KEY_SIBLING_NAME, userInformation.siblingName)
+            putString(KEY_PET_NAME, userInformation.petName)
             apply()
         }
     }
