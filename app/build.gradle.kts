@@ -89,6 +89,9 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-storage")
 
+    implementation("com.google.code.gson:gson:2.10")
+
+
     // Extended Icons
     implementation("androidx.compose.material:material-icons-extended:1.7.5")
 

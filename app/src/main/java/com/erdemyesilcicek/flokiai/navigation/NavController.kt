@@ -24,6 +24,7 @@ import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.GeminiViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
+import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
 fun NavController(
@@ -31,7 +32,8 @@ fun NavController(
     categoryViewModel: CategoryViewModel,
     userInformationViewModel: UserInformationViewModel,
     loadingViewModel: LoadingViewModel,
-    geminiViewModel: GeminiViewModel
+    geminiViewModel: GeminiViewModel,
+    db : FirebaseFirestore
 ) {
     val navController = rememberNavController()
     val context = LocalContext.current
@@ -42,7 +44,7 @@ fun NavController(
     ) {
         composable(route = "HomePage") { HomePage(navController) }
 
-        composable(route = "LoadingPage") { LoadingPage(loadingViewModel, geminiViewModel) }
+        composable(route = "LoadingPage") { LoadingPage(loadingViewModel, geminiViewModel,db) }
 
         composable(route = "CreateTalePage") {
             CreateTalePage(

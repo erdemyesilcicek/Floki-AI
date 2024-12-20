@@ -1,5 +1,7 @@
 package com.erdemyesilcicek.flokiai.pages
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,9 +21,12 @@ import com.erdemyesilcicek.flokiai.animations.LottieAnimation
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.erdemyesilcicek.flokiai.viewmodels.GeminiViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 @Composable
-fun LoadingPage(loadingViewModel: LoadingViewModel, geminiViewModel: GeminiViewModel) {
+fun LoadingPage(loadingViewModel: LoadingViewModel, geminiViewModel: GeminiViewModel, db : FirebaseFirestore) {
     val genre = loadingViewModel.genre
     val season = loadingViewModel.season
     val animals = loadingViewModel.animals
@@ -94,11 +99,27 @@ fun LoadingPage(loadingViewModel: LoadingViewModel, geminiViewModel: GeminiViewM
     LaunchedEffect(Unit) {
         geminiViewModel.getGeminiData(prompt)
         geminiViewModel.responseState.collect { response ->
-            response?.let {
-                println(it)
+            response?.let { jsonString ->
+                try {
+                    // JSON'u bir Map'e dönüştür
+                    val data: Map<String, Any> = Gson().fromJson(jsonString, object : TypeToken<Map<String, Any>>() {}.type)
+
+                    // Veriyi Firestore'a ekle
+                    db.collection("tales")
+                        .add(data)
+                        .addOnSuccessListener { documentReference ->
+                            Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error adding document", e)
+                        }
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error parsing JSON or saving to Firestore", e)
+                }
             }
         }
     }
+
 
 
 

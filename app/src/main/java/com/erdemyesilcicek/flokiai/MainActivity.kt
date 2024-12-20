@@ -32,6 +32,8 @@ import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.GeminiViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +48,7 @@ class MainActivity : ComponentActivity() {
                     )
                 )
             )
+            val db = Firebase.firestore
             val authViewModel : AuthViewModel = AuthViewModel()
             val categoryViewModel : CategoryViewModel = CategoryViewModel()
             val loadingViewModel : LoadingViewModel = LoadingViewModel()
@@ -57,7 +60,8 @@ class MainActivity : ComponentActivity() {
                     categoryViewModel,
                     userInformationViewModel,
                     loadingViewModel,
-                    geminiViewModel
+                    geminiViewModel,
+                    db
                 )
             }
         }
