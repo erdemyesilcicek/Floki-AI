@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
+import com.erdemyesilcicek.flokiai.components.CustomDropdownMenu
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.components.HeaderBar
@@ -48,14 +49,11 @@ import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 @Composable
 fun UserInformation(
     navController: NavController,
-    context: Context,
     userInformationViewModel: UserInformationViewModel
 ) {
     val userInfo by userInformationViewModel.userInformation.observeAsState(UserInformationModel())
 
-    val sharedPreferences = context.getSharedPreferences("character_info", Context.MODE_PRIVATE)
-    val language =
-        remember { mutableStateOf(sharedPreferences.getString("Language", "") ?: "") }
+    var language by remember { mutableStateOf(userInfo.language) }
     var name by remember { mutableStateOf(userInfo.yourName) }
     var age by remember { mutableStateOf(userInfo.age.toString()) }
     var gender by remember { mutableStateOf(userInfo.gender) }
@@ -64,6 +62,7 @@ fun UserInformation(
     var siblingName by remember { mutableStateOf(userInfo.siblingName) }
     var petName by remember { mutableStateOf(userInfo.petName) }
 
+    val options = listOf("English", "German", "Turkish")
     val scrollState = rememberScrollState()
 
     Scaffold(
@@ -88,21 +87,10 @@ fun UserInformation(
                         dadName = dadName,
                         momName = momName,
                         siblingName = siblingName,
-                        petName = petName
+                        petName = petName,
+                        language = language
                     )
                     userInformationViewModel.updateUserInformation(updatedUserInfo)
-                    /*
-                    with(sharedPreferences.edit()) {
-                        putString("Your Name", name.value)
-                        putInt("Age", age.value.toIntOrNull() ?: 0)
-                        putString("Gender", gender.value)
-
-                        putString("Dad Name", dadName.value)
-                        putString("Mom Name", momName.value)
-                        putString("Sibling Name", siblingName.value)
-                        apply()
-                    }
-                     */
                 })
         },
         floatingActionButtonPosition = FabPosition.Center
@@ -117,7 +105,8 @@ fun UserInformation(
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth().padding(10.dp),
+                    .fillMaxWidth()
+                    .padding(10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
@@ -132,8 +121,6 @@ fun UserInformation(
                     fontSize = 18.sp
                 )
             }
-
-
             Column(
                 modifier = Modifier
                     .imePadding()
@@ -141,15 +128,12 @@ fun UserInformation(
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
-                CustomTextInput(
-                    title = "Language",
-                    label = "Enter Language",
-                    text = language.value, // State
-                    onValueChange = { language.value = it }, // Değişim callback'i
-                    isSingleLine = true,
-                    isVisual = true,
-                    keyboardType = KeyboardType.Text
+                CustomDropdownMenu(
+                    title = "Tale Language",
+                    label = "Select Language",
+                    options = options,
+                    selectedOption = language,
+                    onOptionSelected = { language = it }
                 )
                 CustomTextInput(
                     title = "Name",

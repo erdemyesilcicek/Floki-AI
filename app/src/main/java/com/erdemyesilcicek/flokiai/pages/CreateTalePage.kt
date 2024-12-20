@@ -1,5 +1,6 @@
 package com.erdemyesilcicek.flokiai.pages
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -15,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -42,6 +44,8 @@ fun CreateTalePage(
     userInformationViewModel: UserInformationViewModel,
     loadingViewModel: LoadingViewModel
 ) {
+    val context = LocalContext.current
+
     Scaffold(
         topBar = {
             HeaderBar(
@@ -58,25 +62,48 @@ fun CreateTalePage(
                 MaterialTheme.colorScheme.primary,
                 "Create Tale",
                 onClick = {
-                    var genre: String = categoryViewModel.selectedGenre.get(0).text
-                    var season: String = categoryViewModel.selectedSeason.get(0).text
-                    val animalTexts: List<String> = categoryViewModel.selectedAnimals.map { it.text }
-                    val characterTexts: List<String> = categoryViewModel.selectedCharacters.map { it.text }
-                    val familyTexts: List<String> = categoryViewModel.selectedFamily.map { it.text }
+                    val genre = categoryViewModel.selectedGenre.getOrNull(0)?.text
+                    val season = categoryViewModel.selectedSeason.getOrNull(0)?.text
+                    val animalTexts = categoryViewModel.selectedAnimals.map { it.text }
+                    val characterTexts = categoryViewModel.selectedCharacters.map { it.text }
+                    val familyTexts = categoryViewModel.selectedFamily.map { it.text }
                     val userInformation = userInformationViewModel.userInformation.value
 
-                    loadingViewModel.updateLoadingData(
-                        genre = genre,
-                        season = season,
-                        animals = animalTexts,
-                        characters = characterTexts,
-                        family = familyTexts,
-                        userInformation = userInformation
-                    )
+                    // Eksik alanları kontrol et
+                    when {
+                        genre.isNullOrEmpty() -> {
+                            // Kullanıcıyı uyarmak için bir yöntem
+                            Toast.makeText(context, "Please select a genre", Toast.LENGTH_SHORT).show()
+                        }
+                        season.isNullOrEmpty() -> {
+                            Toast.makeText(context, "Please select a season", Toast.LENGTH_SHORT).show()
+                        }
+                        animalTexts.isEmpty() -> {
+                            Toast.makeText(context, "Please select at least one animal", Toast.LENGTH_SHORT).show()
+                        }
+                        characterTexts.isEmpty() -> {
+                            Toast.makeText(context, "Please select at least one character", Toast.LENGTH_SHORT).show()
+                        }
+                        familyTexts.isEmpty() -> {
+                            Toast.makeText(context, "Please select at least one family member", Toast.LENGTH_SHORT).show()
+                        }
+                        else -> {
+                            // Tüm kontroller tamamlandı, veri yükleme işlemini yap
+                            loadingViewModel.updateLoadingData(
+                                genre = genre,
+                                season = season,
+                                animals = animalTexts,
+                                characters = characterTexts,
+                                family = familyTexts,
+                                userInformation = userInformation
+                            )
 
-                    navController.navigate("LoadingPage")
+                            navController.navigate("LoadingPage")
+                        }
+                    }
                 }
             )
+
         },
         floatingActionButtonPosition = FabPosition.Center
     ) { padding ->

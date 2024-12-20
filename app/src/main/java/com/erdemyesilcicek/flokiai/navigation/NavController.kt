@@ -58,7 +58,6 @@ fun NavController(
         composable(route = "UserInformation") {
             UserInformation(
                 navController,
-                context,
                 userInformationViewModel
             )
         }

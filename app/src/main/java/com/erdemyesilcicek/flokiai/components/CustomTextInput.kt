@@ -38,7 +38,6 @@ fun CustomTextInput(
     isVisual: Boolean,
     keyboardType: KeyboardType
 ) {
-    //val text = remember { mutableStateOf("") }
     var isFocused by remember { mutableStateOf(false) }
 
     Column(

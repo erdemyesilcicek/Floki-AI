@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -44,7 +45,7 @@ fun LoadingPage(loadingViewModel: LoadingViewModel, geminiViewModel: GeminiViewM
             "Dad Name: ${userInformation?.dadName}\n" +
             "Sibling Name: ${userInformation?.siblingName}\n" +
             "Pet Name: ${userInformation?.petName}\n" +
-            "Language: Turkish\n" +
+            "Language: ${userInformation?.language}\n" +
             "Story Categories:\n" +
             "\n" +
             "Type: Specified type (Adventure, Fantastic, Mystery, Space, Trip, Family).\n" +
@@ -75,10 +76,11 @@ fun LoadingPage(loadingViewModel: LoadingViewModel, geminiViewModel: GeminiViewM
             "The language should be simple and easily understandable for children.\n" +
             "Descriptions should be vivid yet straightforward.\n" +
             "The story's world should be colorful, lively, and stimulate the imagination.\n" +
-            "Story Format:\n" +
-            "Story Title\n" +
-            "The Story Itself\n" +
-            "A one-sentence summary\n" +
+            "Story Format (Even if the application's language changes, the titles in the Tale Format section must remain fixed.) The titles are as follows:\n" +
+            "\n" +
+            "TaleTitle\n" +
+            "TaleItself\n" +
+            "TaleSummary\n" +
             "\n" +
             "Special Instructions for AI:\n" +
             "The name, age, gender, and family details of the main character should form the foundation of the story. However, avoid excessive repetition of names by using pronouns or descriptions to add variety.\n" +
@@ -86,8 +88,19 @@ fun LoadingPage(loadingViewModel: LoadingViewModel, geminiViewModel: GeminiViewM
             "The story must adhere to the specified parameters and avoid unnecessary details. However, transitions between events must be logical, avoiding abrupt jumps.\n" +
             "Dialogues that capture children's attention can be included. They should be short and reflect the personality of the characters.\n" +
             "At the end of the story, include a message or lesson for children naturally through the events. This message might focus on themes like \"friendship,\" \"courage,\" or \"love for nature.\"\n" +
-            "Any problem-solving should involve the main character's efforts and interactions with animals or characters, emphasizing the importance of collaboration and perseverance."
-    geminiViewModel.getGeminiData(prompt)
+            "Any problem-solving should involve the main character's efforts and interactions with animals or characters, emphasizing the importance of collaboration and perseverance." +
+            "Return in JSON format"
+
+    LaunchedEffect(Unit) {
+        geminiViewModel.getGeminiData(prompt)
+        geminiViewModel.responseState.collect { response ->
+            response?.let {
+                println(it)
+            }
+        }
+    }
+
+
 
     Column(
         modifier = Modifier
