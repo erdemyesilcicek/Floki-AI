@@ -52,7 +52,6 @@ fun GetStartedPage(navController: NavController, authViewModel: AuthViewModel) {
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        //Spacer(modifier = Modifier.padding(10.dp))
 
         Box() {
             LottieAnimation(animation = R.raw.animationbook)
@@ -83,7 +82,6 @@ fun GetStartedPage(navController: NavController, authViewModel: AuthViewModel) {
                 color = MaterialTheme.colorScheme.onPrimary
             )
         }
-        //Spacer(modifier = Modifier.padding(20.dp))
 
         Column(
             modifier = Modifier

@@ -19,8 +19,6 @@ fun CustomCategorySection(
     selectedList: List<CategoryCard>,
     onSelectionChange: (CategoryCard) -> Unit
 ) {
-    //val selectedCategories = categoryViewModel.selectedCategories
-
     Box(
         modifier = Modifier
             .padding(5.dp)

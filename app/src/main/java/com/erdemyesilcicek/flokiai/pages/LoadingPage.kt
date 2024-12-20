@@ -60,8 +60,6 @@ fun LoadingPage(loadingViewModel: LoadingViewModel, geminiViewModel: GeminiViewM
             "Yazılan masal, Dil Tercihi parametresinde belirtilen dilde olmalı. Eğer belirtilen dil seçilmezse, varsayılan olarak İngilizce yazılmalı.\n" +
             "Lütfen yukarıdaki tüm talimatları takip ederek bir masal oluştur. Bana bunu gönderdiğim parametreleri de ekleyerek, JSON formatında geri döndür."
 
-    geminiViewModel.getGeminiData(prompt)
-
     Column(
         modifier = Modifier
             .fillMaxSize(),

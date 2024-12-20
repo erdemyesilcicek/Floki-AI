@@ -11,13 +11,13 @@ class GeminiViewModel : ViewModel() {
     fun getGeminiData(prompt: String) {
         viewModelScope.launch {
             try {
-                println("api Key: ${BuildConfig.API_KEY}")
                 val generativeModel = GenerativeModel(
                     modelName = "gemini-1.5-flash",
                     apiKey = BuildConfig.API_KEY
                 )
                 val response = generativeModel.generateContent(prompt)
                 println(response.text)
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
