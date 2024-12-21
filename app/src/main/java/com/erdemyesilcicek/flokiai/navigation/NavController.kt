@@ -79,6 +79,7 @@ fun NavController(
             val id = it.arguments?.getInt("id")!!
             ReadTalePage(navController, id)
         }
+
         composable(route = "TaleCard") {
             TaleCard(navController, card = Tale(5, "", "", 0, ""))
         }

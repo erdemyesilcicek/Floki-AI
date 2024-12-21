@@ -105,7 +105,7 @@ fun HomePage(navController: NavController) {
                 )
             }
             when (selectedTab) {
-                0 -> AiCreateTalePage()
+                0 -> AiCreateTalePage(navController)
                 1 -> DefaultTalePage(navController)
             }
         }
