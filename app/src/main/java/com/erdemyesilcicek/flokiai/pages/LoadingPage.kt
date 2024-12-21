@@ -54,12 +54,12 @@ fun LoadingPage(
 
                     val taleDetails = TaleDetails(
                         genre = loadingViewModel.genre,
-                        genreImage = loadingViewModel.genreImage,
+                        //genreImage = loadingViewModel.genreImage,
                         season = loadingViewModel.season,
                         animals = loadingViewModel.animals,
                         characters = loadingViewModel.characters,
                         family = loadingViewModel.family,
-                        userInformation = loadingViewModel.userInformation
+                        userInformation = loadingViewModel.userInformation!!
                     )
 
                     val taleDetailsMap: Map<String, Any> = Gson().toJson(taleDetails).let {
@@ -67,7 +67,7 @@ fun LoadingPage(
                     }
 
                     db.collection("tales")
-                        .add(data + ("TaleDetails" to taleDetailsMap) + ("userId" to userId))
+                        .add(data + ("TaleDetails" to taleDetailsMap) + ("userId" to userId) + ("GenreImage" to loadingViewModel.genreImage))
                         .addOnSuccessListener { documentReference ->
                             println("DocumentSnapshot added with ID: ${documentReference.id}")
                         }

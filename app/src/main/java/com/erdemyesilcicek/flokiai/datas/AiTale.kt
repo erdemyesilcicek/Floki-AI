@@ -1,9 +1,12 @@
 package com.erdemyesilcicek.flokiai.datas
 
+import com.google.firebase.firestore.PropertyName
+
 data class AiTale(
-    val TaleDetails: TaleDetails,
-    val TaleItself : String,
-    val TaleSummary: String,
-    val TaleTitle: String,
-    val userId: String
+    @PropertyName("GenreImage") val GenreImage: Int = 0,
+    @PropertyName("TaleDetails") val TaleDetails: TaleDetails = TaleDetails(),
+    @PropertyName("TaleItself") val TaleItself: String = "",
+    @PropertyName("TaleSummary") val TaleSummary: String = "",
+    @PropertyName("TaleTitle") val TaleTitle: String = "",
+    @PropertyName("userId") val userId: String = ""
 )

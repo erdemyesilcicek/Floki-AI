@@ -81,7 +81,7 @@ fun NavController(
         }
 
         composable(route = "TaleCard") {
-            TaleCard(navController, card = Tale(5, "", "", 0, ""))
+            TaleCard(navController, tale = Tale(5, "", "", 0, ""))
         }
     }
 }
