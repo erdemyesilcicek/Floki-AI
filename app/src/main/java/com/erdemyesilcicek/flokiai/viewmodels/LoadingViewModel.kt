@@ -9,6 +9,8 @@ import com.erdemyesilcicek.flokiai.datas.UserInformationModel
 class LoadingViewModel : ViewModel() {
     var genre by mutableStateOf("")
         private set
+    var genreImage by mutableStateOf(0)
+        private set
     var season by mutableStateOf("")
         private set
     var animals: List<String> by mutableStateOf(emptyList())
@@ -22,6 +24,7 @@ class LoadingViewModel : ViewModel() {
 
     fun updateLoadingData(
         genre: String,
+        genreImage: Int,
         season: String,
         animals: List<String>,
         characters: List<String>,
@@ -29,6 +32,7 @@ class LoadingViewModel : ViewModel() {
         userInformation: UserInformationModel?
     ) {
         this.genre = genre
+        this.genreImage = genreImage
         this.season = season
         this.animals = animals
         this.characters = characters

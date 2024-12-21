@@ -33,7 +33,6 @@ fun LoadingPage(
     geminiViewModel: GeminiViewModel,
     db: FirebaseFirestore
 ) {
-
     val prompt = GeminiAiTalePrompt(
         genre = loadingViewModel.genre,
         season = loadingViewModel.season,
@@ -55,12 +54,12 @@ fun LoadingPage(
 
                     val taleDetails = TaleDetails(
                         genre = loadingViewModel.genre,
+                        genreImage = loadingViewModel.genreImage,
                         season = loadingViewModel.season,
                         animals = loadingViewModel.animals,
                         characters = loadingViewModel.characters,
                         family = loadingViewModel.family,
-                        userInformation = loadingViewModel.userInformation,
-                        userId = userId
+                        userInformation = loadingViewModel.userInformation
                     )
 
                     val taleDetailsMap: Map<String, Any> = Gson().toJson(taleDetails).let {
@@ -68,7 +67,7 @@ fun LoadingPage(
                     }
 
                     db.collection("tales")
-                        .add(data + ("TaleDetails" to taleDetailsMap))
+                        .add(data + ("TaleDetails" to taleDetailsMap) + ("userId" to userId))
                         .addOnSuccessListener { documentReference ->
                             println("DocumentSnapshot added with ID: ${documentReference.id}")
                         }
@@ -81,9 +80,6 @@ fun LoadingPage(
             }
         }
     }
-
-
-
 
     Column(
         modifier = Modifier

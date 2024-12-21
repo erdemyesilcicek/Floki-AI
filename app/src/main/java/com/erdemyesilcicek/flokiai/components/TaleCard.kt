@@ -30,8 +30,8 @@ import com.erdemyesilcicek.flokiai.datas.Tale
 import com.erdemyesilcicek.flokiai.utils.myFont
 
 @Composable
-fun TaleCard(navController: NavController, card: Tale) {
-    TaleCardTitle(card.title)
+fun TaleCard(navController: NavController, tale: Tale) {
+    TaleCardTitle(tale.title)
 
     OutlinedCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 9.dp),
@@ -43,13 +43,13 @@ fun TaleCard(navController: NavController, card: Tale) {
     ) {
         Row(
             modifier = Modifier
-                .clickable { navController.navigate("ReadTalePage" + "?id=${card.id}") }
+                .clickable { navController.navigate("ReadTalePage" + "?id=${tale.id}") }
                 .fillMaxSize()
                 .background(Color.White),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Image(
-                painter = painterResource(card.image),
+                painter = painterResource(tale.image),
                 contentDescription = "Tale Photo",
                 contentScale = ContentScale.Fit
             )
@@ -60,7 +60,7 @@ fun TaleCard(navController: NavController, card: Tale) {
             ) {
                 Text(
                     modifier = Modifier.padding(10.dp),
-                    text = card.summary,
+                    text = tale.summary,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
                     fontSize = 14.sp,

@@ -23,7 +23,7 @@ import com.google.firebase.ktx.Firebase
 fun AiCreateTalePage(navController: NavController) {
     val db = Firebase.firestore
     val userId = Firebase.auth.currentUser?.uid
-    println(userId)
+
     LaunchedEffect(Unit) {
         db.collection("tales")
             .whereEqualTo("userId", userId)
