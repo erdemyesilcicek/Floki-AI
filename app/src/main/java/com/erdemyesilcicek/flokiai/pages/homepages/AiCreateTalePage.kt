@@ -5,9 +5,14 @@ import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AutoAwesome
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -88,17 +93,27 @@ fun AiCreateTalePage(navController: NavController) {
 
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "AI Created",
-            modifier = Modifier.padding(16.dp),
-            textAlign = TextAlign.Center
-        )
-
         if (aiTales.value.isEmpty()) {
-            Text("No tales have been created yet.")
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Icon(
+                    modifier = Modifier.fillMaxWidth(),
+                    tint = MaterialTheme.colorScheme.onBackground,
+                    imageVector = Icons.Outlined.AutoAwesome,
+                    contentDescription ="Not yet")
+                Text(
+                    text = "No tales have been created yet.",
+                    color = MaterialTheme.colorScheme.onBackground,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
         } else {
             LazyColumn {
                 itemsIndexed(aiTales.value) { index, aiTale ->
