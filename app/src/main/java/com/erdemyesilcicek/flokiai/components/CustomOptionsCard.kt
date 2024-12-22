@@ -1,85 +1,121 @@
 package com.erdemyesilcicek.flokiai.components
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.erdemyesilcicek.flokiai.datas.Tale
 import com.erdemyesilcicek.flokiai.utils.myFont
 
 @Composable
 fun CustomOptionsCard(
+    navController: NavController,
     imageVector: ImageVector,
     contentDescription: String,
     itemText: String,
+    summary: String,
     onClick: () -> Unit
 ) {
-    Column(
+
+    CustomOptionsCardTitle(itemText)
+
+    OutlinedCard(
+        //elevation = CardDefaults.cardElevation(defaultElevation = 9.dp),
+        onClick = { },
         modifier = Modifier
-            .clickable(
-                indication = null,
-                interactionSource = remember { MutableInteractionSource() }
-            ) { onClick() }
-            .padding(2.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxWidth()
+            .height(100.dp)
+            .padding(start = 12.dp, end = 12.dp, top = 6.dp, bottom = 12.dp),
     ) {
-        Box(
+        Row(
             modifier = Modifier
-                .padding(1.dp)
+                .clickable { onClick() }
+                .fillMaxSize()
+                .weight(100f)
+                .background(Color.White),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
-                modifier = Modifier
-                    .border(
-                        0.2.dp,
-                        MaterialTheme.colorScheme.onBackground,
-                        shape = RoundedCornerShape(20.dp)
-                    )
-                    .width(150.dp)
-                    .height(150.dp),
+                modifier = Modifier.weight(20f),
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(48.dp),
+                    modifier = Modifier.fillMaxSize().padding(20.dp),
                     imageVector = imageVector,
                     contentDescription = contentDescription,
                     tint = MaterialTheme.colorScheme.onBackground,
                 )
             }
+
+            Column(
+                Modifier.fillMaxHeight().weight(80f),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    modifier = Modifier.padding(10.dp),
+                    text = summary,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis,
+                    textAlign = TextAlign.Center,
+                    fontSize = 14.sp,
+                    fontFamily = myFont,
+                    fontStyle = FontStyle.Italic,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.tertiary
+                )
+            }
         }
-        Text(
-            modifier = Modifier.padding(),
-            text = itemText,
-            color = MaterialTheme.colorScheme.onBackground,
-            fontSize = 14.sp,
-            textAlign = TextAlign.Center,
-            fontWeight = FontWeight.Normal,
-            fontFamily = myFont
-        )
     }
 }
 
+@Composable
+fun CustomOptionsCardTitle(itemText: String) {
+    Text(
+        text = itemText,
+        color = MaterialTheme.colorScheme.primary,
+        fontSize = 18.sp,
+        fontWeight = FontWeight.SemiBold,
+        fontFamily = myFont,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 12.dp)
+    )
+}
 /*
 @Composable
 fun CustomOptionsCard(
@@ -98,40 +134,35 @@ fun CustomOptionsCard(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
-            modifier = Modifier
-                .padding(1.dp)
+        Row(
+            modifier = Modifier.fillMaxWidth()
+                .border(
+                    0.2.dp,
+                    MaterialTheme.colorScheme.onBackground,
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
         ) {
-            Column(
+            Icon(
                 modifier = Modifier
-                    .border(
-                        0.2.dp,
-                        MaterialTheme.colorScheme.onBackground,
-                        shape = RoundedCornerShape(20.dp)
-                    )
-                    .width(180.dp)
-                    .height(180.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Icon(
-                    modifier = Modifier.size(50.dp),
-                    imageVector = imageVector,
-                    contentDescription = contentDescription,
-                    tint = MaterialTheme.colorScheme.onBackground,
-                )
-                Text(
-                    modifier = Modifier,
-                    text = itemText,
-                    color = MaterialTheme.colorScheme.onBackground,
-                    fontSize = 16.sp,
-                    textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Normal,
-                    fontFamily = myFont
-                )
-            }
+                    .fillMaxHeight(),
+                imageVector = imageVector,
+                contentDescription = contentDescription,
+                tint = MaterialTheme.colorScheme.onBackground,
+            )
+            Text(
+                modifier = Modifier.padding(),
+                text = itemText,
+                color = MaterialTheme.colorScheme.onBackground,
+                fontSize = 14.sp,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Normal,
+                fontFamily = myFont
+            )
         }
+
 
     }
 }
+
  */
