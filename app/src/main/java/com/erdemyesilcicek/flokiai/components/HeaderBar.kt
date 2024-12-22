@@ -83,7 +83,7 @@ fun HeaderBar(
                 IconButton(onClick = { navController.popBackStack() }) {
                     Icon(
                         imageVector = Icons.Rounded.ArrowBackIosNew,
-                        contentDescription = "back button",
+                        contentDescription = "new back button",
                         tint = MaterialTheme.colorScheme.onBackground
                     )
                 }
