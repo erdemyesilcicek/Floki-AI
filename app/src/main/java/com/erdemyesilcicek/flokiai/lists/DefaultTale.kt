@@ -45,7 +45,7 @@ public val TaleList = listOf(
     ),
     Tale(
         2,
-        "Türeyiş",
+        "The Legend of Creation, Türeyiş",
         "The Uyghur Turks lived in peace and prosperity. One day, a bright light descended from the sky onto their land. From the place where this light landed, a sacred tree began to grow. The tree’s branches shone like gold, bringing hope to everyone.\n" +
                 "\n" +
                 "One night, a mysterious voice was heard from beneath the tree. The people understood that this was a sign from God. From within the sacred tree, five children were born. As these children grew, they became wise, strong, and brave. The people believed that these children were sent by God and loved them deeply.\n" +

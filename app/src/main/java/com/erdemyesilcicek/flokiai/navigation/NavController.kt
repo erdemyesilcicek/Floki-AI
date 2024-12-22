@@ -18,6 +18,8 @@ import com.erdemyesilcicek.flokiai.pages.ReadTalePage
 import com.erdemyesilcicek.flokiai.pages.SignInPage
 import com.erdemyesilcicek.flokiai.pages.SignUpPage
 import com.erdemyesilcicek.flokiai.pages.optionspages.Feedback
+import com.erdemyesilcicek.flokiai.pages.optionspages.PrivacyPolicy
+import com.erdemyesilcicek.flokiai.pages.optionspages.TermsOfUse
 import com.erdemyesilcicek.flokiai.pages.optionspages.UserInformation
 import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
@@ -65,6 +67,10 @@ fun NavController(
         }
 
         composable(route = "Feedback") { Feedback(navController) }
+
+        composable(route = "PrivacyPolicy") { PrivacyPolicy(navController) }
+
+        composable(route = "TermsOfUse") { TermsOfUse(navController) }
 
         composable(route = "GetStartedPage") { GetStartedPage(navController, authViewModel) }
 

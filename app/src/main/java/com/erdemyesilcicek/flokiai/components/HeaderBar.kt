@@ -35,6 +35,7 @@ fun HeaderBar(
     barText: String,
     navController: NavController
 ) {
+    val currentRoute = navController.currentBackStackEntry?.destination?.route
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Color.White,
@@ -80,7 +81,21 @@ fun HeaderBar(
         },
         navigationIcon = {
             if (!isEnableBackButton) {
-                IconButton(onClick = { navController.popBackStack() }) {
+                IconButton(
+                    onClick = {
+                        if (
+                            currentRoute == "UserInformation" ||
+                            currentRoute == "Feedback" ||
+                            currentRoute == "PrivacyPolicy" ||
+                            currentRoute == "TermsOfUse"
+                        ) {
+                            navController.popBackStack()
+                        } else {
+                            navController.navigate("HomePage") {
+                                popUpTo(0) { inclusive = true }
+                            }
+                        }
+                    }) {
                     Icon(
                         imageVector = Icons.Rounded.ArrowBackIosNew,
                         contentDescription = "new back button",
@@ -91,7 +106,11 @@ fun HeaderBar(
         },
         actions = {
             IconButton(
-                onClick = { navController.navigate("OptionsPage") },
+                onClick = {
+                    if (currentRoute != "OptionsPage") {
+                        navController.navigate("OptionsPage")
+                    }
+                },
                 modifier = Modifier
             ) {
                 Icon(
