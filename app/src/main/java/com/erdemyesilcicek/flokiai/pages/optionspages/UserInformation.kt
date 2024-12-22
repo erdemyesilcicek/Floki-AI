@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -105,29 +106,36 @@ fun UserInformation(
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(10.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.animalsseal),
-                    contentDescription = "",
-                    contentScale = ContentScale.Fit
-                )
-                Text(
-                    text = "User Information",
-                    fontFamily = FontFamily.Default,
-                    fontSize = 18.sp
-                )
-            }
-            Column(
-                modifier = Modifier
                     .imePadding()
                     .verticalScroll(scrollState),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Box(
+                        modifier = Modifier.padding(start = 80.dp, end = 80.dp, top = 10.dp)
+                    ) {
+                        Image(
+                            modifier = Modifier.padding(10.dp),
+                            painter = painterResource(id = R.drawable.logo),
+                            contentDescription = "app logo",
+                            contentScale = ContentScale.Fit
+                        )
+                    }
+
+                    Text(
+                        text = "User Information",
+                        fontFamily = FontFamily.Default,
+                        fontSize = 18.sp
+                    )
+                }
+
                 CustomDropdownMenu(
                     title = "Tale Language",
                     label = "Select Language",
@@ -142,7 +150,8 @@ fun UserInformation(
                     onValueChange = { name = it },
                     isSingleLine = true,
                     isVisual = true,
-                    keyboardType = KeyboardType.Text
+                    keyboardType = KeyboardType.Text,
+                    isBigCanvas = false
                 )
                 CustomTextInput(
                     title = "Age",
@@ -151,7 +160,8 @@ fun UserInformation(
                     onValueChange = { age = it },
                     isSingleLine = true,
                     isVisual = true,
-                    keyboardType = KeyboardType.Number
+                    keyboardType = KeyboardType.Number,
+                    isBigCanvas = false
                 )
                 CustomTextInput(
                     title = "Gender",
@@ -160,7 +170,8 @@ fun UserInformation(
                     onValueChange = { gender = it },
                     isSingleLine = true,
                     isVisual = true,
-                    keyboardType = KeyboardType.Text
+                    keyboardType = KeyboardType.Text,
+                    isBigCanvas = false
                 )
                 CustomTextInput(
                     title = "Dad Name",
@@ -169,7 +180,8 @@ fun UserInformation(
                     onValueChange = { dadName = it },
                     isSingleLine = true,
                     isVisual = true,
-                    keyboardType = KeyboardType.Text
+                    keyboardType = KeyboardType.Text,
+                    isBigCanvas = false
                 )
                 CustomTextInput(
                     title = "Mom Name",
@@ -178,7 +190,8 @@ fun UserInformation(
                     onValueChange = { momName = it },
                     isSingleLine = true,
                     isVisual = true,
-                    keyboardType = KeyboardType.Text
+                    keyboardType = KeyboardType.Text,
+                    isBigCanvas = false
                 )
                 CustomTextInput(
                     title = "Sibling Name",
@@ -187,7 +200,8 @@ fun UserInformation(
                     onValueChange = { siblingName = it },
                     isSingleLine = true,
                     isVisual = true,
-                    keyboardType = KeyboardType.Text
+                    keyboardType = KeyboardType.Text,
+                    isBigCanvas = false
                 )
                 CustomTextInput(
                     title = "Pet Name",
@@ -196,7 +210,8 @@ fun UserInformation(
                     onValueChange = { petName = it },
                     isSingleLine = true,
                     isVisual = true,
-                    keyboardType = KeyboardType.Text
+                    keyboardType = KeyboardType.Text,
+                    isBigCanvas = false
                 )
 
                 Spacer(modifier = Modifier.padding(40.dp))

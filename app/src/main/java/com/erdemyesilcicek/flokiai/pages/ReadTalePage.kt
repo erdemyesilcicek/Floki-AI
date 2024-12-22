@@ -29,9 +29,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.HeaderBar
+import com.erdemyesilcicek.flokiai.datas.UserInformationModel
 import com.erdemyesilcicek.flokiai.lists.TaleList
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.google.firebase.Firebase
 import java.util.Locale
+import java.util.UUID
 
 
 @Composable

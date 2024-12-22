@@ -6,48 +6,89 @@ import com.erdemyesilcicek.flokiai.datas.Tale
 public val TaleList = listOf(
     Tale(
         0,
-        "Ali Baba ve Kırk Haramiler",
-        "Bir zamanlar Ali Baba adında fakir ama dürüst bir oduncu yaşarmış. Ali Baba, günlerini ormanda odun kesip satarak ailesine bakmakla geçirirmiş. Bir gün, ormanda odun toplarken uzaktan bir grup atlı görmüş. Bu kırk haramiymiş! Ali Baba hemen bir ağacın arkasına saklanmış ve onları izlemiş. Haramiler, büyük bir kayanın önünde durmuşlar. Liderleri kayaya doğru dönüp yüksek sesle bağırmış:\n" +
+        "Ali Baba and the Forty Thieves",
+        "Once upon a time, there lived a poor but honest woodcutter named Ali Baba. He spent his days cutting wood in the forest to support his family. One day, while collecting wood, he saw a group of horsemen from afar. They were the forty thieves! Ali Baba quickly hid behind a tree and watched them. The thieves stopped in front of a large rock. Their leader turned toward the rock and shouted loudly:\n" +
+                "\"Open Sesame!\"\n" +
+                "A large door appeared on the rock, and the thieves went inside. Ali Baba waited curiously and saw the door close again after the thieves left. Once they were gone, Ali Baba approached the rock and said the same words:\n" +
+                "\"Open Sesame!\"\n" +
+                "The door opened, revealing a cave full of gold, jewels, and treasures. Amazed, Ali Baba took a few bags of gold and went home. He told his wife what had happened but decided to keep the secret between them. However, Ali Baba's greedy brother, Kasim, discovered the secret and went to the cave. Greedy Kasim lingered in the cave too long and forgot the magic words. The thieves returned and caught him there.\n" +
                 "\n" +
-                "“Açıl Susam Açıl!”\n" +
-                "\n" +
-                "Kayada kocaman bir kapı açılmış ve haramiler içeri girmişler. Ali Baba merakla beklemiş ve haramiler dışarı çıkınca kapının tekrar kapandığını görmüş. Onlar uzaklaşınca Ali Baba kayanın önüne gelmiş, aynı sözleri söylemiş:\n" +
-                "\n" +
-                "“Açıl Susam Açıl!”\n" +
-                "\n" +
-                "Kapı açılmış ve içeride altınlar, mücevherler, hazinelerle dolu bir mağara görmüş. Ali Baba şaşkınlıkla birkaç torba altın almış ve eve dönmüş. Eve gidince olan biteni karısına anlatmış. Ancak, bu sırrı kimseye söylememeye karar vermişler. Ama Ali Baba’nın açgözlü ağabeyi Kasım, bu sırrı öğrenmiş ve mağaraya gitmiş. Fakat açgözlü Kasım, mağarada çok fazla oyalanmış ve şifreyi unutmuş. Haramiler gelip onu orada yakalamışlar. Ali Baba, kardeşini kurtaramadığı için çok üzülmüş ama haramiler mağaranın sırrını öğrenen birinin daha olabileceğini anlamışlar. Şehre gelip Ali Baba’yı bulmaya karar vermişler. Ancak Ali Baba’nın hizmetçisi Marjana, haramilerin planını öğrenmiş ve akıllıca bir tuzak kurarak hepsini etkisiz hale getirmiş. Ali Baba ve ailesi, artık huzur içinde yaşamış ve hazineleri yardıma muhtaç insanlarla paylaşmışlar. Ali Baba, dürüstlüğü ve cömertliği sayesinde herkesin sevdiği bir insan olmuş.\n",
+                "Ali Baba was heartbroken that he couldn’t save his brother, but the thieves realized someone else knew their secret. They went to the city to find Ali Baba. However, Ali Baba’s clever servant, Marjana, discovered their plan and set a trap, defeating all the thieves. Ali Baba and his family then lived in peace, sharing the treasures with those in need. Ali Baba became a beloved figure for his honesty and generosity.",
         R.drawable.defaultalibaba,
-        "Ali Baba, bir gün ormanda tesadüfen kırk haramilerin gizli mağarasını keşfeder."
+        "One day, Ali Baba accidentally discovers the secret cave of the forty thieves in the forest."
     ),
     Tale(
         1,
-        "Kırmızı Başlıklı Kız",
-        "Herkesin sevdiği tatlı bir kız varmış. Annesi ona bir gün kırmızı başlıklı bir pelerin yapmış. Bu pelerin o kadar güzelmiş ki kız hep onu giyermiş. Bu yüzden herkes ona Kırmızı Başlıklı Kız dermiş. Bir gün annesi ona bir sepet hazırlamış ve demiş ki: “Bu sepeti büyükannene götür. Ama dikkatli ol, ormanda sakın yoldan ayrılma!” Kırmızı Başlıklı Kız, sepeti alıp büyükannesine gitmek için yola koyulmuş. Ormanda yürürken karşısına kötü bir kurt çıkmış. Kurt tatlı bir sesle sormuş:“Nereye gidiyorsun, küçük kız?” Kırmızı Başlıklı Kız, kurttan korkmamış ve “Büyükanneme gidiyorum,” demiş. Kurt, kurnazca bir plan yapmış. Kısa yoldan büyükannenin evine gitmiş ve kapıyı çalmış. Büyükanne kapıyı açar açmaz, kurt onu dolaba kilitlemiş ve kendisi büyükannenin yerine geçmiş. Bir süre sonra Kırmızı Başlıklı Kız eve varmış ve kapıyı çalmış. Kurt içeriye “Gel, güzel torunum,” diye seslenmiş. Ama Kırmızı Başlıklı Kız, büyükannesinde bir tuhaflık olduğunu fark etmiş: “Büyükannem, kulakların ne kadar büyük!” “Seni daha iyi duyabilmek için! “Büyükannem, gözlerin ne kadar büyük!” “Seni daha iyi görebilmek için!” “Büyükannem, dişlerin ne kadar sivri!” “Seni daha iyi yiyebilmek için!” Kurt bir anda yatağından fırlamış! Ama o sırada bir avcı, büyükannenin evinden gelen garip sesleri duymuş ve hemen içeri girmiş. Avcı, kurdu korkutup büyükannenin dolaptan çıkmasına yardım etmiş. Büyükannesi ve Kırmızı Başlıklı Kız, sonunda kurtulmuşlar ve avcıya teşekkür etmişler. O günden sonra Kırmızı Başlıklı Kız, annesinin sözünü dinlemiş ve bir daha yoldan asla ayrılmamış.",
+        "Little Red Riding Hood",
+        "There was a sweet girl loved by everyone. One day, her mother made her a red hooded cape. It was so beautiful that the girl always wore it. Because of this, everyone called her Little Red Riding Hood. One day, her mother prepared a basket for her and said, “Take this basket to your grandmother. But be careful and don’t stray from the path in the forest!”\n" +
+                "\n" +
+                "Little Red Riding Hood took the basket and set out to visit her grandmother. While walking in the forest, she encountered a wicked wolf. In a sweet voice, the wolf asked, “Where are you going, little girl?”\n" +
+                "\n" +
+                "Little Red Riding Hood wasn’t afraid and replied, “I’m going to my grandmother’s house.” The wolf came up with a cunning plan. He took a shortcut to the grandmother’s house and knocked on the door. As soon as the grandmother opened the door, the wolf locked her in a cupboard and took her place.\n" +
+                "\n" +
+                "A while later, Little Red Riding Hood arrived and knocked on the door. The wolf called out from inside, “Come in, my dear granddaughter.” But Little Red Riding Hood noticed something strange about her grandmother.\n" +
+                "\n" +
+                "“Grandmother, what big ears you have!”\n" +
+                "“To hear you better!”\n" +
+                "\n" +
+                "“Grandmother, what big eyes you have!”\n" +
+                "“To see you better!”\n" +
+                "\n" +
+                "“Grandmother, what sharp teeth you have!”\n" +
+                "“To eat you better!”\n" +
+                "\n" +
+                "Suddenly, the wolf jumped out of bed! But just then, a hunter heard strange noises coming from the grandmother’s house and rushed inside. The hunter scared the wolf away and helped the grandmother out of the cupboard.\n" +
+                "\n" +
+                "Little Red Riding Hood and her grandmother were finally safe and thanked the hunter. From that day on, Little Red Riding Hood listened to her mother and never strayed from the path again.",
         R.drawable.defaultkirmizibasliklikiz,
-        "büyükannesini ziyaret ederken ormanda karşılaştığı kurt tarafından tuzağa düşürülür."
+        "She is tricked by a wolf she encounters in the forest while visiting her grandmother."
     ),
     Tale(
         2,
         "Türeyiş",
-        "Uygur Türkleri, huzur ve bolluk içinde yaşarlarmış. Günlerden bir gün, ülkelerine gökyüzünden parlak bir ışık düşmüş. Bu ışığın geldiği yerden bir kutsal ağaç büyümüş. Ağacın dalları altın gibi parlıyormuş ve herkese umut veriyormuş. Bir gece, ağacın altından gizemli bir ses gelmiş. Halk, bu sesin Tanrı’nın bir işareti olduğunu anlamış. Kutsal ağacın içinden beş çocuk doğmuş. Bu çocuklar büyüdükçe çok bilge, güçlü ve cesur olmuşlar. Halk, bu çocukların Tanrı tarafından gönderildiğine inanmış ve onlara büyük bir sevgiyle bağlanmış. Bu beş bilge çocuk, Uygur halkına liderlik etmeye başlamış. İnsanlara nasıl barış içinde yaşayacaklarını, çalışkan ve cesur olmayı öğretmişler. Halk, onların rehberliğinde daha da güçlenmiş ve büyük bir medeniyet kurmuş. Bu masal, Uygur Türklerinin nasıl ortaya çıktığını ve Tanrı’nın onlara nasıl rehberler gönderdiğini anlatır. Her zaman doğaya saygı göstermenin, bilge ve dürüst olmanın önemini vurgular.",
+        "The Uyghur Turks lived in peace and prosperity. One day, a bright light descended from the sky onto their land. From the place where this light landed, a sacred tree began to grow. The tree’s branches shone like gold, bringing hope to everyone.\n" +
+                "\n" +
+                "One night, a mysterious voice was heard from beneath the tree. The people understood that this was a sign from God. From within the sacred tree, five children were born. As these children grew, they became wise, strong, and brave. The people believed that these children were sent by God and loved them deeply.\n" +
+                "\n" +
+                "These five wise children began to lead the Uyghur people. They taught the people how to live in peace, to be hardworking, and to be courageous. Under their guidance, the people grew stronger and built a great civilization.\n" +
+                "\n" +
+                "This story explains how the Uyghur Turks came into being and how God sent them guides. It emphasizes the importance of respecting nature, being wise, and living with integrity.",
         R.drawable.defaulttureyis,
-        "Türklerin atası olan insanın yaratılışını ve ilk kahramanlıklarına şahit ol!"
+        "Witness the creation of the ancestor of the Turks and their first acts of heroism!"
     ),
     Tale(
         3,
         "Bamsı Beyrek",
-        "Dede Korkut’un zamanında, güçlü ve cesur bir delikanlı olan Bamsı Beyrek yaşarmış. Bamsı Beyrek, arkadaşlarıyla oynar, hayvanlarla ilgilenir ve büyüdükçe cesaretiyle herkesin sevgisini kazanırmış. Bir gün Bamsı Beyrek, güzel ve akıllı Banu Çiçek ile tanışmış. İkisi birbirini çok sevmiş ve nişanlanmışlar. Ancak Banu Çiçek’in başka bir talibi olan kötü yürekli bir bey, bu evliliği engellemek istemiş. Bir gün tuzak kurarak Bamsı Beyrek’i esir almış ve onu uzak bir kaleye hapsetmiş. Bamsı Beyrek, yıllarca o kalede tutsak kalmış ama hiç umudunu kaybetmemiş. Hapisteyken cesaretiyle kalenin bekçilerini etkilemiş ve zamanla bir yolunu bulup kaleden kaçmayı başarmış.\n" +
-                "Köyüne geri dönen Bamsı Beyrek, Banu Çiçek’in hâlâ onu beklediğini öğrenince çok mutlu olmuş. Düğünlerini yapmışlar ve birlikte mutlu bir hayat sürmüşler. Dede Korkut bu hikayeyi anlatırken şöyle demiş:\n“Yiğitlik sabırla, sevgi sadakatle taçlanır!”",
+        "In the time of Dede Korkut, there lived a strong and brave young man named Bamsi Beyrek. He spent his days playing with friends, tending to animals, and as he grew, his courage earned him the love and admiration of everyone around him.\n" +
+                "\n" +
+                "One day, Bamsi Beyrek met the beautiful and intelligent Banu Çiçek. The two fell deeply in love and became engaged. However, a wicked nobleman who was also a suitor for Banu Çiçek sought to prevent their marriage. He set a trap and captured Bamsi Beyrek, imprisoning him in a distant castle.\n" +
+                "\n" +
+                "For years, Bamsi Beyrek remained a captive in that castle but never lost hope. His bravery impressed the castle guards, and over time, he managed to find a way to escape. Returning to his village, he was overjoyed to learn that Banu Çiçek had remained faithful and had been waiting for him all along.\n" +
+                "\n" +
+                "The two were finally married and lived a happy life together.\n" +
+                "\n" +
+                "While recounting this story, Dede Korkut said:\n" +
+                "'Bravery is crowned with patience, and love is crowned with loyalty!'",
         R.drawable.defaultbamsibeyrek,
-        "Bamsı Beyrek kahraman bir yiğit olup, aşkı ve maceralarıyla öne çıkar."
+        "Bamsi Beyrek is a heroic warrior known for his love and adventures."
     ),
     Tale(
         4,
         "Rapunzel",
-        "Bebek bekleyen bir çift varmış. Komşuları olan kötü cadının bahçesinde, çok güzel rapunzel otları yetişirmiş. Kadın bu otlardan yemek istemiş ama kocası bahçeden gizlice ot toplarken cadıya yakalanmış.\n" +
-                "Cadı, “Bunları alabilirsin, ama doğacak bebeğinizi bana vermelisiniz,” demiş. Adam korkmuş ve kabul etmiş.\n" +
-                "Bebek doğar doğmaz cadı gelip kızı almış. Adını Rapunzel koymuş ve onu yüksek bir kuleye kapatmış. Kulede ne kapı ne de merdiven varmış, sadece küçük bir pencere varmış. Cadı kuleye her geldiğinde, “Rapunzel, Rapunzel, altın saçlarını sarkıt!” dermiş. Rapunzel de uzun saçlarını pencereden aşağı sarkıtırmış ve cadı tırmanarak yukarı çıkarmış. Bir gün, yakışıklı bir prens kuleye yakın bir yerde yürürken Rapunzel’in güzel şarkısını duymuş. Kulenin yanına gelip saklanmış. Cadının “Rapunzel, Rapunzel, altın saçlarını sarkıt!” dediğini duyunca, cadı gittikten sonra o da aynı şeyi söylemiş. Rapunzel saçlarını sarkıtmış ve prens yukarı çıkmış. Prensle Rapunzel hemen arkadaş olmuşlar. Prens, Rapunzel’i kurtarmak için bir plan yapmış. Ancak cadı bunu öğrenmiş ve çok öfkelenmiş. Rapunzel’i başka bir yere götürmüş ve prensin saçları sarkıtmasını beklediği kuleye bir tuzak kurmuş. Prens, cadıyla karşılaşınca düşüp gözlerini kaybetmiş. Yıllar sonra prens, ormanda dolaşırken Rapunzel’in şarkısını tekrar duymuş. İkisi birbirine sarılmış ve Rapunzel’in gözyaşları prensin gözlerini iyileştirmiş. Bundan sonra, Rapunzel ve prens mutlu bir şekilde yaşamışlar. Kötü cadı ise bir daha asla onları rahatsız edememiş.",
+        "There was once a couple expecting a baby. In their neighbor’s garden, which belonged to a wicked witch, beautiful rapunzel plants grew. The woman craved these plants, so her husband snuck into the garden to gather some but was caught by the witch.\n" +
+                "\n" +
+                "The witch said, “You may take them, but you must give me your unborn child in return.” Frightened, the man agreed. When the baby was born, the witch came and took her away. She named the baby Rapunzel and locked her in a tall tower. The tower had no doors or stairs, only a small window.\n" +
+                "\n" +
+                "Whenever the witch visited, she would call, “Rapunzel, Rapunzel, let down your golden hair!” Rapunzel would lower her long hair from the window, and the witch would climb up.\n" +
+                "\n" +
+                "One day, a handsome prince was walking near the tower and heard Rapunzel singing. He hid nearby and watched as the witch called out, “Rapunzel, Rapunzel, let down your golden hair!” After the witch left, the prince repeated the same words. Rapunzel let down her hair, and the prince climbed up.\n" +
+                "\n" +
+                "The prince and Rapunzel quickly became friends, and the prince devised a plan to rescue her. However, the witch discovered their plan and became furious. She took Rapunzel to another place and set a trap in the tower where the prince would climb. When the prince arrived, he encountered the witch and fell from the tower, losing his sight.\n" +
+                "\n" +
+                "Years later, as the blind prince wandered through the forest, he heard Rapunzel’s singing again. They embraced, and Rapunzel’s tears of joy healed his eyes.\n" +
+                "\n" +
+                "From then on, Rapunzel and the prince lived happily ever after, and the wicked witch never bothered them again.",
         R.drawable.defaultrapunzel,
-        "uzun saçlarıyla yüksek bir kulede hapsolmuş bir prenses olup, bir prensin onu kurtarmasıyla özgürlüğüne kavuşur."
+        "She is a princess imprisoned in a tall tower with her long hair, who gains her freedom when a prince rescues her."
     ),
 )

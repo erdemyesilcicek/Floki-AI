@@ -3,8 +3,12 @@ package com.erdemyesilcicek.flokiai.pages.optionspages
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,7 +27,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -31,6 +37,7 @@ import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.components.HeaderBar
+import com.erdemyesilcicek.flokiai.utils.myFont
 
 @Composable
 fun Feedback(
@@ -70,17 +77,6 @@ fun Feedback(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.animalsbear),
-                contentDescription = "",
-                contentScale = ContentScale.Fit
-            )
-            Text(
-                modifier = Modifier.padding(5.dp),
-                text = "How can we help you?",
-                fontFamily = FontFamily.Default,
-                fontSize = 22.sp
-            )
             Column(
                 modifier = Modifier
                     .imePadding()
@@ -88,7 +84,29 @@ fun Feedback(
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Box(
+                        modifier = Modifier.padding(start = 80.dp, end = 80.dp, top = 10.dp)
+                    ) {
+                        Image(
+                            modifier = Modifier.padding(10.dp),
+                            painter = painterResource(id = R.drawable.logo),
+                            contentDescription = "app logo",
+                            contentScale = ContentScale.Fit
+                        )
+                    }
+                    Text(
+                        text = "How can we help you?",
+                        fontFamily = FontFamily.Default,
+                        fontSize = 18.sp
+                    )
+                }
                 CustomTextInput(
                     title = "Email",
                     label = "Email",
@@ -96,26 +114,35 @@ fun Feedback(
                     onValueChange = { email.value = it },
                     isSingleLine = true,
                     isVisual = true,
-                    keyboardType = KeyboardType.Email
-                )
-                CustomTextInput(
-                    title = "Subject",
-                    label = "Enter Subject",
-                    text = subject.value,
-                    onValueChange = { subject.value = it },
-                    isSingleLine = true,
-                    isVisual = true,
-                    keyboardType = KeyboardType.Text
+                    keyboardType = KeyboardType.Email,
+                    isBigCanvas = false
                 )
                 CustomTextInput(
                     title = "Message",
                     label = "Enter Message",
                     text = message.value,
                     onValueChange = { message.value = it },
-                    isSingleLine = true,
+                    isSingleLine = false,
                     isVisual = true,
-                    keyboardType = KeyboardType.Text
+                    keyboardType = KeyboardType.Text,
+                    isBigCanvas = true
                 )
+                Spacer(modifier = Modifier.padding(42.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Created by Erdem",
+                        textAlign = TextAlign.Center,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        fontFamily = myFont,
+                        color = Color.LightGray
+                    )
+                }
             }
         }
     }

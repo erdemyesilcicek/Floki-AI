@@ -109,7 +109,8 @@ fun SignUpPage(
                     onValueChange = { email.value = it }, // Değişim callback'i
                     isSingleLine = true,
                     isVisual = true,
-                    keyboardType = KeyboardType.Email
+                    keyboardType = KeyboardType.Email,
+                    isBigCanvas = false
                 )
 
                 CustomTextInput(
@@ -119,7 +120,8 @@ fun SignUpPage(
                     onValueChange = { password.value = it },
                     isSingleLine = true,
                     isVisual = false,
-                    keyboardType = KeyboardType.Password
+                    keyboardType = KeyboardType.Password,
+                    isBigCanvas = false
                 )
 
                 CustomTextInput(
@@ -129,7 +131,8 @@ fun SignUpPage(
                     onValueChange = { confirmPassword.value = it },
                     isSingleLine = true,
                     isVisual = false,
-                    keyboardType = KeyboardType.Password
+                    keyboardType = KeyboardType.Password,
+                    isBigCanvas = false
                 )
 
                 if (errorMessage.value.isNotEmpty()) {

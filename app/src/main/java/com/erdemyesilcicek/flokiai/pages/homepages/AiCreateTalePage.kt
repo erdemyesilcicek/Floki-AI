@@ -32,7 +32,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 @Composable
-fun AiCreateTalePage(navController: NavController) {
+fun AiCreatedTalePage(navController: NavController) {
     val db = Firebase.firestore
     val userId = Firebase.auth.currentUser?.uid
     val aiTales = remember { mutableStateOf(listOf<AiTale>()) }
@@ -45,12 +45,10 @@ fun AiCreateTalePage(navController: NavController) {
                 .addOnSuccessListener { documents ->
                     val talesList = documents.mapNotNull { document ->
                         try {
-                            // TaleDetails nesnesini al ve dönüştür
                             val taleDetailsMap = document.data["TaleDetails"] as? Map<String, Any>
                             val taleDetails = taleDetailsMap?.let {
                                 TaleDetails(
                                     genre = it["genre"] as? String ?: "",
-                                    //genreImage = it["genreImage"] as? Int ?: 2131165331,
                                     season = it["season"] as? String ?: "",
                                     animals = it["animals"] as? List<String> ?: listOf(),
                                     characters = it["characters"] as? List<String> ?: listOf(),
@@ -58,7 +56,7 @@ fun AiCreateTalePage(navController: NavController) {
                                     userInformation = it["userInformation"] as? UserInformationModel
                                         ?: UserInformationModel()
                                 )
-                            } ?: TaleDetails() // Varsayılan bir nesne döndür
+                            } ?: TaleDetails()
 
                             val taleItself = document.data.get("TaleItself").toString()
                             val taleTitle = document.data.get("TaleTitle").toString()
@@ -66,7 +64,6 @@ fun AiCreateTalePage(navController: NavController) {
                             val UserId = document.data.get("userId").toString()
                             val genreImage = document.data.get("GenreImage").toString().toInt()
 
-                            // AiTale nesnesi oluştur
                             AiTale(
                                 TaleDetails = taleDetails,
                                 TaleItself = taleItself,

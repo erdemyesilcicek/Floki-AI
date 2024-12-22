@@ -45,7 +45,7 @@ import com.erdemyesilcicek.flokiai.components.CustomIconTab
 import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.components.TaleCard
 import com.erdemyesilcicek.flokiai.lists.TaleList
-import com.erdemyesilcicek.flokiai.pages.homepages.AiCreateTalePage
+import com.erdemyesilcicek.flokiai.pages.homepages.AiCreatedTalePage
 import com.erdemyesilcicek.flokiai.pages.homepages.DefaultTalePage
 
 @Composable
@@ -105,55 +105,9 @@ fun HomePage(navController: NavController) {
                 )
             }
             when (selectedTab) {
-                0 -> AiCreateTalePage(navController)
+                0 -> AiCreatedTalePage(navController)
                 1 -> DefaultTalePage(navController)
             }
         }
     }
 }
-
-
-/*
-@Composable
-fun HomePage(navController: NavController) {
-    Scaffold(
-        topBar = {
-            HeaderBar(
-                isEnableBackButton = true,
-                isEnableBarButton = false,
-                "My Tales",
-                navController
-            )
-        },
-        modifier = Modifier.fillMaxSize(),
-
-        floatingActionButton = {
-            CustomExtendedFAB(
-                MaterialTheme.colorScheme.primary,
-                "Create your own tale",
-                onClick = {
-                    navController.navigate("CreateTalePage")
-                })
-        },
-        floatingActionButtonPosition = FabPosition.Center
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .background(Color.White)
-        ) {
-            LazyColumn(
-                modifier = Modifier.padding(10.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                itemsIndexed(TaleList) { index, card ->
-                    TaleCard(navController, card)
-                }
-            }
-        }
-    }
-}
-
- */
