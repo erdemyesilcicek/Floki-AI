@@ -57,6 +57,8 @@ fun GeminiAiTalePrompt(
             "The language should be simple and easily understandable for children.\n" +
             "Descriptions should be vivid yet straightforward.\n" +
             "The story's world should be colorful, lively, and stimulate the imagination.\n" +
+            "Summary:\n"+
+            "The tale summary should consist of one sentence and should not contain repetitive text.\n"+
             "Story Format (Even if the application's language changes, the titles in the Tale Format section must remain fixed.) The titles are as follows:\n" +
             "\n" +
             "TaleTitle\n" +

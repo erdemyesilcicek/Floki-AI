@@ -92,7 +92,7 @@ fun Feedback(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Box(
-                        modifier = Modifier.padding(start = 80.dp, end = 80.dp, top = 10.dp)
+                        modifier = Modifier.padding(start = 80.dp, end = 80.dp, top = 5.dp)
                     ) {
                         Image(
                             modifier = Modifier.padding(10.dp),
@@ -127,7 +127,7 @@ fun Feedback(
                     keyboardType = KeyboardType.Text,
                     isBigCanvas = true
                 )
-                Spacer(modifier = Modifier.padding(42.dp))
+                Spacer(modifier = Modifier.padding(40.dp))
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),

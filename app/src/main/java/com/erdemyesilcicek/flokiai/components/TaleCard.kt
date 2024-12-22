@@ -81,6 +81,8 @@ fun TaleCardTitle(title: String) {
         color = MaterialTheme.colorScheme.primary,
         fontSize = 18.sp,
         fontWeight = FontWeight.SemiBold,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
         fontFamily = myFont,
         modifier = Modifier
             .fillMaxWidth()

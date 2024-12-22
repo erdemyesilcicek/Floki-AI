@@ -40,7 +40,7 @@ public val TaleList = listOf(
                 "Suddenly, the wolf jumped out of bed! But just then, a hunter heard strange noises coming from the grandmother’s house and rushed inside. The hunter scared the wolf away and helped the grandmother out of the cupboard.\n" +
                 "\n" +
                 "Little Red Riding Hood and her grandmother were finally safe and thanked the hunter. From that day on, Little Red Riding Hood listened to her mother and never strayed from the path again.",
-        R.drawable.defaultkirmizibasliklikiz,
+        R.drawable.defaultred,
         "She is tricked by a wolf she encounters in the forest while visiting her grandmother."
     ),
     Tale(
@@ -74,6 +74,27 @@ public val TaleList = listOf(
     ),
     Tale(
         4,
+        "Pinocchio",
+        "Once upon a time, in a faraway land, there lived a lonely toy maker named Geppetto. Geppetto was a master of woodworking, and one day, he decided to craft a beautiful wooden puppet. He named the puppet Pinocchio. However, Geppetto still felt empty inside; he longed to have a child.\n" +
+                "\n" +
+                "That night, Geppetto's wishes were heard by a blue fairy. The fairy brought Pinocchio to life but gave him a warning: “If you are brave, honest, and hardworking, you can become a real boy.”\n" +
+                "\n" +
+                "When Geppetto woke up the next morning and saw that Pinocchio could talk, he was overjoyed. He decided to send him to school. However, on his way to school, Pinocchio chased after games and adventures. Along the way, he met a cunning fox and a cat. These two tricked Pinocchio, telling him he could make money easily. Believing them, Pinocchio wasted the money Geppetto had given him.\n" +
+                "\n" +
+                "Pinocchio had a habit of lying. Whenever he lied, his nose would grow longer. Realizing this, he felt very ashamed, and the fairy reminded him that he must tell the truth. Yet Pinocchio failed to keep his word and found himself in various troubles.\n" +
+                "\n" +
+                "One day, Pinocchio needed to walk a path that required him to avoid laziness and work hard. Instead, he spent his time playing games in a magical town. This decision led him closer to a grim fate; his ears started to grow long, cursed as a symbol of his childish behavior.\n" +
+                "\n" +
+                "Eventually, Pinocchio found himself in the belly of a whale. There, he encountered Geppetto, who had been swallowed by the enormous whale while searching for him! Pinocchio courageously devised a plan to rescue both of them from the whale’s belly.\n" +
+                "\n" +
+                "After all these events, Pinocchio learned from his mistakes. He became a brave, hardworking, and honest puppet. Impressed by his behavior, the blue fairy transformed Pinocchio into a real boy.\n" +
+                "\n" +
+                "From then on, Geppetto and Pinocchio lived happily ever after. The story teaches us that honesty and hard work are always the best path to take.",
+        R.drawable.defaultpinokyo,
+        "the journey of a wooden puppet learning to be brave, honest, and hardworking to become a real boy"
+    ),
+    Tale(
+        5,
         "Rapunzel",
         "There was once a couple expecting a baby. In their neighbor’s garden, which belonged to a wicked witch, beautiful rapunzel plants grew. The woman craved these plants, so her husband snuck into the garden to gather some but was caught by the witch.\n" +
                 "\n" +
@@ -90,5 +111,5 @@ public val TaleList = listOf(
                 "From then on, Rapunzel and the prince lived happily ever after, and the wicked witch never bothered them again.",
         R.drawable.defaultrapunzel,
         "She is a princess imprisoned in a tall tower with her long hair, who gains her freedom when a prince rescues her."
-    ),
+    )
 )

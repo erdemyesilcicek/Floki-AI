@@ -18,6 +18,7 @@ fun DefaultTalePage(navController: NavController) {
         modifier = Modifier.padding(10.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
+
     ) {
         itemsIndexed(TaleList) { index, card ->
             TaleCard(navController, card)
