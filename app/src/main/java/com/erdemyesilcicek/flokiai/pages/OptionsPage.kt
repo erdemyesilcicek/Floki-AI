@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.InsertDriveFile
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Phone
+import androidx.compose.material.icons.outlined.PowerSettingsNew
 import androidx.compose.material.icons.outlined.PrivacyTip
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -31,10 +32,12 @@ import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.datas.OptionsCard
 import com.erdemyesilcicek.flokiai.utils.footer
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
 
 @Composable
 fun OptionsPage(
-    navController: NavController
+    navController: NavController,
+    authViewModel: AuthViewModel
 ) {
     Scaffold(
         topBar = {
@@ -82,6 +85,18 @@ fun OptionsPage(
                     itemText = "Terms of Use",
                     summary = "View our terms of use",
                     onClick = { println("term of use") }
+                ),
+                OptionsCard(
+                    imageVector = Icons.Outlined.PowerSettingsNew,
+                    contentDescription = "Logout",
+                    itemText = "Logout",
+                    summary = "Logout from your account",
+                    onClick = {
+                        authViewModel.logout()
+                        navController.navigate("GetStartedPage"){
+                            popUpTo(0) { inclusive = true }
+                        }
+                    }
                 )
             )
 
