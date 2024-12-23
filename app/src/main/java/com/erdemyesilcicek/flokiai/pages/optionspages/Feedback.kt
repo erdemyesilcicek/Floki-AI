@@ -44,7 +44,6 @@ fun Feedback(
     navController: NavController
 ) {
     val email = remember { mutableStateOf("") }
-    val subject = remember { mutableStateOf("") }
     val message = remember { mutableStateOf("") }
 
     val scrollState = rememberScrollState()
