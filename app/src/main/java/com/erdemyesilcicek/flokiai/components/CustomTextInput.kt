@@ -40,7 +40,7 @@ fun CustomTextInput(
     keyboardType: KeyboardType,
     isBigCanvas: Boolean,
 ) {
-    var isFocused by remember { mutableStateOf(false) }
+    val isFocused by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -70,9 +70,9 @@ fun CustomTextInput(
                     .clip(RoundedCornerShape(20.dp)),
 
                 colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.White,
-                    focusedIndicatorColor = Color.White,
-                    unfocusedIndicatorColor = Color.White,
+                    containerColor = Color.White, // Arka plan rengi
+                    focusedIndicatorColor = Color.White, // Odaklanınca çerçeve rengi
+                    unfocusedIndicatorColor = Color.White, // Odaklanmayınca çerçeve rengi
                     cursorColor = MaterialTheme.colorScheme.primary,
                     focusedLabelColor =
                     if (isFocused) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground,

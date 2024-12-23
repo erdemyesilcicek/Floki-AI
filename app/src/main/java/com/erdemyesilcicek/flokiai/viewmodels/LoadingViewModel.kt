@@ -1,6 +1,7 @@
 package com.erdemyesilcicek.flokiai.viewmodels
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,7 @@ import com.erdemyesilcicek.flokiai.datas.UserInformationModel
 class LoadingViewModel : ViewModel() {
     var genre by mutableStateOf("")
         private set
-    var genreImage by mutableStateOf(0)
+    var genreImage by mutableIntStateOf(0)
         private set
     var season by mutableStateOf("")
         private set
