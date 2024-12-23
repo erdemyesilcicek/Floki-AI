@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.erdemyesilcicek.flokiai.components.TaleCard
 import com.erdemyesilcicek.flokiai.datas.Tale
+import com.erdemyesilcicek.flokiai.pages.AiReadTalePage
 import com.erdemyesilcicek.flokiai.pages.CreateTalePage
 import com.erdemyesilcicek.flokiai.pages.GetStartedPage
 import com.erdemyesilcicek.flokiai.pages.HomePage
@@ -46,7 +47,7 @@ fun NavController(
     ) {
         composable(route = "HomePage") { HomePage(navController) }
 
-        composable(route = "LoadingPage") { LoadingPage(loadingViewModel, geminiViewModel,db) }
+        composable(route = "LoadingPage") { LoadingPage(loadingViewModel, geminiViewModel,db, navController) }
 
         composable(route = "CreateTalePage") {
             CreateTalePage(
@@ -84,6 +85,14 @@ fun NavController(
         })) {
             val id = it.arguments?.getInt("id")!!
             ReadTalePage(navController, id)
+        }
+
+        composable(route = "AiReadTalePage" + "?taleId={taleId}", arguments = listOf(navArgument("taleId") {
+            type = NavType.StringType
+            defaultValue = ""
+        })) {
+            val taleId = it.arguments?.getString("taleId")!!
+            AiReadTalePage(navController, taleId, db)
         }
 
         composable(route = "TaleCard") {

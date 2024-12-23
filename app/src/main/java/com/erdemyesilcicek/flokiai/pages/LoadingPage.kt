@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.animations.LottieAnimation
 import com.erdemyesilcicek.flokiai.constants.GeminiAiTalePrompt
@@ -31,7 +32,8 @@ import com.google.gson.reflect.TypeToken
 fun LoadingPage(
     loadingViewModel: LoadingViewModel,
     geminiViewModel: GeminiViewModel,
-    db: FirebaseFirestore
+    db: FirebaseFirestore,
+    navController: NavController
 ) {
     val prompt = GeminiAiTalePrompt(
         genre = loadingViewModel.genre,
@@ -70,6 +72,10 @@ fun LoadingPage(
                         .add(data + ("TaleDetails" to taleDetailsMap) + ("userId" to userId) + ("GenreImage" to loadingViewModel.genreImage))
                         .addOnSuccessListener { documentReference ->
                             println("DocumentSnapshot added with ID: ${documentReference.id}")
+                            navController.navigate("AiReadTalePage" + "?taleId=${documentReference.id}") {
+                                // Geriye dönmeyi engellemek için stack'i temizle
+                                popUpTo(0) { inclusive = true }
+                            }
                         }
                         .addOnFailureListener { e ->
                             println("Error adding document:  $e")

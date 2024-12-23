@@ -64,6 +64,7 @@ fun UserInformation(
     var petName by remember { mutableStateOf(userInfo.petName) }
 
     val options = listOf("English", "German", "Turkish")
+    val optionsGender = listOf("Male", "Female", "Other")
     val scrollState = rememberScrollState()
 
     Scaffold(
@@ -163,15 +164,12 @@ fun UserInformation(
                     keyboardType = KeyboardType.Number,
                     isBigCanvas = false
                 )
-                CustomTextInput(
+                CustomDropdownMenu(
                     title = "Gender",
-                    label = "Enter Gender",
-                    text = gender,
-                    onValueChange = { gender = it },
-                    isSingleLine = true,
-                    isVisual = true,
-                    keyboardType = KeyboardType.Text,
-                    isBigCanvas = false
+                    label = "Select Gender",
+                    options = optionsGender,
+                    selectedOption = gender,
+                    onOptionSelected = { gender = it }
                 )
                 CustomTextInput(
                     title = "Dad Name",

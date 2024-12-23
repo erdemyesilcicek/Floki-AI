@@ -40,7 +40,7 @@ fun GetStartedPage(navController: NavController, authViewModel: AuthViewModel) {
             authViewModel.loginState.value = true
             navController.navigate("HomePage") {
                 // Geriye dönmeyi engellemek için stack'i temizle
-                popUpTo("CreateTalePage") { inclusive = true }
+                popUpTo(0) { inclusive = true }
             }
         }
     }

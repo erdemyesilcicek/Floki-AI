@@ -1,5 +1,7 @@
 package com.erdemyesilcicek.flokiai.components
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,10 +31,19 @@ import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.datas.AiTale
 import com.erdemyesilcicek.flokiai.datas.Tale
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
-fun AiTaleCard(navController: NavController, aiTale: AiTale) {
+fun AiTaleCard(navController: NavController, aiTale: AiTale, db: FirebaseFirestore) {
     println(aiTale.TaleDetails.genreImage)
+
+    fun onDelete(taleId: String) {
+        println("Deleting tale with id: $taleId")
+        db.collection("tales").document(taleId)
+            .delete()
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+    }
 
     AiTaleCardTitle(aiTale.TaleTitle)
 
@@ -46,7 +57,10 @@ fun AiTaleCard(navController: NavController, aiTale: AiTale) {
     ) {
         Row(
             modifier = Modifier
-                //.clickable { navController.navigate("ReadTalePage" + "?id=${aiTale.userId}") }
+                .clickable {
+                    navController.navigate("AiReadTalePage" + "?taleId=${aiTale.taleId}")
+                    //onDelete(aiTale.taleId)
+                }
                 .fillMaxSize()
                 .background(Color.White),
             horizontalArrangement = Arrangement.SpaceBetween

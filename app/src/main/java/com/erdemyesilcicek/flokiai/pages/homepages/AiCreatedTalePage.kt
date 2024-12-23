@@ -63,6 +63,7 @@ fun AiCreatedTalePage(navController: NavController) {
                             val taleSummary = document.data.get("TaleSummary").toString()
                             val UserId = document.data.get("userId").toString()
                             val genreImage = document.data.get("GenreImage").toString().toInt()
+                            val taleId = document.id
 
                             AiTale(
                                 TaleDetails = taleDetails,
@@ -70,7 +71,8 @@ fun AiCreatedTalePage(navController: NavController) {
                                 TaleTitle = taleTitle,
                                 TaleSummary = taleSummary,
                                 userId = UserId,
-                                GenreImage = genreImage
+                                GenreImage = genreImage,
+                                taleId = taleId
                             )
                         } catch (e: Exception) {
                             Log.e(TAG, "Error mapping document: ${e.localizedMessage}")
@@ -112,9 +114,13 @@ fun AiCreatedTalePage(navController: NavController) {
                 )
             }
         } else {
-            LazyColumn {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 itemsIndexed(aiTales.value) { index, aiTale ->
-                    AiTaleCard(navController, aiTale)
+                    AiTaleCard(navController, aiTale, db)
                 }
             }
         }
