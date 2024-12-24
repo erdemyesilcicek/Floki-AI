@@ -12,6 +12,7 @@ import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.GeminiViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -29,6 +30,7 @@ class MainActivity : ComponentActivity() {
                 )
             )
             val db = Firebase.firestore
+            val auth = Firebase.auth
             val authViewModel : AuthViewModel = AuthViewModel()
             val categoryViewModel : CategoryViewModel = CategoryViewModel()
             val loadingViewModel : LoadingViewModel = LoadingViewModel()
@@ -41,7 +43,8 @@ class MainActivity : ComponentActivity() {
                     userInformationViewModel,
                     loadingViewModel,
                     geminiViewModel,
-                    db
+                    db,
+                    auth
                 )
             }
         }

@@ -28,6 +28,7 @@ import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.GeminiViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
@@ -37,7 +38,8 @@ fun NavController(
     userInformationViewModel: UserInformationViewModel,
     loadingViewModel: LoadingViewModel,
     geminiViewModel: GeminiViewModel,
-    db : FirebaseFirestore
+    db : FirebaseFirestore,
+    auth: FirebaseAuth
 ) {
     val navController = rememberNavController()
     val context = LocalContext.current
@@ -77,7 +79,7 @@ fun NavController(
 
         composable(route = "GetStartedPage") { GetStartedPage(navController, authViewModel) }
 
-        composable(route = "SignUpPage") { SignUpPage(navController, authViewModel) }
+        composable(route = "SignUpPage") { SignUpPage(navController, authViewModel, auth) }
 
         composable(route = "SignInPage") { SignInPage(navController, authViewModel) }
 
