@@ -59,7 +59,7 @@ fun NavController(
             )
         }
 
-        composable(route = "OptionsPage") { OptionsPage(navController,authViewModel) }
+        composable(route = "OptionsPage") { OptionsPage(navController,authViewModel,userInformationViewModel) }
 
         composable(route = "UserInformation") {
             UserInformation(

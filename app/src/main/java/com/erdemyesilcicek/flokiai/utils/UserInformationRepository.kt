@@ -41,4 +41,18 @@ class UserInformationRepository(private val sharedPreferences: SharedPreferences
             apply()
         }
     }
+
+    fun clearUserInformation() {
+        sharedPreferences.edit().apply {
+            remove(KEY_LANGUAGE)
+            remove(KEY_YOUR_NAME)
+            remove(KEY_AGE)
+            remove(KEY_GENDER)
+            remove(KEY_DAD_NAME)
+            remove(KEY_MOM_NAME)
+            remove(KEY_SIBLING_NAME)
+            remove(KEY_PET_NAME)
+            apply()
+        }
+    }
 }

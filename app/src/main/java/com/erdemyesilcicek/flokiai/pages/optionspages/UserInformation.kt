@@ -63,8 +63,9 @@ fun UserInformation(
     var siblingName by remember { mutableStateOf(userInfo.siblingName) }
     var petName by remember { mutableStateOf(userInfo.petName) }
 
-    val options = listOf("English", "German", "Turkish")
+    val optionsLanguage = listOf("English", "German", "Turkish")
     val optionsGender = listOf("Male", "Female", "Other")
+
     val scrollState = rememberScrollState()
 
     Scaffold(
@@ -93,6 +94,14 @@ fun UserInformation(
                         language = language
                     )
                     userInformationViewModel.updateUserInformation(updatedUserInfo)
+                    Toast.makeText(
+                        navController.context,
+                        "User information updated",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    navController.navigate("HomePage")
+
                 })
         },
         floatingActionButtonPosition = FabPosition.Center
@@ -140,7 +149,7 @@ fun UserInformation(
                 CustomDropdownMenu(
                     title = "Tale Language",
                     label = "Select Language",
-                    options = options,
+                    options = optionsLanguage,
                     selectedOption = language,
                     onOptionSelected = { language = it }
                 )

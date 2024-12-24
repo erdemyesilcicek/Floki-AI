@@ -23,4 +23,9 @@ class UserInformationViewModel(private val repository: UserInformationRepository
         repository.saveUserInformation(newUserInformation)
         _userInformation.value = newUserInformation
     }
+
+    fun clearUserInformation() {
+        repository.clearUserInformation()
+        _userInformation.value = UserInformationModel()
+    }
 }

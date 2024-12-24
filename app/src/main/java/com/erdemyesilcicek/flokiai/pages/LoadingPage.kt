@@ -97,7 +97,7 @@ fun LoadingPage(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(start = 30.dp, end = 30.dp, top = 30.dp, bottom = 10.dp),
             verticalAlignment = Alignment.Top,
         ) {
             LottieAnimation(animation = R.raw.lottierocket)

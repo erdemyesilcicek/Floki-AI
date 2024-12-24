@@ -30,14 +30,17 @@ import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.components.CustomOptionsCard
 import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.datas.OptionsCard
+import com.erdemyesilcicek.flokiai.utils.clearSharedPreferences
 import com.erdemyesilcicek.flokiai.utils.footer
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 
 @Composable
 fun OptionsPage(
     navController: NavController,
-    authViewModel: AuthViewModel
+    authViewModel: AuthViewModel,
+    userInformationViewModel: UserInformationViewModel
 ) {
     Scaffold(
         topBar = {
@@ -92,6 +95,7 @@ fun OptionsPage(
                     itemText = "Logout",
                     summary = "Logout from your account",
                     onClick = {
+                        userInformationViewModel.clearUserInformation()
                         authViewModel.logout()
                         navController.navigate("GetStartedPage"){
                             popUpTo(0) { inclusive = true }
