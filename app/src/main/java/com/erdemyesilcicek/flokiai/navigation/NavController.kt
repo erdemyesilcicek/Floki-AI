@@ -11,13 +11,14 @@ import com.erdemyesilcicek.flokiai.components.TaleCard
 import com.erdemyesilcicek.flokiai.datas.Tale
 import com.erdemyesilcicek.flokiai.pages.AiReadTalePage
 import com.erdemyesilcicek.flokiai.pages.CreateTalePage
-import com.erdemyesilcicek.flokiai.pages.GetStartedPage
+import com.erdemyesilcicek.flokiai.pages.authpages.GetStartedPage
 import com.erdemyesilcicek.flokiai.pages.HomePage
 import com.erdemyesilcicek.flokiai.pages.LoadingPage
 import com.erdemyesilcicek.flokiai.pages.OptionsPage
 import com.erdemyesilcicek.flokiai.pages.ReadTalePage
-import com.erdemyesilcicek.flokiai.pages.SignInPage
-import com.erdemyesilcicek.flokiai.pages.SignUpPage
+import com.erdemyesilcicek.flokiai.pages.authpages.ForgotPasswordPage
+import com.erdemyesilcicek.flokiai.pages.authpages.SignInPage
+import com.erdemyesilcicek.flokiai.pages.authpages.SignUpPage
 import com.erdemyesilcicek.flokiai.pages.optionspages.Feedback
 import com.erdemyesilcicek.flokiai.pages.optionspages.PrivacyPolicy
 import com.erdemyesilcicek.flokiai.pages.optionspages.TermsOfUse
@@ -73,11 +74,15 @@ fun NavController(
 
         composable(route = "TermsOfUse") { TermsOfUse(navController) }
 
+
         composable(route = "GetStartedPage") { GetStartedPage(navController, authViewModel) }
 
         composable(route = "SignUpPage") { SignUpPage(navController, authViewModel) }
 
         composable(route = "SignInPage") { SignInPage(navController, authViewModel) }
+
+        composable(route = "ForgotPasswordPage") { ForgotPasswordPage(navController) }
+
 
         composable(route = "ReadTalePage" + "?id={id}", arguments = listOf(navArgument("id") {
             type = NavType.IntType

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
@@ -56,7 +58,6 @@ fun LoadingPage(
 
                     val taleDetails = TaleDetails(
                         genre = loadingViewModel.genre,
-                        //genreImage = loadingViewModel.genreImage,
                         season = loadingViewModel.season,
                         animals = loadingViewModel.animals,
                         characters = loadingViewModel.characters,
@@ -96,13 +97,17 @@ fun LoadingPage(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(16.dp),
+            verticalAlignment = Alignment.Top,
         ) {
-            LottieAnimation(animation = R.raw.bigstick)
+            LottieAnimation(animation = R.raw.lottierocket)
         }
 
         Column(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 modifier = Modifier
@@ -117,7 +122,7 @@ fun LoadingPage(
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = "We are loading your data...",
+                text = "Your tale is being created!",
                 textAlign = TextAlign.Center,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.SemiBold,

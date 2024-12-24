@@ -1,6 +1,5 @@
-package com.erdemyesilcicek.flokiai.pages
+package com.erdemyesilcicek.flokiai.pages.authpages
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,9 +20,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -31,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
+import com.erdemyesilcicek.flokiai.animations.LottieAnimation
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomTextButton
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
@@ -53,19 +50,20 @@ fun SignUpPage(
             .fillMaxSize()
             .background(Color.White)
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.backgroundwall),
-            contentDescription = "",
-            contentScale = ContentScale.FillBounds
-        )
-
         Column(
             modifier = Modifier
                 .fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.padding(10.dp))
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top
+            ) {
+                LottieAnimation(animation = R.raw.lottietap)
+            }
 
             Column(
                 modifier = Modifier
@@ -74,21 +72,22 @@ fun SignUpPage(
             ) {
                 Text(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .padding(start = 16.dp),
                     text = "Create Account",
-                    textAlign = TextAlign.Center,
+                    textAlign = TextAlign.Start,
                     fontSize = 40.sp,
                     fontWeight = FontWeight.SemiBold,
                     fontFamily = myFont,
                     color = MaterialTheme.colorScheme.onBackground
                 )
-
                 Text(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    text = "Create an account to get started!",
-                    textAlign = TextAlign.Center,
-                    fontSize = 32.sp,
+                        .fillMaxWidth()
+                        .padding(start = 16.dp),
+                    text = "Let's go, get started!",
+                    textAlign = TextAlign.Start,
+                    fontSize = 20.sp,
                     fontWeight = FontWeight.SemiBold,
                     fontFamily = myFont,
                     color = MaterialTheme.colorScheme.onPrimary
@@ -98,9 +97,9 @@ fun SignUpPage(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp)
                     .imePadding()
-                    .verticalScroll(scrollState),
+                    .verticalScroll(scrollState)
+                    .padding(start = 10.dp, end = 10.dp),
             ) {
                 CustomTextInput(
                     title = "Email",
@@ -156,13 +155,17 @@ fun SignUpPage(
                     containerColor = MaterialTheme.colorScheme.primary,
                     text = "Sign Up"
                 ) {
-                    if (password.value == confirmPassword.value) {
-                        errorMessage.value = ""
-                        authViewModel.register(email.value, password.value)
-                        navController.navigate("SignInPage")
-                        println("auth is over.")
-                    } else {
-                        errorMessage.value = "Passwords do not match!"
+                    if(email.value.isEmpty() || password.value.isEmpty() || confirmPassword.value.isEmpty()) {
+                        errorMessage.value = "Please fill in all"
+                    } else{
+                        if (password.value == confirmPassword.value) {
+                            errorMessage.value = ""
+                            authViewModel.register(email = email.value, password = password.value)
+                            navController.navigate("HomePage")
+                            println("auth is over.")
+                        } else {
+                            errorMessage.value = "Passwords do not match!"
+                        }
                     }
                 }
                 CustomTextButton(

@@ -1,6 +1,5 @@
-package com.erdemyesilcicek.flokiai.pages
+package com.erdemyesilcicek.flokiai.pages.authpages
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,8 +9,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,9 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -43,32 +42,32 @@ fun SignInPage(
     navController: NavController,
     authViewModel: AuthViewModel
 ) {
+    val auth = FirebaseAuth.getInstance()
+    val errorMessage = remember { mutableStateOf("") }
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     val context = LocalContext.current
 
-    val errorMessage = remember { mutableStateOf("") }
-    val auth = FirebaseAuth.getInstance()
+    val scrollState = rememberScrollState()
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.backgroundwall),
-            contentDescription = "",
-            contentScale = ContentScale.FillBounds
-        )
-
-
         Column(
             modifier = Modifier
                 .fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.padding(10.dp))
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top
+            ) {
+                LottieAnimation(animation = R.raw.lottietap)
+            }
 
             Column(
                 modifier = Modifier
@@ -77,21 +76,22 @@ fun SignInPage(
             ) {
                 Text(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .padding(start = 16.dp),
                     text = "Login here",
-                    textAlign = TextAlign.Center,
+                    textAlign = TextAlign.Start,
                     fontSize = 40.sp,
                     fontWeight = FontWeight.SemiBold,
                     fontFamily = myFont,
                     color = MaterialTheme.colorScheme.onBackground
                 )
-
                 Text(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    text = "Welcome back you've been missed!",
-                    textAlign = TextAlign.Center,
-                    fontSize = 32.sp,
+                        .fillMaxWidth()
+                        .padding(start = 16.dp),
+                    text = "Welcome back!",
+                    textAlign = TextAlign.Start,
+                    fontSize = 20.sp,
                     fontWeight = FontWeight.SemiBold,
                     fontFamily = myFont,
                     color = MaterialTheme.colorScheme.onPrimary
@@ -101,7 +101,9 @@ fun SignInPage(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp),
+                    .padding(start = 10.dp, end = 10.dp)
+                    .imePadding()
+                    .verticalScroll(scrollState)
             ) {
                 CustomTextInput(
                     title = "Email",
@@ -113,7 +115,6 @@ fun SignInPage(
                     keyboardType = KeyboardType.Email,
                     isBigCanvas = false
                 )
-
                 CustomTextInput(
                     title = "Password",
                     label = "Enter your password",
@@ -129,7 +130,7 @@ fun SignInPage(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(end = 10.dp),
+                    .padding(end = 14.dp),
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -147,7 +148,6 @@ fun SignInPage(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Hata Mesajı
                 if (errorMessage.value.isNotEmpty()) {
                     Text(
                         text = errorMessage.value,
@@ -155,22 +155,27 @@ fun SignInPage(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                 }
-
                 CustomExtendedFAB(
                     containerColor = MaterialTheme.colorScheme.primary,
                     text = "Sign In"
                 ) {
-                    auth.signInWithEmailAndPassword(email.value, password.value)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                errorMessage.value = ""
-                                authViewModel.login(email.value, password.value)
-                                println("Login Successful!")
-                                navController.navigate("HomePage")
-                            } else {
-                                errorMessage.value = "Email or password is incorrect, or the user is not registered."
+                    if (email.value.isEmpty() || password.value.isEmpty()) {
+                        errorMessage.value = "Please fill in all fields."
+                        return@CustomExtendedFAB
+                    } else {
+                        auth.signInWithEmailAndPassword(email.value, password.value)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    errorMessage.value = ""
+                                    authViewModel.login(email.value, password.value)
+                                    println("Login Successful!")
+                                    navController.navigate("HomePage")
+                                } else {
+                                    errorMessage.value =
+                                        "Email or password is incorrect, or the user is not registered."
+                                }
                             }
-                        }
+                    }
                 }
                 CustomTextButton(
                     text = "Create an account",

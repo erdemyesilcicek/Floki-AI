@@ -3,18 +3,18 @@ package com.erdemyesilcicek.flokiai.viewmodels
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class AuthViewModel : ViewModel() {
 
-    private val _auth: FirebaseAuth = FirebaseAuth.getInstance()
-
-    val auth = _auth
+    val auth = Firebase.auth
 
     val loginState = mutableStateOf<Boolean?>(null)
     val errorMessage = mutableStateOf("")
 
     fun login(email: String, password: String) {
-        _auth.signInWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     loginState.value = true
@@ -26,12 +26,13 @@ class AuthViewModel : ViewModel() {
     }
 
     fun register(email: String, password: String) {
-        _auth.createUserWithEmailAndPassword(email, password)
+        auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    loginState.value = true
                     println("REGISTER SUCCESS")
+                    loginState.value = true
                 } else {
+                    println(task.exception?.message)
                     loginState.value = false
                     errorMessage.value = task.exception?.message ?: "Registration failed"
                 }
@@ -39,7 +40,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun logout() {
-        _auth.signOut()
+        auth.signOut()
         loginState.value = null
     }
 }
