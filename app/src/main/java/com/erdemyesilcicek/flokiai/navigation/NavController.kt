@@ -79,7 +79,7 @@ fun NavController(
 
         composable(route = "GetStartedPage") { GetStartedPage(navController, authViewModel) }
 
-        composable(route = "SignUpPage") { SignUpPage(navController, authViewModel, auth) }
+        composable(route = "SignUpPage") { SignUpPage(navController, authViewModel) }
 
         composable(route = "SignInPage") { SignInPage(navController, authViewModel) }
 
