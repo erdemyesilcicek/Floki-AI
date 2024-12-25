@@ -5,27 +5,27 @@ import com.erdemyesilcicek.flokiai.datas.CategoryCard
 
 public val genreList = listOf(
     CategoryCard(
-        R.drawable.genreadventure,
+        R.drawable.genregeminiadventure,
         "Adventure"
     ),
     CategoryCard(
-        R.drawable.genrefantastic,
+        R.drawable.genregeminifantastic,
         "Fantastic"
     ),
     CategoryCard(
-        R.drawable.genremystery,
+        R.drawable.genregeminimystery,
         "Mystery"
     ),
     CategoryCard(
-        R.drawable.genrespace,
+        R.drawable.genregeminispace,
         "Space"
     ),
     CategoryCard(
-        R.drawable.genretrip,
+        R.drawable.genregeminitrip,
         "Trip"
     ),
     CategoryCard(
-        R.drawable.genrefamily,
+        R.drawable.genregeminifamily,
         "Family"
     ),
 )
