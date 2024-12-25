@@ -19,21 +19,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.components.CustomCategorySection
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomText
 import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.datas.CategoryCard
-import com.erdemyesilcicek.flokiai.lists.animalList
-import com.erdemyesilcicek.flokiai.lists.characterList
-import com.erdemyesilcicek.flokiai.lists.familyList
-import com.erdemyesilcicek.flokiai.lists.genreList
-import com.erdemyesilcicek.flokiai.lists.seasonList
+import com.erdemyesilcicek.flokiai.lists.getAnimalList
+import com.erdemyesilcicek.flokiai.lists.getCharacterList
+import com.erdemyesilcicek.flokiai.lists.getFamilyList
+import com.erdemyesilcicek.flokiai.lists.getGenreList
+import com.erdemyesilcicek.flokiai.lists.getSeasonList
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
@@ -53,7 +55,7 @@ fun CreateTalePage(
             HeaderBar(
                 isEnableBackButton = false,
                 isEnableBarButton = false,
-                "Create Tale",
+                stringResource(id = R.string.create_tale_button),
                 navController
             )
         },
@@ -62,7 +64,7 @@ fun CreateTalePage(
         floatingActionButton = {
             CustomExtendedFAB(
                 MaterialTheme.colorScheme.primary,
-                "Create Tale",
+                stringResource(id = R.string.create_tale_button),
                 onClick = {
                     val genre = categoryViewModel.selectedGenre.getOrNull(0)?.text
                     val genreImage = categoryViewModel.selectedGenre.getOrNull(0)?.image
@@ -133,18 +135,18 @@ fun CreateTalePage(
                 .background(Color.White)
         ) {
             items(1) {
-                CustomText("Genre")
+                CustomText(stringResource(id = R.string.genre_label))
                 CustomCategorySection(
-                    list = genreList,
+                    list = getGenreList(),
                     false,
                     selectedList = categoryViewModel.selectedGenre,
                     onSelectionChange = { category ->
                         categoryViewModel.selectGenre(category)
                     })
 
-                CustomText("Season")
+                CustomText(stringResource(id = R.string.season_label))
                 CustomCategorySection(
-                    list = seasonList,
+                    list = getSeasonList(),
                     false,
                     selectedList = categoryViewModel.selectedSeason,
                     onSelectionChange = { category ->
@@ -152,9 +154,9 @@ fun CreateTalePage(
                     }
                 )
 
-                CustomText("Animal")
+                CustomText(stringResource(id = R.string.animal_label))
                 CustomCategorySection(
-                    list = animalList,
+                    list = getAnimalList(),
                     true,
                     selectedList = categoryViewModel.selectedAnimals,
                     onSelectionChange = { category ->
@@ -162,9 +164,9 @@ fun CreateTalePage(
                     }
                 )
 
-                CustomText("Character")
+                CustomText(stringResource(id = R.string.character_label))
                 CustomCategorySection(
-                    list = characterList,
+                    list = getCharacterList(),
                     true,
                     selectedList = categoryViewModel.selectedCharacters,
                     onSelectionChange = { category ->
@@ -172,9 +174,9 @@ fun CreateTalePage(
                     }
                 )
 
-                CustomText("Include in the tale")
+                CustomText(stringResource(id = R.string.family_label))
                 CustomCategorySection(
-                    list = familyList,
+                    list = getFamilyList(),
                     true,
                     selectedList = categoryViewModel.selectedFamily,
                     onSelectionChange = { category ->
@@ -190,7 +192,7 @@ fun CreateTalePage(
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "Created by Erdem",
+                        text = stringResource(id = R.string.created_by_erdem),
                         textAlign = TextAlign.Center,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold,

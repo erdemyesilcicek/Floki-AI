@@ -1,3 +1,161 @@
 <resources>
+    <!-- Default string values -->
     <string name="app_name">Floki AI</string>
+    <string name="create_tale_button">Create Tale</string>
+    <string name="created_by_erdem">Created by Erdem</string>
+
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="my_tales">My Tales</string>
+    <string name="listen_tale">Listen Tale</string>
+
+    <string name="title_email">E-Mail</string>
+    <string name="label_email">Enter your E-Mail</string>
+    <string name="title_password">Password</string>
+    <string name="label_password">Enter your password</string>
+
+    <!-- GetStartedPage -->
+    <string name="get_started_page_description">Create your own tale with Floki.</string>
+    <string name="get_started_page_button">Get Started</string>
+    <string name="get_started_page_sign_in">Sign In</string>
+
+    <!-- SignUpPage -->
+    <string name="sign_up_page_create_account">Create Account</string>
+    <string name="sign_up_page_description">Let\'s go, get started!</string>
+
+    <string name="sign_up_page_title_confirm_password">Confirm Password</string>
+    <string name="sign_up_page_label_confirm_password">Confirm your Password</string>
+
+    <string name="sign_up_page_button">Sign Up</string>
+
+    <!-- SignInPage -->
+    <string name="sign_in_page_login_here">Login here</string>
+    <string name="sign_in_page_description">Welcome back!</string>
+
+    <string name="sign_in_page_forgot_password">Forgot your password?</string>
+    <string name="sign_in_page_create_account">Create an account</string>
+
+    <string name="sign_in_page_button">Sign In</string>
+
+    <!-- HomePage -->
+    <string name="home_page_world_of_tales">World of Tales</string>
+    <string name="home_page_created_tales">Created Tales</string>
+
+    <string name="home_page_button">Create your own tale</string>
+
+    <!-- AiCreatedTalePage -->
+    <string name="ai_created_tale_page_no_created_tale">No tales have been created yet.</string>
+
+    <!-- OptionsPage -->
+    <string name="options_page_user_information">User Information</string>
+    <string name="options_page_user_information_summary">View and edit your personal information</string>
+
+    <string name="options_page_contact">Contact</string>
+    <string name="options_page_contact_summary">Send feedback or contact us</string>
+
+    <string name="options_page_privacy_policy">Privacy Policy</string>
+    <string name="options_page_privacy_policy_summary">View our privacy policy</string>
+
+    <string name="options_page_terms_of_use">Terms of Use</string>
+    <string name="options_page_terms_of_use_summary">View our terms of use</string>
+
+    <string name="options_page_log_out">Log out</string>
+    <string name="options_page_log_out_summary">Log out from your account</string>
+
+    <!-- UserInformationPage -->
+    <string name="user_information_page_user_information">User Information</string>
+
+    <string name="user_information_page_title_tale_language">Tale Language</string>
+    <string name="user_information_page_label_select_language">Select Language</string>
+
+    <string name="user_information_page_title_name">Name</string>
+    <string name="user_information_page_label_enter_name">Enter Name</string>
+
+    <string name="user_information_page_title_age">Age</string>
+    <string name="user_information_page_label_enter_age">Enter Age</string>
+
+    <string name="user_information_page_title_gender">Gender</string>
+    <string name="user_information_page_label_select_gender">Select Gender</string>
+
+    <string name="user_information_page_title_dad_name">Dad Name</string>
+    <string name="user_information_page_label_enter_dad_name">Enter Dad Name</string>
+
+    <string name="user_information_page_title_mom_name">Mom Name</string>
+    <string name="user_information_page_label_enter_mom_name">Enter Mom Name</string>
+
+    <string name="user_information_page_title_sibling_name">Sibling Name</string>
+    <string name="user_information_page_label_enter_sibling_name">Enter Sibling Name</string>
+
+    <string name="user_information_page_title_pet_name">Pet Name</string>
+    <string name="user_information_page_label_enter_pet_name">Enter Pet Name</string>
+
+    <string name="user_information_page_button">Save</string>
+
+    <!-- ContactPage -->
+    <string name="feedback_page_description">How can we help you?</string>
+
+    <string name="feedback_page_title_message">Message</string>
+    <string name="feedback_page_label_message">Enter Message</string>
+
+    <string name="feedback_page_button">Send</string>
+
+    <!-- CreateTalePage -->
+    <string name="genre_label">Genre</string>
+
+    <string name="adventure">Adventure</string>
+    <string name="fantastic">Fantastic</string>
+    <string name="mystery">Mystery</string>
+    <string name="space">Space</string>
+    <string name="trip">Trip</string>
+    <string name="family">Family</string>
+
+    <string name="season_label">Season</string>
+
+    <string name="summer">Summer</string>
+    <string name="spring">Spring</string>
+    <string name="autumn">Autumn</string>
+    <string name="winter">Winter</string>
+
+    <string name="animal_label">Animal</string>
+
+    <string name="bear">Bear</string>
+    <string name="boar">Boar</string>
+    <string name="camel">Camel</string>
+    <string name="cat">Cat</string>
+    <string name="chicken">Chicken</string>
+    <string name="cow">Cow</string>
+    <string name="crocodile">Crocodile</string>
+    <string name="dog">Dog</string>
+    <string name="elephant">Elephant</string>
+    <string name="fox">Fox</string>
+    <string name="lion">Lion</string>
+    <string name="monkey">Monkey</string>
+    <string name="seal">Seal</string>
+    <string name="wolf">Wolf</string>
+
+    <string name="character_label">Character</string>
+
+    <string name="chef">Chef</string>
+    <string name="clown">Clown</string>
+    <string name="cowboy">Cowboy</string>
+    <string name="dwarf">Dwarf</string>
+    <string name="elf">Elf</string>
+    <string name="king">King</string>
+    <string name="ninja">Ninja</string>
+    <string name="pirate">Pirate</string>
+    <string name="thief">Thief</string>
+    <string name="wizard">Wizard</string>
+
+    <string name="family_label">Include in the tale</string>
+
+    <string name="dad">Dad</string>
+    <string name="mom">Mom</string>
+    <string name="sibling">Sibling</string>
+    <string name="pet">Pet</string>
+
+    <!-- LoadingPage -->
+    <string name="loading_page_please_wait">PLEASE WAIT!</string>
+    <string name="loading_page_your_tale_created">Your tale is being created!</string>
+
+    <!-- PrivacyPolicyPage -->
+    <!-- TermsOfUsePage -->
 </resources>

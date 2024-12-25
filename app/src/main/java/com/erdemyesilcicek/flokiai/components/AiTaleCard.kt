@@ -35,7 +35,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
 fun AiTaleCard(navController: NavController, aiTale: AiTale, db: FirebaseFirestore) {
-    println(aiTale.TaleDetails.genreImage)
+    println(aiTale.GenreImage)
 
     fun onDelete(taleId: String) {
         println("Deleting tale with id: $taleId")
@@ -65,14 +65,11 @@ fun AiTaleCard(navController: NavController, aiTale: AiTale, db: FirebaseFiresto
                 .background(Color.White),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-
             Image(
                 painter = painterResource(id = aiTale.GenreImage),
                 contentDescription = "Tale Photo",
                 contentScale = ContentScale.Fit
             )
-
-
             Column(
                 Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.SpaceEvenly,

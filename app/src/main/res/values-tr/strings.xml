@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Floki AI</string>
+    <string name="create_tale_button">Masal Oluştur</string>
+    <string name="created_by_erdem">Erdem tarafından yaratıldı</string>
+
+    <string name="already_have_an_account">Zaten bir hesabınız var mı?</string>
+    <string name="my_tales">Masallarım</string>
+    <string name="listen_tale">Masalı Dinle</string>
+
+    <string name="title_email">E-Posta</string>
+    <string name="label_email">E-posta adresinizi girin</string>
+    <string name="title_password">Şifre</string>
+    <string name="label_password">Şifrenizi girin</string>
+
+    <!-- GetStartedPage -->
+    <string name="get_started_page_description">Floki ile kendi masalınızı oluşturun.</string>
+    <string name="get_started_page_button">Başlayın</string>
+    <string name="get_started_page_sign_in">Giriş Yap</string>
+
+    <!-- SignUpPage -->
+    <string name="sign_up_page_create_account">Hesap Oluştur</string>
+    <string name="sign_up_page_description">Hadi başlayalım!</string>
+
+    <string name="sign_up_page_title_confirm_password">Şifreyi Doğrula</string>
+    <string name="sign_up_page_label_confirm_password">Şifrenizi Doğrulayın</string>
+
+    <string name="sign_up_page_button">Kayıt Ol</string>
+
+    <!-- SignInPage -->
+    <string name="sign_in_page_login_here">Giriş Yapın</string>
+    <string name="sign_in_page_description">Tekrar hoş geldiniz!</string>
+
+    <string name="sign_in_page_forgot_password">Şifrenizi mi unuttunuz?</string>
+    <string name="sign_in_page_create_account">Hesap oluştur</string>
+
+    <string name="sign_in_page_button">Giriş Yap</string>
+
+    <!-- HomePage -->
+    <string name="home_page_world_of_tales">Masallar Dünyası</string>
+    <string name="home_page_created_tales">Oluşturulan Masallar</string>
+
+    <string name="home_page_button">Kendi masalını oluştur</string>
+
+    <!-- AiCreatedTalePage -->
+    <string name="ai_created_tale_page_no_created_tale">Henüz hiçbir masal oluşturulmadı.</string>
+
+    <!-- OptionsPage -->
+    <string name="options_page_user_information">Kullanıcı Bilgileri</string>
+    <string name="options_page_user_information_summary">Kişisel bilgilerinizi görüntüleyin ve düzenleyin</string>
+
+    <string name="options_page_contact">İletişim</string>
+    <string name="options_page_contact_summary">Geribildirim gönderin veya bizimle iletişime geçin</string>
+
+    <string name="options_page_privacy_policy">Gizlilik Politikası</string>
+    <string name="options_page_privacy_policy_summary">Gizlilik politikamızı görüntüleyin</string>
+
+    <string name="options_page_terms_of_use">Kullanım Şartları</string>
+    <string name="options_page_terms_of_use_summary">Kullanım şartlarımızı görüntüleyin</string>
+
+    <string name="options_page_log_out">Çıkış Yap</string>
+    <string name="options_page_log_out_summary">Hesabınızdan çıkış yapın</string>
+
+    <!-- UserInformationPage -->
+    <string name="user_information_page_user_information">Kullanıcı Bilgileri</string>
+
+    <string name="user_information_page_title_tale_language">Masal Dili</string>
+    <string name="user_information_page_label_select_language">Dil Seçin</string>
+
+    <string name="user_information_page_title_name">İsim</string>
+    <string name="user_information_page_label_enter_name">İsim Girin</string>
+
+    <string name="user_information_page_title_age">Yaş</string>
+    <string name="user_information_page_label_enter_age">Yaş Girin</string>
+
+    <string name="user_information_page_title_gender">Cinsiyet</string>
+    <string name="user_information_page_label_select_gender">Cinsiyetinizi Seçin</string>
+
+    <string name="user_information_page_title_dad_name">Baba İsmi</string>
+    <string name="user_information_page_label_enter_dad_name">Baba İsmini Girin</string>
+
+    <string name="user_information_page_title_mom_name">Anne İsmi</string>
+    <string name="user_information_page_label_enter_mom_name">Anne İsmini Girin</string>
+
+    <string name="user_information_page_title_sibling_name">Kardeş İsmi</string>
+    <string name="user_information_page_label_enter_sibling_name">Kardeş İsmi Girin</string>
+
+    <string name="user_information_page_title_pet_name">Evcil Hayvan</string>
+    <string name="user_information_page_label_enter_pet_name">Evcil Hayvan İsmini Girin</string>
+
+    <string name="user_information_page_button">Kaydet</string>
+
+    <!-- ContactPage -->
+    <string name="feedback_page_description">Sana nasıl yardımcı olabiliriz?</string>
+
+    <string name="feedback_page_title_message">Mesaj</string>
+    <string name="feedback_page_label_message">Mesajınızı Buraya Girin</string>
+
+    <string name="feedback_page_button">Gönder</string>
+
+    <!-- CreateTalePage -->
+    <string name="genre_label">Tür</string>
+
+    <string name="adventure">Macera</string>
+    <string name="fantastic">Fantastik</string>
+    <string name="mystery">Gizem</string>
+    <string name="space">Uzay</string>
+    <string name="trip">Yolculuk</string>
+    <string name="family">Aile</string>
+
+    <string name="season_label">Mevsim</string>
+
+    <string name="summer">Yaz</string>
+    <string name="spring">İlkbahar</string>
+    <string name="autumn">Sonbahar</string>
+    <string name="winter">Kış</string>
+
+    <string name="animal_label">Hayvan</string>
+
+    <string name="bear">Ayı</string>
+    <string name="boar">Yaban Domuzu</string>
+    <string name="camel">Deve</string>
+    <string name="cat">Kedi</string>
+    <string name="chicken">Tavuk</string>
+    <string name="cow">İnek</string>
+    <string name="crocodile">Timsah</string>
+    <string name="dog">Köpek</string>
+    <string name="elephant">Fil</string>
+    <string name="fox">Tilki</string>
+    <string name="lion">Aslan</string>
+    <string name="monkey">Maymun</string>
+    <string name="seal">Fok Balığı</string>
+    <string name="wolf">Kurt</string>
+
+    <string name="character_label">Karakter</string>
+
+    <string name="chef">Şef</string>
+    <string name="clown">Palyaço</string>
+    <string name="cowboy">Kovboy</string>
+    <string name="dwarf">Cüce</string>
+    <string name="elf">Elf</string>
+    <string name="king">Kral</string>
+    <string name="ninja">Ninja</string>
+    <string name="pirate">Korsan</string>
+    <string name="thief">Hırsız</string>
+    <string name="wizard">Büyücü</string>
+
+    <string name="family_label">Masala Dahil Et</string>
+
+    <string name="dad">Baba</string>
+    <string name="mom">Anne</string>
+    <string name="sibling">Kardeş</string>
+    <string name="pet">Evcil Hayvan</string>
+
+    <!-- LoadingPage -->
+    <string name="loading_page_please_wait">LÜTFEN BEKLEYİN!</string>
+    <string name="loading_page_your_tale_created">Masalınız oluşturuluyor!</string>
+
+    <!-- PrivacyPolicyPage -->
+    <!-- TermsOfUsePage -->
+
+
+</resources>

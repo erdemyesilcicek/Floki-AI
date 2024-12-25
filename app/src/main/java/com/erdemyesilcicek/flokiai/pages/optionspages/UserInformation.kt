@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -64,7 +65,7 @@ fun UserInformation(
     var petName by remember { mutableStateOf(userInfo.petName) }
 
     val optionsLanguage = listOf("English", "German", "Turkish")
-    val optionsGender = listOf("Male", "Female", "Other")
+    val optionsGender = listOf("None", "Male", "Female")
 
     val scrollState = rememberScrollState()
 
@@ -81,7 +82,7 @@ fun UserInformation(
         floatingActionButton = {
             CustomExtendedFAB(
                 MaterialTheme.colorScheme.primary,
-                "Save",
+                stringResource(id =R.string.user_information_page_button),
                 onClick = {
                     val updatedUserInfo = UserInformationModel(
                         yourName = name,
@@ -140,22 +141,22 @@ fun UserInformation(
                     }
 
                     Text(
-                        text = "User Information",
+                        text = stringResource(id =R.string.user_information_page_user_information),
                         fontFamily = FontFamily.Default,
                         fontSize = 18.sp
                     )
                 }
 
                 CustomDropdownMenu(
-                    title = "Tale Language",
-                    label = "Select Language",
+                    title = stringResource(id =R.string.user_information_page_title_tale_language),
+                    label = stringResource(id =R.string.user_information_page_label_select_language),
                     options = optionsLanguage,
                     selectedOption = language,
                     onOptionSelected = { language = it }
                 )
                 CustomTextInput(
-                    title = "Name",
-                    label = "Enter Name",
+                    title = stringResource(id =R.string.user_information_page_title_name),
+                    label = stringResource(id =R.string.user_information_page_label_enter_name),
                     text = name,
                     onValueChange = { name = it },
                     isSingleLine = true,
@@ -164,8 +165,8 @@ fun UserInformation(
                     isBigCanvas = false
                 )
                 CustomTextInput(
-                    title = "Age",
-                    label = "Enter Age",
+                    title = stringResource(id =R.string.user_information_page_title_age),
+                    label = stringResource(id =R.string.user_information_page_label_enter_age),
                     text = age,
                     onValueChange = { age = it },
                     isSingleLine = true,
@@ -174,15 +175,15 @@ fun UserInformation(
                     isBigCanvas = false
                 )
                 CustomDropdownMenu(
-                    title = "Gender",
-                    label = "Select Gender",
+                    title = stringResource(id =R.string.user_information_page_title_gender),
+                    label = stringResource(id =R.string.user_information_page_label_select_gender),
                     options = optionsGender,
                     selectedOption = gender,
                     onOptionSelected = { gender = it }
                 )
                 CustomTextInput(
-                    title = "Dad Name",
-                    label = "Enter Dad Name",
+                    title = stringResource(id =R.string.user_information_page_title_dad_name),
+                    label = stringResource(id =R.string.user_information_page_label_enter_dad_name),
                     text = dadName,
                     onValueChange = { dadName = it },
                     isSingleLine = true,
@@ -191,8 +192,8 @@ fun UserInformation(
                     isBigCanvas = false
                 )
                 CustomTextInput(
-                    title = "Mom Name",
-                    label = "Enter Mom Name",
+                    title = stringResource(id =R.string.user_information_page_title_mom_name),
+                    label = stringResource(id =R.string.user_information_page_label_enter_mom_name),
                     text = momName,
                     onValueChange = { momName = it },
                     isSingleLine = true,
@@ -201,8 +202,8 @@ fun UserInformation(
                     isBigCanvas = false
                 )
                 CustomTextInput(
-                    title = "Sibling Name",
-                    label = "Enter Sibling Name",
+                    title = stringResource(id =R.string.user_information_page_title_sibling_name),
+                    label = stringResource(id =R.string.user_information_page_label_enter_sibling_name),
                     text = siblingName,
                     onValueChange = { siblingName = it },
                     isSingleLine = true,
@@ -211,8 +212,8 @@ fun UserInformation(
                     isBigCanvas = false
                 )
                 CustomTextInput(
-                    title = "Pet Name",
-                    label = "Enter Pet Name",
+                    title = stringResource(id =R.string.user_information_page_title_pet_name),
+                    label = stringResource(id =R.string.user_information_page_label_enter_pet_name),
                     text = petName,
                     onValueChange = { petName = it },
                     isSingleLine = true,
@@ -229,7 +230,7 @@ fun UserInformation(
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "Created by Erdem",
+                        text = stringResource(id =R.string.created_by_erdem),
                         textAlign = TextAlign.Center,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold,

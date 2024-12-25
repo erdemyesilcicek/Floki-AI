@@ -22,16 +22,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.components.CustomOptionsCard
 import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.datas.OptionsCard
-import com.erdemyesilcicek.flokiai.utils.clearSharedPreferences
-import com.erdemyesilcicek.flokiai.utils.footer
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
@@ -64,36 +64,36 @@ fun OptionsPage(
                 OptionsCard(
                     imageVector = Icons.Outlined.Person,
                     contentDescription = "User Information",
-                    itemText = "User Information",
-                    summary = "View and edit your personal information",
+                    itemText = stringResource(id = R.string.options_page_user_information),
+                    summary = stringResource(id = R.string.options_page_user_information_summary),
                     onClick = { navController.navigate("UserInformation") }
                 ),
                 OptionsCard(
                     imageVector = Icons.Outlined.Phone,
                     contentDescription = "Feedback, Contact",
-                    itemText = "Contact",
-                    summary = "Send feedback or contact us",
+                    itemText = stringResource(id = R.string.options_page_contact),
+                    summary = stringResource(id = R.string.options_page_contact_summary),
                     onClick = { navController.navigate("Feedback") }
                 ),
                 OptionsCard(
                     imageVector = Icons.Outlined.PrivacyTip,
                     contentDescription = "Privacy Policy",
-                    itemText = "Privacy Policy",
-                    summary = "View our privacy policy",
+                    itemText = stringResource(id = R.string.options_page_privacy_policy),
+                    summary = stringResource(id = R.string.options_page_privacy_policy_summary),
                     onClick = { println("privacy policy") }
                 ),
                 OptionsCard(
                     imageVector = Icons.Outlined.InsertDriveFile,
                     contentDescription = "Terms of Use",
-                    itemText = "Terms of Use",
-                    summary = "View our terms of use",
+                    itemText = stringResource(id = R.string.options_page_terms_of_use),
+                    summary = stringResource(id = R.string.options_page_terms_of_use_summary),
                     onClick = { println("term of use") }
                 ),
                 OptionsCard(
                     imageVector = Icons.Outlined.PowerSettingsNew,
-                    contentDescription = "Logout",
-                    itemText = "Logout",
-                    summary = "Logout from your account",
+                    contentDescription = "Log out",
+                    itemText = stringResource(id = R.string.options_page_log_out),
+                    summary = stringResource(id = R.string.options_page_log_out_summary),
                     onClick = {
                         userInformationViewModel.clearUserInformation()
                         authViewModel.logout()
@@ -128,7 +128,7 @@ fun OptionsPage(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Created by Erdem",
+                    text = stringResource(id = R.string.created_by_erdem),
                     textAlign = TextAlign.Center,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,

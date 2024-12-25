@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -78,7 +79,7 @@ fun SignInPage(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 16.dp),
-                    text = "Login here",
+                    text = stringResource(id =R.string.sign_in_page_login_here),
                     textAlign = TextAlign.Start,
                     fontSize = 40.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -89,7 +90,7 @@ fun SignInPage(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 16.dp),
-                    text = "Welcome back!",
+                    text = stringResource(id =R.string.sign_in_page_description),
                     textAlign = TextAlign.Start,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -106,8 +107,8 @@ fun SignInPage(
                     .verticalScroll(scrollState)
             ) {
                 CustomTextInput(
-                    title = "Email",
-                    label = "Enter your email",
+                    title = stringResource(id =R.string.title_email),
+                    label = stringResource(id =R.string.label_email),
                     text = email.value, // State değeri
                     onValueChange = { email.value = it }, // Değişim callback'i
                     isSingleLine = true,
@@ -116,8 +117,8 @@ fun SignInPage(
                     isBigCanvas = false
                 )
                 CustomTextInput(
-                    title = "Password",
-                    label = "Enter your password",
+                    title = stringResource(id =R.string.title_password),
+                    label = stringResource(id =R.string.label_password),
                     text = password.value,
                     onValueChange = { password.value = it },
                     isSingleLine = true,
@@ -135,7 +136,7 @@ fun SignInPage(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 CustomTextButton(
-                    text = "Forgot your password?",
+                    text = stringResource(id =R.string.sign_in_page_forgot_password),
                     color = MaterialTheme.colorScheme.primary
                 ) {
                     navController.navigate("ForgotPasswordPage")
@@ -157,7 +158,7 @@ fun SignInPage(
                 }
                 CustomExtendedFAB(
                     containerColor = MaterialTheme.colorScheme.primary,
-                    text = "Sign In"
+                    text = stringResource(id =R.string.sign_in_page_button)
                 ) {
                     if (email.value.isEmpty() || password.value.isEmpty()) {
                         errorMessage.value = "Please fill in all fields."
@@ -178,7 +179,7 @@ fun SignInPage(
                     }
                 }
                 CustomTextButton(
-                    text = "Create an account",
+                    text = stringResource(id =R.string.sign_in_page_create_account),
                     color = MaterialTheme.colorScheme.onBackground
                 ) {
                     navController.navigate("SignUpPage")

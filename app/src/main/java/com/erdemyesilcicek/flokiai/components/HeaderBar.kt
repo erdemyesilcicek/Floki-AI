@@ -25,10 +25,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.utils.myFont
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -62,7 +64,7 @@ fun HeaderBar(
                     ) {
                         Text(
                             color = Color.White,
-                            text = " Create Tale",
+                            text = stringResource(id = R.string.create_tale_button),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Normal,
                             fontFamily = myFont

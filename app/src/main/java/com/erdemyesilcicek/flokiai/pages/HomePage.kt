@@ -36,10 +36,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomIconTab
 import com.erdemyesilcicek.flokiai.components.HeaderBar
@@ -58,9 +60,9 @@ fun HomePage(navController: NavController) {
                 isEnableBackButton = true,
                 isEnableBarButton = false,
                 if (selectedTab == 1) {
-                    "World of Tales"
+                    stringResource(id = R.string.home_page_world_of_tales)
                 } else {
-                    "Created Tales"
+                    stringResource(id =R.string.home_page_created_tales)
                 },
                 navController
             )
@@ -70,7 +72,7 @@ fun HomePage(navController: NavController) {
         floatingActionButton = {
             CustomExtendedFAB(
                 MaterialTheme.colorScheme.primary,
-                "Create your own tale",
+                stringResource(id =R.string.home_page_button),
                 onClick = {
                     navController.navigate("CreateTalePage")
                 })

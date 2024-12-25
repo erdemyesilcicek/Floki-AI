@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -74,7 +75,7 @@ fun SignUpPage(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 16.dp),
-                    text = "Create Account",
+                    text = stringResource(id = R.string.sign_up_page_create_account),
                     textAlign = TextAlign.Start,
                     fontSize = 40.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -85,7 +86,7 @@ fun SignUpPage(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 16.dp),
-                    text = "Let's go, get started!",
+                    text = stringResource(id = R.string.sign_up_page_description),
                     textAlign = TextAlign.Start,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -102,8 +103,8 @@ fun SignUpPage(
                     .padding(start = 10.dp, end = 10.dp),
             ) {
                 CustomTextInput(
-                    title = "Email",
-                    label = "Enter your email",
+                    title = stringResource(id = R.string.title_email),
+                    label = stringResource(id = R.string.label_email),
                     text = email.value, // State değeri
                     onValueChange = { email.value = it }, // Değişim callback'i
                     isSingleLine = true,
@@ -113,8 +114,8 @@ fun SignUpPage(
                 )
 
                 CustomTextInput(
-                    title = "Password",
-                    label = "Enter your password",
+                    title = stringResource(id = R.string.title_password),
+                    label = stringResource(id = R.string.label_password),
                     text = password.value,
                     onValueChange = { password.value = it },
                     isSingleLine = true,
@@ -124,8 +125,8 @@ fun SignUpPage(
                 )
 
                 CustomTextInput(
-                    title = "Confirm Password",
-                    label = "Confirm Password",
+                    title = stringResource(id = R.string.sign_up_page_title_confirm_password),
+                    label = stringResource(id = R.string.sign_up_page_label_confirm_password),
                     text = confirmPassword.value,
                     onValueChange = { confirmPassword.value = it },
                     isSingleLine = true,
@@ -153,7 +154,7 @@ fun SignUpPage(
             ) {
                 CustomExtendedFAB(
                     containerColor = MaterialTheme.colorScheme.primary,
-                    text = "Sign Up"
+                    text = stringResource(id = R.string.sign_up_page_button)
                 ) {
                     if(email.value.isEmpty() || password.value.isEmpty() || confirmPassword.value.isEmpty()) {
                         errorMessage.value = "Please fill in all"
@@ -169,7 +170,7 @@ fun SignUpPage(
                     }
                 }
                 CustomTextButton(
-                    text = "Already have an account?",
+                    text = stringResource(id = R.string.already_have_an_account),
                     color = MaterialTheme.colorScheme.onBackground
                 ) {
                     navController.navigate("SignInPage")

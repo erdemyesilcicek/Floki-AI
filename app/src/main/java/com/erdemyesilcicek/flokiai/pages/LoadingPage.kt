@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -112,7 +113,7 @@ fun LoadingPage(
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = "PLEASE WAIT!",
+                text = stringResource(id =R.string.loading_page_please_wait),
                 textAlign = TextAlign.Center,
                 fontSize = 40.sp,
                 fontWeight = FontWeight.SemiBold,
@@ -122,7 +123,7 @@ fun LoadingPage(
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = "Your tale is being created!",
+                text = stringResource(id =R.string.loading_page_your_tale_created),
                 textAlign = TextAlign.Center,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.SemiBold,

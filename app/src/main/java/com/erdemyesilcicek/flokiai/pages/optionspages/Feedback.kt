@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -61,7 +62,7 @@ fun Feedback(
         floatingActionButton = {
             CustomExtendedFAB(
                 MaterialTheme.colorScheme.primary,
-                "Send",
+                stringResource(id =R.string.feedback_page_button),
                 onClick = {
                     println("Send fab clicked")
                 })
@@ -101,14 +102,14 @@ fun Feedback(
                         )
                     }
                     Text(
-                        text = "How can we help you?",
+                        text = stringResource(id =R.string.feedback_page_description),
                         fontFamily = FontFamily.Default,
                         fontSize = 18.sp
                     )
                 }
                 CustomTextInput(
-                    title = "Email",
-                    label = "Email",
+                    title = stringResource(id =R.string.title_email),
+                    label = stringResource(id =R.string.label_email),
                     text = email.value,
                     onValueChange = { email.value = it },
                     isSingleLine = true,
@@ -117,8 +118,8 @@ fun Feedback(
                     isBigCanvas = false
                 )
                 CustomTextInput(
-                    title = "Message",
-                    label = "Enter Message",
+                    title = stringResource(id =R.string.feedback_page_title_message),
+                    label = stringResource(id =R.string.feedback_page_label_message),
                     text = message.value,
                     onValueChange = { message.value = it },
                     isSingleLine = false,
@@ -134,7 +135,7 @@ fun Feedback(
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "Created by Erdem",
+                        text = stringResource(id =R.string.created_by_erdem),
                         textAlign = TextAlign.Center,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold,

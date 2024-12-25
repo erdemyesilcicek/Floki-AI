@@ -20,9 +20,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.components.AiTaleCard
 import com.erdemyesilcicek.flokiai.datas.AiTale
 import com.erdemyesilcicek.flokiai.datas.TaleDetails
@@ -63,6 +65,7 @@ fun AiCreatedTalePage(navController: NavController) {
                             val taleSummary = document.data.get("TaleSummary").toString()
                             val UserId = document.data.get("userId").toString()
                             val genreImage = document.data.get("GenreImage").toString().toInt()
+                            println("Genre Image: $genreImage")
                             val taleId = document.id
 
                             AiTale(
@@ -107,7 +110,7 @@ fun AiCreatedTalePage(navController: NavController) {
                     imageVector = Icons.Outlined.AutoAwesome,
                     contentDescription ="Not yet")
                 Text(
-                    text = "No tales have been created yet.",
+                    text = stringResource(id = R.string.ai_created_tale_page_no_created_tale),
                     color = MaterialTheme.colorScheme.onBackground,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(16.dp)

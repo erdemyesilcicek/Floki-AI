@@ -22,11 +22,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.datas.UserInformationModel
@@ -47,7 +49,7 @@ fun ReadTalePage(navController: NavController, id: Int?) {
             HeaderBar(
                 isEnableBackButton = false,
                 isEnableBarButton = true,
-                "My Tales",
+                stringResource(id = R.string.my_tales),
                 navController
             )
         },
@@ -56,7 +58,7 @@ fun ReadTalePage(navController: NavController, id: Int?) {
         floatingActionButton = {
             CustomExtendedFAB(
                 MaterialTheme.colorScheme.primary,
-                "Listen Tale",
+                stringResource(id = R.string.listen_tale),
                 onClick = {
                     println("Listen to Tale Button Clicked")
                 }
@@ -101,7 +103,7 @@ fun ReadTalePage(navController: NavController, id: Int?) {
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text = "Created by Erdem",
+                            text = stringResource(id = R.string.created_by_erdem),
                             textAlign = TextAlign.Center,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.SemiBold,

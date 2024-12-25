@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Floki AI</string>
+    <string name="create_tale_button">Erstellen</string>
+    <string name="created_by_erdem">Erstellt von Erdem</string>
+
+    <string name="already_have_an_account">Haben Sie schon ein Konto?</string>
+    <string name="my_tales">Meine Erzählungen</string>
+    <string name="listen_tale">Erzählung anhören</string>
+
+    <string name="title_email">E-Mail</string>
+    <string name="label_email">Geben Sie Ihre E-Mail ein</string>
+    <string name="title_password">Passwort</string>
+    <string name="label_password">Geben Sie Ihr Passwort ein</string>
+
+    <!-- GetStartedPage -->
+    <string name="get_started_page_description">Erstelle deine eigene Geschichte mit Floki.</string>
+    <string name="get_started_page_button">Loslegen</string>
+    <string name="get_started_page_sign_in">Anmelden</string>
+
+    <!-- SignUpPage -->
+    <string name="sign_up_page_create_account">Konto erstellen</string>
+    <string name="sign_up_page_description">Lass uns anfangen!</string>
+
+    <string name="sign_up_page_title_confirm_password">Passwort bestätigen</string>
+    <string name="sign_up_page_label_confirm_password">Bestätigen Sie Ihr Passwort</string>
+
+    <string name="sign_up_page_button">Registrieren</string>
+
+    <!-- SignInPage -->
+    <string name="sign_in_page_login_here">Hier einloggen</string>
+    <string name="sign_in_page_description">Willkommen zurück!</string>
+
+    <string name="sign_in_page_forgot_password">Passwort vergessen?</string>
+    <string name="sign_in_page_create_account">Ein Konto erstellen</string>
+
+    <string name="sign_in_page_button">Anmelden</string>
+
+    <!-- HomePage -->
+    <string name="home_page_world_of_tales">Welt der Märchen</string>
+    <string name="home_page_created_tales">Erstellte Märchen</string>
+
+    <string name="home_page_button">Erstellen</string>
+
+    <!-- AiCreatedTalePage -->
+    <string name="ai_created_tale_page_no_created_tale">Es wurden noch keine Märchen erstellt.</string>
+
+    <!-- OptionsPage -->
+    <string name="options_page_user_information">Benutzerinformationen</string>
+    <string name="options_page_user_information_summary">Sehen und bearbeiten Sie Ihre persönlichen Informationen</string>
+
+    <string name="options_page_contact">Kontakt</string>
+    <string name="options_page_contact_summary">Geben Sie Feedback oder kontaktieren Sie uns</string>
+
+    <string name="options_page_privacy_policy">Datenschutzerklärung</string>
+    <string name="options_page_privacy_policy_summary">Sehen Sie sich unsere Datenschutzerklärung an</string>
+
+    <string name="options_page_terms_of_use">Nutzungsbedingungen</string>
+    <string name="options_page_terms_of_use_summary">Sehen Sie sich unsere Nutzungsbedingungen an</string>
+
+    <string name="options_page_log_out">Abmelden</string>
+    <string name="options_page_log_out_summary">Von Ihrem Konto abmelden</string>
+
+    <!-- UserInformationPage -->
+    <string name="user_information_page_user_information">Benutzerinformationen</string>
+
+    <string name="user_information_page_title_tale_language">Märchensprache</string>
+    <string name="user_information_page_label_select_language">Sprache auswählen</string>
+
+    <string name="user_information_page_title_name">Name</string>
+    <string name="user_information_page_label_enter_name">Name eingeben</string>
+
+    <string name="user_information_page_title_age">Alter</string>
+    <string name="user_information_page_label_enter_age">Alter eingeben</string>
+
+    <string name="user_information_page_title_gender">Geschlecht</string>
+    <string name="user_information_page_label_select_gender">Geschlecht auswählen</string>
+
+    <string name="user_information_page_title_dad_name">Name des Vaters</string>
+    <string name="user_information_page_label_enter_dad_name">Name des Vaters eingeben</string>
+
+    <string name="user_information_page_title_mom_name">Name der Mutter</string>
+    <string name="user_information_page_label_enter_mom_name">Name der Mutter eingeben</string>
+
+    <string name="user_information_page_title_sibling_name">Name des Geschwisters</string>
+    <string name="user_information_page_label_enter_sibling_name">Name des Geschwisters eingeben</string>
+
+    <string name="user_information_page_title_pet_name">Name des Haustiers</string>
+    <string name="user_information_page_label_enter_pet_name">Name des Haustiers eingeben</string>
+
+    <string name="user_information_page_button">Speichern</string>
+
+    <!-- ContactPage -->
+    <string name="feedback_page_description">Wie können wir Ihnen helfen?</string>
+
+    <string name="feedback_page_title_message">Nachricht</string>
+    <string name="feedback_page_label_message">Nachricht eingeben</string>
+
+    <string name="feedback_page_button">Absenden</string>
+
+    <!-- CreateTalePage -->
+    <string name="genre_label">Genre</string>
+
+    <string name="adventure">Abenteuer</string>
+    <string name="fantastic">Fantastisch</string>
+    <string name="mystery">Mystery</string>
+    <string name="space">Weltraum</string>
+    <string name="trip">Reise</string>
+    <string name="family">Familie</string>
+
+    <string name="season_label">Jahreszeit</string>
+
+    <string name="summer">Sommer</string>
+    <string name="spring">Frühling</string>
+    <string name="autumn">Herbst</string>
+    <string name="winter">Winter</string>
+
+    <string name="animal_label">Tier</string>
+
+    <string name="bear">Bär</string>
+    <string name="boar">Wildschwein</string>
+    <string name="camel">Kamel</string>
+    <string name="cat">Katze</string>
+    <string name="chicken">Huhn</string>
+    <string name="cow">Kuh</string>
+    <string name="crocodile">Krokodil</string>
+    <string name="dog">Hund</string>
+    <string name="elephant">Elefant</string>
+    <string name="fox">Fuchs</string>
+    <string name="lion">Löwe</string>
+    <string name="monkey">Affe</string>
+    <string name="seal">Seehund</string>
+    <string name="wolf">Wolf</string>
+
+    <string name="character_label">Charakter</string>
+
+    <string name="chef">Koch</string>
+    <string name="clown">Clown</string>
+    <string name="cowboy">Cowboy</string>
+    <string name="dwarf">Zwerg</string>
+    <string name="elf">Elf</string>
+    <string name="king">König</string>
+    <string name="ninja">Ninja</string>
+    <string name="pirate">Pirat</string>
+    <string name="thief">Dieb</string>
+    <string name="wizard">Zauberer</string>
+
+    <string name="family_label">In die Erzählung einbeziehen</string>
+
+    <string name="dad">Vater</string>
+    <string name="mom">Mutter</string>
+    <string name="sibling">Geschwister</string>
+    <string name="pet">Haustier</string>
+
+    <!-- LoadingPage -->
+    <string name="loading_page_please_wait">BITTE WARTEN!</string>
+    <string name="loading_page_your_tale_created">Deine Erzählung wird erstellt!</string>
+
+    <!-- PrivacyPolicyPage -->
+    <!-- TermsOfUsePage -->
+
+</resources>

@@ -14,6 +14,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
@@ -60,7 +61,7 @@ fun GetStartedPage(
                 modifier = Modifier
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center,
-                text = "Floki AI",
+                text = stringResource(id =R.string.app_name),
                 fontSize = 38.sp,
                 fontFamily = myFont,
                 fontWeight = FontWeight.Bold,
@@ -70,7 +71,7 @@ fun GetStartedPage(
                 modifier = Modifier
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center,
-                text = "Create your own tale with Floki.",
+                text = stringResource(id =R.string.get_started_page_description),
                 fontSize = 15.sp,
                 fontFamily = myFont,
                 fontWeight = FontWeight.SemiBold,
@@ -86,7 +87,7 @@ fun GetStartedPage(
         ) {
             CustomExtendedFAB(
                 containerColor = MaterialTheme.colorScheme.primary,
-                text = "Get Started"
+                text = stringResource(id =R.string.get_started_page_button)
             ) {
                 navController.navigate("SignUpPage")
             }
@@ -100,7 +101,7 @@ fun GetStartedPage(
                 Text(
                     modifier = Modifier,
                     textAlign = TextAlign.Center,
-                    text = "Already have an account?",
+                    text = stringResource(id =R.string.already_have_an_account),
                     fontSize = 12.sp,
                     fontFamily = myFont,
                     fontWeight = FontWeight.SemiBold,
@@ -113,7 +114,7 @@ fun GetStartedPage(
                     Text(
                         modifier = Modifier,
                         textAlign = TextAlign.Start,
-                        text = "Sign In",
+                        text = stringResource(id =R.string.get_started_page_sign_in),
                         fontSize = 12.sp,
                         fontFamily = myFont,
                         fontWeight = FontWeight.SemiBold,
