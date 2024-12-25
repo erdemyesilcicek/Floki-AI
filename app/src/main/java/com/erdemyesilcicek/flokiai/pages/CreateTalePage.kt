@@ -14,6 +14,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
+import com.erdemyesilcicek.flokiai.components.CustomAlertDialog
 import com.erdemyesilcicek.flokiai.components.CustomCategorySection
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomText
@@ -49,6 +54,10 @@ fun CreateTalePage(
     loadingViewModel: LoadingViewModel
 ) {
     val context = LocalContext.current
+
+    var showDialog by remember { mutableStateOf(false) }
+    var dialogMessage by remember { mutableStateOf("") }
+
 
     Scaffold(
         topBar = {
@@ -76,37 +85,28 @@ fun CreateTalePage(
 
                     when {
                         genre.isNullOrEmpty() -> {
-                            Toast.makeText(context, "Please select a genre", Toast.LENGTH_SHORT)
-                                .show()
+                            dialogMessage = "Please select a genre"
+                            showDialog = true
                         }
 
                         season.isNullOrEmpty() -> {
-                            Toast.makeText(context, "Please select a season", Toast.LENGTH_SHORT)
-                                .show()
+                            dialogMessage = "Please select a season"
+                            showDialog = true
                         }
 
                         animalTexts.isEmpty() -> {
-                            Toast.makeText(
-                                context,
-                                "Please select at least one animal",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            dialogMessage = "Please select at least one animal"
+                            showDialog = true
                         }
 
                         characterTexts.isEmpty() -> {
-                            Toast.makeText(
-                                context,
-                                "Please select at least one character",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            dialogMessage = "Please select at least one character"
+                            showDialog = true
                         }
 
                         familyTexts.isEmpty() -> {
-                            Toast.makeText(
-                                context,
-                                "Please select at least one family member",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            dialogMessage = "Please select at least one family member"
+                            showDialog = true
                         }
 
                         else -> {
@@ -202,5 +202,15 @@ fun CreateTalePage(
                 }
             }
         }
+    }
+    if (showDialog) {
+        CustomAlertDialog(
+            title = "WARNING!",
+            message = dialogMessage,
+            buttonText = "OK",
+            buttonColor = MaterialTheme.colorScheme.primary,
+            onButtonClick = { showDialog = false },
+            onDismiss = { showDialog = false }
+        )
     }
 }
