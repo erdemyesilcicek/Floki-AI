@@ -152,6 +152,21 @@
     <string name="sibling">Sibling</string>
     <string name="pet">Pet</string>
 
+    <string name="create_tale_page_dialog__title_genre">GENRE</string>
+    <string name="create_tale_page_dialog__message_genre">Select a genre to continue..</string>
+
+    <string name="create_tale_page_dialog__title_season">SEASON</string>
+    <string name="create_tale_page_dialog__message_season">Select a season to continue..</string>
+
+    <string name="create_tale_page_dialog__title_animal">ANIMAL</string>
+    <string name="create_tale_page_dialog__message_animal">Select at least one animal to continue..</string>
+
+    <string name="create_tale_page_dialog__title_character">CHARACTER</string>
+    <string name="create_tale_page_dialog__message_character">Select at least one character to continue..</string>
+
+    <string name="create_tale_page_dialog__title_family">FAMILY</string>
+    <string name="create_tale_page_dialog__message_family">Select at least one family member to continue..</string>
+
     <!-- LoadingPage -->
     <string name="loading_page_please_wait">PLEASE WAIT!</string>
     <string name="loading_page_your_tale_created">Your tale is being created!</string>

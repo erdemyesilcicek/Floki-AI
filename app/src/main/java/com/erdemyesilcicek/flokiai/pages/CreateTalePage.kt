@@ -56,6 +56,8 @@ fun CreateTalePage(
     val context = LocalContext.current
 
     var showDialog by remember { mutableStateOf(false) }
+
+    var dialogTitle by remember { mutableStateOf("") }
     var dialogMessage by remember { mutableStateOf("") }
 
 
@@ -85,27 +87,32 @@ fun CreateTalePage(
 
                     when {
                         genre.isNullOrEmpty() -> {
-                            dialogMessage = "Please select a genre"
+                            dialogTitle = "GENRE"
+                            dialogMessage = "Select a genre to continue"
                             showDialog = true
                         }
 
                         season.isNullOrEmpty() -> {
-                            dialogMessage = "Please select a season"
+                            dialogTitle = "SEASON"
+                            dialogMessage = "Select a season to continue"
                             showDialog = true
                         }
 
                         animalTexts.isEmpty() -> {
-                            dialogMessage = "Please select at least one animal"
+                            dialogTitle = "ANIMAL"
+                            dialogMessage = "Select at least one animal"
                             showDialog = true
                         }
 
                         characterTexts.isEmpty() -> {
-                            dialogMessage = "Please select at least one character"
+                            dialogTitle = "CHARACTER"
+                            dialogMessage = "Select at least one character"
                             showDialog = true
                         }
 
                         familyTexts.isEmpty() -> {
-                            dialogMessage = "Please select at least one family member"
+                            dialogTitle = "FAMILY"
+                            dialogMessage = "Select at least one family member"
                             showDialog = true
                         }
 
@@ -205,9 +212,9 @@ fun CreateTalePage(
     }
     if (showDialog) {
         CustomAlertDialog(
-            title = "WARNING!",
+            title = dialogTitle,
             message = dialogMessage,
-            buttonText = "OK",
+            buttonText = "CLOSE",
             buttonColor = MaterialTheme.colorScheme.primary,
             onButtonClick = { showDialog = false },
             onDismiss = { showDialog = false }

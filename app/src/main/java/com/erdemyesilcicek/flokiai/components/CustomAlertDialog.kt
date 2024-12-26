@@ -6,8 +6,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,7 +33,6 @@ fun CustomAlertDialog(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight()
                 .padding(16.dp)
                 .clip(RoundedCornerShape(16.dp))
                 .background(Color.White)
@@ -41,28 +40,25 @@ fun CustomAlertDialog(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                verticalArrangement = Arrangement.Center
             ) {
-                // Title
                 Text(
                     text = title,
-                    fontSize = 20.sp,
+                    fontSize = 36.sp,
+                    color = MaterialTheme.colorScheme.onBackground,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
                 )
-
-                // Message
                 Text(
                     text = message,
                     fontSize = 16.sp,
+                    color = MaterialTheme.colorScheme.tertiary,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
                 )
-
-                // Button
                 CustomExtendedFAB(
                     containerColor = buttonColor,
                     text = buttonText,

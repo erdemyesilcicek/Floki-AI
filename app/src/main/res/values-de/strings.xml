@@ -152,6 +152,21 @@
     <string name="sibling">Geschwister</string>
     <string name="pet">Haustier</string>
 
+    <string name="create_tale_page_dialog__title_genre">GENRE</string>
+    <string name="create_tale_page_dialog__message_genre">Wählen Sie ein Genre, um fortzufahren.</string>
+
+    <string name="create_tale_page_dialog__title_season">JAHRESZEİT</string>
+    <string name="create_tale_page_dialog__message_season">Wählen Sie eine Jahreszeit, um fortzufahren.</string>
+
+    <string name="create_tale_page_dialog__title_animal">TİER</string>
+    <string name="create_tale_page_dialog__message_animal">Wählen Sie mindestens ein Tier aus, um fortzufahren.</string>
+
+    <string name="create_tale_page_dialog__title_character">CHARAKTER</string>
+    <string name="create_tale_page_dialog__message_character">Wählen Sie mindestens einen Charakter aus, um fortzufahren.</string>
+
+    <string name="create_tale_page_dialog__title_family">Familie</string>
+    <string name="create_tale_page_dialog__message_family">Wählen Sie mindestens ein Familienmitglied aus, um fortzufahren.</string>
+
     <!-- LoadingPage -->
     <string name="loading_page_please_wait">BITTE WARTEN!</string>
     <string name="loading_page_your_tale_created">Deine Erzählung wird erstellt!</string>
