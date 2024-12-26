@@ -167,6 +167,7 @@
     <string name="create_tale_page_dialog__title_family">Familie</string>
     <string name="create_tale_page_dialog__message_family">Wählen Sie mindestens ein Familienmitglied aus, um fortzufahren.</string>
 
+    <string name="create_tale_page_dialog_button">SCHLIEßEN</string>
     <!-- LoadingPage -->
     <string name="loading_page_please_wait">BITTE WARTEN!</string>
     <string name="loading_page_your_tale_created">Deine Erzählung wird erstellt!</string>

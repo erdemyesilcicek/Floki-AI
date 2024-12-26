@@ -56,10 +56,23 @@ fun CreateTalePage(
     val context = LocalContext.current
 
     var showDialog by remember { mutableStateOf(false) }
-
     var dialogTitle by remember { mutableStateOf("") }
     var dialogMessage by remember { mutableStateOf("") }
 
+    // WHEN THE USER DOES NOT SELECT A CATEGORY, THE DIALOG WILL APPEAR
+    val genreTitle = stringResource(id = R.string.create_tale_page_dialog__title_genre)
+    val seasonTitle = stringResource(id = R.string.create_tale_page_dialog__title_season)
+    val animalTitle = stringResource(id = R.string.create_tale_page_dialog__title_animal)
+    val characterTitle = stringResource(id = R.string.create_tale_page_dialog__title_character)
+    val familyTitle = stringResource(id = R.string.create_tale_page_dialog__title_family)
+
+    val genreMessage = stringResource(id = R.string.create_tale_page_dialog__message_genre)
+    val seasonMessage = stringResource(id = R.string.create_tale_page_dialog__message_season)
+    val animalMessage = stringResource(id = R.string.create_tale_page_dialog__message_animal)
+    val characterMessage = stringResource(id = R.string.create_tale_page_dialog__message_character)
+    val familyMessage = stringResource(id = R.string.create_tale_page_dialog__message_family)
+
+    val dialogButtonText = stringResource(id = R.string.create_tale_page_dialog_button)
 
     Scaffold(
         topBar = {
@@ -87,32 +100,32 @@ fun CreateTalePage(
 
                     when {
                         genre.isNullOrEmpty() -> {
-                            dialogTitle = "GENRE"
-                            dialogMessage = "Select a genre to continue"
+                            dialogTitle = genreTitle
+                            dialogMessage = genreMessage
                             showDialog = true
                         }
 
                         season.isNullOrEmpty() -> {
-                            dialogTitle = "SEASON"
-                            dialogMessage = "Select a season to continue"
+                            dialogTitle = seasonTitle
+                            dialogMessage = seasonMessage
                             showDialog = true
                         }
 
                         animalTexts.isEmpty() -> {
-                            dialogTitle = "ANIMAL"
-                            dialogMessage = "Select at least one animal"
+                            dialogTitle = animalTitle
+                            dialogMessage = animalMessage
                             showDialog = true
                         }
 
                         characterTexts.isEmpty() -> {
-                            dialogTitle = "CHARACTER"
-                            dialogMessage = "Select at least one character"
+                            dialogTitle = characterTitle
+                            dialogMessage = characterMessage
                             showDialog = true
                         }
 
                         familyTexts.isEmpty() -> {
-                            dialogTitle = "FAMILY"
-                            dialogMessage = "Select at least one family member"
+                            dialogTitle = familyTitle
+                            dialogMessage = familyMessage
                             showDialog = true
                         }
 
@@ -214,7 +227,7 @@ fun CreateTalePage(
         CustomAlertDialog(
             title = dialogTitle,
             message = dialogMessage,
-            buttonText = "CLOSE",
+            buttonText = dialogButtonText,
             buttonColor = MaterialTheme.colorScheme.primary,
             onButtonClick = { showDialog = false },
             onDismiss = { showDialog = false }
