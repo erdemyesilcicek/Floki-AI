@@ -53,7 +53,9 @@ fun SignUpPage(
     ) {
         Column(
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .imePadding()
+                .verticalScroll(scrollState),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -98,8 +100,6 @@ fun SignUpPage(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .imePadding()
-                    .verticalScroll(scrollState)
                     .padding(start = 10.dp, end = 10.dp),
             ) {
                 CustomTextInput(

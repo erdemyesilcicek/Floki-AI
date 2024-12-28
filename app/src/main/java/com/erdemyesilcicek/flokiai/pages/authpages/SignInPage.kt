@@ -58,7 +58,9 @@ fun SignInPage(
     ) {
         Column(
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .imePadding()
+                .verticalScroll(scrollState),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -79,7 +81,7 @@ fun SignInPage(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 16.dp),
-                    text = stringResource(id =R.string.sign_in_page_login_here),
+                    text = stringResource(id = R.string.sign_in_page_login_here),
                     textAlign = TextAlign.Start,
                     fontSize = 40.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -90,7 +92,7 @@ fun SignInPage(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 16.dp),
-                    text = stringResource(id =R.string.sign_in_page_description),
+                    text = stringResource(id = R.string.sign_in_page_description),
                     textAlign = TextAlign.Start,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -103,12 +105,10 @@ fun SignInPage(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 10.dp, end = 10.dp)
-                    .imePadding()
-                    .verticalScroll(scrollState)
             ) {
                 CustomTextInput(
-                    title = stringResource(id =R.string.title_email),
-                    label = stringResource(id =R.string.label_email),
+                    title = stringResource(id = R.string.title_email),
+                    label = stringResource(id = R.string.label_email),
                     text = email.value, // State değeri
                     onValueChange = { email.value = it }, // Değişim callback'i
                     isSingleLine = true,
@@ -117,8 +117,8 @@ fun SignInPage(
                     isBigCanvas = false
                 )
                 CustomTextInput(
-                    title = stringResource(id =R.string.title_password),
-                    label = stringResource(id =R.string.label_password),
+                    title = stringResource(id = R.string.title_password),
+                    label = stringResource(id = R.string.label_password),
                     text = password.value,
                     onValueChange = { password.value = it },
                     isSingleLine = true,
@@ -136,7 +136,7 @@ fun SignInPage(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 CustomTextButton(
-                    text = stringResource(id =R.string.sign_in_page_forgot_password),
+                    text = stringResource(id = R.string.sign_in_page_forgot_password),
                     color = MaterialTheme.colorScheme.primary
                 ) {
                     navController.navigate("ForgotPasswordPage")
@@ -158,7 +158,7 @@ fun SignInPage(
                 }
                 CustomExtendedFAB(
                     containerColor = MaterialTheme.colorScheme.primary,
-                    text = stringResource(id =R.string.sign_in_page_button)
+                    text = stringResource(id = R.string.sign_in_page_button)
                 ) {
                     if (email.value.isEmpty() || password.value.isEmpty()) {
                         errorMessage.value = "Please fill in all fields."
@@ -179,7 +179,7 @@ fun SignInPage(
                     }
                 }
                 CustomTextButton(
-                    text = stringResource(id =R.string.sign_in_page_create_account),
+                    text = stringResource(id = R.string.sign_in_page_create_account),
                     color = MaterialTheme.colorScheme.onBackground
                 ) {
                     navController.navigate("SignUpPage")
