@@ -40,4 +40,14 @@ class LoadingViewModel : ViewModel() {
         this.family = family
         this.userInformation = userInformation
     }
+
+    fun clearLoadingData() {
+        this.genre = ""
+        this.genreImage = 0
+        this.season = ""
+        this.animals = emptyList()
+        this.characters = emptyList()
+        this.family = emptyList()
+        this.userInformation = null
+    }
 }

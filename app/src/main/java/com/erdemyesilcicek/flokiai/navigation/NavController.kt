@@ -38,7 +38,7 @@ fun NavController(
     userInformationViewModel: UserInformationViewModel,
     loadingViewModel: LoadingViewModel,
     geminiViewModel: GeminiViewModel,
-    db : FirebaseFirestore,
+    db: FirebaseFirestore,
     auth: FirebaseAuth,
     startDestination: String
 ) {
@@ -49,9 +49,23 @@ fun NavController(
         navController = navController,
         startDestination = startDestination
     ) {
-        composable(route = "HomePage") { HomePage(navController) }
+        composable(route = "HomePage") {
+            HomePage(
+                navController,
+                categoryViewModel,
+                loadingViewModel
+            )
+        }
 
-        composable(route = "LoadingPage") { LoadingPage(loadingViewModel, geminiViewModel,db, navController) }
+        composable(route = "LoadingPage") {
+            LoadingPage(
+                loadingViewModel,
+                geminiViewModel,
+                db,
+                navController,
+                categoryViewModel
+            )
+        }
 
         composable(route = "CreateTalePage") {
             CreateTalePage(
@@ -62,49 +76,120 @@ fun NavController(
             )
         }
 
-        composable(route = "OptionsPage") { OptionsPage(navController,authViewModel,userInformationViewModel) }
+        composable(route = "OptionsPage") {
+            OptionsPage(
+                navController,
+                authViewModel,
+                userInformationViewModel,
+                categoryViewModel,
+                loadingViewModel
+            )
+        }
 
         composable(route = "UserInformation") {
             UserInformation(
                 navController,
-                userInformationViewModel
+                userInformationViewModel,
+                categoryViewModel,
+                loadingViewModel
             )
         }
 
-        composable(route = "Feedback") { Feedback(navController) }
-
-        composable(route = "PrivacyPolicy") { PrivacyPolicy(navController) }
-
-        composable(route = "TermsOfUse") { TermsOfUse(navController) }
-
-
-        composable(route = "GetStartedPage") { GetStartedPage(navController, authViewModel) }
-
-        composable(route = "SignUpPage") { SignUpPage(navController, authViewModel) }
-
-        composable(route = "SignInPage") { SignInPage(navController, authViewModel) }
-
-        composable(route = "ForgotPasswordPage") { ForgotPasswordPage(navController) }
-
-
-        composable(route = "ReadTalePage" + "?id={id}", arguments = listOf(navArgument("id") {
-            type = NavType.IntType
-            defaultValue = -1
-        })) {
-            val id = it.arguments?.getInt("id")!!
-            ReadTalePage(navController, id)
+        composable(route = "Feedback") {
+            Feedback(
+                navController,
+                loadingViewModel,
+                categoryViewModel,
+            )
         }
 
-        composable(route = "AiReadTalePage" + "?taleId={taleId}", arguments = listOf(navArgument("taleId") {
-            type = NavType.StringType
-            defaultValue = ""
-        })) {
+        composable(route = "PrivacyPolicy") {
+            PrivacyPolicy(
+                navController
+            )
+        }
+
+        composable(route = "TermsOfUse") {
+            TermsOfUse(
+                navController
+            )
+        }
+
+
+        composable(route = "GetStartedPage") {
+            GetStartedPage(
+                navController,
+                authViewModel
+            )
+        }
+
+        composable(route = "SignUpPage") {
+            SignUpPage(
+                navController,
+                authViewModel
+            )
+        }
+
+        composable(route = "SignInPage") {
+            SignInPage(
+                navController,
+                authViewModel
+            )
+        }
+
+        composable(route = "ForgotPasswordPage") {
+            ForgotPasswordPage(
+                navController
+            )
+        }
+
+
+        composable(
+            route = "ReadTalePage" + "?id={id}",
+            arguments = listOf(navArgument(
+                "id"
+            ) {
+                type = NavType.IntType
+                defaultValue = -1
+            })
+        ) {
+            val id = it.arguments?.getInt("id")!!
+            ReadTalePage(
+                navController,
+                id,
+                categoryViewModel,
+                loadingViewModel
+            )
+        }
+
+        composable(
+            route = "AiReadTalePage" + "?taleId={taleId}",
+            arguments = listOf(navArgument("taleId") {
+                type = NavType.StringType
+                defaultValue = ""
+            })
+        ) {
             val taleId = it.arguments?.getString("taleId")!!
-            AiReadTalePage(navController, taleId, db)
+            AiReadTalePage(
+                navController,
+                taleId,
+                db,
+                categoryViewModel,
+                loadingViewModel
+            )
         }
 
         composable(route = "TaleCard") {
-            TaleCard(navController, tale = Tale(5, "", "", 0, ""))
+            TaleCard(
+                navController = navController,
+                tale = Tale(
+                    5,
+                    "",
+                    "",
+                    0,
+                    ""
+                )
+            )
         }
     }
 }

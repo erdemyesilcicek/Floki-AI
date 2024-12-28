@@ -34,13 +34,20 @@ import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.datas.UserInformationModel
 import com.erdemyesilcicek.flokiai.lists.TaleList
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 import com.google.firebase.Firebase
 import java.util.Locale
 import java.util.UUID
 
 
 @Composable
-fun ReadTalePage(navController: NavController, id: Int?) {
+fun ReadTalePage(
+    navController: NavController,
+    id: Int?,
+    categoryViewModel: CategoryViewModel,
+    loadingViewModel: LoadingViewModel
+) {
 
     val tale = TaleList.get(id!!)
 
@@ -50,7 +57,9 @@ fun ReadTalePage(navController: NavController, id: Int?) {
                 isEnableBackButton = false,
                 isEnableBarButton = true,
                 stringResource(id = R.string.my_tales),
-                navController
+                navController,
+                loadingViewModel,
+                categoryViewModel
             )
         },
         modifier = Modifier.fillMaxSize(),

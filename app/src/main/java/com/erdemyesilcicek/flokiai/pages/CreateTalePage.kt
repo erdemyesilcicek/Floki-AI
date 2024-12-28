@@ -80,7 +80,9 @@ fun CreateTalePage(
                 isEnableBackButton = false,
                 isEnableBarButton = false,
                 stringResource(id = R.string.create_tale_button),
-                navController
+                navController,
+                loadingViewModel,
+                categoryViewModel
             )
         },
         modifier = Modifier.fillMaxSize(),

@@ -46,12 +46,16 @@ import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.datas.UserInformationModel
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 
 @Composable
 fun UserInformation(
     navController: NavController,
-    userInformationViewModel: UserInformationViewModel
+    userInformationViewModel: UserInformationViewModel,
+    categoryViewModel: CategoryViewModel,
+    loadingViewModel: LoadingViewModel
 ) {
     val userInfo by userInformationViewModel.userInformation.observeAsState(UserInformationModel())
 
@@ -75,7 +79,9 @@ fun UserInformation(
                 isEnableBackButton = false,
                 isEnableBarButton = true,
                 "",
-                navController
+                navController,
+                loadingViewModel,
+                categoryViewModel
             )
         },
         modifier = Modifier.fillMaxSize(),

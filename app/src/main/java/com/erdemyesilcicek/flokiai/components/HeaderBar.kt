@@ -32,6 +32,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,7 +41,9 @@ fun HeaderBar(
     isEnableBackButton: Boolean,
     isEnableBarButton: Boolean,
     barText: String,
-    navController: NavController
+    navController: NavController,
+    loadingViewModel: LoadingViewModel,
+    categoryViewModel: CategoryViewModel
 ) {
     val currentRoute = navController.currentBackStackEntry?.destination?.route
     TopAppBar(
@@ -52,7 +56,11 @@ fun HeaderBar(
                 Box(
                 ) {
                     Button(
-                        onClick = { navController.navigate("CreateTalePage") },
+                        onClick = {
+                            loadingViewModel.clearLoadingData()
+                            categoryViewModel.clearAllSelections()
+                            navController.navigate("CreateTalePage")
+                        },
                         shape = RoundedCornerShape(50),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.primary,
@@ -97,6 +105,8 @@ fun HeaderBar(
                         ) {
                             navController.popBackStack()
                         } else {
+                            loadingViewModel.clearLoadingData()
+                            categoryViewModel.clearAllSelections()
                             navController.navigate("HomePage") {
                                 popUpTo(0) { inclusive = true }
                             }

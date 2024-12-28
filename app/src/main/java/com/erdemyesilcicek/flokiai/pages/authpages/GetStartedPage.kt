@@ -30,17 +30,6 @@ fun GetStartedPage(
     navController: NavController,
     authViewModel: AuthViewModel
 ) {
-    /*
-    LaunchedEffect(key1 = authViewModel.auth.currentUser) {
-        if (authViewModel.auth.currentUser != null) {
-            authViewModel.loginState.value = true
-            navController.navigate("HomePage") {
-                popUpTo(0) { inclusive = true }
-            }
-        }
-    }
-
-     */
     Column(
         modifier = Modifier
             .fillMaxSize()

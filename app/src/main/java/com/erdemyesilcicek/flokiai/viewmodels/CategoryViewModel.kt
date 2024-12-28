@@ -67,5 +67,13 @@ class CategoryViewModel : ViewModel() {
             _selectedFamily.add(category)
         }
     }
+
+    fun clearAllSelections() {
+        _selectedGenre.clear()
+        _selectedSeason.clear()
+        _selectedAnimals.clear()
+        _selectedCharacters.clear()
+        _selectedFamily.clear()
+    }
 }
 

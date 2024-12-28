@@ -34,13 +34,17 @@ import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.datas.OptionsCard
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 
 @Composable
 fun OptionsPage(
     navController: NavController,
     authViewModel: AuthViewModel,
-    userInformationViewModel: UserInformationViewModel
+    userInformationViewModel: UserInformationViewModel,
+    categoryViewModel: CategoryViewModel,
+    loadingViewModel: LoadingViewModel
 ) {
     Scaffold(
         topBar = {
@@ -48,7 +52,9 @@ fun OptionsPage(
                 isEnableBackButton = false,
                 isEnableBarButton = true,
                 "",
-                navController = navController
+                navController = navController,
+                loadingViewModel,
+                categoryViewModel
             )
         }
     ) { paddingValues ->

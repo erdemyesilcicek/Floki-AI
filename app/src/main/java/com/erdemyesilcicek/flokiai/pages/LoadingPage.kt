@@ -23,6 +23,7 @@ import com.erdemyesilcicek.flokiai.animations.LottieAnimation
 import com.erdemyesilcicek.flokiai.constants.GeminiAiTalePrompt
 import com.erdemyesilcicek.flokiai.datas.TaleDetails
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.GeminiViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 import com.google.firebase.auth.ktx.auth
@@ -36,7 +37,8 @@ fun LoadingPage(
     loadingViewModel: LoadingViewModel,
     geminiViewModel: GeminiViewModel,
     db: FirebaseFirestore,
-    navController: NavController
+    navController: NavController,
+    categoryViewModel: CategoryViewModel
 ) {
     val prompt = GeminiAiTalePrompt(
         genre = loadingViewModel.genre,
@@ -74,6 +76,8 @@ fun LoadingPage(
                         .add(data + ("TaleDetails" to taleDetailsMap) + ("userId" to userId) + ("GenreImage" to loadingViewModel.genreImage))
                         .addOnSuccessListener { documentReference ->
                             println("DocumentSnapshot added with ID: ${documentReference.id}")
+                            loadingViewModel.clearLoadingData()
+                            categoryViewModel.clearAllSelections()
                             navController.navigate("AiReadTalePage" + "?taleId=${documentReference.id}") {
                                 // Geriye dönmeyi engellemek için stack'i temizle
                                 popUpTo(0) { inclusive = true }

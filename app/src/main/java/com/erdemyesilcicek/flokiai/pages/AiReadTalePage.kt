@@ -34,10 +34,18 @@ import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.lists.TaleList
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
-fun AiReadTalePage(navController: NavController, taleId: String, db: FirebaseFirestore) {
+fun AiReadTalePage(
+    navController: NavController,
+    taleId: String,
+    db: FirebaseFirestore,
+    categoryViewModel: CategoryViewModel,
+    loadingViewModel: LoadingViewModel
+) {
     var TaleItself = remember { mutableStateOf<String>("") }
     var TaleTitle = remember { mutableStateOf<String>("") }
 
@@ -65,7 +73,9 @@ fun AiReadTalePage(navController: NavController, taleId: String, db: FirebaseFir
                 isEnableBackButton = false,
                 isEnableBarButton = true,
                 stringResource(id = R.string.my_tales),
-                navController
+                navController,
+                loadingViewModel,
+                categoryViewModel
             )
         },
         modifier = Modifier.fillMaxSize(),

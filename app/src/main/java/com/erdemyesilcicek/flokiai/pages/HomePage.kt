@@ -49,9 +49,15 @@ import com.erdemyesilcicek.flokiai.components.TaleCard
 import com.erdemyesilcicek.flokiai.lists.TaleList
 import com.erdemyesilcicek.flokiai.pages.homepages.AiCreatedTalePage
 import com.erdemyesilcicek.flokiai.pages.homepages.DefaultTalePage
+import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 
 @Composable
-fun HomePage(navController: NavController) {
+fun HomePage(
+    navController: NavController,
+    categoryViewModel: CategoryViewModel,
+    loadingViewModel: LoadingViewModel
+) {
     var selectedTab by remember { mutableIntStateOf(1) }
 
     Scaffold(
@@ -64,7 +70,9 @@ fun HomePage(navController: NavController) {
                 } else {
                     stringResource(id =R.string.home_page_created_tales)
                 },
-                navController
+                navController,
+                loadingViewModel,
+                categoryViewModel
             )
         },
         modifier = Modifier.fillMaxSize(),

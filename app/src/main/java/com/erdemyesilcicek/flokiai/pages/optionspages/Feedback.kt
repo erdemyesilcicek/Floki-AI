@@ -39,10 +39,14 @@ import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.utils.myFont
+import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 
 @Composable
 fun Feedback(
-    navController: NavController
+    navController: NavController,
+    loadingViewModel: LoadingViewModel,
+    categoryViewModel: CategoryViewModel
 ) {
     val email = remember { mutableStateOf("") }
     val message = remember { mutableStateOf("") }
@@ -55,7 +59,9 @@ fun Feedback(
                 isEnableBackButton = false,
                 isEnableBarButton = true,
                 "",
-                navController
+                navController,
+                loadingViewModel,
+                categoryViewModel
             )
         },
         modifier = Modifier.fillMaxSize(),
