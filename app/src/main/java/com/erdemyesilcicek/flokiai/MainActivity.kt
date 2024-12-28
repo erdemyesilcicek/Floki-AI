@@ -36,6 +36,13 @@ class MainActivity : ComponentActivity() {
             val loadingViewModel : LoadingViewModel = LoadingViewModel()
             val geminiViewModel : GeminiViewModel = GeminiViewModel()
 
+            val startDestination = if (auth.currentUser != null) {
+                authViewModel.currentUser.value = auth.currentUser
+                "HomePage"
+            } else {
+                "GetStartedPage"
+            }
+
             FlokiAITheme() {
                 NavController(
                     authViewModel,
@@ -44,7 +51,8 @@ class MainActivity : ComponentActivity() {
                     loadingViewModel,
                     geminiViewModel,
                     db,
-                    auth
+                    auth,
+                    startDestination
                 )
             }
         }

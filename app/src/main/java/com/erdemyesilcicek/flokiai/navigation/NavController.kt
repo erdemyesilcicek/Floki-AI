@@ -39,14 +39,15 @@ fun NavController(
     loadingViewModel: LoadingViewModel,
     geminiViewModel: GeminiViewModel,
     db : FirebaseFirestore,
-    auth: FirebaseAuth
+    auth: FirebaseAuth,
+    startDestination: String
 ) {
     val navController = rememberNavController()
     val context = LocalContext.current
 
     NavHost(
         navController = navController,
-        startDestination = "GetStartedPage"
+        startDestination = startDestination
     ) {
         composable(route = "HomePage") { HomePage(navController) }
 

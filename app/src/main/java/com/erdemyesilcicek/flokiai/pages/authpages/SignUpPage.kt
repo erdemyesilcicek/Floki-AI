@@ -15,6 +15,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -42,7 +43,18 @@ fun SignUpPage(
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     val confirmPassword = remember { mutableStateOf("") }
-    val errorMessage = remember { mutableStateOf("") }
+    val localErrorMessage = remember { mutableStateOf("") }
+
+    val loginState = authViewModel.loginState.value
+    val errorMessage = authViewModel.errorMessage.value
+
+    LaunchedEffect(loginState) {
+        if (loginState == true) {
+            navController.navigate("HomePage") {
+                popUpTo("SignUpPage") { inclusive = true }
+            }
+        }
+    }
 
     val scrollState = rememberScrollState()
 
@@ -105,8 +117,8 @@ fun SignUpPage(
                 CustomTextInput(
                     title = stringResource(id = R.string.title_email),
                     label = stringResource(id = R.string.label_email),
-                    text = email.value, // State değeri
-                    onValueChange = { email.value = it }, // Değişim callback'i
+                    text = email.value,
+                    onValueChange = { email.value = it },
                     isSingleLine = true,
                     isVisual = true,
                     keyboardType = KeyboardType.Email,
@@ -135,13 +147,18 @@ fun SignUpPage(
                     isBigCanvas = false
                 )
 
-                if (errorMessage.value.isNotEmpty()) {
+                if (localErrorMessage.value.isNotEmpty()) {
                     Text(
-                        text = errorMessage.value,
+                        text = localErrorMessage.value,
                         color = Color.Red,
                         style = MaterialTheme.typography.bodyMedium
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                } else if (errorMessage.isNotEmpty()) {
+                    Text(
+                        text = errorMessage,
+                        color = Color.Red,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                 }
             }
 
@@ -157,15 +174,13 @@ fun SignUpPage(
                     text = stringResource(id = R.string.sign_up_page_button)
                 ) {
                     if(email.value.isEmpty() || password.value.isEmpty() || confirmPassword.value.isEmpty()) {
-                        errorMessage.value = "Please fill in all"
+                        localErrorMessage.value = "Please fill in all fields"
                     } else{
                         if (password.value == confirmPassword.value) {
-                            errorMessage.value = ""
+                            localErrorMessage.value = ""
                             authViewModel.register(email = email.value, password = password.value)
-                            navController.navigate("HomePage")
-                            println("auth is over.")
                         } else {
-                            errorMessage.value = "Passwords do not match!"
+                            localErrorMessage.value = "Passwords do not match!"
                         }
                     }
                 }

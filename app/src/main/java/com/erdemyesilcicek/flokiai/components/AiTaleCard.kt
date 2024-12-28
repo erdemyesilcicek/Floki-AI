@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.datas.AiTale
-import com.erdemyesilcicek.flokiai.datas.Tale
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.google.firebase.firestore.FirebaseFirestore
 

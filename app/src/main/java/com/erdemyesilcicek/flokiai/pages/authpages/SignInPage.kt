@@ -109,8 +109,8 @@ fun SignInPage(
                 CustomTextInput(
                     title = stringResource(id = R.string.title_email),
                     label = stringResource(id = R.string.label_email),
-                    text = email.value, // State değeri
-                    onValueChange = { email.value = it }, // Değişim callback'i
+                    text = email.value,
+                    onValueChange = { email.value = it },
                     isSingleLine = true,
                     isVisual = true,
                     keyboardType = KeyboardType.Email,

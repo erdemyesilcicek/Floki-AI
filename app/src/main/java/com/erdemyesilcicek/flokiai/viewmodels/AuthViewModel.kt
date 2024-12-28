@@ -7,17 +7,18 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class AuthViewModel : ViewModel() {
-
     val auth = Firebase.auth
 
     val loginState = mutableStateOf<Boolean?>(null)
     val errorMessage = mutableStateOf("")
+    val currentUser = mutableStateOf(auth.currentUser)
 
     fun login(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     loginState.value = true
+                    currentUser.value = auth.currentUser
                 } else {
                     loginState.value = false
                     errorMessage.value = task.exception?.message ?: "Login failed"
@@ -29,8 +30,8 @@ class AuthViewModel : ViewModel() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    println("REGISTER SUCCESS")
                     loginState.value = true
+                    currentUser.value = auth.currentUser
                 } else {
                     println(task.exception?.message)
                     loginState.value = false
@@ -42,5 +43,6 @@ class AuthViewModel : ViewModel() {
     fun logout() {
         auth.signOut()
         loginState.value = null
+        currentUser.value = null
     }
 }
