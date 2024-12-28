@@ -16,6 +16,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -43,11 +44,20 @@ fun SignInPage(
     navController: NavController,
     authViewModel: AuthViewModel
 ) {
-    val auth = FirebaseAuth.getInstance()
-    val errorMessage = remember { mutableStateOf("") }
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
-    val context = LocalContext.current
+
+    val localErrorMessage = remember { mutableStateOf("") }
+    val loginState = authViewModel.loginState.value
+    val errorMessage = authViewModel.errorMessage.value
+
+    LaunchedEffect(loginState) {
+        if (loginState == true) {
+            navController.navigate("HomePage") {
+                popUpTo("SignInPage") { inclusive = true }
+            }
+        }
+    }
 
     val scrollState = rememberScrollState()
 
@@ -149,33 +159,33 @@ fun SignInPage(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                if (errorMessage.value.isNotEmpty()) {
+
+
+                if (localErrorMessage.value.isNotEmpty()) {
                     Text(
-                        text = errorMessage.value,
-                        color = MaterialTheme.colorScheme.error
+                        text = localErrorMessage.value,
+                        color = Color.Red,
+                        style = MaterialTheme.typography.bodyMedium
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                } else if (errorMessage.isNotEmpty()) {
+                    Text(
+                        text = errorMessage,
+                        color = Color.Red,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                 }
+
+
                 CustomExtendedFAB(
                     containerColor = MaterialTheme.colorScheme.primary,
                     text = stringResource(id = R.string.sign_in_page_button)
                 ) {
                     if (email.value.isEmpty() || password.value.isEmpty()) {
-                        errorMessage.value = "Please fill in all fields."
+                        localErrorMessage.value = "Please fill in all fields."
                         return@CustomExtendedFAB
                     } else {
-                        auth.signInWithEmailAndPassword(email.value, password.value)
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    errorMessage.value = ""
-                                    authViewModel.login(email.value, password.value)
-                                    println("Login Successful!")
-                                    navController.navigate("HomePage")
-                                } else {
-                                    errorMessage.value =
-                                        "Email or password is incorrect, or the user is not registered."
-                                }
-                            }
+                        localErrorMessage.value = ""
+                        authViewModel.login(email = email.value, password = password.value)
                     }
                 }
                 CustomTextButton(

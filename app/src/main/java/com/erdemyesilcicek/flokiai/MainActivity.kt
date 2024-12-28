@@ -43,6 +43,8 @@ class MainActivity : ComponentActivity() {
                 "GetStartedPage"
             }
 
+            println(auth.currentUser!!.email)
+
             FlokiAITheme() {
                 NavController(
                     authViewModel,
