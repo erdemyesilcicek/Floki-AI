@@ -36,4 +36,8 @@ class GeminiViewModel : ViewModel() {
             }
         }
     }
+
+    fun clearResponse() {
+        _responseState.value = null
+    }
 }

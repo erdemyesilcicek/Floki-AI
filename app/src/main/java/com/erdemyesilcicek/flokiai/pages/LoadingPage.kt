@@ -75,9 +75,9 @@ fun LoadingPage(
                     db.collection("tales")
                         .add(data + ("TaleDetails" to taleDetailsMap) + ("userId" to userId) + ("GenreImage" to loadingViewModel.genreImage))
                         .addOnSuccessListener { documentReference ->
-                            println("DocumentSnapshot added with ID: ${documentReference.id}")
                             loadingViewModel.clearLoadingData()
                             categoryViewModel.clearAllSelections()
+                            geminiViewModel.clearResponse()
                             navController.navigate("AiReadTalePage" + "?taleId=${documentReference.id}") {
                                 // Geriye dönmeyi engellemek için stack'i temizle
                                 popUpTo(0) { inclusive = true }
@@ -85,9 +85,15 @@ fun LoadingPage(
                         }
                         .addOnFailureListener { e ->
                             println("Error adding document:  $e")
+                            loadingViewModel.clearLoadingData()
+                            categoryViewModel.clearAllSelections()
+                            geminiViewModel.clearResponse()
                         }
                 } catch (e: Exception) {
                     println("Error parsing JSON or saving to Firestore $e")
+                    loadingViewModel.clearLoadingData()
+                    categoryViewModel.clearAllSelections()
+                    geminiViewModel.clearResponse()
                 }
             }
         }
