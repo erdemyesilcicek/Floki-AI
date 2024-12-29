@@ -3,7 +3,6 @@ package com.erdemyesilcicek.flokiai.lists
 import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.datas.Tale
 
-
 public val TaleList = listOf(
     Tale(
         0,

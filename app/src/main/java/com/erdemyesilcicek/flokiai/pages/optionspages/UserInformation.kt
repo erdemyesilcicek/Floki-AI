@@ -75,6 +75,8 @@ fun UserInformation(
 
     val scrollState = rememberScrollState()
 
+    var alertDialogActive by remember { mutableStateOf<Boolean>(false) }
+
     LaunchedEffect(error) {
         if (error != null) {
             Toast.makeText(
@@ -83,6 +85,16 @@ fun UserInformation(
                 Toast.LENGTH_SHORT
             ).show()
         }
+    }
+    if (alertDialogActive == true) {
+        CustomAlertDialog(
+            title = "BAŞARILI",
+            message = "Kullanıcı bilgileriniz başarıyla güncellendi.",
+            buttonColor = MaterialTheme.colorScheme.primary,
+            buttonText = "Ana Sayfaya Git",
+            onButtonClick = { navController.navigate("HomePage") },
+            onDismiss = { }
+        )
     }
 
     Scaffold(
@@ -114,13 +126,9 @@ fun UserInformation(
                         petName = petName,
                         language = language
                     )
-                    userInformationViewModel.updateUserInformation(updatedUserInfo)
-                    Toast.makeText(
-                        navController.context,
-                        "User information updated",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    navController.navigate("HomePage")
+                    userInformationViewModel.updateUserInformation(updatedUserInfo).let {
+                        alertDialogActive = true
+                    }
                 }
             )
         },
