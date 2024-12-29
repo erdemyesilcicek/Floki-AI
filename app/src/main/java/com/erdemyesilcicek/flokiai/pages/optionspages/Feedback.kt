@@ -56,12 +56,13 @@ fun Feedback(
     Scaffold(
         topBar = {
             HeaderBar(
-                isEnableBackButton = false,
+                isEnableBackButton = true,
                 isEnableBarButton = true,
                 "",
                 navController,
                 loadingViewModel,
-                categoryViewModel
+                categoryViewModel,
+                {}
             )
         },
         modifier = Modifier.fillMaxSize(),

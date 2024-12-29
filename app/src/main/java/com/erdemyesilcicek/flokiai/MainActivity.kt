@@ -27,10 +27,7 @@ class MainActivity : ComponentActivity() {
 
             // Create the view models
             val userInformationViewModel : UserInformationViewModel = UserInformationViewModel(
-                UserInformationRepository(
-                    //db,
-                    //auth
-                )
+                UserInformationRepository()
             )
             val authViewModel : AuthViewModel = AuthViewModel()
             val categoryViewModel : CategoryViewModel = CategoryViewModel()

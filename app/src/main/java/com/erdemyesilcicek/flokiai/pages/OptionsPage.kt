@@ -49,12 +49,13 @@ fun OptionsPage(
     Scaffold(
         topBar = {
             HeaderBar(
-                isEnableBackButton = false,
+                isEnableBackButton = true,
                 isEnableBarButton = true,
                 "",
                 navController = navController,
                 loadingViewModel,
-                categoryViewModel
+                categoryViewModel,
+                {}
             )
         }
     ) { paddingValues ->

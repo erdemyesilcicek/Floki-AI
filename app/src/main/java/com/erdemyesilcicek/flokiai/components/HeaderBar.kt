@@ -10,7 +10,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Menu
+import androidx.compose.material.icons.outlined.RestoreFromTrash
 import androidx.compose.material.icons.rounded.ArrowBackIosNew
+import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -43,7 +48,8 @@ fun HeaderBar(
     barText: String,
     navController: NavController,
     loadingViewModel: LoadingViewModel,
-    categoryViewModel: CategoryViewModel
+    categoryViewModel: CategoryViewModel,
+    deleteOnClick: () -> Unit
 ) {
     val currentRoute = navController.currentBackStackEntry?.destination?.route
     TopAppBar(
@@ -94,7 +100,7 @@ fun HeaderBar(
             }
         },
         navigationIcon = {
-            if (!isEnableBackButton) {
+            if (isEnableBackButton) {
                 IconButton(
                     onClick = {
                         if (
@@ -121,21 +127,39 @@ fun HeaderBar(
             }
         },
         actions = {
-            IconButton(
-                onClick = {
-                    if (currentRoute != "OptionsPage") {
-                        navController.navigate("OptionsPage")
-                    }
-                },
-            ) {
-                Icon(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(3.dp),
-                    imageVector = Icons.Rounded.Menu,
-                    contentDescription = "Menu Button",
-                    tint = MaterialTheme.colorScheme.onBackground
-                )
+            println(currentRoute)
+            if(currentRoute == "AiReadTalePage?taleId={taleId}"){
+                IconButton(
+                    onClick = {
+                        deleteOnClick()
+                    },
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(3.dp),
+                        imageVector = Icons.Outlined.Delete,
+                        contentDescription = "Menu Button",
+                        tint = MaterialTheme.colorScheme.onBackground
+                    )
+                }
+            } else{
+                IconButton(
+                    onClick = {
+                        if (currentRoute != "OptionsPage") {
+                            navController.navigate("OptionsPage")
+                        }
+                    },
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(3.dp),
+                        imageVector = Icons.Rounded.Menu,
+                        contentDescription = "Menu Button",
+                        tint = MaterialTheme.colorScheme.onBackground
+                    )
+                }
             }
         }
     )

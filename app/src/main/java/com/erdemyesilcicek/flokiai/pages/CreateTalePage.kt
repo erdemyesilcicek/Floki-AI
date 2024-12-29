@@ -99,12 +99,13 @@ fun CreateTalePage(
     Scaffold(
         topBar = {
             HeaderBar(
-                isEnableBackButton = false,
+                isEnableBackButton = true,
                 isEnableBarButton = false,
                 stringResource(id = R.string.create_tale_button),
                 navController,
                 loadingViewModel,
-                categoryViewModel
+                categoryViewModel,
+                deleteOnClick = { }
             )
         },
         modifier = Modifier.fillMaxSize(),

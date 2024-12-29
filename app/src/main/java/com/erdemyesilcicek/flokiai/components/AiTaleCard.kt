@@ -36,14 +36,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 fun AiTaleCard(navController: NavController, aiTale: AiTale, db: FirebaseFirestore) {
     println(aiTale.GenreImage)
 
-    fun onDelete(taleId: String) {
-        println("Deleting tale with id: $taleId")
-        db.collection("tales").document(taleId)
-            .delete()
-            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
-            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
-    }
-
     AiTaleCardTitle(aiTale.TaleTitle)
 
     OutlinedCard(

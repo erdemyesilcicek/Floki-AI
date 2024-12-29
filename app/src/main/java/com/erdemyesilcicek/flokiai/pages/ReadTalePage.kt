@@ -54,12 +54,13 @@ fun ReadTalePage(
     Scaffold(
         topBar = {
             HeaderBar(
-                isEnableBackButton = false,
+                isEnableBackButton = true,
                 isEnableBarButton = true,
                 stringResource(id = R.string.my_tales),
                 navController,
                 loadingViewModel,
-                categoryViewModel
+                categoryViewModel,
+                {}
             )
         },
         modifier = Modifier.fillMaxSize(),

@@ -1,5 +1,7 @@
 package com.erdemyesilcicek.flokiai.pages
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -49,6 +51,14 @@ fun AiReadTalePage(
     var TaleItself = remember { mutableStateOf<String>("") }
     var TaleTitle = remember { mutableStateOf<String>("") }
 
+    fun onDelete(taleId: String) {
+        println("Deleting tale with id: $taleId")
+        db.collection("tales").document(taleId)
+            .delete()
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+    }
+
     LaunchedEffect(Unit) {
         println("AiReadTalePage: $taleId")
         val docRef = db.collection("tales").document(taleId)
@@ -70,12 +80,20 @@ fun AiReadTalePage(
     Scaffold(
         topBar = {
             HeaderBar(
-                isEnableBackButton = false,
+                isEnableBackButton = true,
                 isEnableBarButton = true,
                 stringResource(id = R.string.my_tales),
                 navController,
                 loadingViewModel,
-                categoryViewModel
+                categoryViewModel,
+                deleteOnClick = {
+                    onDelete(taleId)
+                    navController.navigate("HomePage"){
+                        popUpTo("HomePage"){
+                            inclusive = true
+                        }
+                    }
+                }
             )
         },
         modifier = Modifier.fillMaxSize(),

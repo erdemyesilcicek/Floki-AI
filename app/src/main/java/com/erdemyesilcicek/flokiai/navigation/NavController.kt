@@ -19,6 +19,7 @@ import com.erdemyesilcicek.flokiai.pages.ReadTalePage
 import com.erdemyesilcicek.flokiai.pages.authpages.ForgotPasswordPage
 import com.erdemyesilcicek.flokiai.pages.authpages.SignInPage
 import com.erdemyesilcicek.flokiai.pages.authpages.SignUpPage
+import com.erdemyesilcicek.flokiai.pages.homepages.AiCreatedTalePage
 import com.erdemyesilcicek.flokiai.pages.optionspages.Feedback
 import com.erdemyesilcicek.flokiai.pages.optionspages.PrivacyPolicy
 import com.erdemyesilcicek.flokiai.pages.optionspages.TermsOfUse
@@ -115,7 +116,6 @@ fun NavController(
             )
         }
 
-
         composable(route = "GetStartedPage") {
             GetStartedPage(
                 navController,
@@ -144,7 +144,6 @@ fun NavController(
                 navController
             )
         }
-
 
         composable(
             route = "ReadTalePage" + "?id={id}",

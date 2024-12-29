@@ -63,7 +63,7 @@ fun HomePage(
     Scaffold(
         topBar = {
             HeaderBar(
-                isEnableBackButton = true,
+                isEnableBackButton = false,
                 isEnableBarButton = false,
                 if (selectedTab == 1) {
                     stringResource(id = R.string.home_page_world_of_tales)
@@ -72,7 +72,8 @@ fun HomePage(
                 },
                 navController,
                 loadingViewModel,
-                categoryViewModel
+                categoryViewModel,
+                {}
             )
         },
         modifier = Modifier.fillMaxSize(),

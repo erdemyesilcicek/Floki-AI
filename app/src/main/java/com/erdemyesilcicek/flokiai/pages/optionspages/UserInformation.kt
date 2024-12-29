@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
+import com.erdemyesilcicek.flokiai.components.CustomAlertDialog
 import com.erdemyesilcicek.flokiai.components.CustomDropdownMenu
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
@@ -88,12 +89,13 @@ fun UserInformation(
     Scaffold(
         topBar = {
             HeaderBar(
-                isEnableBackButton = false,
+                isEnableBackButton = true,
                 isEnableBarButton = true,
                 "",
                 navController,
                 loadingViewModel,
-                categoryViewModel
+                categoryViewModel,
+                {}
             )
         },
         modifier = Modifier.fillMaxSize(),
@@ -113,13 +115,11 @@ fun UserInformation(
                         language = language
                     )
                     userInformationViewModel.updateUserInformation(updatedUserInfo)
-
                     Toast.makeText(
                         navController.context,
                         "User information updated",
                         Toast.LENGTH_SHORT
                     ).show()
-
                     navController.navigate("HomePage")
                 }
             )
