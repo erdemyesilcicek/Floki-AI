@@ -97,7 +97,7 @@ fun AiReadTalePage(
             )
         },
         modifier = Modifier.fillMaxSize(),
-
+        /*
         floatingActionButton = {
             CustomExtendedFAB(
                 MaterialTheme.colorScheme.primary,
@@ -108,6 +108,7 @@ fun AiReadTalePage(
             )
         },
         floatingActionButtonPosition = FabPosition.Center
+         */
     ) { padding ->
         Column(
             modifier = Modifier

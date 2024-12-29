@@ -12,7 +12,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CustomIconTab(icon: ImageVector, isSelected: Boolean, onClick: () -> Unit) {
+fun CustomIconTab(
+    icon: ImageVector,
+    isSelected: Boolean,
+    onClick: () -> Unit
+) {
     Icon(
         imageVector = icon,
         contentDescription = null,

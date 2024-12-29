@@ -1,7 +1,5 @@
 package com.erdemyesilcicek.flokiai.datas
 
-import com.google.firebase.firestore.PropertyName
-
 data class AiTale(
     val GenreImage: Int = 0,
     val TaleDetails: TaleDetails = TaleDetails(),

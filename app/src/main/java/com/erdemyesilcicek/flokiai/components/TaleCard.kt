@@ -30,7 +30,10 @@ import com.erdemyesilcicek.flokiai.datas.Tale
 import com.erdemyesilcicek.flokiai.utils.myFont
 
 @Composable
-fun TaleCard(navController: NavController, tale: Tale) {
+fun TaleCard(
+    navController: NavController,
+    tale: Tale
+) {
     TaleCardTitle(tale.title)
 
     OutlinedCard(
@@ -39,7 +42,12 @@ fun TaleCard(navController: NavController, tale: Tale) {
         modifier = Modifier
             .fillMaxWidth()
             .height(130.dp)
-            .padding(start = 12.dp, end = 12.dp, top = 6.dp, bottom = 12.dp),
+            .padding(
+                start = 12.dp,
+                end = 12.dp,
+                top = 6.dp,
+                bottom = 12.dp
+            ),
     ) {
         Row(
             modifier = Modifier

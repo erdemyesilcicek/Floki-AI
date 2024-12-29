@@ -91,15 +91,6 @@ fun CustomAlertDialog(
                         )
                     }
                 }
-                /*
-                CustomExtendedFAB(
-                    containerColor = buttonColor,
-                    text = buttonText,
-                    onClick = {
-                        onButtonClick()
-                    }
-                )
-                 */
             }
         }
     }

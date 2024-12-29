@@ -19,7 +19,6 @@ import com.erdemyesilcicek.flokiai.pages.ReadTalePage
 import com.erdemyesilcicek.flokiai.pages.authpages.ForgotPasswordPage
 import com.erdemyesilcicek.flokiai.pages.authpages.SignInPage
 import com.erdemyesilcicek.flokiai.pages.authpages.SignUpPage
-import com.erdemyesilcicek.flokiai.pages.homepages.AiCreatedTalePage
 import com.erdemyesilcicek.flokiai.pages.optionspages.Feedback
 import com.erdemyesilcicek.flokiai.pages.optionspages.PrivacyPolicy
 import com.erdemyesilcicek.flokiai.pages.optionspages.TermsOfUse
@@ -52,12 +51,85 @@ fun NavController(
         navController = navController,
         startDestination = startDestination
     ) {
+        composable(route = "GetStartedPage") {
+            GetStartedPage(
+                navController,
+                authViewModel
+            )
+        }
+
+        composable(route = "SignUpPage") {
+            SignUpPage(
+                navController,
+                authViewModel,
+                userInformationViewModel
+            )
+        }
+
+        composable(route = "SignInPage") {
+            SignInPage(
+                navController,
+                authViewModel,
+                userInformationViewModel
+            )
+        }
+
+        composable(route = "ForgotPasswordPage") {
+            ForgotPasswordPage(
+                navController
+            )
+        }
+
         composable(route = "HomePage") {
             HomePage(
                 navController,
                 categoryViewModel,
                 loadingViewModel,
                 homeStackViewModel
+            )
+        }
+
+        composable(
+            route = "ReadTalePage" + "?id={id}",
+            arguments = listOf(navArgument(
+                "id"
+            ) {
+                type = NavType.IntType
+                defaultValue = -1
+            })
+        ) {
+            val id = it.arguments?.getInt("id")!!
+            ReadTalePage(
+                navController,
+                id,
+                categoryViewModel,
+                loadingViewModel
+            )
+        }
+
+        composable(
+            route = "AiReadTalePage" + "?taleId={taleId}",
+            arguments = listOf(navArgument("taleId") {
+                type = NavType.StringType
+                defaultValue = ""
+            })
+        ) {
+            val taleId = it.arguments?.getString("taleId")!!
+            AiReadTalePage(
+                navController,
+                taleId,
+                db,
+                categoryViewModel,
+                loadingViewModel
+            )
+        }
+
+        composable(route = "CreateTalePage") {
+            CreateTalePage(
+                navController,
+                categoryViewModel,
+                userInformationViewModel,
+                loadingViewModel
             )
         }
 
@@ -68,15 +140,6 @@ fun NavController(
                 db,
                 navController,
                 categoryViewModel
-            )
-        }
-
-        composable(route = "CreateTalePage") {
-            CreateTalePage(
-                navController,
-                categoryViewModel,
-                userInformationViewModel,
-                loadingViewModel
             )
         }
 
@@ -116,70 +179,6 @@ fun NavController(
         composable(route = "TermsOfUse") {
             TermsOfUse(
                 navController
-            )
-        }
-
-        composable(route = "GetStartedPage") {
-            GetStartedPage(
-                navController,
-                authViewModel
-            )
-        }
-
-        composable(route = "SignUpPage") {
-            SignUpPage(
-                navController,
-                authViewModel,
-                userInformationViewModel
-            )
-        }
-
-        composable(route = "SignInPage") {
-            SignInPage(
-                navController,
-                authViewModel,
-                userInformationViewModel
-            )
-        }
-
-        composable(route = "ForgotPasswordPage") {
-            ForgotPasswordPage(
-                navController
-            )
-        }
-
-        composable(
-            route = "ReadTalePage" + "?id={id}",
-            arguments = listOf(navArgument(
-                "id"
-            ) {
-                type = NavType.IntType
-                defaultValue = -1
-            })
-        ) {
-            val id = it.arguments?.getInt("id")!!
-            ReadTalePage(
-                navController,
-                id,
-                categoryViewModel,
-                loadingViewModel
-            )
-        }
-
-        composable(
-            route = "AiReadTalePage" + "?taleId={taleId}",
-            arguments = listOf(navArgument("taleId") {
-                type = NavType.StringType
-                defaultValue = ""
-            })
-        ) {
-            val taleId = it.arguments?.getString("taleId")!!
-            AiReadTalePage(
-                navController,
-                taleId,
-                db,
-                categoryViewModel,
-                loadingViewModel
             )
         }
 

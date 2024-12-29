@@ -48,7 +48,10 @@ fun CategoryCardItem(
 
     Column(
         modifier = Modifier
-            .padding(start = 10.dp, 5.dp),
+            .padding(
+                start = 10.dp,
+                5.dp
+            ),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

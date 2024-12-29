@@ -1,7 +1,5 @@
 package com.erdemyesilcicek.flokiai.components
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -33,9 +31,11 @@ import com.erdemyesilcicek.flokiai.utils.myFont
 import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
-fun AiTaleCard(navController: NavController, aiTale: AiTale, db: FirebaseFirestore) {
-    println(aiTale.GenreImage)
-
+fun AiTaleCard(
+    navController: NavController,
+    aiTale: AiTale,
+    db: FirebaseFirestore
+) {
     AiTaleCardTitle(aiTale.TaleTitle)
 
     OutlinedCard(
@@ -44,13 +44,17 @@ fun AiTaleCard(navController: NavController, aiTale: AiTale, db: FirebaseFiresto
         modifier = Modifier
             .fillMaxWidth()
             .height(130.dp)
-            .padding(start = 12.dp, end = 12.dp, top = 6.dp, bottom = 12.dp),
+            .padding(
+                start = 12.dp,
+                end = 12.dp,
+                top = 6.dp,
+                bottom = 12.dp
+            ),
     ) {
         Row(
             modifier = Modifier
                 .clickable {
                     navController.navigate("AiReadTalePage" + "?taleId=${aiTale.taleId}")
-                    //onDelete(aiTale.taleId)
                 }
                 .fillMaxSize()
                 .background(Color.White),

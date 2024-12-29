@@ -44,7 +44,12 @@ fun CustomOptionsCard(
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp)
-            .padding(start = 12.dp, end = 12.dp, top = 6.dp, bottom = 12.dp),
+            .padding(
+                start = 12.dp,
+                end = 12.dp,
+                top = 6.dp,
+                bottom = 12.dp
+            ),
     ) {
         Row(
             modifier = Modifier
