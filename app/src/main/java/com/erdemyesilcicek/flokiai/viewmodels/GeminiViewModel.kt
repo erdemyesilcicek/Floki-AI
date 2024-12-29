@@ -26,11 +26,9 @@ class GeminiViewModel : ViewModel() {
                         maxOutputTokens = 8192
                         responseMimeType = "application/json"
                     }
-
                 )
                 val response = generativeModel.generateContent(prompt)
                 _responseState.value = response.text
-
             } catch (e: Exception) {
                 e.printStackTrace()
             }

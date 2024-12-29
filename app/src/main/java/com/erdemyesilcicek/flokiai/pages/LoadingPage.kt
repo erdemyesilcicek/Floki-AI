@@ -79,7 +79,6 @@ fun LoadingPage(
                             categoryViewModel.clearAllSelections()
                             geminiViewModel.clearResponse()
                             navController.navigate("AiReadTalePage" + "?taleId=${documentReference.id}") {
-                                // Geriye dönmeyi engellemek için stack'i temizle
                                 popUpTo(0) { inclusive = true }
                             }
                         }

@@ -108,7 +108,8 @@ fun AiCreatedTalePage(navController: NavController) {
                     modifier = Modifier.fillMaxWidth(),
                     tint = MaterialTheme.colorScheme.onBackground,
                     imageVector = Icons.Outlined.AutoAwesome,
-                    contentDescription ="Not yet")
+                    contentDescription = "Not yet"
+                )
                 Text(
                     text = stringResource(id = R.string.ai_created_tale_page_no_created_tale),
                     color = MaterialTheme.colorScheme.onBackground,
