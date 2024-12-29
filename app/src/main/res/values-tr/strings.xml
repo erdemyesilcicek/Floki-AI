@@ -43,7 +43,7 @@
     <string name="home_page_button">Kendi masalını oluştur</string>
 
     <!-- AiCreatedTalePage -->
-    <string name="ai_created_tale_page_no_created_tale">Henüz hiçbir masal oluşturulmadı.</string>
+    <string name="ai_created_tale_page_no_created_tale">Henüz hiçbir masal oluşturulmadı. Hadi yeni bir masal oluştur!</string>
 
     <!-- OptionsPage -->
     <string name="options_page_user_information">Kullanıcı Bilgileri</string>

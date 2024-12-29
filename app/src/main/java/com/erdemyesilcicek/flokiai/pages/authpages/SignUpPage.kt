@@ -81,7 +81,7 @@ fun SignUpPage(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top
             ) {
-                LottieAnimation(animation = R.raw.lottietap)
+                LottieAnimation(animation = R.raw.lottierabbit)
             }
 
             Column(

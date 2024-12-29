@@ -78,7 +78,8 @@ fun SignInPage(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top
             ) {

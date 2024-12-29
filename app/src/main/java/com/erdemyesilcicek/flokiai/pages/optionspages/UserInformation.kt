@@ -83,7 +83,6 @@ fun UserInformation(
                 Toast.LENGTH_SHORT
             ).show()
         }
-
     }
 
     Scaffold(
@@ -98,7 +97,8 @@ fun UserInformation(
                 {}
             )
         },
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize(),
         floatingActionButton = {
             CustomExtendedFAB(
                 MaterialTheme.colorScheme.primary,
@@ -129,15 +129,14 @@ fun UserInformation(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .imePadding()
+                .verticalScroll(scrollState)
                 .padding(paddingValues)
                 .background(Color.White),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
-                modifier = Modifier
-                    .imePadding()
-                    .verticalScroll(scrollState),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -158,7 +157,6 @@ fun UserInformation(
                             contentScale = ContentScale.Fit
                         )
                     }
-
                     Text(
                         text = stringResource(id = R.string.user_information_page_user_information),
                         fontFamily = FontFamily.Default,
