@@ -60,25 +60,6 @@ fun UserInformation(
     val userInfo by userInformationViewModel.userInformation.observeAsState(null)
     val error by userInformationViewModel.error.observeAsState(null)
 
-    /*
-    if (userInfo == null) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = "Loading...",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.primary
-            )
-        }
-        return
-    }
-
-     */
-
     var language by remember { mutableStateOf(userInfo?.language ?: "") }
     var name by remember { mutableStateOf(userInfo?.yourName ?: "") }
     var age by remember { mutableStateOf(userInfo?.age?.toString() ?: "") }
@@ -103,7 +84,6 @@ fun UserInformation(
         }
 
     }
-
 
     Scaffold(
         topBar = {

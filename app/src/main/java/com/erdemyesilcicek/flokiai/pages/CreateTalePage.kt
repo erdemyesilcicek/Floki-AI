@@ -14,6 +14,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -56,6 +57,7 @@ fun CreateTalePage(
     val context = LocalContext.current
 
     var showDialog by remember { mutableStateOf(false) }
+    var userShowDialog by remember { mutableStateOf(false) }
     var dialogTitle by remember { mutableStateOf("") }
     var dialogMessage by remember { mutableStateOf("") }
 
@@ -73,6 +75,26 @@ fun CreateTalePage(
     val familyMessage = stringResource(id = R.string.create_tale_page_dialog__message_family)
 
     val dialogButtonText = stringResource(id = R.string.create_tale_page_dialog_button)
+
+    if (userShowDialog) {
+        CustomAlertDialog(
+            title = "WARNING",
+            message = "Please fill in the user information",
+            buttonText = "User Information",
+            buttonColor = MaterialTheme.colorScheme.primary,
+            onButtonClick = {
+                navController.navigate("UserInformation")
+                showDialog = false
+            },
+            onDismiss = {  }
+        )
+    }
+
+    LaunchedEffect(Unit) {
+        if (userInformationViewModel.userInformation.value == null){
+            userShowDialog = true
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -235,4 +257,5 @@ fun CreateTalePage(
             onDismiss = { showDialog = false }
         )
     }
+
 }
