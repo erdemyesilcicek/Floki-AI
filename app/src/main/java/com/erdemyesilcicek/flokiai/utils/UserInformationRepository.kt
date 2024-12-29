@@ -1,58 +1,83 @@
 package com.erdemyesilcicek.flokiai.utils
 
-import android.content.SharedPreferences
 import com.erdemyesilcicek.flokiai.datas.UserInformationModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.tasks.await
 
-class UserInformationRepository(private val sharedPreferences: SharedPreferences) {
+class UserInformationRepository(
+    //private val db: FirebaseFirestore,
+    //private val auth: FirebaseAuth
+) {
+
+    private val auth = Firebase.auth
+    private val db = Firebase.firestore
 
     companion object {
-        private const val KEY_LANGUAGE = "key_language"
-        private const val KEY_YOUR_NAME = "key_your_name"
-        private const val KEY_AGE = "key_age"
-        private const val KEY_GENDER = "key_gender"
-        private const val KEY_DAD_NAME = "key_dad_name"
-        private const val KEY_MOM_NAME = "key_mom_name"
-        private const val KEY_SIBLING_NAME = "key_sibling_name"
-        private const val KEY_PET_NAME = "key_pet_name"
+        private const val COLLECTION_USER_INFOS = "userInfos"
     }
 
-    fun getUserInformation(): UserInformationModel {
-        val language = sharedPreferences.getString(KEY_LANGUAGE, "") ?: ""
-        val yourName = sharedPreferences.getString(KEY_YOUR_NAME, "") ?: ""
-        val age = sharedPreferences.getInt(KEY_AGE, 0)
-        val gender = sharedPreferences.getString(KEY_GENDER, "") ?: ""
-        val dadName = sharedPreferences.getString(KEY_DAD_NAME, "") ?: ""
-        val momName = sharedPreferences.getString(KEY_MOM_NAME, "") ?: ""
-        val siblingName = sharedPreferences.getString(KEY_SIBLING_NAME, "") ?: ""
-        val petName = sharedPreferences.getString(KEY_PET_NAME, "") ?: ""
-        return UserInformationModel(language, yourName, age, gender, dadName, momName, siblingName, petName)
-    }
+    suspend fun getUserInformation(): Result<UserInformationModel> {
+        val currentUser = auth.currentUser
+        return if (currentUser != null) {
+            try {
+                val document = db.collection(COLLECTION_USER_INFOS)
+                    .document(currentUser.uid)
+                    .get()
+                    .await()
 
-    fun saveUserInformation(userInformation: UserInformationModel) {
-        sharedPreferences.edit().apply {
-            putString(KEY_LANGUAGE, userInformation.language)
-            putString(KEY_YOUR_NAME, userInformation.yourName)
-            putInt(KEY_AGE, userInformation.age)
-            putString(KEY_GENDER, userInformation.gender)
-            putString(KEY_DAD_NAME, userInformation.dadName)
-            putString(KEY_MOM_NAME, userInformation.momName)
-            putString(KEY_SIBLING_NAME, userInformation.siblingName)
-            putString(KEY_PET_NAME, userInformation.petName)
-            apply()
+                if (document.exists()) {
+                    val userInfo = document.toObject(UserInformationModel::class.java)
+                    if (userInfo != null) {
+                        Result.success(userInfo)
+                    } else {
+                        Result.failure(Exception("User data parsing error"))
+                    }
+                } else {
+                    Result.failure(Exception("No user information found"))
+                }
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        } else {
+            Result.failure(Exception("User not authenticated"))
         }
     }
 
-    fun clearUserInformation() {
-        sharedPreferences.edit().apply {
-            remove(KEY_LANGUAGE)
-            remove(KEY_YOUR_NAME)
-            remove(KEY_AGE)
-            remove(KEY_GENDER)
-            remove(KEY_DAD_NAME)
-            remove(KEY_MOM_NAME)
-            remove(KEY_SIBLING_NAME)
-            remove(KEY_PET_NAME)
-            apply()
+    suspend fun saveUserInformation(userInformation: UserInformationModel): Result<Unit> {
+        val currentUser = auth.currentUser
+        return if (currentUser != null) {
+            try {
+                db.collection(COLLECTION_USER_INFOS)
+                    .document(currentUser.uid)
+                    .set(userInformation)
+                    .await()
+                Result.success(Unit)
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        } else {
+            Result.failure(Exception("User not authenticated"))
+        }
+    }
+
+    suspend fun clearUserInformation(): Result<Unit> {
+        val currentUser = auth.currentUser
+        return if (currentUser != null) {
+            try {
+                db.collection(COLLECTION_USER_INFOS)
+                    .document(currentUser.uid)
+                    .delete()
+                    .await()
+                Result.success(Unit)
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        } else {
+            Result.failure(Exception("User not authenticated"))
         }
     }
 }

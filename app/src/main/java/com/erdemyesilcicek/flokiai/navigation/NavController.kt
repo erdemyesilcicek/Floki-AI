@@ -126,14 +126,16 @@ fun NavController(
         composable(route = "SignUpPage") {
             SignUpPage(
                 navController,
-                authViewModel
+                authViewModel,
+                userInformationViewModel
             )
         }
 
         composable(route = "SignInPage") {
             SignInPage(
                 navController,
-                authViewModel
+                authViewModel,
+                userInformationViewModel
             )
         }
 

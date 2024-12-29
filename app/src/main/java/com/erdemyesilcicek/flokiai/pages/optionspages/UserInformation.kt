@@ -1,6 +1,5 @@
 package com.erdemyesilcicek.flokiai.pages.optionspages
 
-import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -13,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.FabPosition
@@ -21,10 +19,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -57,21 +57,53 @@ fun UserInformation(
     categoryViewModel: CategoryViewModel,
     loadingViewModel: LoadingViewModel
 ) {
-    val userInfo by userInformationViewModel.userInformation.observeAsState(UserInformationModel())
+    val userInfo by userInformationViewModel.userInformation.observeAsState(null)
+    val error by userInformationViewModel.error.observeAsState(null)
 
-    var language by remember { mutableStateOf(userInfo.language) }
-    var name by remember { mutableStateOf(userInfo.yourName) }
-    var age by remember { mutableStateOf(userInfo.age.toString()) }
-    var gender by remember { mutableStateOf(userInfo.gender) }
-    var dadName by remember { mutableStateOf(userInfo.dadName) }
-    var momName by remember { mutableStateOf(userInfo.momName) }
-    var siblingName by remember { mutableStateOf(userInfo.siblingName) }
-    var petName by remember { mutableStateOf(userInfo.petName) }
+    /*
+    if (userInfo == null) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "Loading...",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.primary
+            )
+        }
+        return
+    }
+
+     */
+
+    var language by remember { mutableStateOf(userInfo?.language ?: "") }
+    var name by remember { mutableStateOf(userInfo?.yourName ?: "") }
+    var age by remember { mutableStateOf(userInfo?.age?.toString() ?: "") }
+    var gender by remember { mutableStateOf(userInfo?.gender ?: "") }
+    var dadName by remember { mutableStateOf(userInfo?.dadName ?: "") }
+    var momName by remember { mutableStateOf(userInfo?.momName ?: "") }
+    var siblingName by remember { mutableStateOf(userInfo?.siblingName ?: "") }
+    var petName by remember { mutableStateOf(userInfo?.petName ?: "") }
 
     val optionsLanguage = listOf("English", "German", "Turkish")
     val optionsGender = listOf("None", "Male", "Female")
 
     val scrollState = rememberScrollState()
+
+    LaunchedEffect(error) {
+        if (error != null) {
+            Toast.makeText(
+                navController.context,
+                "Error: $error",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+    }
+
 
     Scaffold(
         topBar = {
@@ -88,7 +120,7 @@ fun UserInformation(
         floatingActionButton = {
             CustomExtendedFAB(
                 MaterialTheme.colorScheme.primary,
-                stringResource(id =R.string.user_information_page_button),
+                stringResource(id = R.string.user_information_page_button),
                 onClick = {
                     val updatedUserInfo = UserInformationModel(
                         yourName = name,
@@ -101,6 +133,7 @@ fun UserInformation(
                         language = language
                     )
                     userInformationViewModel.updateUserInformation(updatedUserInfo)
+
                     Toast.makeText(
                         navController.context,
                         "User information updated",
@@ -108,8 +141,8 @@ fun UserInformation(
                     ).show()
 
                     navController.navigate("HomePage")
-
-                })
+                }
+            )
         },
         floatingActionButtonPosition = FabPosition.Center
     ) { paddingValues ->
@@ -147,22 +180,22 @@ fun UserInformation(
                     }
 
                     Text(
-                        text = stringResource(id =R.string.user_information_page_user_information),
+                        text = stringResource(id = R.string.user_information_page_user_information),
                         fontFamily = FontFamily.Default,
                         fontSize = 18.sp
                     )
                 }
 
                 CustomDropdownMenu(
-                    title = stringResource(id =R.string.user_information_page_title_tale_language),
-                    label = stringResource(id =R.string.user_information_page_label_select_language),
+                    title = stringResource(id = R.string.user_information_page_title_tale_language),
+                    label = stringResource(id = R.string.user_information_page_label_select_language),
                     options = optionsLanguage,
                     selectedOption = language,
                     onOptionSelected = { language = it }
                 )
                 CustomTextInput(
-                    title = stringResource(id =R.string.user_information_page_title_name),
-                    label = stringResource(id =R.string.user_information_page_label_enter_name),
+                    title = stringResource(id = R.string.user_information_page_title_name),
+                    label = stringResource(id = R.string.user_information_page_label_enter_name),
                     text = name,
                     onValueChange = { name = it },
                     isSingleLine = true,
@@ -171,8 +204,8 @@ fun UserInformation(
                     isBigCanvas = false
                 )
                 CustomTextInput(
-                    title = stringResource(id =R.string.user_information_page_title_age),
-                    label = stringResource(id =R.string.user_information_page_label_enter_age),
+                    title = stringResource(id = R.string.user_information_page_title_age),
+                    label = stringResource(id = R.string.user_information_page_label_enter_age),
                     text = age,
                     onValueChange = { age = it },
                     isSingleLine = true,
@@ -181,15 +214,15 @@ fun UserInformation(
                     isBigCanvas = false
                 )
                 CustomDropdownMenu(
-                    title = stringResource(id =R.string.user_information_page_title_gender),
-                    label = stringResource(id =R.string.user_information_page_label_select_gender),
+                    title = stringResource(id = R.string.user_information_page_title_gender),
+                    label = stringResource(id = R.string.user_information_page_label_select_gender),
                     options = optionsGender,
                     selectedOption = gender,
                     onOptionSelected = { gender = it }
                 )
                 CustomTextInput(
-                    title = stringResource(id =R.string.user_information_page_title_dad_name),
-                    label = stringResource(id =R.string.user_information_page_label_enter_dad_name),
+                    title = stringResource(id = R.string.user_information_page_title_dad_name),
+                    label = stringResource(id = R.string.user_information_page_label_enter_dad_name),
                     text = dadName,
                     onValueChange = { dadName = it },
                     isSingleLine = true,
@@ -198,8 +231,8 @@ fun UserInformation(
                     isBigCanvas = false
                 )
                 CustomTextInput(
-                    title = stringResource(id =R.string.user_information_page_title_mom_name),
-                    label = stringResource(id =R.string.user_information_page_label_enter_mom_name),
+                    title = stringResource(id = R.string.user_information_page_title_mom_name),
+                    label = stringResource(id = R.string.user_information_page_label_enter_mom_name),
                     text = momName,
                     onValueChange = { momName = it },
                     isSingleLine = true,
@@ -208,8 +241,8 @@ fun UserInformation(
                     isBigCanvas = false
                 )
                 CustomTextInput(
-                    title = stringResource(id =R.string.user_information_page_title_sibling_name),
-                    label = stringResource(id =R.string.user_information_page_label_enter_sibling_name),
+                    title = stringResource(id = R.string.user_information_page_title_sibling_name),
+                    label = stringResource(id = R.string.user_information_page_label_enter_sibling_name),
                     text = siblingName,
                     onValueChange = { siblingName = it },
                     isSingleLine = true,
@@ -218,8 +251,8 @@ fun UserInformation(
                     isBigCanvas = false
                 )
                 CustomTextInput(
-                    title = stringResource(id =R.string.user_information_page_title_pet_name),
-                    label = stringResource(id =R.string.user_information_page_label_enter_pet_name),
+                    title = stringResource(id = R.string.user_information_page_title_pet_name),
+                    label = stringResource(id = R.string.user_information_page_label_enter_pet_name),
                     text = petName,
                     onValueChange = { petName = it },
                     isSingleLine = true,
@@ -236,7 +269,7 @@ fun UserInformation(
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = stringResource(id =R.string.created_by_erdem),
+                        text = stringResource(id = R.string.created_by_erdem),
                         textAlign = TextAlign.Center,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold,

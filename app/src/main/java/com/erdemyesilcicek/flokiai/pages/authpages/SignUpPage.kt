@@ -35,11 +35,14 @@ import com.erdemyesilcicek.flokiai.components.CustomTextButton
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 
 @Composable
 fun SignUpPage(
     navController: NavController,
-    authViewModel: AuthViewModel) {
+    authViewModel: AuthViewModel,
+    userInformationViewModel: UserInformationViewModel
+) {
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     val confirmPassword = remember { mutableStateOf("") }
@@ -50,6 +53,7 @@ fun SignUpPage(
 
     LaunchedEffect(loginState) {
         if (loginState == true) {
+            userInformationViewModel.loadUserInformation()
             navController.navigate("HomePage") {
                 popUpTo("SignUpPage") { inclusive = true }
             }

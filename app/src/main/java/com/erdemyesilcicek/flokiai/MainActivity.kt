@@ -21,29 +21,29 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val userInformationViewModel : UserInformationViewModel = UserInformationViewModel(
-                UserInformationRepository(
-                    getSharedPreferences(
-                        "character_info",
-                        MODE_PRIVATE
-                    )
-                )
-            )
+            // Create the Firebase instances
             val db = Firebase.firestore
             val auth = Firebase.auth
+
+            // Create the view models
+            val userInformationViewModel : UserInformationViewModel = UserInformationViewModel(
+                UserInformationRepository(
+                    //db,
+                    //auth
+                )
+            )
             val authViewModel : AuthViewModel = AuthViewModel()
             val categoryViewModel : CategoryViewModel = CategoryViewModel()
             val loadingViewModel : LoadingViewModel = LoadingViewModel()
             val geminiViewModel : GeminiViewModel = GeminiViewModel()
 
+            // Determine the start destination
             val startDestination = if (auth.currentUser != null) {
                 authViewModel.currentUser.value = auth.currentUser
                 "HomePage"
             } else {
                 "GetStartedPage"
             }
-
-            println(auth.currentUser!!.email)
 
             FlokiAITheme() {
                 NavController(

@@ -37,12 +37,14 @@ import com.erdemyesilcicek.flokiai.components.CustomTextButton
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun SignInPage(
     navController: NavController,
-    authViewModel: AuthViewModel
+    authViewModel: AuthViewModel,
+    userInformationViewModel: UserInformationViewModel
 ) {
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
@@ -53,6 +55,7 @@ fun SignInPage(
 
     LaunchedEffect(loginState) {
         if (loginState == true) {
+            userInformationViewModel.loadUserInformation()
             navController.navigate("HomePage") {
                 popUpTo("SignInPage") { inclusive = true }
             }
