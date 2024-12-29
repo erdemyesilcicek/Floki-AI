@@ -50,15 +50,17 @@ import com.erdemyesilcicek.flokiai.lists.TaleList
 import com.erdemyesilcicek.flokiai.pages.homepages.AiCreatedTalePage
 import com.erdemyesilcicek.flokiai.pages.homepages.DefaultTalePage
 import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.HomeStackViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 
 @Composable
 fun HomePage(
     navController: NavController,
     categoryViewModel: CategoryViewModel,
-    loadingViewModel: LoadingViewModel
+    loadingViewModel: LoadingViewModel,
+    homeStackViewModel: HomeStackViewModel
 ) {
-    var selectedTab by remember { mutableIntStateOf(1) }
+    var selectedTab = homeStackViewModel.stack.intValue
 
     Scaffold(
         topBar = {
@@ -104,7 +106,7 @@ fun HomePage(
                 CustomIconTab(
                     icon = Icons.Outlined.AutoAwesome,
                     isSelected = selectedTab == 0,
-                    onClick = { selectedTab = 0 }
+                    onClick = { homeStackViewModel.changeStack() }
                 )
 
                 Text(text = "|", fontSize = 20.sp)
@@ -112,7 +114,7 @@ fun HomePage(
                 CustomIconTab(
                     icon = Icons.Outlined.Book,
                     isSelected = selectedTab == 1,
-                    onClick = { selectedTab = 1 }
+                    onClick = { homeStackViewModel.changeStack() }
                 )
             }
             when (selectedTab) {

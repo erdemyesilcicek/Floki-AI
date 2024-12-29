@@ -27,6 +27,7 @@ import com.erdemyesilcicek.flokiai.pages.optionspages.UserInformation
 import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.GeminiViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.HomeStackViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -41,7 +42,8 @@ fun NavController(
     geminiViewModel: GeminiViewModel,
     db: FirebaseFirestore,
     auth: FirebaseAuth,
-    startDestination: String
+    startDestination: String,
+    homeStackViewModel: HomeStackViewModel
 ) {
     val navController = rememberNavController()
     val context = LocalContext.current
@@ -54,7 +56,8 @@ fun NavController(
             HomePage(
                 navController,
                 categoryViewModel,
-                loadingViewModel
+                loadingViewModel,
+                homeStackViewModel
             )
         }
 

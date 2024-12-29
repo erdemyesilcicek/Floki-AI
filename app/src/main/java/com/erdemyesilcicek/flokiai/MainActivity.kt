@@ -10,6 +10,7 @@ import com.erdemyesilcicek.flokiai.utils.UserInformationRepository
 import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.GeminiViewModel
+import com.erdemyesilcicek.flokiai.viewmodels.HomeStackViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 import com.google.firebase.auth.ktx.auth
@@ -33,6 +34,7 @@ class MainActivity : ComponentActivity() {
             val categoryViewModel : CategoryViewModel = CategoryViewModel()
             val loadingViewModel : LoadingViewModel = LoadingViewModel()
             val geminiViewModel : GeminiViewModel = GeminiViewModel()
+            val homeStackViewModel : HomeStackViewModel = HomeStackViewModel()
 
             // Determine the start destination
             val startDestination = if (auth.currentUser != null) {
@@ -51,7 +53,8 @@ class MainActivity : ComponentActivity() {
                     geminiViewModel,
                     db,
                     auth,
-                    startDestination
+                    startDestination,
+                    homeStackViewModel
                 )
             }
         }
