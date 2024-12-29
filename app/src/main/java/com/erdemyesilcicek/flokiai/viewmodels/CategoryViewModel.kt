@@ -43,7 +43,6 @@ class CategoryViewModel : ViewModel() {
         _selectedSeason.add(category)
     }
 
-    // Animal, Character ve Family için çoklu seçim (3 adet)
     fun selectAnimal(category: CategoryCard) {
         if (_selectedAnimals.contains(category)) {
             _selectedAnimals.remove(category)

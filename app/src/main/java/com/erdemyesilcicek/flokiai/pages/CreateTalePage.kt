@@ -67,12 +67,22 @@ fun CreateTalePage(
     val animalTitle = stringResource(id = R.string.create_tale_page_dialog__title_animal)
     val characterTitle = stringResource(id = R.string.create_tale_page_dialog__title_character)
     val familyTitle = stringResource(id = R.string.create_tale_page_dialog__title_family)
-
     val genreMessage = stringResource(id = R.string.create_tale_page_dialog__message_genre)
     val seasonMessage = stringResource(id = R.string.create_tale_page_dialog__message_season)
     val animalMessage = stringResource(id = R.string.create_tale_page_dialog__message_animal)
     val characterMessage = stringResource(id = R.string.create_tale_page_dialog__message_character)
     val familyMessage = stringResource(id = R.string.create_tale_page_dialog__message_family)
+
+    // WHEN THE USER SELECTS MORE THAN 3 ANIMALS, CHARACTERS OR FAMILIES, THE DIALOG WILL APPEAR
+    val animalSize = categoryViewModel.selectedAnimals.size
+    val characterSize = categoryViewModel.selectedCharacters.size
+    val familySize = categoryViewModel.selectedFamily.size
+
+    val animalMaxMessage = stringResource(id = R.string.create_tale_page_dialog__message_animal)
+    val characterMaxMessage =
+        stringResource(id = R.string.create_tale_page_dialog__message_character)
+    val familyMaxMessage = stringResource(id = R.string.create_tale_page_dialog__message_family)
+
 
     val dialogButtonText = stringResource(id = R.string.create_tale_page_dialog_button)
 
@@ -86,12 +96,12 @@ fun CreateTalePage(
                 navController.navigate("UserInformation")
                 showDialog = false
             },
-            onDismiss = {  }
+            onDismiss = { }
         )
     }
 
     LaunchedEffect(Unit) {
-        if (userInformationViewModel.userInformation.value == null){
+        if (userInformationViewModel.userInformation.value == null) {
             userShowDialog = true
         }
     }
@@ -259,4 +269,38 @@ fun CreateTalePage(
         )
     }
 
+    // 3 if problemli.. 3 tane seçince hep çalışıyor.
+    if (animalSize >= 3) {
+        showDialog = true
+        CustomAlertDialog(
+            title = animalTitle,
+            message = animalMaxMessage,
+            buttonText = dialogButtonText,
+            buttonColor = MaterialTheme.colorScheme.primary,
+            onButtonClick = { showDialog = false },
+            onDismiss = { showDialog = false }
+        )
+    }
+    if (characterSize >= 3) {
+        showDialog = true
+        CustomAlertDialog(
+            title = characterTitle,
+            message = characterMaxMessage,
+            buttonText = dialogButtonText,
+            buttonColor = MaterialTheme.colorScheme.primary,
+            onButtonClick = { showDialog = false },
+            onDismiss = { showDialog = false }
+        )
+    }
+    if (familySize >= 3) {
+        showDialog = true
+        CustomAlertDialog(
+            title = familyTitle,
+            message = familyMaxMessage,
+            buttonText = dialogButtonText,
+            buttonColor = MaterialTheme.colorScheme.primary,
+            onButtonClick = { showDialog = false },
+            onDismiss = { showDialog = false }
+        )
+    }
 }
