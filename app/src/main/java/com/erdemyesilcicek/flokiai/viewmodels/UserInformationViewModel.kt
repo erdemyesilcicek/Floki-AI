@@ -26,11 +26,11 @@ class UserInformationViewModel(private val repository: UserInformationRepository
             result.onSuccess {
                 _userInformation.value = it
                 _error.value = null
-                println("User information loaded")
+                //println("User information loaded")
             }.onFailure {
                 _userInformation.value = null
                 _error.value = it.message
-                println("User information loading failed")
+                //println("User information loading failed")
             }
         }
     }

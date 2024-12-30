@@ -92,7 +92,10 @@ fun UserInformation(
             message = stringResource(id = R.string.user_information_page_alert_text),
             buttonColor = MaterialTheme.colorScheme.primary,
             buttonText = stringResource(id = R.string.user_information_page_alert_button),
-            onButtonClick = { navController.navigate("HomePage") },
+            onButtonClick = {
+                alertDialogActive = false
+                navController.navigate("HomePage")
+            },
             onDismiss = { }
         )
     }

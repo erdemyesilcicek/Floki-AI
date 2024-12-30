@@ -70,7 +70,7 @@ fun AiCreatedTalePage(navController: NavController) {
                             val taleSummary = document.data.get("TaleSummary").toString()
                             val UserId = document.data.get("userId").toString()
                             val genreImage = document.data.get("GenreImage").toString().toInt()
-                            println("Genre Image: $genreImage")
+                            //println("Genre Image: $genreImage")
                             val taleId = document.id
 
                             AiTale(

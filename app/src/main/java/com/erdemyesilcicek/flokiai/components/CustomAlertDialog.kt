@@ -38,7 +38,7 @@ fun CustomAlertDialog(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
+                .padding(4.dp)
                 .clip(RoundedCornerShape(20.dp))
                 .background(Color.White)
         ) {
@@ -47,7 +47,7 @@ fun CustomAlertDialog(
                     .fillMaxWidth()
                     .padding(10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                verticalArrangement = Arrangement.spacedBy(15.dp)
             ) {
                 Text(
                     text = title,

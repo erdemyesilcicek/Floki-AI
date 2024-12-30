@@ -173,7 +173,7 @@
     <string name="create_tale_page_dialog__title_family">FAMILY</string>
     <string name="create_tale_page_dialog__message_family">Select at least one family member to continue..</string>
 
-    <string name="create_tale_page_dialog_button">CLOSE</string>
+    <string name="create_tale_page_dialog_button">Close</string>
 
     <!-- LoadingPage -->
     <string name="loading_page_please_wait">PLEASE WAIT!</string>

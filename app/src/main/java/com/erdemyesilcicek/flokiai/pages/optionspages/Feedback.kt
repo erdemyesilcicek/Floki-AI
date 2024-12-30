@@ -71,7 +71,7 @@ fun Feedback(
                 MaterialTheme.colorScheme.primary,
                 stringResource(id =R.string.feedback_page_button),
                 onClick = {
-                    println("Send fab clicked")
+                    //send feedback
                 })
         },
         floatingActionButtonPosition = FabPosition.Center

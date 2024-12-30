@@ -92,8 +92,8 @@
     <string name="user_information_page_button">Speichern</string>
 
     <string name="user_information_page_alert_title">ERFOLGREICH</string>
-    <string name="user_information_page_alert_text">Ihre Benutzerinformationen wurden erfolgreich aktualisiert.</string>
-    <string name="user_information_page_alert_button">Zur Startseite gehen</string>
+    <string name="user_information_page_alert_text">Benutzerdaten erfolgreich aktualisiert.</string>
+    <string name="user_information_page_alert_button">Zur Startseite</string>
 
     <!-- ContactPage -->
     <string name="feedback_page_description">Wie können wir Ihnen helfen?</string>
@@ -172,7 +172,7 @@
     <string name="create_tale_page_dialog__title_family">Familie</string>
     <string name="create_tale_page_dialog__message_family">Wählen Sie mindestens ein Familienmitglied aus, um fortzufahren.</string>
 
-    <string name="create_tale_page_dialog_button">SCHLIEßEN</string>
+    <string name="create_tale_page_dialog_button">Schließen</string>
     <!-- LoadingPage -->
     <string name="loading_page_please_wait">BITTE WARTEN!</string>
     <string name="loading_page_your_tale_created">Deine Erzählung wird erstellt!</string>

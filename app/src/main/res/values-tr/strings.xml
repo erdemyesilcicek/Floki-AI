@@ -172,7 +172,7 @@
     <string name="create_tale_page_dialog__title_family">AİLE</string>
     <string name="create_tale_page_dialog__message_family">Devam etmek için en az bir aile üyesi seçin.</string>
 
-    <string name="create_tale_page_dialog_button">TAMAM</string>
+    <string name="create_tale_page_dialog_button">Tamam</string>
 
     <!-- LoadingPage -->
     <string name="loading_page_please_wait">LÜTFEN BEKLEYİN!</string>

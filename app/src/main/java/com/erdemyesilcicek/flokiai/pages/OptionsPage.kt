@@ -87,14 +87,18 @@ fun OptionsPage(
                     contentDescription = "Privacy Policy",
                     itemText = stringResource(id = R.string.options_page_privacy_policy),
                     summary = stringResource(id = R.string.options_page_privacy_policy_summary),
-                    onClick = { println("privacy policy") }
+                    onClick = {
+                       //privacy policy
+                    }
                 ),
                 OptionsCard(
                     imageVector = Icons.Outlined.InsertDriveFile,
                     contentDescription = "Terms of Use",
                     itemText = stringResource(id = R.string.options_page_terms_of_use),
                     summary = stringResource(id = R.string.options_page_terms_of_use_summary),
-                    onClick = { println("term of use") }
+                    onClick = {
+                        //terms of use
+                    }
                 ),
                 OptionsCard(
                     imageVector = Icons.Outlined.PowerSettingsNew,
