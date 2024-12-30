@@ -118,7 +118,7 @@ fun AiCreatedTalePage(navController: NavController) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "Masallarınız burada gösterilir",
+                        text = stringResource(id = R.string.ai_created_tale_page_no_created_tale_title),
                         color = MaterialTheme.colorScheme.onBackground,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 10.dp),

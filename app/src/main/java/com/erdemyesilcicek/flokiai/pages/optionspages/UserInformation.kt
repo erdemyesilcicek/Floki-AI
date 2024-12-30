@@ -88,10 +88,10 @@ fun UserInformation(
     }
     if (alertDialogActive == true) {
         CustomAlertDialog(
-            title = "BAŞARILI",
-            message = "Kullanıcı bilgileriniz başarıyla güncellendi.",
+            title = stringResource(id = R.string.user_information_page_alert_title),
+            message = stringResource(id = R.string.user_information_page_alert_text),
             buttonColor = MaterialTheme.colorScheme.primary,
-            buttonText = "Ana Sayfaya Git",
+            buttonText = stringResource(id = R.string.user_information_page_alert_button),
             onButtonClick = { navController.navigate("HomePage") },
             onDismiss = { }
         )

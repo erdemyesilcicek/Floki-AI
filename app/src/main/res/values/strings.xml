@@ -43,7 +43,8 @@
     <string name="home_page_button">Create your own tale</string>
 
     <!-- AiCreatedTalePage -->
-    <string name="ai_created_tale_page_no_created_tale">No tales have been created yet.</string>
+    <string name="ai_created_tale_page_no_created_tale_title">Your tales will be displayed here</string>
+    <string name="ai_created_tale_page_no_created_tale">No tales have been created yet. Let\'s create a new one!</string>
 
     <!-- OptionsPage -->
     <string name="options_page_user_information">User Information</string>
@@ -89,6 +90,11 @@
     <string name="user_information_page_label_enter_pet_name">Enter Pet Name</string>
 
     <string name="user_information_page_button">Save</string>
+
+    <string name="user_information_page_alert_title">SUCCESS</string>
+    <string name="user_information_page_alert_text">User information has been successfully updated.</string>
+    <string name="user_information_page_alert_button">Go to Home</string>
+
 
     <!-- ContactPage -->
     <string name="feedback_page_description">How can we help you?</string>

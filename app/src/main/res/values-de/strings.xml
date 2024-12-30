@@ -43,7 +43,8 @@
     <string name="home_page_button">Erstellen</string>
 
     <!-- AiCreatedTalePage -->
-    <string name="ai_created_tale_page_no_created_tale">Es wurden noch keine Märchen erstellt.</string>
+    <string name="ai_created_tale_page_no_created_tale_title">Deine Geschichten werden hier angezeigt</string>
+    <string name="ai_created_tale_page_no_created_tale">Es wurden noch keine Geschichten erstellt. Lass uns eine neue erstellen!</string>
 
     <!-- OptionsPage -->
     <string name="options_page_user_information">Benutzerinformationen</string>
@@ -89,6 +90,10 @@
     <string name="user_information_page_label_enter_pet_name">Name des Haustiers eingeben</string>
 
     <string name="user_information_page_button">Speichern</string>
+
+    <string name="user_information_page_alert_title">ERFOLGREICH</string>
+    <string name="user_information_page_alert_text">Ihre Benutzerinformationen wurden erfolgreich aktualisiert.</string>
+    <string name="user_information_page_alert_button">Zur Startseite gehen</string>
 
     <!-- ContactPage -->
     <string name="feedback_page_description">Wie können wir Ihnen helfen?</string>

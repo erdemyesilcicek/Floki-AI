@@ -15,7 +15,7 @@
 
     <!-- GetStartedPage -->
     <string name="get_started_page_description">Floki ile kendi masalınızı oluşturun.</string>
-    <string name="get_started_page_button">Başlayın</string>
+    <string name="get_started_page_button">Hadi Başlayalım!</string>
     <string name="get_started_page_sign_in">Giriş Yap</string>
 
     <!-- SignUpPage -->
@@ -37,12 +37,13 @@
     <string name="sign_in_page_button">Giriş Yap</string>
 
     <!-- HomePage -->
-    <string name="home_page_world_of_tales">Masallar Dünyası</string>
+    <string name="home_page_world_of_tales">Masal Dünyası</string>
     <string name="home_page_created_tales">Oluşturulan Masallar</string>
 
     <string name="home_page_button">Kendi masalını oluştur</string>
 
     <!-- AiCreatedTalePage -->
+    <string name="ai_created_tale_page_no_created_tale_title">Masallarınız burada gösterilir</string>
     <string name="ai_created_tale_page_no_created_tale">Henüz hiçbir masal oluşturulmadı. Hadi yeni bir masal oluştur!</string>
 
     <!-- OptionsPage -->
@@ -89,6 +90,10 @@
     <string name="user_information_page_label_enter_pet_name">Evcil Hayvan İsmini Girin</string>
 
     <string name="user_information_page_button">Kaydet</string>
+
+    <string name="user_information_page_alert_title">BAŞARILI</string>
+    <string name="user_information_page_alert_text">Kullanıcı bilgileriniz başarıyla güncellendi.</string>
+    <string name="user_information_page_alert_button">Ana Sayfaya Git</string>
 
     <!-- ContactPage -->
     <string name="feedback_page_description">Sana nasıl yardımcı olabiliriz?</string>
@@ -167,7 +172,7 @@
     <string name="create_tale_page_dialog__title_family">AİLE</string>
     <string name="create_tale_page_dialog__message_family">Devam etmek için en az bir aile üyesi seçin.</string>
 
-    <string name="create_tale_page_dialog_button">KAPAT</string>
+    <string name="create_tale_page_dialog_button">TAMAM</string>
 
     <!-- LoadingPage -->
     <string name="loading_page_please_wait">LÜTFEN BEKLEYİN!</string>
