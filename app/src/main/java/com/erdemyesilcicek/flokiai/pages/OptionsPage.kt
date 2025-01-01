@@ -16,9 +16,14 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material.icons.outlined.PowerSettingsNew
 import androidx.compose.material.icons.outlined.PrivacyTip
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
+import com.erdemyesilcicek.flokiai.components.CustomAlertDialog
 import com.erdemyesilcicek.flokiai.components.CustomOptionsCard
 import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.datas.OptionsCard
@@ -67,6 +73,8 @@ fun OptionsPage(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            var alertDialogActive by remember { mutableStateOf<Boolean>(false) }
+
             val optionsList = listOf<OptionsCard>(
                 OptionsCard(
                     imageVector = Icons.Outlined.Person,
@@ -88,7 +96,7 @@ fun OptionsPage(
                     itemText = stringResource(id = R.string.options_page_privacy_policy),
                     summary = stringResource(id = R.string.options_page_privacy_policy_summary),
                     onClick = {
-                       //privacy policy
+                        //privacy policy
                     }
                 ),
                 OptionsCard(
@@ -106,11 +114,7 @@ fun OptionsPage(
                     itemText = stringResource(id = R.string.options_page_log_out),
                     summary = stringResource(id = R.string.options_page_log_out_summary),
                     onClick = {
-                        userInformationViewModel.clearUserInformation()
-                        authViewModel.logout()
-                        navController.navigate("GetStartedPage"){
-                            popUpTo(0) { inclusive = true }
-                        }
+                        alertDialogActive = true
                     }
                 )
             )
@@ -145,6 +149,29 @@ fun OptionsPage(
                     fontWeight = FontWeight.SemiBold,
                     fontFamily = myFont,
                     color = Color.LightGray
+                )
+            }
+            if (alertDialogActive) {
+                CustomAlertDialog(
+                    title = stringResource(id =R.string.options_page_exit_alert_title),
+                    message = stringResource(id =R.string.options_page_exit_alert_message),
+                    buttonText = stringResource(id =R.string.options_page_exit_alert_first_button),
+                    buttonColor = MaterialTheme.colorScheme.primary,
+                    onButtonClick = {
+                        userInformationViewModel.clearUserInformation()
+                        authViewModel.logout()
+                        alertDialogActive = false
+                        navController.navigate("GetStartedPage") {
+                            popUpTo(0) { inclusive = true }
+                        }
+                    },
+                    onDismiss = { /*TODO*/ },
+                    isDoubleButton = true,
+                    secondButtonText = stringResource(id =R.string.options_page_exit_alert_second_button),
+                    secondButtonColor = MaterialTheme.colorScheme.primary,
+                    secondButtonOnClick = {
+                        alertDialogActive = false
+                    },
                 )
             }
         }

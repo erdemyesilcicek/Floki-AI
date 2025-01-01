@@ -77,15 +77,19 @@ fun CreateTalePage(
 
     if (userShowDialog) {
         CustomAlertDialog(
-            title = "WARNING",
-            message = "Please fill in the user information",
-            buttonText = "User Information",
+            title = stringResource(id =R.string.create_tale_page_user_alert_title),
+            message = stringResource(id =R.string.create_tale_page_user_alert_message),
+            buttonText = stringResource(id =R.string.create_tale_page_user_alert_button),
             buttonColor = MaterialTheme.colorScheme.primary,
             onButtonClick = {
                 navController.navigate("UserInformation")
                 showDialog = false
             },
-            onDismiss = { }
+            onDismiss = { },
+            isDoubleButton = false,
+            secondButtonText = "",
+            secondButtonColor = Color.Transparent,
+            secondButtonOnClick = { }
         )
     }
 
@@ -253,7 +257,11 @@ fun CreateTalePage(
             buttonText = dialogButtonText,
             buttonColor = MaterialTheme.colorScheme.primary,
             onButtonClick = { showDialog = false },
-            onDismiss = { showDialog = false }
+            onDismiss = { showDialog = false },
+            isDoubleButton = false,
+            secondButtonText = "",
+            secondButtonColor = Color.Transparent,
+            secondButtonOnClick = { }
         )
     }
 }

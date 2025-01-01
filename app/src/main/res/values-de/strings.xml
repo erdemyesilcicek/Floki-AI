@@ -46,6 +46,11 @@
     <string name="ai_created_tale_page_no_created_tale_title">Deine Geschichten werden hier angezeigt</string>
     <string name="ai_created_tale_page_no_created_tale">Es wurden noch keine Geschichten erstellt. Lass uns eine neue erstellen!</string>
 
+    <string name="ai_created_tale_page_alert_title">Die Geschichte löschen</string>
+    <string name="ai_created_tale_page_alert_message">Sind Sie sicher, dass Sie die Geschichte löschen möchten?</string>
+    <string name="ai_created_tale_page_alert_first_button">Löschen</string>
+    <string name="ai_created_tale_page_alert_second_button">Nein</string>
+
     <!-- OptionsPage -->
     <string name="options_page_user_information">Benutzerinformationen</string>
     <string name="options_page_user_information_summary">Sehen und bearbeiten Sie Ihre persönlichen Informationen</string>
@@ -61,6 +66,11 @@
 
     <string name="options_page_log_out">Abmelden</string>
     <string name="options_page_log_out_summary">Von Ihrem Konto abmelden</string>
+
+    <string name="options_page_exit_alert_title">App beenden</string>
+    <string name="options_page_exit_alert_message">Sind Sie sicher, dass Sie sich abmelden möchten?</string>
+    <string name="options_page_exit_alert_first_button">Beenden</string>
+    <string name="options_page_exit_alert_second_button">Nein</string>
 
     <!-- UserInformationPage -->
     <string name="user_information_page_user_information">Benutzerinformationen</string>
@@ -173,6 +183,11 @@
     <string name="create_tale_page_dialog__message_family">Wählen Sie mindestens ein Familienmitglied aus, um fortzufahren.</string>
 
     <string name="create_tale_page_dialog_button">Schließen</string>
+
+    <string name="create_tale_page_user_alert_title">WARNUNG</string>
+    <string name="create_tale_page_user_alert_message">Bitte füllen Sie die Benutzerinformationen aus</string>
+    <string name="create_tale_page_user_alert_button">Benutzerinformationen</string>
+
     <!-- LoadingPage -->
     <string name="loading_page_please_wait">BITTE WARTEN!</string>
     <string name="loading_page_your_tale_created">Deine Erzählung wird erstellt!</string>

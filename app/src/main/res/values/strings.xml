@@ -46,6 +46,11 @@
     <string name="ai_created_tale_page_no_created_tale_title">Your tales will be displayed here</string>
     <string name="ai_created_tale_page_no_created_tale">No tales have been created yet. Let\'s create a new one!</string>
 
+    <string name="ai_created_tale_page_alert_title">Delete the tale</string>
+    <string name="ai_created_tale_page_alert_message">Are you sure you want to delete the tale?</string>
+    <string name="ai_created_tale_page_alert_first_button">Delete</string>
+    <string name="ai_created_tale_page_alert_second_button">Cancel</string>
+
     <!-- OptionsPage -->
     <string name="options_page_user_information">User Information</string>
     <string name="options_page_user_information_summary">View and edit your personal information</string>
@@ -61,6 +66,11 @@
 
     <string name="options_page_log_out">Log out</string>
     <string name="options_page_log_out_summary">Log out from your account</string>
+
+    <string name="options_page_exit_alert_title">Exit the app</string>
+    <string name="options_page_exit_alert_message">Are you sure you want to log out?</string>
+    <string name="options_page_exit_alert_first_button">Exit</string>
+    <string name="options_page_exit_alert_second_button">Cancel</string>
 
     <!-- UserInformationPage -->
     <string name="user_information_page_user_information">User Information</string>
@@ -174,6 +184,10 @@
     <string name="create_tale_page_dialog__message_family">Select at least one family member to continue..</string>
 
     <string name="create_tale_page_dialog_button">Close</string>
+
+    <string name="create_tale_page_user_alert_title">WARNING</string>
+    <string name="create_tale_page_user_alert_message">Please fill in the user information</string>
+    <string name="create_tale_page_user_alert_button">User Information</string>
 
     <!-- LoadingPage -->
     <string name="loading_page_please_wait">PLEASE WAIT!</string>

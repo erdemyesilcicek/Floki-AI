@@ -20,8 +20,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
+import com.erdemyesilcicek.flokiai.components.CustomAlertDialog
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.HeaderBar
 import com.erdemyesilcicek.flokiai.lists.TaleList
@@ -50,6 +53,7 @@ fun AiReadTalePage(
 ) {
     var TaleItself = remember { mutableStateOf<String>("") }
     var TaleTitle = remember { mutableStateOf<String>("") }
+    var deleteAlertDialogActive by remember { mutableStateOf<Boolean>(false) }
 
     fun onDelete(taleId: String) {
         println("Deleting tale with id: $taleId")
@@ -87,12 +91,7 @@ fun AiReadTalePage(
                 loadingViewModel,
                 categoryViewModel,
                 deleteOnClick = {
-                    onDelete(taleId)
-                    navController.navigate("HomePage"){
-                        popUpTo("HomePage"){
-                            inclusive = true
-                        }
-                    }
+                    deleteAlertDialogActive = true
                 }
             )
         },
@@ -156,6 +155,30 @@ fun AiReadTalePage(
                         )
                     }
                 }
+            }
+            if (deleteAlertDialogActive) {
+                CustomAlertDialog(
+                    title = stringResource(id = R.string.ai_created_tale_page_alert_title),
+                    message = stringResource(id = R.string.ai_created_tale_page_alert_message),
+                    buttonText = stringResource(id = R.string.ai_created_tale_page_alert_first_button),
+                    buttonColor = MaterialTheme.colorScheme.primary,
+                    onButtonClick = {
+                        onDelete(taleId)
+                        deleteAlertDialogActive = false
+                        navController.navigate("HomePage") {
+                            popUpTo("HomePage") {
+                                inclusive = true
+                            }
+                        }
+                    },
+                    onDismiss = { /*TODO*/ },
+                    isDoubleButton = true,
+                    secondButtonText = stringResource(id = R.string.ai_created_tale_page_alert_second_button),
+                    secondButtonColor = MaterialTheme.colorScheme.primary,
+                    secondButtonOnClick = {
+                        deleteAlertDialogActive = false
+                    }
+                )
             }
         }
     }

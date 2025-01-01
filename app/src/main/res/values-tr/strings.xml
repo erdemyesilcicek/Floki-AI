@@ -46,6 +46,11 @@
     <string name="ai_created_tale_page_no_created_tale_title">Masallarınız burada gösterilir</string>
     <string name="ai_created_tale_page_no_created_tale">Henüz hiçbir masal oluşturulmadı. Hadi yeni bir masal oluştur!</string>
 
+    <string name="ai_created_tale_page_alert_title">Masalı Sil</string>
+    <string name="ai_created_tale_page_alert_message">Masalı silmek istediğinizden emin misiniz?</string>
+    <string name="ai_created_tale_page_alert_first_button">Sil</string>
+    <string name="ai_created_tale_page_alert_second_button">İptal</string>
+
     <!-- OptionsPage -->
     <string name="options_page_user_information">Kullanıcı Bilgileri</string>
     <string name="options_page_user_information_summary">Kişisel bilgilerinizi görüntüleyin ve düzenleyin</string>
@@ -61,6 +66,11 @@
 
     <string name="options_page_log_out">Çıkış Yap</string>
     <string name="options_page_log_out_summary">Hesabınızdan çıkış yapın</string>
+
+    <string name="options_page_exit_alert_title">Uygulamadan Çık</string>
+    <string name="options_page_exit_alert_message">Çıkış yapmak istediğinizden emin misiniz?</string>
+    <string name="options_page_exit_alert_first_button">Çıkış</string>
+    <string name="options_page_exit_alert_second_button">İptal</string>
 
     <!-- UserInformationPage -->
     <string name="user_information_page_user_information">Kullanıcı Bilgileri</string>
@@ -173,6 +183,10 @@
     <string name="create_tale_page_dialog__message_family">Devam etmek için en az bir aile üyesi seçin.</string>
 
     <string name="create_tale_page_dialog_button">Tamam</string>
+
+    <string name="create_tale_page_user_alert_title">UYARI</string>
+    <string name="create_tale_page_user_alert_message">Lütfen kullanıcı bilgilerini doldurun</string>
+    <string name="create_tale_page_user_alert_button">Kullanıcı Bilgileri</string>
 
     <!-- LoadingPage -->
     <string name="loading_page_please_wait">LÜTFEN BEKLEYİN!</string>

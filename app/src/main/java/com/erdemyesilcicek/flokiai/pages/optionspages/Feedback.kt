@@ -66,15 +66,6 @@ fun Feedback(
             )
         },
         modifier = Modifier.fillMaxSize(),
-        floatingActionButton = {
-            CustomExtendedFAB(
-                MaterialTheme.colorScheme.primary,
-                stringResource(id =R.string.feedback_page_button),
-                onClick = {
-                    //send feedback
-                })
-        },
-        floatingActionButtonPosition = FabPosition.Center
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -109,14 +100,14 @@ fun Feedback(
                         )
                     }
                     Text(
-                        text = stringResource(id =R.string.feedback_page_description),
+                        text = stringResource(id = R.string.feedback_page_description),
                         fontFamily = FontFamily.Default,
                         fontSize = 18.sp
                     )
                 }
                 CustomTextInput(
-                    title = stringResource(id =R.string.title_email),
-                    label = stringResource(id =R.string.label_email),
+                    title = stringResource(id = R.string.title_email),
+                    label = stringResource(id = R.string.label_email),
                     text = email.value,
                     onValueChange = { email.value = it },
                     isSingleLine = true,
@@ -125,8 +116,8 @@ fun Feedback(
                     isBigCanvas = false
                 )
                 CustomTextInput(
-                    title = stringResource(id =R.string.feedback_page_title_message),
-                    label = stringResource(id =R.string.feedback_page_label_message),
+                    title = stringResource(id = R.string.feedback_page_title_message),
+                    label = stringResource(id = R.string.feedback_page_label_message),
                     text = message.value,
                     onValueChange = { message.value = it },
                     isSingleLine = false,
@@ -134,22 +125,13 @@ fun Feedback(
                     keyboardType = KeyboardType.Text,
                     isBigCanvas = true
                 )
-                Spacer(modifier = Modifier.padding(40.dp))
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = stringResource(id =R.string.created_by_erdem),
-                        textAlign = TextAlign.Center,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        fontFamily = myFont,
-                        color = Color.LightGray
-                    )
-                }
+                CustomExtendedFAB(
+                    MaterialTheme.colorScheme.primary,
+                    stringResource(id = R.string.feedback_page_button),
+                    onClick = {
+                        //send feedback
+                    }
+                )
             }
         }
     }

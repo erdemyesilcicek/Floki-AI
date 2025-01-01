@@ -96,7 +96,11 @@ fun UserInformation(
                 alertDialogActive = false
                 navController.navigate("HomePage")
             },
-            onDismiss = { }
+            onDismiss = { },
+            isDoubleButton = false,
+            secondButtonText = "",
+            secondButtonColor = Color.Transparent,
+            secondButtonOnClick = { }
         )
     }
 
