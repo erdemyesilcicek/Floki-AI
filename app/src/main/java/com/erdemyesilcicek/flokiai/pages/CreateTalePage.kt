@@ -168,7 +168,6 @@ fun CreateTalePage(
                     }
                 }
             )
-
         },
         floatingActionButtonPosition = FabPosition.Center
     ) { padding ->

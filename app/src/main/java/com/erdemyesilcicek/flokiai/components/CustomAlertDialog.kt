@@ -38,20 +38,21 @@ fun CustomAlertDialog(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(4.dp)
+                .padding(2.dp)
                 .clip(RoundedCornerShape(20.dp))
-                .background(Color.White)
+                .background(Color.Red)
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(10.dp),
+                    .background(Color.White)
+                    .padding(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(15.dp)
             ) {
                 Text(
                     text = title,
-                    fontSize = 36.sp,
+                    fontSize = 24.sp,
                     color = MaterialTheme.colorScheme.onBackground,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
@@ -85,7 +86,7 @@ fun CustomAlertDialog(
                         Text(
                             color = Color.White,
                             text = buttonText,
-                            fontSize = 26.sp,
+                            fontSize = 20.sp,
                             fontWeight = FontWeight.Normal,
                             fontFamily = myFont
                         )
