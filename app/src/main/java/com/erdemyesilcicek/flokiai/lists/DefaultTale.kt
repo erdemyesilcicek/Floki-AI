@@ -113,3 +113,4 @@ public val TaleList = listOf(
         "She is a princess imprisoned in a tall tower with her long hair, who gains her freedom when a prince rescues her."
     )
 )
+
