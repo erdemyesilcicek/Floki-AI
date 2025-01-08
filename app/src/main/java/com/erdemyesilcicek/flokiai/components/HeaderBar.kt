@@ -122,7 +122,6 @@ fun HeaderBar(
             }
         },
         actions = {
-            println(currentRoute)
             if(currentRoute == "AiReadTalePage?taleId={taleId}"){
                 IconButton(
                     onClick = {

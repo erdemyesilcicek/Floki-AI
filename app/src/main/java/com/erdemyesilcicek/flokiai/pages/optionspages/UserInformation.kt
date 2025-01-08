@@ -78,13 +78,7 @@ fun UserInformation(
     var alertDialogActive by remember { mutableStateOf<Boolean>(false) }
 
     LaunchedEffect(error) {
-        if (error != null) {
-            Toast.makeText(
-                navController.context,
-                "Error: $error",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+        //damn empty user infos
     }
     if (alertDialogActive == true) {
         CustomAlertDialog(

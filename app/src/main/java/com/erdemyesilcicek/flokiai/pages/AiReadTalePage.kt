@@ -56,7 +56,6 @@ fun AiReadTalePage(
     var deleteAlertDialogActive by remember { mutableStateOf<Boolean>(false) }
 
     fun onDelete(taleId: String) {
-        println("Deleting tale with id: $taleId")
         db.collection("tales").document(taleId)
             .delete()
             .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
@@ -64,12 +63,10 @@ fun AiReadTalePage(
     }
 
     LaunchedEffect(Unit) {
-        println("AiReadTalePage: $taleId")
         val docRef = db.collection("tales").document(taleId)
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    println("DocumentSnapshot data: ${document.data}")
                     TaleItself.value = document.data?.get("TaleItself").toString()
                     TaleTitle.value = document.data?.get("TaleTitle").toString()
                 } else {

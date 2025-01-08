@@ -54,7 +54,9 @@ fun SignInPage(
 
     val localErrorMessage = remember { mutableStateOf("") }
     val loginState = authViewModel.loginState.value
-    var errorMessage = authViewModel.errorMessage.value
+    val errorMessage = authViewModel.errorMessage.value
+
+    val alertDialogActive = remember { mutableStateOf(false) }
 
     LaunchedEffect(loginState) {
         if (loginState == true) {
@@ -186,7 +188,6 @@ fun SignInPage(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-
                 if (localErrorMessage.value.isNotEmpty()) {
                     Text(
                         text = localErrorMessage.value,
@@ -200,8 +201,6 @@ fun SignInPage(
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }
-
-
                 CustomExtendedFAB(
                     containerColor = MaterialTheme.colorScheme.primary,
                     text = stringResource(id = R.string.sign_in_page_button)
