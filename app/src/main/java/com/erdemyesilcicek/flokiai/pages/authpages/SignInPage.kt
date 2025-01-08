@@ -1,5 +1,6 @@
 package com.erdemyesilcicek.flokiai.pages.authpages
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -32,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.animations.LottieAnimation
+import com.erdemyesilcicek.flokiai.components.CustomAlertDialog
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomTextButton
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
@@ -46,12 +48,13 @@ fun SignInPage(
     authViewModel: AuthViewModel,
     userInformationViewModel: UserInformationViewModel
 ) {
+    val context = LocalContext.current
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
 
     val localErrorMessage = remember { mutableStateOf("") }
     val loginState = authViewModel.loginState.value
-    val errorMessage = authViewModel.errorMessage.value
+    var errorMessage = authViewModel.errorMessage.value
 
     LaunchedEffect(loginState) {
         if (loginState == true) {
@@ -63,6 +66,25 @@ fun SignInPage(
     }
 
     val scrollState = rememberScrollState()
+
+    if (errorMessage == "E-posta doğrulaması gerekli!") {
+        CustomAlertDialog(
+            title = "Error",
+            message = errorMessage,
+            buttonText = "Send",
+            buttonColor = MaterialTheme.colorScheme.primary,
+            onButtonClick = {
+                //authViewModel.resendVerificationEmail()
+                Toast.makeText(context, "Verification email sent!", Toast.LENGTH_SHORT).show()
+            },
+            onDismiss = { /*TODO*/ },
+            isDoubleButton = true,
+            secondButtonText = "Cancel",
+            secondButtonColor = MaterialTheme.colorScheme.primary,
+            secondButtonOnClick = {
+            }
+        )
+    }
 
     Box(
         modifier = Modifier
