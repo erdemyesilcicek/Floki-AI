@@ -70,22 +70,7 @@ fun SignInPage(
     val scrollState = rememberScrollState()
 
     if (errorMessage == "E-posta doğrulaması gerekli!") {
-        CustomAlertDialog(
-            title = "Error",
-            message = errorMessage,
-            buttonText = "Send",
-            buttonColor = MaterialTheme.colorScheme.primary,
-            onButtonClick = {
-                //authViewModel.resendVerificationEmail()
-                Toast.makeText(context, "Verification email sent!", Toast.LENGTH_SHORT).show()
-            },
-            onDismiss = { /*TODO*/ },
-            isDoubleButton = true,
-            secondButtonText = "Cancel",
-            secondButtonColor = MaterialTheme.colorScheme.primary,
-            secondButtonOnClick = {
-            }
-        )
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
     Box(
