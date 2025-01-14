@@ -159,7 +159,7 @@ fun OptionsPage(
                     buttonColor = MaterialTheme.colorScheme.primary,
                     onButtonClick = {
                         userInformationViewModel.clearUserInformation()
-                        authViewModel.logout()
+                        authViewModel.signOut()
                         alertDialogActive = false
                         navController.navigate("GetStartedPage") {
                             popUpTo(0) { inclusive = true }

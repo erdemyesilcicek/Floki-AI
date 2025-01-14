@@ -1,5 +1,6 @@
 package com.erdemyesilcicek.flokiai.pages.authpages
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,11 +17,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -36,6 +40,7 @@ import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun SignUpPage(
@@ -48,19 +53,24 @@ fun SignUpPage(
     val confirmPassword = remember { mutableStateOf("") }
     val localErrorMessage = remember { mutableStateOf("") }
 
-    val loginState = authViewModel.loginState.value
-    val errorMessage = authViewModel.errorMessage.value
+    val errorMessage = authViewModel.errorMessage.collectAsState()
+    val isUserSignedUp = authViewModel.isUserSignedUp.collectAsState()
 
-    LaunchedEffect(loginState) {
-        if (loginState == true) {
-            userInformationViewModel.loadUserInformation()
-            navController.navigate("HomePage") {
-                popUpTo("SignUpPage") { inclusive = true }
-            }
-        }
-    }
+    val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
 
     val scrollState = rememberScrollState()
+
+    LaunchedEffect(isUserSignedUp.value) {
+        if (isUserSignedUp.value) {
+            // Kullanıcı başarıyla kayıt olduysa, bir alert veya Toast göster
+            Toast.makeText(
+                context,
+                "User signed up successfully",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -157,12 +167,6 @@ fun SignUpPage(
                         color = Color.Red,
                         style = MaterialTheme.typography.bodyMedium
                     )
-                } else if (errorMessage.isNotEmpty()) {
-                    Text(
-                        text = errorMessage,
-                        color = Color.Red,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
                 }
             }
 
@@ -173,18 +177,27 @@ fun SignUpPage(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                if (errorMessage.value.isNotEmpty()) {
+                    Text(
+                        text = errorMessage.value,
+                        color = Color.Red,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+
                 CustomExtendedFAB(
                     containerColor = MaterialTheme.colorScheme.primary,
                     text = stringResource(id = R.string.sign_up_page_button)
                 ) {
-                    if(email.value.isEmpty() || password.value.isEmpty() || confirmPassword.value.isEmpty()) {
+                    if (email.value.isEmpty() || password.value.isEmpty() || confirmPassword.value.isEmpty()) {
                         localErrorMessage.value = "Please fill in all fields"
-                    } else{
-                        if (password.value == confirmPassword.value) {
-                            localErrorMessage.value = ""
-                            authViewModel.register(email = email.value, password = password.value)
-                        } else {
-                            localErrorMessage.value = "Passwords do not match!"
+                    } else {
+                        coroutineScope.launch {
+                            authViewModel.signUp(
+                                email = email.value,
+                                password = password.value,
+                                confirmPassword = confirmPassword.value
+                            )
                         }
                     }
                 }
