@@ -179,6 +179,7 @@ fun SignInPage(
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }
+
                 CustomExtendedFAB(
                     containerColor = MaterialTheme.colorScheme.primary,
                     text = stringResource(id = R.string.sign_in_page_button)
