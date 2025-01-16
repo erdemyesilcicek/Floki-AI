@@ -123,6 +123,7 @@ fun SignInPage(
                     isBigCanvas = false
                 )
                 Button(
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
                     onClick = {
                         coroutineScope.launch {
                             authViewModel.resendVerificationEmail(email.value)
