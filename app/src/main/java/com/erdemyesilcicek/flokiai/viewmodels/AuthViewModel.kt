@@ -18,12 +18,10 @@ class AuthViewModel : ViewModel() {
     // UI State
     private val _authState = MutableStateFlow<AuthState>(AuthState.Idle)
     val authState: StateFlow<AuthState> = _authState
-
     private val _errorMessage = MutableStateFlow("")
     val errorMessage: StateFlow<String> get() = _errorMessage
 
     val currentUser = mutableStateOf(auth.currentUser)
-
 
     fun updateErrorMessage(message: String) {
         _errorMessage.value = message
@@ -36,12 +34,11 @@ class AuthViewModel : ViewModel() {
         _isUserSignedUp.value = isSignedUp
     }
 
-
     // Sign Up
     fun signUp(email: String, password: String, confirmPassword: String) {
         if (password != confirmPassword) {
             _authState.value = AuthState.Error("Passwords do not match")
-            return
+            // return {false, "Passwords do not match"} : Object
         }
         setUserSignedUp(true)
         updateErrorMessage("")
@@ -54,12 +51,18 @@ class AuthViewModel : ViewModel() {
                     auth.currentUser?.sendEmailVerification()?.addOnCompleteListener { emailTask ->
                         if (emailTask.isSuccessful) {
                             _authState.value = AuthState.Success("Verification email sent")
+                            // return {true, "Verification email sent"} : Object
                         } else {
-                            _authState.value = AuthState.Error(emailTask.exception?.message ?: "Failed to send verification email")
+                            _authState.value = AuthState.Error(
+                                emailTask.exception?.message ?: "Failed to send verification email"
+                            )
+                            // return {false, "Failed to send verification email"} : Object
+
                         }
                     }
                 } else {
                     _authState.value = AuthState.Error(task.exception?.message ?: "Sign Up failed")
+                    // return {false, "Sign Up failed"} : Object
                 }
             }
         }
@@ -100,7 +103,9 @@ class AuthViewModel : ViewModel() {
                         _authState.value = AuthState.Success("Verification email resent")
                         println("Verification email resent")
                     } else {
-                        _authState.value = AuthState.Error(task.exception?.message ?: "Failed to resend verification email")
+                        _authState.value = AuthState.Error(
+                            task.exception?.message ?: "Failed to resend verification email"
+                        )
                         println("Failed to resend verification email")
                     }
                 }
@@ -125,8 +130,6 @@ class AuthViewModel : ViewModel() {
         data class Error(val message: String) : AuthState()
     }
 }
-
-
 
 /*
 class AuthViewModel : ViewModel() {

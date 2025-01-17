@@ -193,7 +193,8 @@ fun SignUpPage(
                         localErrorMessage.value = "Please fill in all fields"
                     } else {
                         coroutineScope.launch {
-                            authViewModel.signUp(
+                            //val response =
+                                authViewModel.signUp(
                                 email = email.value,
                                 password = password.value,
                                 confirmPassword = confirmPassword.value
