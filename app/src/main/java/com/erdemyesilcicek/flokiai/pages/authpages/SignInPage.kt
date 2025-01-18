@@ -15,10 +15,13 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,32 +32,44 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.animations.LottieAnimation
+import com.erdemyesilcicek.flokiai.auth.AuthViewModel
+import com.erdemyesilcicek.flokiai.auth.AuthViewModelFactory
+import com.erdemyesilcicek.flokiai.components.CustomAlertDialog
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomTextButton
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.utils.myFont
-import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun SignInPage(
     navController: NavController,
-    authViewModel: AuthViewModel,
-    userInformationViewModel: UserInformationViewModel
+    viewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())
 ) {
-    val currentUser = authViewModel.currentUser.value
-    val context = LocalContext.current
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
-    val errorMessage = authViewModel.errorMessage.collectAsState()
-    val coroutineScope = rememberCoroutineScope()
+    val authState by viewModel.authState.collectAsState()
+    var clicked by remember { mutableStateOf(false) }
 
-    val localErrorMessage = remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
+    var alertDialogActive by remember { mutableStateOf<Boolean>(false) }
+
+    LaunchedEffect(authState.success, clicked) {
+        if (viewModel.isEmailVerified()){
+            navController.navigate("HomePage") {
+                popUpTo("SignInPage") {
+                    inclusive = true
+                }
+            }
+        } else {
+            alertDialogActive = true
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -69,20 +84,10 @@ fun SignInPage(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Top
-            ) {
+            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top) {
                 LottieAnimation(animation = R.raw.lottietap)
             }
-
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp),
-            ) {
+            Column(modifier = Modifier.fillMaxWidth().padding(start = 10.dp, end = 10.dp),) {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -106,12 +111,7 @@ fun SignInPage(
                     color = MaterialTheme.colorScheme.onPrimary
                 )
             }
-
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp)
-            ) {
+            Column(modifier = Modifier.fillMaxWidth().padding(start = 10.dp, end = 10.dp)) {
                 CustomTextInput(
                     title = stringResource(id = R.string.title_email),
                     label = stringResource(id = R.string.label_email),
@@ -122,16 +122,7 @@ fun SignInPage(
                     keyboardType = KeyboardType.Email,
                     isBigCanvas = false
                 )
-                Button(
-                    modifier = Modifier.align(Alignment.CenterHorizontally),
-                    onClick = {
-                        coroutineScope.launch {
-                            authViewModel.resendVerificationEmail(email.value)
-                        }
-                    }
-                ) {
-                    Text(text = "RESEND BUTTON")
-                }
+
                 CustomTextInput(
                     title = stringResource(id = R.string.title_password),
                     label = stringResource(id = R.string.label_password),
@@ -143,21 +134,15 @@ fun SignInPage(
                     isBigCanvas = false
                 )
             }
-            if (errorMessage.value.isNotEmpty()) {
+
+            if (authState.message.isNotEmpty()) {
                 Text(
-                    text = errorMessage.value,
-                    color = Color.Red,
-                    style = MaterialTheme.typography.bodyMedium
+                    authState.message,
+                    color = if (authState.success) Color.Green else Color.Red,
+                    fontSize = 16.sp,
                 )
             }
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(end = 14.dp),
-                horizontalArrangement = Arrangement.End,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+            Row(modifier = Modifier.fillMaxWidth().padding(end = 14.dp), horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.CenterVertically) {
                 CustomTextButton(
                     text = stringResource(id = R.string.sign_in_page_forgot_password),
                     color = MaterialTheme.colorScheme.primary
@@ -165,6 +150,7 @@ fun SignInPage(
                     navController.navigate("ForgotPasswordPage")
                 }
             }
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -172,41 +158,41 @@ fun SignInPage(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
-                if (localErrorMessage.value.isNotEmpty()) {
-                    Text(
-                        text = localErrorMessage.value,
-                        color = Color.Red,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                }
-
                 CustomExtendedFAB(
                     containerColor = MaterialTheme.colorScheme.primary,
                     text = stringResource(id = R.string.sign_in_page_button)
                 ) {
-                    if (email.value.isEmpty() || password.value.isEmpty()) {
-                        authViewModel.updateErrorMessage("Please fill in all fields.")
-                    } else {
-                        localErrorMessage.value = ""
-                        coroutineScope.launch {
-                            if(currentUser != null) {
-                                authViewModel.signIn(email.value, password.value)
-                            } else {
-                                // burada if ile kontrol edilmeli duruma göre hata mesajı verilmeli
-                                println("CURRENT USER NULL GELİYOR.")
-                            }
-                        }
-                    }
+                    viewModel.signIn(email.value, password.value)
+                    clicked = true
                 }
+
                 CustomTextButton(
                     text = stringResource(id = R.string.sign_in_page_create_account),
                     color = MaterialTheme.colorScheme.onBackground
                 ) {
-                    localErrorMessage.value = ""
-                    authViewModel.updateErrorMessage("")
                     navController.navigate("SignUpPage")
                 }
+            }
+            if(alertDialogActive){
+                CustomAlertDialog(
+                    title ="Email Verification",
+                    message ="Please verify your email address to continue.",
+                    buttonText ="OK",
+                    buttonColor = MaterialTheme.colorScheme.tertiary,
+                    onButtonClick = {
+                        alertDialogActive = false
+                    },
+                    onDismiss = {
+                        alertDialogActive = false
+                    },
+                    isDoubleButton = true,
+                    secondButtonText = "Resend",
+                    secondButtonColor = MaterialTheme.colorScheme.primary,
+                    secondButtonOnClick = {
+                        alertDialogActive = false
+                        viewModel.sendEmailVerification()
+                    }
+                )
             }
         }
     }

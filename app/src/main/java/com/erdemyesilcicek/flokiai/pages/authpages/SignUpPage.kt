@@ -18,9 +18,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,46 +33,32 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.animations.LottieAnimation
+import com.erdemyesilcicek.flokiai.auth.AuthViewModel
+import com.erdemyesilcicek.flokiai.auth.AuthViewModelFactory
+import com.erdemyesilcicek.flokiai.components.CustomAlertDialog
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomTextButton
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.utils.myFont
-import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun SignUpPage(
     navController: NavController,
-    authViewModel: AuthViewModel,
-    userInformationViewModel: UserInformationViewModel
+    viewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())
 ) {
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     val confirmPassword = remember { mutableStateOf("") }
-    val localErrorMessage = remember { mutableStateOf("") }
-
-    val errorMessage = authViewModel.errorMessage.collectAsState()
-    val isUserSignedUp = authViewModel.isUserSignedUp.collectAsState()
-
-    val context = LocalContext.current
-    val coroutineScope = rememberCoroutineScope()
+    val authState by viewModel.authState.collectAsState()
 
     val scrollState = rememberScrollState()
-
-    LaunchedEffect(isUserSignedUp.value) {
-        if (isUserSignedUp.value) {
-            // Kullanıcı başarıyla kayıt olduysa, bir alert veya Toast göster
-            Toast.makeText(
-                context,
-                "User signed up successfully",
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
+    var alertDialogActive by remember { mutableStateOf<Boolean>(false) }
 
     Box(
         modifier = Modifier
@@ -160,14 +148,6 @@ fun SignUpPage(
                     keyboardType = KeyboardType.Password,
                     isBigCanvas = false
                 )
-
-                if (localErrorMessage.value.isNotEmpty()) {
-                    Text(
-                        text = localErrorMessage.value,
-                        color = Color.Red,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                }
             }
 
             Column(
@@ -177,29 +157,21 @@ fun SignUpPage(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                if (errorMessage.value.isNotEmpty()) {
-                    Text(
-                        text = errorMessage.value,
-                        color = Color.Red,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                }
-
                 CustomExtendedFAB(
                     containerColor = MaterialTheme.colorScheme.primary,
                     text = stringResource(id = R.string.sign_up_page_button)
                 ) {
-                    if (email.value.isEmpty() || password.value.isEmpty() || confirmPassword.value.isEmpty()) {
-                        localErrorMessage.value = "Please fill in all fields"
-                    } else {
-                        coroutineScope.launch {
-                            //val response =
-                                authViewModel.signUp(
-                                email = email.value,
-                                password = password.value,
-                                confirmPassword = confirmPassword.value
-                            )
-                        }
+                    viewModel.signUp(email.value, password.value, confirmPassword.value)
+                }
+                if (authState.message.isNotEmpty()) {
+                    Text(
+                        authState.message,
+                        color = if (authState.success) Color.Green else Color.Red
+                    )
+                }
+                LaunchedEffect(authState.success) {
+                    if (authState.success) {
+                        alertDialogActive = true
                     }
                 }
                 CustomTextButton(
@@ -208,6 +180,21 @@ fun SignUpPage(
                 ) {
                     navController.navigate("SignInPage")
                 }
+            }
+            if(alertDialogActive){
+                CustomAlertDialog(
+                    title = "Eposta doğrulama",
+                    message = authState.message,
+                    buttonText ="Tamam",
+                    buttonColor =MaterialTheme.colorScheme.primary,
+                    onButtonClick = {
+                        alertDialogActive = false
+                        navController.navigate("SignInPage")
+                    },
+                    onDismiss = {
+                        alertDialogActive = false
+                        navController.navigate("SignInPage")
+                    })
             }
         }
     }

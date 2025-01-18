@@ -23,12 +23,10 @@ import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.animations.LottieAnimation
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.utils.myFont
-import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
 
 @Composable
 fun GetStartedPage(
-    navController: NavController,
-    authViewModel: AuthViewModel
+    navController: NavController
 ) {
     Column(
         modifier = Modifier

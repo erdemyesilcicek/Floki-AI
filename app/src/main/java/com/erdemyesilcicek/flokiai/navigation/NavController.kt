@@ -1,6 +1,7 @@
 package com.erdemyesilcicek.flokiai.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -23,7 +24,6 @@ import com.erdemyesilcicek.flokiai.pages.optionspages.Feedback
 import com.erdemyesilcicek.flokiai.pages.optionspages.PrivacyPolicy
 import com.erdemyesilcicek.flokiai.pages.optionspages.TermsOfUse
 import com.erdemyesilcicek.flokiai.pages.optionspages.UserInformation
-import com.erdemyesilcicek.flokiai.viewmodels.AuthViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.GeminiViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.HomeStackViewModel
@@ -34,43 +34,49 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
 fun NavController(
-    authViewModel: AuthViewModel,
     categoryViewModel: CategoryViewModel,
     userInformationViewModel: UserInformationViewModel,
     loadingViewModel: LoadingViewModel,
     geminiViewModel: GeminiViewModel,
     db: FirebaseFirestore,
     auth: FirebaseAuth,
-    startDestination: String,
     homeStackViewModel: HomeStackViewModel
 ) {
     val navController = rememberNavController()
     val context = LocalContext.current
 
+    LaunchedEffect(Unit) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser == null || !currentUser.isEmailVerified) {
+            navController.navigate("GetStartedPage") {
+                popUpTo("GetStartedPage") { inclusive = true }
+            }
+        } else {
+            navController.navigate("HomePage") {
+                popUpTo("GetStartedPage") { inclusive = true }
+            }
+        }
+    }
+
     NavHost(
         navController = navController,
-        startDestination = startDestination
+        startDestination = "GetStartedPage"
     ) {
         composable(route = "GetStartedPage") {
             GetStartedPage(
-                navController,
-                authViewModel
+                navController
             )
         }
 
         composable(route = "SignUpPage") {
             SignUpPage(
-                navController,
-                authViewModel,
-                userInformationViewModel
+                navController
             )
         }
 
         composable(route = "SignInPage") {
             SignInPage(
-                navController,
-                authViewModel,
-                userInformationViewModel
+                navController
             )
         }
 
@@ -146,7 +152,6 @@ fun NavController(
         composable(route = "OptionsPage") {
             OptionsPage(
                 navController,
-                authViewModel,
                 userInformationViewModel,
                 categoryViewModel,
                 loadingViewModel
