@@ -12,6 +12,11 @@ import androidx.navigation.NavController
 
 @Composable
 fun ForgotPasswordPage(navController: NavController) {
+    // mail girilmesi için bir textfield oluşturulacak.
+    // bir de altına reset password butonu. butona tıklayınca link gidiyor. gönderildiğinde alert ile bilgi verilsin.
+    // alertteki butona tıklayınca geri dönülsün (sign in).
+    // reset password
+
     Column(
         modifier = Modifier
             .fillMaxSize(),

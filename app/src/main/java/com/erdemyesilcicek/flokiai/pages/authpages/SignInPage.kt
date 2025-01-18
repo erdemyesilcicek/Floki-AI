@@ -84,10 +84,18 @@ fun SignInPage(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top
+            ) {
                 LottieAnimation(animation = R.raw.lottietap)
             }
-            Column(modifier = Modifier.fillMaxWidth().padding(start = 10.dp, end = 10.dp),) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 10.dp, end = 10.dp)
+            ) {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -111,7 +119,11 @@ fun SignInPage(
                     color = MaterialTheme.colorScheme.onPrimary
                 )
             }
-            Column(modifier = Modifier.fillMaxWidth().padding(start = 10.dp, end = 10.dp)) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 10.dp, end = 10.dp)
+            ) {
                 CustomTextInput(
                     title = stringResource(id = R.string.title_email),
                     label = stringResource(id = R.string.label_email),
@@ -142,7 +154,13 @@ fun SignInPage(
                     fontSize = 16.sp,
                 )
             }
-            Row(modifier = Modifier.fillMaxWidth().padding(end = 14.dp), horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(end = 14.dp),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 CustomTextButton(
                     text = stringResource(id = R.string.sign_in_page_forgot_password),
                     color = MaterialTheme.colorScheme.primary
@@ -173,11 +191,11 @@ fun SignInPage(
                     navController.navigate("SignUpPage")
                 }
             }
-            if(alertDialogActive){
+            if (alertDialogActive) {
                 CustomAlertDialog(
-                    title ="Email Verification",
-                    message ="Please verify your email address to continue.",
-                    buttonText ="OK",
+                    title = "Email Verification",
+                    message = "Please verify your email address to continue.",
+                    buttonText = "OK",
                     buttonColor = MaterialTheme.colorScheme.tertiary,
                     onButtonClick = {
                         alertDialogActive = false
