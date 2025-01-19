@@ -1,17 +1,10 @@
 package com.erdemyesilcicek.flokiai.auth
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
-class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
+class AuthViewModel : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
-
-    private val _authState = MutableStateFlow(AuthResult(success = false, message = ""))
-    val authState: StateFlow<AuthResult> = _authState
 
     fun signUp(
         email: String,
@@ -87,18 +80,29 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         }
     }
 
-    fun resetPassword(email: String, onComplete: (Boolean, String?) -> Unit) {
-        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+    fun resetPassword(
+        email: String,
+        onSuccess: (Boolean) -> Unit,
+        onError: (String) -> Unit
+    ) {
+        if (email.isEmpty()) {
+            onError("Please enter your email address.")
+            return
+        }
+        auth.sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    onComplete(true, "başarılı")
+                    onSuccess(true)
                 } else {
-                    onComplete(false, task.exception?.message)
+                    onError("Reset password email could not be sent.")
                 }
             }
     }
 
-    fun sendEmailVerification(onSuccess: (Boolean) -> Unit, onError: (String) -> Unit) {
+    fun sendEmailVerification(
+        onSuccess: (Boolean) -> Unit,
+        onError: (String) -> Unit
+    ) {
         if (auth.currentUser == null) {
             return
         }

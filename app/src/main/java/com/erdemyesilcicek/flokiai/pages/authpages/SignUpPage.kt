@@ -168,14 +168,19 @@ fun SignUpPage(
                     containerColor = MaterialTheme.colorScheme.primary,
                     text = stringResource(id = R.string.sign_up_page_button)
                 ) {
-                    viewModel.signUp(email.value, password.value, confirmPassword.value, { isVerified ->
-                        if (isVerified) {
-                            message.value = ""
-                            alertDialogActive = true
-                        }
-                    }, { error ->
-                        message.value = error
-                    })
+                    viewModel.signUp(
+                        email.value,
+                        password.value,
+                        confirmPassword.value,
+                        { isVerified ->
+                            if (isVerified) {
+                                message.value = ""
+                                alertDialogActive = true
+                            }
+                        },
+                        { error ->
+                            message.value = error
+                        })
                 }
 
                 CustomTextButton(
@@ -185,12 +190,12 @@ fun SignUpPage(
                     navController.navigate("SignInPage")
                 }
             }
-            if(alertDialogActive){
+            if (alertDialogActive) {
                 CustomAlertDialog(
                     title = "Eposta doğrulama",
                     message = "Kayıt başarılı!, E-posta doğrulaması gerekli.",
-                    buttonText ="Tamam",
-                    buttonColor =MaterialTheme.colorScheme.primary,
+                    buttonText = "Tamam",
+                    buttonColor = MaterialTheme.colorScheme.primary,
                     onButtonClick = {
                         alertDialogActive = false
                         navController.navigate("SignInPage")

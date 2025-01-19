@@ -85,6 +85,7 @@ fun AiTaleCard(
         }
     }
 }
+
 @Composable
 fun AiTaleCardTitle(title: String) {
     Text(

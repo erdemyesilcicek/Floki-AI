@@ -78,7 +78,6 @@ fun OptionsPage(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             var alertDialogActive by remember { mutableStateOf<Boolean>(false) }
-            val authState by viewModel.authState.collectAsState()
 
             val optionsList = listOf<OptionsCard>(
                 OptionsCard(
