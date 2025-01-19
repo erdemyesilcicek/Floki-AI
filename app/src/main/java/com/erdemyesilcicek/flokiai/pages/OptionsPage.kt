@@ -163,7 +163,18 @@ fun OptionsPage(
                     buttonText = stringResource(id = R.string.options_page_exit_alert_first_button),
                     buttonColor = MaterialTheme.colorScheme.primary,
                     onButtonClick = {
-                        viewModel.signOut()
+                        viewModel.signOut(
+                            onSuccess = {
+                                userInformationViewModel.clearUserInformation()
+                                alertDialogActive = false
+                                navController.navigate("GetStartedPage") {
+                                    popUpTo(0) { inclusive = true }
+                                }
+                            },
+                            onError = {
+                                alertDialogActive = false
+                            }
+                        )
                     },
                     onDismiss = { /*TODO*/ },
                     isDoubleButton = true,
@@ -173,15 +184,6 @@ fun OptionsPage(
                         alertDialogActive = false
                     },
                 )
-            }
-            LaunchedEffect(authState.success) {
-                if (authState.success) {
-                    userInformationViewModel.clearUserInformation()
-                    alertDialogActive = false
-                    navController.navigate("GetStartedPage") {
-                        popUpTo(0) { inclusive = true }
-                    }
-                }
             }
         }
     }

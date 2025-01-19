@@ -17,7 +17,6 @@ class AuthRepository(private val firebaseAuth: FirebaseAuth) {
         return try {
             firebaseAuth.createUserWithEmailAndPassword(email, password).await()
             if (firebaseAuth.currentUser != null) {
-                sendEmailVerification()
                 AuthResult(
                     success = true,
                     message = "User registered successfully, please verify your email address."
@@ -55,7 +54,7 @@ class AuthRepository(private val firebaseAuth: FirebaseAuth) {
         }
         return try {
             firebaseAuth.signInWithEmailAndPassword(email, password).await()
-            if (firebaseAuth.currentUser != null && isEmailVerified()) {
+            if (firebaseAuth.currentUser != null) {
                 return AuthResult(success = true, message = "User signed in successfully.")
             } else {
                 return AuthResult(success = false, message = "Please verify your email address.")
@@ -85,9 +84,5 @@ class AuthRepository(private val firebaseAuth: FirebaseAuth) {
         } catch (e: Exception) {
             AuthResult(success = false, message = e.message ?: "Unknown error occurred.")
         }
-    }
-
-    fun isEmailVerified(): Boolean {
-        return firebaseAuth.currentUser?.isEmailVerified == true
     }
 }

@@ -53,23 +53,9 @@ fun SignInPage(
 ) {
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
-    val authState by viewModel.authState.collectAsState()
-    var clicked by remember { mutableStateOf(false) }
-
+    val message = remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
     var alertDialogActive by remember { mutableStateOf<Boolean>(false) }
-
-    LaunchedEffect(authState.success, clicked) {
-        if (viewModel.isEmailVerified()){
-            navController.navigate("HomePage") {
-                popUpTo("SignInPage") {
-                    inclusive = true
-                }
-            }
-        } else {
-            alertDialogActive = true
-        }
-    }
 
     Box(
         modifier = Modifier
@@ -147,13 +133,14 @@ fun SignInPage(
                 )
             }
 
-            if (authState.message.isNotEmpty()) {
+            if (message.value.isNotEmpty()) {
                 Text(
-                    authState.message,
-                    color = if (authState.success) Color.Green else Color.Red,
+                    message.value,
+                    color = Color.Red,
                     fontSize = 16.sp,
                 )
             }
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -180,8 +167,21 @@ fun SignInPage(
                     containerColor = MaterialTheme.colorScheme.primary,
                     text = stringResource(id = R.string.sign_in_page_button)
                 ) {
-                    viewModel.signIn(email.value, password.value)
-                    clicked = true
+                    viewModel.signIn(email.value, password.value, { isVerified ->
+                        if (isVerified) {
+                            message.value = "Giriş başarılı!"
+                            navController.navigate("HomePage") {
+                                popUpTo("SignInPage") {
+                                    inclusive = true
+                                }
+                            }
+                        } else {
+                            message.value = "E-posta doğrulanmamış."
+                            alertDialogActive = true
+                        }
+                    }, { error ->
+                        message.value = error
+                    })
                 }
 
                 CustomTextButton(
@@ -208,7 +208,12 @@ fun SignInPage(
                     secondButtonColor = MaterialTheme.colorScheme.primary,
                     secondButtonOnClick = {
                         alertDialogActive = false
-                        viewModel.sendEmailVerification()
+                        viewModel.sendEmailVerification(
+                            onSuccess = {
+                                message.value = "Email sent successfully."
+                            }, onError = {
+                                message.value = it
+                            })
                     }
                 )
             }
