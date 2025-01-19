@@ -49,6 +49,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun SignInPage(
     navController: NavController,
+    userInformationViewModel: UserInformationViewModel,
     viewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())
 ) {
     val email = remember { mutableStateOf("") }
@@ -170,6 +171,7 @@ fun SignInPage(
                     viewModel.signIn(email.value, password.value, { isVerified ->
                         if (isVerified) {
                             message.value = "Giriş başarılı!"
+                            userInformationViewModel.loadUserInformation()
                             navController.navigate("HomePage") {
                                 popUpTo("SignInPage") {
                                     inclusive = true

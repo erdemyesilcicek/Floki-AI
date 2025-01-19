@@ -52,6 +52,7 @@ fun NavController(
                 popUpTo("GetStartedPage") { inclusive = true }
             }
         } else {
+            userInformationViewModel.loadUserInformation()
             navController.navigate("HomePage") {
                 popUpTo("GetStartedPage") { inclusive = true }
             }
@@ -76,7 +77,8 @@ fun NavController(
 
         composable(route = "SignInPage") {
             SignInPage(
-                navController
+                navController,
+                userInformationViewModel
             )
         }
 
