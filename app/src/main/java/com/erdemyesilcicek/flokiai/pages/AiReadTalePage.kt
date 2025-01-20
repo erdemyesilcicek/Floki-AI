@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AutoFixHigh
-import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -35,9 +34,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.components.CustomAlertDialog
-import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.HeaderBar
-import com.erdemyesilcicek.flokiai.lists.TaleList
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
@@ -53,6 +50,7 @@ fun AiReadTalePage(
 ) {
     var TaleItself = remember { mutableStateOf<String>("") }
     var TaleTitle = remember { mutableStateOf<String>("") }
+
     var deleteAlertDialogActive by remember { mutableStateOf<Boolean>(false) }
 
     fun onDelete(taleId: String) {
@@ -168,7 +166,7 @@ fun AiReadTalePage(
                             }
                         }
                     },
-                    onDismiss = { /*TODO*/ },
+                    onDismiss = { deleteAlertDialogActive = false },
                     isDoubleButton = true,
                     secondButtonText = stringResource(id = R.string.ai_created_tale_page_alert_second_button),
                     secondButtonColor = MaterialTheme.colorScheme.primary,

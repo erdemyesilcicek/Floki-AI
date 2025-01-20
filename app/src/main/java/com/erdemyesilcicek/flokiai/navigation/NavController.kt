@@ -47,6 +47,7 @@ fun NavController(
 
     LaunchedEffect(Unit) {
         val currentUser = FirebaseAuth.getInstance().currentUser
+
         if (currentUser == null || !currentUser.isEmailVerified) {
             navController.navigate("GetStartedPage") {
                 popUpTo("GetStartedPage") { inclusive = true }
@@ -63,30 +64,13 @@ fun NavController(
         navController = navController,
         startDestination = "GetStartedPage"
     ) {
-        composable(route = "GetStartedPage") {
-            GetStartedPage(
-                navController
-            )
-        }
+        composable(route = "GetStartedPage") { GetStartedPage(navController) }
 
-        composable(route = "SignUpPage") {
-            SignUpPage(
-                navController
-            )
-        }
+        composable(route = "SignUpPage") { SignUpPage(navController) }
 
-        composable(route = "SignInPage") {
-            SignInPage(
-                navController,
-                userInformationViewModel
-            )
-        }
+        composable(route = "SignInPage") { SignInPage(navController, userInformationViewModel) }
 
-        composable(route = "ForgotPasswordPage") {
-            ForgotPasswordPage(
-                navController
-            )
-        }
+        composable(route = "ForgotPasswordPage") { ForgotPasswordPage(navController) }
 
         composable(route = "HomePage") {
             HomePage(
@@ -177,17 +161,9 @@ fun NavController(
             )
         }
 
-        composable(route = "PrivacyPolicy") {
-            PrivacyPolicy(
-                navController
-            )
-        }
+        composable(route = "PrivacyPolicy") { PrivacyPolicy(navController) }
 
-        composable(route = "TermsOfUse") {
-            TermsOfUse(
-                navController
-            )
-        }
+        composable(route = "TermsOfUse") { TermsOfUse(navController) }
 
         composable(route = "TaleCard") {
             TaleCard(

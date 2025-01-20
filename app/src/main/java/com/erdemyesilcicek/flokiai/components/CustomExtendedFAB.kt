@@ -34,9 +34,9 @@ fun CustomExtendedFAB(
             .clip(RoundedCornerShape(80.dp))
     ) {
         Row(
+            modifier = Modifier.padding(24.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.padding(24.dp)
         ) {
             Text(
                 color = Color.White,

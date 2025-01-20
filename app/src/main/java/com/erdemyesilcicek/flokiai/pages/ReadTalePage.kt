@@ -1,7 +1,5 @@
 package com.erdemyesilcicek.flokiai.pages
 
-import android.content.Context
-import android.speech.tts.TextToSpeech
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AutoFixHigh
-import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -29,17 +26,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
-import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.HeaderBar
-import com.erdemyesilcicek.flokiai.datas.UserInformationModel
 import com.erdemyesilcicek.flokiai.lists.TaleList
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
-import com.google.firebase.Firebase
-import java.util.Locale
-import java.util.UUID
-
 
 @Composable
 fun ReadTalePage(
@@ -48,7 +39,6 @@ fun ReadTalePage(
     categoryViewModel: CategoryViewModel,
     loadingViewModel: LoadingViewModel
 ) {
-
     val tale = TaleList.get(id!!)
 
     Scaffold(

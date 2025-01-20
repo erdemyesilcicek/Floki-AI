@@ -5,16 +5,11 @@ import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AutoAwesome
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -70,7 +65,6 @@ fun AiCreatedTalePage(navController: NavController) {
                             val taleSummary = document.data.get("TaleSummary").toString()
                             val UserId = document.data.get("userId").toString()
                             val genreImage = document.data.get("GenreImage").toString().toInt()
-                            //println("Genre Image: $genreImage")
                             val taleId = document.id
 
                             AiTale(
@@ -109,7 +103,10 @@ fun AiCreatedTalePage(navController: NavController) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Image(painter = painterResource(id = R.drawable.flokiwaitscreen), contentDescription = "")
+                Image(
+                    painter = painterResource(id = R.drawable.flokiwaitscreen),
+                    contentDescription = ""
+                )
 
                 Column(
                     modifier = Modifier

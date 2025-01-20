@@ -70,7 +70,7 @@ fun HomePage(
                 if (selectedTab == 1) {
                     stringResource(id = R.string.home_page_world_of_tales)
                 } else {
-                    stringResource(id =R.string.home_page_created_tales)
+                    stringResource(id = R.string.home_page_created_tales)
                 },
                 navController,
                 loadingViewModel,
@@ -83,7 +83,7 @@ fun HomePage(
         floatingActionButton = {
             CustomExtendedFAB(
                 MaterialTheme.colorScheme.primary,
-                stringResource(id =R.string.home_page_button),
+                stringResource(id = R.string.home_page_button),
                 onClick = {
                     navController.navigate("CreateTalePage")
                 })
@@ -96,7 +96,6 @@ fun HomePage(
                 .padding(paddingValues)
                 .background(Color.White)
         ) {
-
             Row(
                 modifier = Modifier
                     .fillMaxWidth()

@@ -21,18 +21,16 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            // Create the Firebase instances
             val db = Firebase.firestore
             val auth = Firebase.auth
 
-            // Create the view models
-            val userInformationViewModel : UserInformationViewModel = UserInformationViewModel(
+            val userInformationViewModel: UserInformationViewModel = UserInformationViewModel(
                 UserInformationRepository()
             )
-            val categoryViewModel : CategoryViewModel = CategoryViewModel()
-            val loadingViewModel : LoadingViewModel = LoadingViewModel()
-            val geminiViewModel : GeminiViewModel = GeminiViewModel()
-            val homeStackViewModel : HomeStackViewModel = HomeStackViewModel()
+            val categoryViewModel: CategoryViewModel = CategoryViewModel()
+            val loadingViewModel: LoadingViewModel = LoadingViewModel()
+            val geminiViewModel: GeminiViewModel = GeminiViewModel()
+            val homeStackViewModel: HomeStackViewModel = HomeStackViewModel()
 
             FlokiAITheme() {
                 NavController(

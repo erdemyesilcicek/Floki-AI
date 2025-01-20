@@ -26,11 +26,9 @@ class UserInformationViewModel(private val repository: UserInformationRepository
             result.onSuccess {
                 _userInformation.value = it
                 _error.value = null
-                //println("User information loaded")
             }.onFailure {
                 _userInformation.value = null
                 _error.value = it.message
-                //println("User information loading failed")
             }
         }
     }
@@ -48,7 +46,6 @@ class UserInformationViewModel(private val repository: UserInformationRepository
     }
 
     fun clearUserInformation() {
-        /*
         viewModelScope.launch {
             val result = repository.clearUserInformation()
             result.onSuccess {
@@ -58,8 +55,6 @@ class UserInformationViewModel(private val repository: UserInformationRepository
                 _error.value = it.message
             }
         }
-
-         */
         _userInformation.value = null
     }
 }

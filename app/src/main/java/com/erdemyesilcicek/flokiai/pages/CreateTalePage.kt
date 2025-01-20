@@ -61,7 +61,6 @@ fun CreateTalePage(
     var dialogTitle by remember { mutableStateOf("") }
     var dialogMessage by remember { mutableStateOf("") }
 
-    // WHEN THE USER DOES NOT SELECT A CATEGORY, THE DIALOG WILL APPEAR
     val genreTitle = stringResource(id = R.string.create_tale_page_dialog__title_genre)
     val seasonTitle = stringResource(id = R.string.create_tale_page_dialog__title_season)
     val animalTitle = stringResource(id = R.string.create_tale_page_dialog__title_animal)
@@ -77,9 +76,9 @@ fun CreateTalePage(
 
     if (userShowDialog) {
         CustomAlertDialog(
-            title = stringResource(id =R.string.create_tale_page_user_alert_title),
-            message = stringResource(id =R.string.create_tale_page_user_alert_message),
-            buttonText = stringResource(id =R.string.create_tale_page_user_alert_button),
+            title = stringResource(id = R.string.create_tale_page_user_alert_title),
+            message = stringResource(id = R.string.create_tale_page_user_alert_message),
+            buttonText = stringResource(id = R.string.create_tale_page_user_alert_button),
             buttonColor = MaterialTheme.colorScheme.primary,
             onButtonClick = {
                 navController.navigate("UserInformation")

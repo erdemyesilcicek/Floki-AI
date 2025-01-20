@@ -77,9 +77,6 @@ fun UserInformation(
 
     var alertDialogActive by remember { mutableStateOf<Boolean>(false) }
 
-    LaunchedEffect(error) {
-        //damn empty user infos
-    }
     if (alertDialogActive == true) {
         CustomAlertDialog(
             title = stringResource(id = R.string.user_information_page_alert_title),
@@ -127,9 +124,10 @@ fun UserInformation(
                         petName = petName,
                         language = language
                     )
-                    userInformationViewModel.updateUserInformation(updatedUserInfo).let {
-                        alertDialogActive = true
-                    }
+                    userInformationViewModel
+                        .updateUserInformation(updatedUserInfo).let {
+                            alertDialogActive = true
+                        }
                 }
             )
         },

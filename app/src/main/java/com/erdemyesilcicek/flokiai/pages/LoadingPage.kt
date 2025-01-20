@@ -122,7 +122,7 @@ fun LoadingPage(
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = stringResource(id =R.string.loading_page_please_wait),
+                text = stringResource(id = R.string.loading_page_please_wait),
                 textAlign = TextAlign.Center,
                 fontSize = 40.sp,
                 fontWeight = FontWeight.SemiBold,
@@ -132,7 +132,7 @@ fun LoadingPage(
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = stringResource(id =R.string.loading_page_your_tale_created),
+                text = stringResource(id = R.string.loading_page_your_tale_created),
                 textAlign = TextAlign.Center,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.SemiBold,

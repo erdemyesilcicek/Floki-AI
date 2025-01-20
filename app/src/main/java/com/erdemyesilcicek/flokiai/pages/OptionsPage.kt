@@ -20,8 +20,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -100,7 +98,7 @@ fun OptionsPage(
                     itemText = stringResource(id = R.string.options_page_privacy_policy),
                     summary = stringResource(id = R.string.options_page_privacy_policy_summary),
                     onClick = {
-                        //privacy policy
+                        navController.navigate("PrivacyPolicy")
                     }
                 ),
                 OptionsCard(
@@ -109,7 +107,7 @@ fun OptionsPage(
                     itemText = stringResource(id = R.string.options_page_terms_of_use),
                     summary = stringResource(id = R.string.options_page_terms_of_use_summary),
                     onClick = {
-                        //terms of use
+                        navController.navigate("TermsOfUse")
                     }
                 ),
                 OptionsCard(
@@ -175,7 +173,7 @@ fun OptionsPage(
                             }
                         )
                     },
-                    onDismiss = { /*TODO*/ },
+                    onDismiss = { alertDialogActive = false },
                     isDoubleButton = true,
                     secondButtonText = stringResource(id = R.string.options_page_exit_alert_second_button),
                     secondButtonColor = MaterialTheme.colorScheme.primary,

@@ -122,7 +122,7 @@ fun HeaderBar(
             }
         },
         actions = {
-            if(currentRoute == "AiReadTalePage?taleId={taleId}"){
+            if (currentRoute == "AiReadTalePage?taleId={taleId}") {
                 IconButton(
                     onClick = {
                         deleteOnClick()
@@ -137,7 +137,7 @@ fun HeaderBar(
                         tint = MaterialTheme.colorScheme.onBackground
                     )
                 }
-            } else{
+            } else {
                 IconButton(
                     onClick = {
                         if (currentRoute != "OptionsPage") {
