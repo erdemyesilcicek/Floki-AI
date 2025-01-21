@@ -20,6 +20,7 @@ class CategoryViewModel : ViewModel() {
     private val _selectedFamily = mutableStateListOf<CategoryCard>()
     val selectedFamily: List<CategoryCard> get() = _selectedFamily
 
+    /*
     fun onSingleSelection(category: CategoryCard, selectedList: MutableList<CategoryCard>) {
         selectedList.clear()
         selectedList.add(category)
@@ -32,6 +33,8 @@ class CategoryViewModel : ViewModel() {
             selectedList.add(category)
         }
     }
+
+     */
 
     fun selectGenre(category: CategoryCard) {
         _selectedGenre.clear()
