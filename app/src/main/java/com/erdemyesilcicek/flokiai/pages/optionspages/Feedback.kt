@@ -15,8 +15,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
+import com.erdemyesilcicek.flokiai.components.CustomAlertDialog
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.components.HeaderBar
@@ -45,6 +48,7 @@ fun Feedback(
     val message = remember { mutableStateOf("") }
 
     val scrollState = rememberScrollState()
+    var alertDialogActive by remember { mutableStateOf<Boolean>(false) }
 
     Scaffold(
         topBar = {
@@ -122,10 +126,28 @@ fun Feedback(
                     MaterialTheme.colorScheme.primary,
                     stringResource(id = R.string.feedback_page_button),
                     onClick = {
+                        alertDialogActive = true
                         println(message.value)
                     }
                 )
             }
+        }
+        if(alertDialogActive){
+            CustomAlertDialog(
+                title = stringResource(id = R.string.feedback_page_alert_title),
+                message = stringResource(id = R.string.feedback_page_alert_text),
+                buttonText = stringResource(id = R.string.feedback_page_alert_button),
+                buttonColor = MaterialTheme.colorScheme.primary,
+                onButtonClick = {
+                    alertDialogActive = false
+                    navController.navigate("HomePage")
+                },
+                onDismiss = {
+                    alertDialogActive = false
+                    navController.navigate("HomePage")
+                }
+            )
+
         }
     }
 }

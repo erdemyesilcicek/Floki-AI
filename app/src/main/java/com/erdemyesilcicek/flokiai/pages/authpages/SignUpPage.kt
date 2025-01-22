@@ -192,9 +192,9 @@ fun SignUpPage(
             }
             if (alertDialogActive) {
                 CustomAlertDialog(
-                    title = "Eposta doğrulama",
-                    message = "Kayıt başarılı!, E-posta doğrulaması gerekli.",
-                    buttonText = "Tamam",
+                    title = stringResource(id =R.string.sign_up_page_alert_title),
+                    message = stringResource(id =R.string.sign_up_page_alert_description),
+                    buttonText = stringResource(id =R.string.sign_up_page_alert_button),
                     buttonColor = MaterialTheme.colorScheme.primary,
                     onButtonClick = {
                         alertDialogActive = false

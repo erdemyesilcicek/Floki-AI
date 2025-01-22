@@ -27,6 +27,10 @@
 
     <string name="sign_up_page_button">Sign Up</string>
 
+    <string name="sign_up_page_alert_title">Email Verification</string>
+    <string name="sign_up_page_alert_description">Registration successful! Email verification required.</string>
+    <string name="sign_up_page_alert_button">OK</string>
+
     <!-- SignInPage -->
     <string name="sign_in_page_login_here">Login here</string>
     <string name="sign_in_page_description">Welcome back!</string>
@@ -35,6 +39,11 @@
     <string name="sign_in_page_create_account">Create an account</string>
 
     <string name="sign_in_page_button">Sign In</string>
+
+    <string name="sign_in_page_alert_title">Email Verification</string>
+    <string name="sign_in_page_alert_description">Please verify your email address to continue.</string>
+    <string name="sign_in_page_alert_first_button">Resend</string>
+    <string name="sign_in_page_alert_second_button">OK</string>
 
     <!-- HomePage -->
     <string name="home_page_world_of_tales">World of Tales</string>
@@ -114,6 +123,10 @@
 
     <string name="feedback_page_button">Send</string>
 
+    <string name="feedback_page_alert_title">SUCCESS</string>
+    <string name="feedback_page_alert_text">Your message has been successfully sent.</string>
+    <string name="feedback_page_alert_button">Go to Home</string>
+
     <!-- CreateTalePage -->
     <string name="genre_label">Genre</string>
 
@@ -192,6 +205,16 @@
     <!-- LoadingPage -->
     <string name="loading_page_please_wait">PLEASE WAIT!</string>
     <string name="loading_page_your_tale_created">Your tale is being created!</string>
+
+    <!-- ForgotPasswordPage -->
+    <string name="password_page_title">Reset your password</string>
+    <string name="password_page_description">Please enter your email, reset link will be sent to you.</string>
+    <string name="password_page_alert_title">Password Reset</string>
+    <string name="password_page_alert_message">Reset link sent to your email.</string>
+
+    <string name="password_page_button">Reset password</string>
+    <string name="password_page_button_okey">OK</string>
+
 
     <!-- PrivacyPolicyPage -->
     <!-- TermsOfUsePage -->

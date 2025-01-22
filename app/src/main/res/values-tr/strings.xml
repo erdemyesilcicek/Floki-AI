@@ -27,6 +27,10 @@
 
     <string name="sign_up_page_button">Kayıt Ol</string>
 
+    <string name="sign_up_page_alert_title">E-posta doğrulama</string>
+    <string name="sign_up_page_alert_description">Kayıt başarılı!, E-posta doğrulaması gerekli.</string>
+    <string name="sign_up_page_alert_button">Tamam</string>
+
     <!-- SignInPage -->
     <string name="sign_in_page_login_here">Giriş Yapın</string>
     <string name="sign_in_page_description">Tekrar hoş geldiniz!</string>
@@ -35,6 +39,11 @@
     <string name="sign_in_page_create_account">Hesap oluştur</string>
 
     <string name="sign_in_page_button">Giriş Yap</string>
+
+    <string name="sign_in_page_alert_title">E-posta Doğrulama</string>
+    <string name="sign_in_page_alert_description">Devam etmek için lütfen e-posta adresinizi doğrulayın.</string>
+    <string name="sign_in_page_alert_first_button">Tekrarla</string>
+    <string name="sign_in_page_alert_second_button">Tamam</string>
 
     <!-- HomePage -->
     <string name="home_page_world_of_tales">Masal Dünyası</string>
@@ -112,6 +121,10 @@
     <string name="feedback_page_label_message">Mesajınızı Buraya Girin</string>
 
     <string name="feedback_page_button">Gönder</string>
+
+    <string name="feedback_page_alert_title">BAŞARILI</string>
+    <string name="feedback_page_alert_text">Mesajınız başarıyla gönderildi.</string>
+    <string name="feedback_page_alert_button">Ana Sayfaya Git</string>
 
     <!-- CreateTalePage -->
     <string name="genre_label">Tür</string>
@@ -191,6 +204,15 @@
     <!-- LoadingPage -->
     <string name="loading_page_please_wait">LÜTFEN BEKLEYİN!</string>
     <string name="loading_page_your_tale_created">Masalınız oluşturuluyor!</string>
+
+    <!-- ForgotPasswordPage -->
+    <string name="password_page_title">Şifrenizi sıfırlayın</string>
+    <string name="password_page_description">Lütfen e-posta adresinizi girin, sıfırlama bağlantısı size gönderilecektir.</string>
+    <string name="password_page_alert_title">Şifre Sıfırlama</string>
+    <string name="password_page_alert_message">Sıfırlama bağlantısı e-postanıza gönderildi.</string>
+
+    <string name="password_page_button">Şifreyi sıfırla</string>
+    <string name="password_page_button_okey">Tamam</string>
 
     <!-- PrivacyPolicyPage -->
     <!-- TermsOfUsePage -->

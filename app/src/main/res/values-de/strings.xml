@@ -27,6 +27,10 @@
 
     <string name="sign_up_page_button">Registrieren</string>
 
+    <string name="sign_up_page_alert_title">E-Mail-Verifizierung</string>
+    <string name="sign_up_page_alert_description">Registrierung erfolgreich! E-Mail-Verifizierung erforderlich.</string>
+    <string name="sign_up_page_alert_button">OK</string>
+
     <!-- SignInPage -->
     <string name="sign_in_page_login_here">Hier einloggen</string>
     <string name="sign_in_page_description">Willkommen zurück!</string>
@@ -35,6 +39,11 @@
     <string name="sign_in_page_create_account">Ein Konto erstellen</string>
 
     <string name="sign_in_page_button">Anmelden</string>
+
+    <string name="sign_in_page_alert_title">E-Mail-Verifizierung</string>
+    <string name="sign_in_page_alert_description">Bitte bestätigen Sie Ihre E-Mail-Adresse, um fortzufahren.</string>
+    <string name="sign_in_page_alert_first_button">Erneut</string>
+    <string name="sign_in_page_alert_second_button">OK</string>
 
     <!-- HomePage -->
     <string name="home_page_world_of_tales">Welt der Märchen</string>
@@ -112,6 +121,10 @@
     <string name="feedback_page_label_message">Nachricht eingeben</string>
 
     <string name="feedback_page_button">Absenden</string>
+
+    <string name="feedback_page_alert_title">ERFOLG</string>
+    <string name="feedback_page_alert_text">Ihre Nachricht wurde erfolgreich gesendet.</string>
+    <string name="feedback_page_alert_button">Zur Startseite</string>
 
     <!-- CreateTalePage -->
     <string name="genre_label">Genre</string>
@@ -191,6 +204,15 @@
     <!-- LoadingPage -->
     <string name="loading_page_please_wait">BITTE WARTEN!</string>
     <string name="loading_page_your_tale_created">Deine Erzählung wird erstellt!</string>
+
+    <!-- ForgotPasswordPage -->
+    <string name="password_page_title">Setzen Sie Ihr Passwort zurück</string>
+    <string name="password_page_description">Bitte geben Sie Ihre E-Mail-Adresse ein, der Link zum Zurücksetzen wird Ihnen zugesandt.</string>
+    <string name="password_page_alert_title">Passwort zurücksetzen</string>
+    <string name="password_page_alert_message">Link zum Zurücksetzen wurde an Ihre E-Mail gesendet.</string>
+
+    <string name="password_page_button">Passwort zurücksetzen</string>
+    <string name="password_page_button_okey">OK</string>
 
     <!-- PrivacyPolicyPage -->
     <!-- TermsOfUsePage -->

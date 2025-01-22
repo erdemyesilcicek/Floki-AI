@@ -164,7 +164,7 @@ fun SignInPage(
                 ) {
                     viewModel.signIn(email.value, password.value, { isVerified ->
                         if (isVerified) {
-                            message.value = "Giriş başarılı!"
+                            message.value = "Successfully signed in."
                             userInformationViewModel.loadUserInformation()
                             navController.navigate("HomePage") {
                                 popUpTo("SignInPage") {
@@ -189,10 +189,10 @@ fun SignInPage(
             }
             if (alertDialogActive) {
                 CustomAlertDialog(
-                    title = "Email Verification",
-                    message = "Please verify your email address to continue.",
-                    buttonText = "OK",
-                    buttonColor = MaterialTheme.colorScheme.tertiary,
+                    title = stringResource(id = R.string.sign_in_page_alert_title),
+                    message = stringResource(id = R.string.sign_in_page_alert_description),
+                    buttonText = stringResource(id = R.string.sign_in_page_alert_first_button),
+                    buttonColor = MaterialTheme.colorScheme.primary,
                     onButtonClick = {
                         alertDialogActive = false
                     },
@@ -200,7 +200,7 @@ fun SignInPage(
                         alertDialogActive = false
                     },
                     isDoubleButton = true,
-                    secondButtonText = "Resend",
+                    secondButtonText = stringResource(id = R.string.sign_in_page_alert_second_button),
                     secondButtonColor = MaterialTheme.colorScheme.primary,
                     secondButtonOnClick = {
                         alertDialogActive = false

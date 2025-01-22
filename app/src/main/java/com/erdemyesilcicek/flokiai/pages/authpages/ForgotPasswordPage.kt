@@ -72,7 +72,7 @@ fun ForgotPasswordPage(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 16.dp),
-                text = "Reset your password",
+                text = stringResource(id =R.string.password_page_title),
                 lineHeight = 42.sp,
                 textAlign = TextAlign.Start,
                 fontSize = 32.sp,
@@ -84,7 +84,7 @@ fun ForgotPasswordPage(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 16.dp),
-                text = "Please enter your email, reset link will be sent to you.",
+                text = stringResource(id =R.string.password_page_description),
                 textAlign = TextAlign.Start,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
@@ -119,7 +119,7 @@ fun ForgotPasswordPage(
 
             CustomExtendedFAB(
                 containerColor = MaterialTheme.colorScheme.primary,
-                text = "Reset Password",
+                text = stringResource(id = R.string.password_page_button),
             ) {
                 viewModel.resetPassword(
                     email.value,
@@ -141,9 +141,9 @@ fun ForgotPasswordPage(
     }
     if (alertDialogActive) {
         CustomAlertDialog(
-            title = "Password Reset",
-            message = "Reset link sent to your email.",
-            buttonText = "OK",
+            title = stringResource(id =R.string.password_page_alert_title),
+            message = stringResource(id =R.string.password_page_alert_message),
+            buttonText = stringResource(id = R.string.password_page_button_okey),
             buttonColor = MaterialTheme.colorScheme.primary,
             onButtonClick = {
                 alertDialogActive = false
