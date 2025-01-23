@@ -161,9 +161,9 @@ fun NavController(
             )
         }
 
-        composable(route = "PrivacyPolicy") { PrivacyPolicy(navController) }
+        composable(route = "PrivacyPolicy") { PrivacyPolicy(navController, loadingViewModel, categoryViewModel) }
 
-        composable(route = "TermsOfUse") { TermsOfUse(navController) }
+        composable(route = "TermsOfUse") { TermsOfUse(navController, loadingViewModel, categoryViewModel) }
 
         composable(route = "TaleCard") {
             TaleCard(

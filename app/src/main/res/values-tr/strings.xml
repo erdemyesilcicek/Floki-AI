@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Floki AI</string>
     <string name="create_tale_button">Masal Oluştur</string>
-    <string name="created_by_erdem">Erdem tarafından yaratıldı</string>
+    <string name="created_by_erdem">Floki AI tarafından yaratıldı</string>
 
     <string name="already_have_an_account">Zaten bir hesabınız var mı?</string>
     <string name="my_tales">Masallarım</string>

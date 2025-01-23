@@ -83,7 +83,7 @@ fun ForgotPasswordPage(
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 16.dp),
+                    .padding(start = 16.dp, end = 12.dp),
                 text = stringResource(id =R.string.password_page_description),
                 textAlign = TextAlign.Start,
                 fontSize = 16.sp,

@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Floki AI</string>
     <string name="create_tale_button">Erstellen</string>
-    <string name="created_by_erdem">Erstellt von Erdem</string>
+    <string name="created_by_erdem">Erstellt von Floki AI</string>
 
     <string name="already_have_an_account">Haben Sie schon ein Konto?</string>
     <string name="my_tales">Meine Erzählungen</string>

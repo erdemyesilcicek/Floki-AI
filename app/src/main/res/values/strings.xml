@@ -2,7 +2,7 @@
     <!-- Default string values -->
     <string name="app_name">Floki AI</string>
     <string name="create_tale_button">Create Tale</string>
-    <string name="created_by_erdem">Created by Erdem</string>
+    <string name="created_by_erdem">Created by Floki AI</string>
 
     <string name="already_have_an_account">Already have an account?</string>
     <string name="my_tales">My Tales</string>

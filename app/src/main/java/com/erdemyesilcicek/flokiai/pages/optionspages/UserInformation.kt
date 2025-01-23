@@ -70,6 +70,7 @@ fun UserInformation(
     var siblingName by remember { mutableStateOf(userInfo?.siblingName ?: "") }
     var petName by remember { mutableStateOf(userInfo?.petName ?: "") }
 
+    //arkaplanda prompt ingilizce olduğu için ingilizce dışında dil ve cinsiyet seçeneği yok.
     val optionsLanguage = listOf("English", "German", "Turkish")
     val optionsGender = listOf("None", "Male", "Female")
 

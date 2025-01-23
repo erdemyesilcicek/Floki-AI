@@ -147,7 +147,6 @@ fun Feedback(
                     navController.navigate("HomePage")
                 }
             )
-
         }
     }
 }

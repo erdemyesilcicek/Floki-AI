@@ -56,7 +56,6 @@ fun CustomTextInput(
                 label = { Text(text = label) },
                 visualTransformation = if (!isVisual) PasswordVisualTransformation() else VisualTransformation.None,
                 keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
-
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()
