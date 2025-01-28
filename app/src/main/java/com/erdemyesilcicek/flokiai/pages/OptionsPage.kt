@@ -103,7 +103,6 @@ fun OptionsPage(
                     itemText = stringResource(id = R.string.options_page_privacy_policy),
                     summary = stringResource(id = R.string.options_page_privacy_policy_summary),
                     onClick = {
-                        //navController.navigate("PrivacyPolicy")
                         val url = "https://floki-ai-web.vercel.app/privacy-policy"
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                         context.startActivity(intent)
@@ -115,7 +114,6 @@ fun OptionsPage(
                     itemText = stringResource(id = R.string.options_page_terms_of_use),
                     summary = stringResource(id = R.string.options_page_terms_of_use_summary),
                     onClick = {
-                        //navController.navigate("TermsOfUse")
                         val url = "https://floki-ai-web.vercel.app/term-of-use"
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                         context.startActivity(intent)

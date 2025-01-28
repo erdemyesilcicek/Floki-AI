@@ -20,22 +20,6 @@ class CategoryViewModel : ViewModel() {
     private val _selectedFamily = mutableStateListOf<CategoryCard>()
     val selectedFamily: List<CategoryCard> get() = _selectedFamily
 
-    /*
-    fun onSingleSelection(category: CategoryCard, selectedList: MutableList<CategoryCard>) {
-        selectedList.clear()
-        selectedList.add(category)
-    }
-
-    fun onMultipleSelection(category: CategoryCard, selectedList: MutableList<CategoryCard>) {
-        if (selectedList.contains(category)) {
-            selectedList.remove(category)
-        } else if (selectedList.size < 3) {
-            selectedList.add(category)
-        }
-    }
-
-     */
-
     fun selectGenre(category: CategoryCard) {
         _selectedGenre.clear()
         _selectedGenre.add(category)
@@ -78,4 +62,3 @@ class CategoryViewModel : ViewModel() {
         _selectedFamily.clear()
     }
 }
-
