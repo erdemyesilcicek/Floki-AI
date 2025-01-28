@@ -21,8 +21,6 @@ import com.erdemyesilcicek.flokiai.pages.authpages.ForgotPasswordPage
 import com.erdemyesilcicek.flokiai.pages.authpages.SignInPage
 import com.erdemyesilcicek.flokiai.pages.authpages.SignUpPage
 import com.erdemyesilcicek.flokiai.pages.optionspages.Feedback
-import com.erdemyesilcicek.flokiai.pages.optionspages.PrivacyPolicy
-import com.erdemyesilcicek.flokiai.pages.optionspages.TermsOfUse
 import com.erdemyesilcicek.flokiai.pages.optionspages.UserInformation
 import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.GeminiViewModel
@@ -161,9 +159,9 @@ fun NavController(
             )
         }
 
-        composable(route = "PrivacyPolicy") { PrivacyPolicy(navController, loadingViewModel, categoryViewModel) }
+        //composable(route = "PrivacyPolicy") { PrivacyPolicy(navController, loadingViewModel, categoryViewModel) }
 
-        composable(route = "TermsOfUse") { TermsOfUse(navController, loadingViewModel, categoryViewModel) }
+        //composable(route = "TermsOfUse") { TermsOfUse(navController, loadingViewModel, categoryViewModel) }
 
         composable(route = "TaleCard") {
             TaleCard(

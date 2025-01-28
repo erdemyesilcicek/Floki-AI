@@ -28,6 +28,7 @@ fun PrivacyPolicy(
     loadingViewModel: LoadingViewModel,
     categoryViewModel: CategoryViewModel
 ) {
+    /*
     Scaffold(
         topBar = {
             HeaderBar(
@@ -61,4 +62,6 @@ fun PrivacyPolicy(
             }
         }
     }
+
+     */
 }

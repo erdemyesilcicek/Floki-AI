@@ -1,5 +1,7 @@
 package com.erdemyesilcicek.flokiai.pages
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -54,6 +57,8 @@ fun OptionsPage(
     loadingViewModel: LoadingViewModel,
     viewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory()),
 ) {
+    val context = LocalContext.current
+
     Scaffold(
         topBar = {
             HeaderBar(
@@ -98,7 +103,10 @@ fun OptionsPage(
                     itemText = stringResource(id = R.string.options_page_privacy_policy),
                     summary = stringResource(id = R.string.options_page_privacy_policy_summary),
                     onClick = {
-                        navController.navigate("PrivacyPolicy")
+                        //navController.navigate("PrivacyPolicy")
+                        val url = "https://floki-ai-web.vercel.app/privacy-policy"
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        context.startActivity(intent)
                     }
                 ),
                 OptionsCard(
@@ -107,7 +115,10 @@ fun OptionsPage(
                     itemText = stringResource(id = R.string.options_page_terms_of_use),
                     summary = stringResource(id = R.string.options_page_terms_of_use_summary),
                     onClick = {
-                        navController.navigate("TermsOfUse")
+                        //navController.navigate("TermsOfUse")
+                        val url = "https://floki-ai-web.vercel.app/term-of-use"
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        context.startActivity(intent)
                     }
                 ),
                 OptionsCard(

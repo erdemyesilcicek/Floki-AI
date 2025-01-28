@@ -22,7 +22,12 @@ import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 
 @Composable
-fun TermsOfUse(navController: NavController, loadingViewModel: LoadingViewModel, categoryViewModel: CategoryViewModel) {
+fun TermsOfUse(
+    navController: NavController,
+    loadingViewModel: LoadingViewModel,
+    categoryViewModel: CategoryViewModel
+) {
+    /*
     Scaffold(
         topBar = {
             HeaderBar(
@@ -56,4 +61,6 @@ fun TermsOfUse(navController: NavController, loadingViewModel: LoadingViewModel,
             }
         }
     }
+
+     */
 }
