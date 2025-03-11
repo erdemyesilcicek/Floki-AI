@@ -132,8 +132,8 @@ fun AiCreatedTalePage(navController: NavController) {
             }
         } else {
             LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Top,
+                modifier = Modifier.padding(10.dp),
+                verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 itemsIndexed(aiTales.value) { index, aiTale ->

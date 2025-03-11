@@ -59,7 +59,7 @@ fun HeaderBar(
                             categoryViewModel.clearAllSelections()
                             navController.navigate("CreateTalePage")
                         },
-                        shape = RoundedCornerShape(50),
+                        shape = RoundedCornerShape(40),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.primary,
                             contentColor = Color.White,

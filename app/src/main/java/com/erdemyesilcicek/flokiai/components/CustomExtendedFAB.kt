@@ -30,8 +30,8 @@ fun CustomExtendedFAB(
         elevation = FloatingActionButtonDefaults.elevation(5.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(20.dp)
-            .clip(RoundedCornerShape(80.dp))
+            .padding(top = 20.dp, bottom = 20.dp, start = 10.dp, end = 10.dp)
+            .clip(RoundedCornerShape(30.dp))
     ) {
         Row(
             modifier = Modifier.padding(24.dp),
