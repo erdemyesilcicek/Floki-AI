@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
+import com.erdemyesilcicek.flokiai.R
 import com.erdemyesilcicek.flokiai.datas.AiTale
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.google.firebase.firestore.FirebaseFirestore
@@ -98,7 +99,7 @@ fun AiTaleCard(
                 ) {
                     Text(text ="5 min ", color = MaterialTheme.colorScheme.tertiary)
                     Icon(
-                        imageVector = Icons.Outlined.DoDisturbAlt,
+                        painter = painterResource(id = R.drawable.hugeclock),
                         contentDescription = "Clock",
                         tint = MaterialTheme.colorScheme.tertiary
                     )

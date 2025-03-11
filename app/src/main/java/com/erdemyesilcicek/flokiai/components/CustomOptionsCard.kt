@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -31,7 +32,7 @@ import com.erdemyesilcicek.flokiai.utils.myFont
 @Composable
 fun CustomOptionsCard(
     navController: NavController,
-    imageVector: ImageVector,
+    painter: Painter,
     contentDescription: String,
     itemText: String,
     summary: String,
@@ -68,7 +69,7 @@ fun CustomOptionsCard(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(20.dp),
-                    imageVector = imageVector,
+                    painter = painter,
                     contentDescription = contentDescription,
                     tint = MaterialTheme.colorScheme.onBackground,
                 )

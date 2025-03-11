@@ -8,17 +8,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun CustomIconTab(
-    icon: ImageVector,
+    icon: Painter,
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
     Icon(
-        imageVector = icon,
+        painter = icon,
         contentDescription = null,
         tint = if (isSelected) Color(0xFFFF6887) else Color(0xFF696899),
         modifier = Modifier

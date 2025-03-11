@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -84,21 +85,21 @@ fun OptionsPage(
 
             val optionsList = listOf<OptionsCard>(
                 OptionsCard(
-                    imageVector = Icons.Outlined.Person,
+                    painter = painterResource(id = R.drawable.hugeuser),
                     contentDescription = "User Information",
                     itemText = stringResource(id = R.string.options_page_user_information),
                     summary = stringResource(id = R.string.options_page_user_information_summary),
                     onClick = { navController.navigate("UserInformation") }
                 ),
                 OptionsCard(
-                    imageVector = Icons.Outlined.Phone,
+                    painter = painterResource(id = R.drawable.hugecontact),
                     contentDescription = "Feedback, Contact",
                     itemText = stringResource(id = R.string.options_page_contact),
                     summary = stringResource(id = R.string.options_page_contact_summary),
                     onClick = { navController.navigate("Feedback") }
                 ),
                 OptionsCard(
-                    imageVector = Icons.Outlined.PrivacyTip,
+                    painter = painterResource(id = R.drawable.hugepp),
                     contentDescription = "Privacy Policy",
                     itemText = stringResource(id = R.string.options_page_privacy_policy),
                     summary = stringResource(id = R.string.options_page_privacy_policy_summary),
@@ -109,7 +110,7 @@ fun OptionsPage(
                     }
                 ),
                 OptionsCard(
-                    imageVector = Icons.Outlined.InsertDriveFile,
+                    painter = painterResource(id = R.drawable.hugetof),
                     contentDescription = "Terms of Use",
                     itemText = stringResource(id = R.string.options_page_terms_of_use),
                     summary = stringResource(id = R.string.options_page_terms_of_use_summary),
@@ -120,7 +121,7 @@ fun OptionsPage(
                     }
                 ),
                 OptionsCard(
-                    imageVector = Icons.Outlined.PowerSettingsNew,
+                    painter = painterResource(id = R.drawable.hugelogout),
                     contentDescription = "Log out",
                     itemText = stringResource(id = R.string.options_page_log_out),
                     summary = stringResource(id = R.string.options_page_log_out_summary),
@@ -138,7 +139,7 @@ fun OptionsPage(
                 itemsIndexed(optionsList) { index, item ->
                     CustomOptionsCard(
                         navController = navController,
-                        imageVector = optionsList[index].imageVector,
+                        painter = optionsList[index].painter,
                         contentDescription = optionsList[index].contentDescription,
                         itemText = optionsList[index].itemText,
                         summary = optionsList[index].summary,

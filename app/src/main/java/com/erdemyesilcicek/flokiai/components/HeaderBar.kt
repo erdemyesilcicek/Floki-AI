@@ -22,6 +22,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -88,7 +89,7 @@ fun HeaderBar(
                 ) {
                     Text(
                         text = barText,
-                        fontWeight = FontWeight.SemiBold,
+                        fontWeight = FontWeight.Normal,
                         fontSize = 23.sp
                     )
                 }
@@ -114,7 +115,10 @@ fun HeaderBar(
                         }
                     }) {
                     Icon(
-                        imageVector = Icons.Rounded.ArrowBackIosNew,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(3.dp),
+                        painter = painterResource(id = R.drawable.hugebackarrow),
                         contentDescription = "new back button",
                         tint = MaterialTheme.colorScheme.onBackground
                     )
@@ -132,7 +136,7 @@ fun HeaderBar(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(3.dp),
-                        imageVector = Icons.Outlined.Delete,
+                        painter = painterResource(id = R.drawable.hugedelete),
                         contentDescription = "Menu Button",
                         tint = MaterialTheme.colorScheme.onBackground
                     )
@@ -148,8 +152,8 @@ fun HeaderBar(
                     Icon(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(3.dp),
-                        imageVector = Icons.Rounded.Menu,
+                            .padding(5.dp),
+                        painter = painterResource(id = R.drawable.hugemenu),
                         contentDescription = "Menu Button",
                         tint = MaterialTheme.colorScheme.onBackground
                     )

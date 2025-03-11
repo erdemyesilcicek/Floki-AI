@@ -36,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -103,7 +104,7 @@ fun HomePage(
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 CustomIconTab(
-                    icon = Icons.Outlined.AutoAwesome,
+                    icon = painterResource(id = R.drawable.hugeaicreated),
                     isSelected = selectedTab == 0,
                     onClick = { homeStackViewModel.changeStack() }
                 )
@@ -111,7 +112,7 @@ fun HomePage(
                 Text(text = "|", fontSize = 20.sp)
 
                 CustomIconTab(
-                    icon = Icons.Outlined.Book,
+                    icon = painterResource(id = R.drawable.hugebook),
                     isSelected = selectedTab == 1,
                     onClick = { homeStackViewModel.changeStack() }
                 )
