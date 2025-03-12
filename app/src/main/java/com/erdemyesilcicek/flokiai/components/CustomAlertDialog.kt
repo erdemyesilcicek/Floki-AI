@@ -81,12 +81,11 @@ fun CustomAlertDialog(
                     ) {
                         OutlinedButton(
                             modifier = Modifier
-                                .weight(1f)
-                                .wrapContentHeight()
-                                .clip(RoundedCornerShape(80.dp)),
+                                .weight(1f),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color.Transparent
                             ),
+                            shape = RoundedCornerShape(20.dp),
                             border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
                             onClick = { secondButtonOnClick() }
                         ) {
@@ -106,12 +105,11 @@ fun CustomAlertDialog(
                         }
                         Button(
                             modifier = Modifier
-                                .weight(1f)
-                                .wrapContentHeight()
-                                .clip(RoundedCornerShape(80.dp)),
+                                .weight(1f),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = buttonColor
                             ),
+                            shape = RoundedCornerShape(20.dp),
                             onClick = { onButtonClick() }
                         ) {
                             Row(
@@ -132,13 +130,11 @@ fun CustomAlertDialog(
                 } else {
                     Button(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight()
-                            .padding(10.dp)
-                            .clip(RoundedCornerShape(80.dp)),
+                            .fillMaxWidth(),
                         colors = ButtonDefaults.outlinedButtonColors(
                             containerColor = buttonColor
                         ),
+                        shape = RoundedCornerShape(25.dp),
                         onClick = { onButtonClick() }
                     ) {
                         Row(

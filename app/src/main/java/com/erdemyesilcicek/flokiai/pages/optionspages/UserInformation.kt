@@ -147,6 +147,7 @@ fun UserInformation(
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                /*
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -170,6 +171,7 @@ fun UserInformation(
                         fontSize = 18.sp
                     )
                 }
+                */
 
                 CustomDropdownMenu(
                     title = stringResource(id = R.string.user_information_page_title_tale_language),

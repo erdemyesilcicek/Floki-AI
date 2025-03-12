@@ -3,7 +3,6 @@ package com.erdemyesilcicek.flokiai.ui.theme
 import androidx.compose.ui.graphics.Color
 
 val purple = Color(0xFFd4b8ff)
-
 val pink = Color(0xFFFF6887)
 //val pink = Color(0xFFFC587A)
 //val pink = Color(0xFFFFAAE8) damn me

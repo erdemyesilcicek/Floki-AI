@@ -27,7 +27,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -36,6 +38,7 @@ import com.erdemyesilcicek.flokiai.components.CustomAlertDialog
 import com.erdemyesilcicek.flokiai.components.CustomExtendedFAB
 import com.erdemyesilcicek.flokiai.components.CustomTextInput
 import com.erdemyesilcicek.flokiai.components.HeaderBar
+import com.erdemyesilcicek.flokiai.utils.myFont
 import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
 
@@ -71,16 +74,17 @@ fun Feedback(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .background(Color.White),
-            verticalArrangement = Arrangement.Top,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
                 modifier = Modifier
                     .imePadding()
                     .verticalScroll(scrollState),
-                verticalArrangement = Arrangement.Top,
+                verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                /*
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -104,26 +108,34 @@ fun Feedback(
                         fontSize = 18.sp
                     )
                 }
-                CustomTextInput(
-                    title = stringResource(id = R.string.title_email),
-                    label = stringResource(id = R.string.label_email),
-                    text = email.value,
-                    onValueChange = { email.value = it },
-                    isSingleLine = true,
-                    isVisual = true,
-                    keyboardType = KeyboardType.Email,
-                    isBigCanvas = false
-                )
-                CustomTextInput(
-                    title = stringResource(id = R.string.feedback_page_title_message),
-                    label = stringResource(id = R.string.feedback_page_label_message),
-                    text = message.value,
-                    onValueChange = { message.value = it },
-                    isSingleLine = false,
-                    isVisual = true,
-                    keyboardType = KeyboardType.Text,
-                    isBigCanvas = true
-                )
+
+                 */
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ){
+                    CustomTextInput(
+                        title = stringResource(id = R.string.title_email),
+                        label = stringResource(id = R.string.label_email),
+                        text = email.value,
+                        onValueChange = { email.value = it },
+                        isSingleLine = true,
+                        isVisual = true,
+                        keyboardType = KeyboardType.Email,
+                        isBigCanvas = false
+                    )
+                    CustomTextInput(
+                        title = stringResource(id = R.string.feedback_page_title_message),
+                        label = stringResource(id = R.string.feedback_page_label_message),
+                        text = message.value,
+                        onValueChange = { message.value = it },
+                        isSingleLine = false,
+                        isVisual = true,
+                        keyboardType = KeyboardType.Text,
+                        isBigCanvas = true
+                    )
+                }
+
                 CustomExtendedFAB(
                     MaterialTheme.colorScheme.primary,
                     stringResource(id = R.string.feedback_page_button),
