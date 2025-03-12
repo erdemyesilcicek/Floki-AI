@@ -132,8 +132,10 @@ fun OptionsPage(
             )
 
             LazyColumn(
-                modifier = Modifier.padding(10.dp),
-                verticalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(10.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 itemsIndexed(optionsList) { index, item ->
@@ -146,22 +148,6 @@ fun OptionsPage(
                         onClick = optionsList[index].onClick
                     )
                 }
-            }
-            Spacer(modifier = Modifier.weight(1f))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = stringResource(id = R.string.created_by_erdem),
-                    textAlign = TextAlign.Center,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    fontFamily = myFont,
-                    color = Color.LightGray
-                )
             }
             if (alertDialogActive) {
                 CustomAlertDialog(
