@@ -55,7 +55,7 @@ fun SignInPage(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(MaterialTheme.colorScheme.onPrimaryContainer)
     ) {
         Column(
             modifier = Modifier

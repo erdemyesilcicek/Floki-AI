@@ -60,7 +60,8 @@ fun AiTaleCard(
                 elevation = 6.dp,
                 shape = RoundedCornerShape(16.dp)
             ),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimaryContainer)
+        colors = CardDefaults
+            .cardColors(containerColor = MaterialTheme.colorScheme.onPrimaryContainer)
     ) {
         Row(
             modifier = Modifier

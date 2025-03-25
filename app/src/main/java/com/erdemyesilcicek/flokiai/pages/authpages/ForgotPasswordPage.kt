@@ -52,7 +52,7 @@ fun ForgotPasswordPage(
             .fillMaxSize()
             .imePadding()
             .verticalScroll(scrollState)
-            .background(Color.White),
+            .background(MaterialTheme.colorScheme.onPrimaryContainer),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

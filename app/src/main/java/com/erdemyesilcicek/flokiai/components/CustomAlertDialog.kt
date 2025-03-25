@@ -110,7 +110,7 @@ fun CustomAlertDialog(
                         ) {
                             Text(
                                 text = buttonText,
-                                color = Color.White,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer,
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Medium,
                                 fontFamily = myFont,
@@ -131,7 +131,7 @@ fun CustomAlertDialog(
                     ) {
                         Text(
                             text = buttonText,
-                            color = Color.White,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Medium,
                             fontFamily = myFont,
