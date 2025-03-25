@@ -4,15 +4,22 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AutoFixHigh
+import androidx.compose.material.icons.outlined.VolumeUp
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -51,8 +58,9 @@ fun AiReadTalePage(
 ) {
     var TaleItself = remember { mutableStateOf<String>("") }
     var TaleTitle = remember { mutableStateOf<String>("") }
-
     var deleteAlertDialogActive by remember { mutableStateOf<Boolean>(false) }
+    val backgroundColor = MaterialTheme.colorScheme.background
+    val textColor = MaterialTheme.colorScheme.onSurfaceVariant
 
     fun onDelete(taleId: String) {
         db.collection("tales").document(taleId)
@@ -92,66 +100,109 @@ fun AiReadTalePage(
             )
         },
         modifier = Modifier.fillMaxSize(),
-        /*
+        containerColor = backgroundColor,
         floatingActionButton = {
-            CustomExtendedFAB(
-                MaterialTheme.colorScheme.primary,
-                stringResource(id = R.string.listen_tale),
-                onClick = {
-                    println("Listen to Tale Button Clicked")
-                }
-            )
+            /*
+            FloatingActionButton(
+                onClick = { /* Dinleme işlevselliği eklenecek */ },
+                containerColor = MaterialTheme.colorScheme.primary
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.VolumeUp,
+                    contentDescription = stringResource(id = R.string.listen_tale),
+                    tint = Color.White
+                )
+            }
+
+             */
         },
-        floatingActionButtonPosition = FabPosition.Center
-         */
+        floatingActionButtonPosition = FabPosition.End
     ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(padding)
-                .background(Color.White),
-            Arrangement.Center,
-            Alignment.CenterHorizontally
+                .background(backgroundColor)
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                modifier = Modifier.padding(20.dp),
-                text = TaleTitle.value,
-                color = MaterialTheme.colorScheme.primary,
-                fontSize = 30.sp,
-                fontWeight = FontWeight.SemiBold,
-                fontFamily = myFont,
-                textAlign = TextAlign.Center
-            )
-
-            Icon(painter = painterResource(id = R.drawable.hugeaicreated), contentDescription = "magic")
-
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(1) {
+            // Hikaye başlığı ve ikon kartı
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                elevation = CardDefaults.cardElevation(4.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.White)
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
                     Text(
-                        modifier = Modifier.padding(20.dp),
-                        fontWeight = FontWeight.Normal,
+                        text = TaleTitle.value,
+                        color = MaterialTheme.colorScheme.primary,
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.SemiBold,
                         fontFamily = myFont,
-                        fontSize = 20.sp,
-                        text = TaleItself.value
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(bottom = 16.dp)
                     )
-                    Spacer(modifier = Modifier.padding(40.dp))
-
+                    
                     Row(
-                        modifier = Modifier.fillParentMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(
-                            text = stringResource(id = R.string.created_by_erdem),
-                            textAlign = TextAlign.Center,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            fontFamily = myFont,
-                            color = Color.LightGray
+                        Icon(
+                            painter = painterResource(id = R.drawable.hugeaicreated),
+                            contentDescription = "magic",
+                            tint = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.padding(8.dp)
                         )
                     }
                 }
             }
+            
+            Spacer(modifier = Modifier.height(8.dp))
+            
+            // Hikaye içeriği
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                elevation = CardDefaults.cardElevation(2.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.White)
+            ) {
+                Text(
+                    modifier = Modifier.padding(24.dp),
+                    fontWeight = FontWeight.Normal,
+                    fontFamily = myFont,
+                    fontSize = 18.sp,
+                    lineHeight = 28.sp,
+                    text = TaleItself.value,
+                    color = textColor
+                )
+            }
+            
+            Spacer(modifier = Modifier.height(24.dp))
+            
+            // Alt bilgi
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 32.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = stringResource(id = R.string.created_by_erdem),
+                    textAlign = TextAlign.Center,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium,
+                    fontFamily = myFont,
+                    color = Color.Gray
+                )
+            }
+            
             if (deleteAlertDialogActive) {
                 CustomAlertDialog(
                     title = stringResource(id = R.string.ai_created_tale_page_alert_title),
