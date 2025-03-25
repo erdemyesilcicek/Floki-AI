@@ -45,7 +45,7 @@ fun CustomOptionsCard(
     itemText: String,
     summary: String,
     onClick: () -> Unit,
-    backgroundColor: Color = Color.White,
+    backgroundColor: Color = MaterialTheme.colorScheme.onPrimaryContainer,
     iconTint: Color = MaterialTheme.colorScheme.primary,
     cardHeight: Int = 130
 ) {

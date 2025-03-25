@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
+import androidx.compose.material3.ElevatedCard
 import com.erdemyesilcicek.flokiai.datas.CategoryCard
 import com.erdemyesilcicek.flokiai.utils.myFont
 
@@ -51,14 +52,14 @@ fun CustomCategorySection(
             
             // Animate background color when selection state changes
             val backgroundColor by animateColorAsState(
-                targetValue = if (isSelected) MaterialTheme.colorScheme.primary else Color.White,
+                targetValue = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onPrimaryContainer,
                 animationSpec = tween(durationMillis = 300, easing = FastOutSlowInEasing),
                 label = "backgroundColorAnimation"
             )
             
             // Animate text color when selection state changes
             val textColor by animateColorAsState(
-                targetValue = if (isSelected) Color.White else Color.Black,
+                targetValue = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onBackground,
                 animationSpec = tween(durationMillis = 300, easing = FastOutSlowInEasing),
                 label = "textColorAnimation"
             )
@@ -73,7 +74,7 @@ fun CustomCategorySection(
                 label = "scaleAnimation"
             )
             
-            Card(
+            ElevatedCard(
                 modifier = Modifier
                     .width(100.dp)
                     .height(130.dp)

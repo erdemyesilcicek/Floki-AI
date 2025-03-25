@@ -132,7 +132,10 @@ fun AiReadTalePage(
                     .fillMaxWidth()
                     .padding(16.dp),
                 elevation = CardDefaults.cardElevation(4.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White)
+                colors = CardDefaults
+                    .cardColors(
+                        containerColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp),
@@ -147,7 +150,7 @@ fun AiReadTalePage(
                         textAlign = TextAlign.Center,
                         modifier = Modifier.padding(bottom = 16.dp)
                     )
-                    
+
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center,
@@ -162,16 +165,19 @@ fun AiReadTalePage(
                     }
                 }
             }
-            
+
             Spacer(modifier = Modifier.height(8.dp))
-            
+
             // Hikaye içeriği
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 elevation = CardDefaults.cardElevation(2.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White)
+                colors = CardDefaults
+                    .cardColors(
+                        containerColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
             ) {
                 Text(
                     modifier = Modifier.padding(24.dp),
@@ -183,9 +189,9 @@ fun AiReadTalePage(
                     color = textColor
                 )
             }
-            
+
             Spacer(modifier = Modifier.height(24.dp))
-            
+
             // Alt bilgi
             Box(
                 modifier = Modifier
@@ -202,7 +208,7 @@ fun AiReadTalePage(
                     color = Color.Gray
                 )
             }
-            
+
             if (deleteAlertDialogActive) {
                 CustomAlertDialog(
                     title = stringResource(id = R.string.ai_created_tale_page_alert_title),

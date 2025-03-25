@@ -51,7 +51,7 @@ fun ReadTalePage(
     val tale = TaleList.get(id!!)
     val backgroundColor = MaterialTheme.colorScheme.background
     val textColor = MaterialTheme.colorScheme.onSurfaceVariant // Koyu gri
-    
+
     Scaffold(
         topBar = {
             HeaderBar(
@@ -97,7 +97,10 @@ fun ReadTalePage(
                     .fillMaxWidth()
                     .padding(16.dp),
                 elevation = CardDefaults.cardElevation(4.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White)
+                colors = CardDefaults
+                    .cardColors(
+                        containerColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp),
@@ -112,7 +115,7 @@ fun ReadTalePage(
                         textAlign = TextAlign.Center,
                         modifier = Modifier.padding(bottom = 16.dp)
                     )
-                    
+
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center,
@@ -127,16 +130,16 @@ fun ReadTalePage(
                     }
                 }
             }
-            
+
             Spacer(modifier = Modifier.height(8.dp))
-            
+
             // Hikaye içeriği
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 elevation = CardDefaults.cardElevation(2.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White)
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimaryContainer)
             ) {
                 Text(
                     modifier = Modifier.padding(24.dp),
@@ -148,9 +151,9 @@ fun ReadTalePage(
                     color = textColor
                 )
             }
-            
+
             Spacer(modifier = Modifier.height(24.dp))
-            
+
             // Alt bilgi
             Box(
                 modifier = Modifier

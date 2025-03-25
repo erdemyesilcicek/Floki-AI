@@ -47,7 +47,7 @@ fun HeaderBar(
     val currentRoute = navController.currentBackStackEntry?.destination?.route
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.White,
+            containerColor = MaterialTheme.colorScheme.background,
             titleContentColor = MaterialTheme.colorScheme.onBackground
         ),
         title = {
@@ -63,9 +63,9 @@ fun HeaderBar(
                         shape = RoundedCornerShape(40),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.primary,
-                            contentColor = Color.White,
+                            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                             disabledContainerColor = Color.Gray,
-                            disabledContentColor = Color.White
+                            disabledContentColor = MaterialTheme.colorScheme.onPrimaryContainer
                         ),
                         contentPadding = PaddingValues(
                             horizontal = 16.dp,
@@ -73,7 +73,7 @@ fun HeaderBar(
                         )
                     ) {
                         Text(
-                            color = Color.White,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
                             text = stringResource(id = R.string.create_tale_button),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Normal,

@@ -178,7 +178,7 @@ fun CreateTalePage(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .background(Color.White)
+                .background(MaterialTheme.colorScheme.background)
         ) {
             items(1) {
                 CustomText(stringResource(id = R.string.genre_label))

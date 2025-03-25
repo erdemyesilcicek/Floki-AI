@@ -183,7 +183,7 @@ fun UserInformation(
                             .shadow(4.dp, RoundedCornerShape(16.dp)),
                         shape = RoundedCornerShape(16.dp),
                         colors = CardDefaults.cardColors(
-                            containerColor = Color.White
+                            containerColor = MaterialTheme.colorScheme.onPrimaryContainer
                         ),
                         elevation = CardDefaults.cardElevation(
                             defaultElevation = 2.dp
@@ -230,7 +230,7 @@ fun UserInformation(
                             .shadow(4.dp, RoundedCornerShape(16.dp)),
                         shape = RoundedCornerShape(16.dp),
                         colors = CardDefaults.cardColors(
-                            containerColor = Color.White
+                            containerColor = MaterialTheme.colorScheme.onPrimaryContainer
                         ),
                         elevation = CardDefaults.cardElevation(
                             defaultElevation = 2.dp
@@ -298,7 +298,7 @@ fun UserInformation(
                             .shadow(4.dp, RoundedCornerShape(16.dp)),
                         shape = RoundedCornerShape(16.dp),
                         colors = CardDefaults.cardColors(
-                            containerColor = Color.White
+                            containerColor = MaterialTheme.colorScheme.onPrimaryContainer
                         ),
                         elevation = CardDefaults.cardElevation(
                             defaultElevation = 2.dp

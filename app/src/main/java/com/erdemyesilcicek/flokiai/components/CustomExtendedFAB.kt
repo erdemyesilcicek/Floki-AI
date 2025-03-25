@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,7 +40,7 @@ fun CustomExtendedFAB(
             horizontalArrangement = Arrangement.Center,
         ) {
             Text(
-                color = Color.White,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
                 text = text,
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Normal,

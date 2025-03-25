@@ -59,7 +59,7 @@ fun CustomDropdownMenu(
                     shape = RoundedCornerShape(20.dp)
                 )
                 .clip(RoundedCornerShape(20.dp))
-                .background(Color.White)
+                .background(MaterialTheme.colorScheme.onPrimaryContainer)
         ) {
             Row(
                 modifier = Modifier
@@ -83,7 +83,7 @@ fun CustomDropdownMenu(
                 }
             }
             DropdownMenu(
-                modifier = Modifier.background(Color.White),
+                modifier = Modifier.background(MaterialTheme.colorScheme.onPrimaryContainer),
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {

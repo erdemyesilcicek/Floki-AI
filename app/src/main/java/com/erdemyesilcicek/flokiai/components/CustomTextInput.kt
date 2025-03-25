@@ -67,9 +67,9 @@ fun CustomTextInput(
                     .clip(RoundedCornerShape(20.dp)),
 
                 colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.White,
-                    focusedIndicatorColor = Color.White,
-                    unfocusedIndicatorColor = Color.White,
+                    containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    focusedIndicatorColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    unfocusedIndicatorColor = MaterialTheme.colorScheme.onPrimaryContainer,
                     cursorColor = MaterialTheme.colorScheme.primary,
                     focusedLabelColor =
                     if (isFocused) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground,
@@ -97,9 +97,9 @@ fun CustomTextInput(
                     .clip(RoundedCornerShape(20.dp)),
 
                 colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.White,
-                    focusedIndicatorColor = Color.White,
-                    unfocusedIndicatorColor = Color.White,
+                    containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    focusedIndicatorColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    unfocusedIndicatorColor = MaterialTheme.colorScheme.onPrimaryContainer,
                     cursorColor = MaterialTheme.colorScheme.primary,
                     focusedLabelColor =
                     if (isFocused) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground,
