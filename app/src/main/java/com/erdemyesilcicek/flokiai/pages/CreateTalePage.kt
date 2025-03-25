@@ -188,7 +188,9 @@ fun CreateTalePage(
                     selectedList = categoryViewModel.selectedGenre,
                     onSelectionChange = { category ->
                         categoryViewModel.selectGenre(category)
-                    })
+                    },
+                    isGenre = true // Set true for genre section
+                )
 
                 CustomText(stringResource(id = R.string.season_label))
                 CustomCategorySection(
@@ -197,7 +199,8 @@ fun CreateTalePage(
                     selectedList = categoryViewModel.selectedSeason,
                     onSelectionChange = { category ->
                         categoryViewModel.selectSeason(category)
-                    }
+                    },
+                    isGenre = false // Not the genre section
                 )
 
                 CustomText(stringResource(id = R.string.animal_label))
@@ -207,7 +210,8 @@ fun CreateTalePage(
                     selectedList = categoryViewModel.selectedAnimals,
                     onSelectionChange = { category ->
                         categoryViewModel.selectAnimal(category)
-                    }
+                    },
+                    isGenre = false // Not the genre section
                 )
 
                 CustomText(stringResource(id = R.string.character_label))
@@ -217,7 +221,8 @@ fun CreateTalePage(
                     selectedList = categoryViewModel.selectedCharacters,
                     onSelectionChange = { category ->
                         categoryViewModel.selectCharacter(category)
-                    }
+                    },
+                    isGenre = false // Not the genre section
                 )
 
                 CustomText(stringResource(id = R.string.family_label))
@@ -227,7 +232,8 @@ fun CreateTalePage(
                     selectedList = categoryViewModel.selectedFamily,
                     onSelectionChange = { category ->
                         categoryViewModel.selectFamily(category)
-                    }
+                    },
+                    isGenre = false // Not the genre section
                 )
 
                 Spacer(modifier = Modifier.padding(50.dp))
