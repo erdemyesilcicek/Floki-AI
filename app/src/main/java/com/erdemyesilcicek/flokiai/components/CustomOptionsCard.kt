@@ -10,16 +10,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -40,62 +44,69 @@ fun CustomOptionsCard(
     contentDescription: String,
     itemText: String,
     summary: String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    backgroundColor: Color = Color.White,
+    iconTint: Color = MaterialTheme.colorScheme.primary,
+    cardHeight: Int = 130
 ) {
-    OutlinedCard(
+    ElevatedCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 9.dp),
-        onClick = { },
+        shape = RoundedCornerShape(16.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .height(130.dp)
-            .padding(
-                start = 5.dp,
-                end = 5.dp,
-                top = 5.dp,
-                bottom = 5.dp
-            ),
+            .height(cardHeight.dp)
+            .padding(horizontal = 8.dp, vertical = 6.dp)
+            .shadow(
+                elevation = 6.dp,
+                shape = RoundedCornerShape(16.dp)
+            )
+            .clickable { onClick() },
+        colors = CardDefaults.cardColors(containerColor = backgroundColor)
     ) {
         Row(
             modifier = Modifier
-                .clickable { onClick() }
                 .fillMaxSize()
-                .weight(1f)
-                .background(Color.White),
-            horizontalArrangement = Arrangement.Center,
+                .padding(12.dp),
+            horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(
+            Surface(
                 modifier = Modifier
-                    .weight(0.2f)
-                    .fillMaxSize()
-                    .padding(start = 10.dp, top = 10.dp, bottom = 10.dp)
-                    .clip(RoundedCornerShape(10.dp)),
-                painter = painter,
-                contentDescription = contentDescription,
-                tint = MaterialTheme.colorScheme.onBackground,
-            )
+                    .size(60.dp)
+                    .clip(RoundedCornerShape(12.dp)),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .padding(12.dp)
+                        .fillMaxSize(),
+                    painter = painter,
+                    contentDescription = contentDescription,
+                    tint = iconTint
+                )
+            }
 
             Column(
                 Modifier
                     .fillMaxSize()
-                    .weight(0.8f)
-                    .padding(start = 12.dp, end = 12.dp),
+                    .padding(start = 16.dp, end = 8.dp),
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.Start
             ) {
                 CustomOptionsCardTitle(itemText)
 
                 Text(
-                    modifier = Modifier.padding(10.dp),
                     text = summary,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
                     textAlign = TextAlign.Start,
                     fontSize = 14.sp,
                     fontFamily = myFont,
-                    fontStyle = FontStyle.Italic,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.tertiary
+                    fontStyle = FontStyle.Normal,
+                    fontWeight = FontWeight.Normal,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    lineHeight = 18.sp,
+                    letterSpacing = 0.25.sp
                 )
             }
         }
@@ -106,12 +117,13 @@ fun CustomOptionsCard(
 fun CustomOptionsCardTitle(itemText: String) {
     Text(
         text = itemText,
-        color = MaterialTheme.colorScheme.primary,
+        color = MaterialTheme.colorScheme.onSurface,
         fontSize = 18.sp,
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Bold,
         fontFamily = myFont,
+        letterSpacing = 0.sp,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 12.dp)
+            .padding(bottom = 8.dp)
     )
 }
