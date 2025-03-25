@@ -44,112 +44,99 @@ fun CustomAlertDialog(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(2.dp)
-                .clip(RoundedCornerShape(20.dp))
-                .background(Color.Red)
+                .padding(16.dp)
+                .clip(RoundedCornerShape(24.dp))
+                .background(MaterialTheme.colorScheme.surface)
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.White)
-                    .padding(20.dp),
+                    .padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(15.dp)
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text(
                     text = title,
-                    fontSize = 24.sp,
-                    color = MaterialTheme.colorScheme.onBackground,
+                    fontSize = 22.sp,
+                    color = MaterialTheme.colorScheme.onSurface,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
+                    fontFamily = myFont,
                     modifier = Modifier.fillMaxWidth()
                 )
 
                 Text(
                     text = message,
-                    fontSize = 20.sp,
-                    color = MaterialTheme.colorScheme.tertiary,
+                    fontSize = 16.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
+                    fontFamily = myFont,
                     modifier = Modifier.fillMaxWidth()
                 )
 
                 if (isDoubleButton) {
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         OutlinedButton(
-                            modifier = Modifier
-                                .weight(1f),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = Color.Transparent
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                contentColor = secondButtonColor
                             ),
                             shape = RoundedCornerShape(20.dp),
-                            border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
+                            border = BorderStroke(1.dp, secondButtonColor),
                             onClick = { secondButtonOnClick() }
                         ) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.Center,
-                                modifier = Modifier.padding(top = 10.dp, bottom = 10.dp)
-                            ) {
-                                Text(
-                                    color = secondButtonColor,
-                                    text = secondButtonText,
-                                    fontSize = 20.sp,
-                                    fontWeight = FontWeight.Normal,
-                                    fontFamily = myFont
-                                )
-                            }
+                            Text(
+                                text = secondButtonText,
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Medium,
+                                fontFamily = myFont,
+                                modifier = Modifier.padding(vertical = 8.dp)
+                            )
                         }
+                        
                         Button(
-                            modifier = Modifier
-                                .weight(1f),
+                            modifier = Modifier.weight(1f),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = buttonColor
                             ),
                             shape = RoundedCornerShape(20.dp),
                             onClick = { onButtonClick() }
                         ) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.Center,
-                                modifier = Modifier.padding(top = 10.dp, bottom = 10.dp)
-                            ) {
-                                Text(
-                                    color = Color.White,
-                                    text = buttonText,
-                                    fontSize = 20.sp,
-                                    fontWeight = FontWeight.Normal,
-                                    fontFamily = myFont
-                                )
-                            }
+                            Text(
+                                text = buttonText,
+                                color = Color.White,
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Medium,
+                                fontFamily = myFont,
+                                modifier = Modifier.padding(vertical = 8.dp)
+                            )
                         }
                     }
                 } else {
                     Button(
                         modifier = Modifier
-                            .fillMaxWidth(),
-                        colors = ButtonDefaults.outlinedButtonColors(
+                            .fillMaxWidth()
+                            .padding(top = 8.dp),
+                        colors = ButtonDefaults.buttonColors(
                             containerColor = buttonColor
                         ),
-                        shape = RoundedCornerShape(25.dp),
+                        shape = RoundedCornerShape(20.dp),
                         onClick = { onButtonClick() }
                     ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center,
-                            modifier = Modifier.padding(top = 10.dp, bottom = 10.dp)
-                        ) {
-                            Text(
-                                color = Color.White,
-                                text = buttonText,
-                                fontSize = 20.sp,
-                                fontWeight = FontWeight.Normal,
-                                fontFamily = myFont
-                            )
-                        }
+                        Text(
+                            text = buttonText,
+                            color = Color.White,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Medium,
+                            fontFamily = myFont,
+                            modifier = Modifier.padding(vertical = 8.dp)
+                        )
                     }
                 }
             }
