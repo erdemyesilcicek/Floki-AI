@@ -1,6 +1,13 @@
 package com.erdemyesilcicek.flokiai.pages.optionspages
 
 import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,10 +17,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -28,6 +39,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -76,6 +88,11 @@ fun UserInformation(
     val scrollState = rememberScrollState()
 
     var alertDialogActive by remember { mutableStateOf<Boolean>(false) }
+
+    // Animation states for each card
+    val taleCardState = remember { MutableTransitionState(false).apply { targetState = true } }
+    val personalCardState = remember { MutableTransitionState(false).apply { targetState = true } }
+    val familyCardState = remember { MutableTransitionState(false).apply { targetState = true } }
 
     if (alertDialogActive == true) {
         CustomAlertDialog(
@@ -139,131 +156,215 @@ fun UserInformation(
                 .imePadding()
                 .verticalScroll(scrollState)
                 .padding(paddingValues)
-                .background(Color.White),
+                .background(MaterialTheme.colorScheme.background),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
-                verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.CenterHorizontally
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.padding(16.dp)
             ) {
-                /*
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(10.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Box(
-                        modifier = Modifier.padding(start = 80.dp, end = 80.dp, top = 10.dp)
-                    ) {
-                        Image(
-                            modifier = Modifier.padding(10.dp),
-                            painter = painterResource(id = R.drawable.logo),
-                            contentDescription = "app logo",
-                            contentScale = ContentScale.Fit
+                // Tale Section with animation
+                AnimatedVisibility(
+                    visibleState = taleCardState,
+                    enter = slideInVertically(
+                        initialOffsetY = { it },
+                        animationSpec = spring(
+                            dampingRatio = Spring.DampingRatioMediumBouncy,
+                            stiffness = Spring.StiffnessLow
                         )
-                    }
-                    Text(
-                        text = stringResource(id = R.string.user_information_page_user_information),
-                        fontFamily = FontFamily.Default,
-                        fontSize = 18.sp
-                    )
-                }
-                */
-
-                CustomDropdownMenu(
-                    title = stringResource(id = R.string.user_information_page_title_tale_language),
-                    label = stringResource(id = R.string.user_information_page_label_select_language),
-                    options = optionsLanguage,
-                    selectedOption = language,
-                    onOptionSelected = { language = it }
-                )
-                CustomTextInput(
-                    title = stringResource(id = R.string.user_information_page_title_name),
-                    label = stringResource(id = R.string.user_information_page_label_enter_name),
-                    text = name,
-                    onValueChange = { name = it },
-                    isSingleLine = true,
-                    isVisual = true,
-                    keyboardType = KeyboardType.Text,
-                    isBigCanvas = false
-                )
-                CustomTextInput(
-                    title = stringResource(id = R.string.user_information_page_title_age),
-                    label = stringResource(id = R.string.user_information_page_label_enter_age),
-                    text = age,
-                    onValueChange = { age = it },
-                    isSingleLine = true,
-                    isVisual = true,
-                    keyboardType = KeyboardType.Number,
-                    isBigCanvas = false
-                )
-                CustomDropdownMenu(
-                    title = stringResource(id = R.string.user_information_page_title_gender),
-                    label = stringResource(id = R.string.user_information_page_label_select_gender),
-                    options = optionsGender,
-                    selectedOption = gender,
-                    onOptionSelected = { gender = it }
-                )
-                CustomTextInput(
-                    title = stringResource(id = R.string.user_information_page_title_dad_name),
-                    label = stringResource(id = R.string.user_information_page_label_enter_dad_name),
-                    text = dadName,
-                    onValueChange = { dadName = it },
-                    isSingleLine = true,
-                    isVisual = true,
-                    keyboardType = KeyboardType.Text,
-                    isBigCanvas = false
-                )
-                CustomTextInput(
-                    title = stringResource(id = R.string.user_information_page_title_mom_name),
-                    label = stringResource(id = R.string.user_information_page_label_enter_mom_name),
-                    text = momName,
-                    onValueChange = { momName = it },
-                    isSingleLine = true,
-                    isVisual = true,
-                    keyboardType = KeyboardType.Text,
-                    isBigCanvas = false
-                )
-                CustomTextInput(
-                    title = stringResource(id = R.string.user_information_page_title_sibling_name),
-                    label = stringResource(id = R.string.user_information_page_label_enter_sibling_name),
-                    text = siblingName,
-                    onValueChange = { siblingName = it },
-                    isSingleLine = true,
-                    isVisual = true,
-                    keyboardType = KeyboardType.Text,
-                    isBigCanvas = false
-                )
-                CustomTextInput(
-                    title = stringResource(id = R.string.user_information_page_title_pet_name),
-                    label = stringResource(id = R.string.user_information_page_label_enter_pet_name),
-                    text = petName,
-                    onValueChange = { petName = it },
-                    isSingleLine = true,
-                    isVisual = true,
-                    keyboardType = KeyboardType.Text,
-                    isBigCanvas = false
-                )
-
-                Spacer(modifier = Modifier.padding(40.dp))
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
+                    ) + fadeIn(animationSpec = tween(500))
                 ) {
-                    Text(
-                        text = stringResource(id = R.string.created_by_erdem),
-                        textAlign = TextAlign.Center,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        fontFamily = myFont,
-                        color = Color.LightGray
-                    )
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp)
+                            .shadow(4.dp, RoundedCornerShape(16.dp)),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color.White
+                        ),
+                        elevation = CardDefaults.cardElevation(
+                            defaultElevation = 2.dp
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(16.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "Tale Language",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 18.sp,
+                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.padding(bottom = 16.dp)
+                            )
+                            
+                            CustomDropdownMenu(
+                                title = stringResource(id = R.string.user_information_page_title_tale_language),
+                                label = stringResource(id = R.string.user_information_page_label_select_language),
+                                options = optionsLanguage,
+                                selectedOption = language,
+                                onOptionSelected = { language = it }
+                            )
+                        }
+                    }
                 }
+
+                // Personal Section with animation
+                AnimatedVisibility(
+                    visibleState = personalCardState,
+                    enter = slideInVertically(
+                        initialOffsetY = { 300 },
+                        animationSpec = spring(
+                            dampingRatio = Spring.DampingRatioMediumBouncy,
+                            stiffness = Spring.StiffnessLow
+                        )
+                    ) + fadeIn(animationSpec = tween(700))
+                ) {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp)
+                            .shadow(4.dp, RoundedCornerShape(16.dp)),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color.White
+                        ),
+                        elevation = CardDefaults.cardElevation(
+                            defaultElevation = 2.dp
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(16.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "Personal Information",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 18.sp,
+                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.padding(bottom = 16.dp)
+                            )
+                            
+                            CustomTextInput(
+                                title = stringResource(id = R.string.user_information_page_title_name),
+                                label = stringResource(id = R.string.user_information_page_label_enter_name),
+                                text = name,
+                                onValueChange = { name = it },
+                                isSingleLine = true,
+                                isVisual = true,
+                                keyboardType = KeyboardType.Text,
+                                isBigCanvas = false
+                            )
+                            
+                            CustomTextInput(
+                                title = stringResource(id = R.string.user_information_page_title_age),
+                                label = stringResource(id = R.string.user_information_page_label_enter_age),
+                                text = age,
+                                onValueChange = { age = it },
+                                isSingleLine = true,
+                                isVisual = true,
+                                keyboardType = KeyboardType.Number,
+                                isBigCanvas = false
+                            )
+                            
+                            CustomDropdownMenu(
+                                title = stringResource(id = R.string.user_information_page_title_gender),
+                                label = stringResource(id = R.string.user_information_page_label_select_gender),
+                                options = optionsGender,
+                                selectedOption = gender,
+                                onOptionSelected = { gender = it }
+                            )
+                        }
+                    }
+                }
+                // Family Section with animation
+                AnimatedVisibility(
+                    visibleState = familyCardState,
+                    enter = slideInVertically(
+                        initialOffsetY = { 500 }, // Fixed value instead of ratio
+                        animationSpec = spring(
+                            dampingRatio = Spring.DampingRatioMediumBouncy,
+                            stiffness = Spring.StiffnessLow
+                        )
+                    ) + fadeIn(animationSpec = tween(900))
+                ) {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp)
+                            .shadow(4.dp, RoundedCornerShape(16.dp)),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color.White
+                        ),
+                        elevation = CardDefaults.cardElevation(
+                            defaultElevation = 2.dp
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(16.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "Family Members",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 18.sp,
+                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.padding(bottom = 16.dp)
+                            )
+                            
+                            CustomTextInput(
+                                title = stringResource(id = R.string.user_information_page_title_dad_name),
+                                label = stringResource(id = R.string.user_information_page_label_enter_dad_name),
+                                text = dadName,
+                                onValueChange = { dadName = it },
+                                isSingleLine = true,
+                                isVisual = true,
+                                keyboardType = KeyboardType.Text,
+                                isBigCanvas = false
+                            )
+                            
+                            CustomTextInput(
+                                title = stringResource(id = R.string.user_information_page_title_mom_name),
+                                label = stringResource(id = R.string.user_information_page_label_enter_mom_name),
+                                text = momName,
+                                onValueChange = { momName = it },
+                                isSingleLine = true,
+                                isVisual = true,
+                                keyboardType = KeyboardType.Text,
+                                isBigCanvas = false
+                            )
+                            
+                            CustomTextInput(
+                                title = stringResource(id = R.string.user_information_page_title_sibling_name),
+                                label = stringResource(id = R.string.user_information_page_label_enter_sibling_name),
+                                text = siblingName,
+                                onValueChange = { siblingName = it },
+                                isSingleLine = true,
+                                isVisual = true,
+                                keyboardType = KeyboardType.Text,
+                                isBigCanvas = false
+                            )
+                            
+                            CustomTextInput(
+                                title = stringResource(id = R.string.user_information_page_title_pet_name),
+                                label = stringResource(id = R.string.user_information_page_label_enter_pet_name),
+                                text = petName,
+                                onValueChange = { petName = it },
+                                isSingleLine = true,
+                                isVisual = true,
+                                keyboardType = KeyboardType.Text,
+                                isBigCanvas = false
+                            )
+                        }
+                    }
+                }
+
+                // Add extra bottom padding for floating action button and footer
+                Spacer(modifier = Modifier.height(100.dp))
             }
         }
     }
