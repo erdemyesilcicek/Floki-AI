@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.erdemyesilcicek.flokiai.R
+import com.erdemyesilcicek.flokiai.navigation.AppRoutes
 import com.erdemyesilcicek.flokiai.utils.myFont
 import com.erdemyesilcicek.flokiai.viewmodels.CategoryViewModel
 import com.erdemyesilcicek.flokiai.viewmodels.LoadingViewModel
@@ -58,7 +59,7 @@ fun HeaderBar(
                         onClick = {
                             loadingViewModel.clearLoadingData()
                             categoryViewModel.clearAllSelections()
-                            navController.navigate("CreateTalePage")
+                            navController.navigate(AppRoutes.CREATE_TALE)
                         },
                         shape = RoundedCornerShape(40),
                         colors = ButtonDefaults.buttonColors(
@@ -100,8 +101,8 @@ fun HeaderBar(
                 IconButton(
                     onClick = {
                         if (
-                            currentRoute == "UserInformation" ||
-                            currentRoute == "Feedback" ||
+                            currentRoute == AppRoutes.USER_INFO ||
+                            currentRoute == AppRoutes.FEEDBACK ||
                             currentRoute == "PrivacyPolicy" ||
                             currentRoute == "TermsOfUse"
                         ) {
@@ -109,7 +110,7 @@ fun HeaderBar(
                         } else {
                             loadingViewModel.clearLoadingData()
                             categoryViewModel.clearAllSelections()
-                            navController.navigate("HomePage") {
+                            navController.navigate(AppRoutes.HOME) {
                                 popUpTo(0) { inclusive = true }
                             }
                         }
@@ -126,7 +127,7 @@ fun HeaderBar(
             }
         },
         actions = {
-            if (currentRoute == "AiReadTalePage?taleId={taleId}") {
+            if (currentRoute?.startsWith(AppRoutes.AI_READ_TALE) == true) {
                 IconButton(
                     onClick = {
                         deleteOnClick()
@@ -144,8 +145,8 @@ fun HeaderBar(
             } else {
                 IconButton(
                     onClick = {
-                        if (currentRoute != "OptionsPage") {
-                            navController.navigate("OptionsPage")
+                        if (currentRoute != AppRoutes.OPTIONS) {
+                            navController.navigate(AppRoutes.OPTIONS)
                         }
                     },
                 ) {
