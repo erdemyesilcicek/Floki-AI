@@ -30,6 +30,36 @@ import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
+/**
+ * Route constants for the app's navigation
+ */
+object AppRoutes {
+    // Auth routes
+    const val GET_STARTED = "GetStartedPage"
+    const val SIGN_UP = "SignUpPage"
+    const val SIGN_IN = "SignInPage"
+    const val FORGOT_PASSWORD = "ForgotPasswordPage"
+
+    // Main routes
+    const val HOME = "HomePage"
+    const val READ_TALE = "ReadTalePage"
+    const val AI_READ_TALE = "AiReadTalePage"
+    const val CREATE_TALE = "CreateTalePage"
+    const val LOADING = "LoadingPage"
+
+    // Options routes
+    const val OPTIONS = "OptionsPage"
+    const val USER_INFO = "UserInformation"
+    const val FEEDBACK = "Feedback"
+
+    // Components
+    const val TALE_CARD = "TaleCard"
+
+    // Route parameters
+    const val READ_TALE_WITH_ID = "$READ_TALE?id={id}"
+    const val AI_READ_TALE_WITH_ID = "$AI_READ_TALE?taleId={taleId}"
+}
+
 @Composable
 fun NavController(
     categoryViewModel: CategoryViewModel,
@@ -44,33 +74,43 @@ fun NavController(
     val context = LocalContext.current
 
     LaunchedEffect(Unit) {
-        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUser = auth.currentUser
 
         if (currentUser == null || !currentUser.isEmailVerified) {
-            navController.navigate("GetStartedPage") {
-                popUpTo("GetStartedPage") { inclusive = true }
+            navController.navigate(AppRoutes.GET_STARTED) {
+                popUpTo(AppRoutes.GET_STARTED) { inclusive = true }
             }
         } else {
             userInformationViewModel.loadUserInformation()
-            navController.navigate("HomePage") {
-                popUpTo("GetStartedPage") { inclusive = true }
+            navController.navigate(AppRoutes.HOME) {
+                popUpTo(AppRoutes.GET_STARTED) { inclusive = true }
             }
         }
     }
 
     NavHost(
         navController = navController,
-        startDestination = "GetStartedPage"
+        startDestination = AppRoutes.GET_STARTED
     ) {
-        composable(route = "GetStartedPage") { GetStartedPage(navController) }
+        // Auth screens
+        composable(route = AppRoutes.GET_STARTED) {
+            GetStartedPage(navController)
+        }
 
-        composable(route = "SignUpPage") { SignUpPage(navController) }
+        composable(route = AppRoutes.SIGN_UP) {
+            SignUpPage(navController)
+        }
 
-        composable(route = "SignInPage") { SignInPage(navController, userInformationViewModel) }
+        composable(route = AppRoutes.SIGN_IN) {
+            SignInPage(navController, userInformationViewModel)
+        }
 
-        composable(route = "ForgotPasswordPage") { ForgotPasswordPage(navController) }
+        composable(route = AppRoutes.FORGOT_PASSWORD) {
+            ForgotPasswordPage(navController)
+        }
 
-        composable(route = "HomePage") {
+        // Main screens
+        composable(route = AppRoutes.HOME) {
             HomePage(
                 navController,
                 categoryViewModel,
@@ -80,10 +120,8 @@ fun NavController(
         }
 
         composable(
-            route = "ReadTalePage" + "?id={id}",
-            arguments = listOf(navArgument(
-                "id"
-            ) {
+            route = AppRoutes.READ_TALE_WITH_ID,
+            arguments = listOf(navArgument("id") {
                 type = NavType.IntType
                 defaultValue = -1
             })
@@ -98,7 +136,7 @@ fun NavController(
         }
 
         composable(
-            route = "AiReadTalePage" + "?taleId={taleId}",
+            route = AppRoutes.AI_READ_TALE_WITH_ID,
             arguments = listOf(navArgument("taleId") {
                 type = NavType.StringType
                 defaultValue = ""
@@ -114,7 +152,7 @@ fun NavController(
             )
         }
 
-        composable(route = "CreateTalePage") {
+        composable(route = AppRoutes.CREATE_TALE) {
             CreateTalePage(
                 navController,
                 categoryViewModel,
@@ -123,7 +161,7 @@ fun NavController(
             )
         }
 
-        composable(route = "LoadingPage") {
+        composable(route = AppRoutes.LOADING) {
             LoadingPage(
                 loadingViewModel,
                 geminiViewModel,
@@ -133,7 +171,8 @@ fun NavController(
             )
         }
 
-        composable(route = "OptionsPage") {
+        // Options screens
+        composable(route = AppRoutes.OPTIONS) {
             OptionsPage(
                 navController,
                 userInformationViewModel,
@@ -142,7 +181,7 @@ fun NavController(
             )
         }
 
-        composable(route = "UserInformation") {
+        composable(route = AppRoutes.USER_INFO) {
             UserInformation(
                 navController,
                 userInformationViewModel,
@@ -151,7 +190,7 @@ fun NavController(
             )
         }
 
-        composable(route = "Feedback") {
+        composable(route = AppRoutes.FEEDBACK) {
             Feedback(
                 navController,
                 loadingViewModel,
@@ -159,7 +198,8 @@ fun NavController(
             )
         }
 
-        composable(route = "TaleCard") {
+        // Components
+        composable(route = AppRoutes.TALE_CARD) {
             TaleCard(
                 navController = navController,
                 tale = Tale(
