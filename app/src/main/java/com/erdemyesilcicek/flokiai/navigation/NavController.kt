@@ -30,9 +30,6 @@ import com.erdemyesilcicek.flokiai.viewmodels.UserInformationViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-/**
- * Route constants for the app's navigation
- */
 object AppRoutes {
     // Auth routes
     const val GET_STARTED = "GetStartedPage"
