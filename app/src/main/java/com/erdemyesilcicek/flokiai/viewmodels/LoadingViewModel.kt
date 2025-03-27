@@ -32,22 +32,26 @@ class LoadingViewModel : ViewModel() {
         family: List<String>,
         userInformation: UserInformationModel?
     ) {
-        this.genre = genre
-        this.genreImage = genreImage
-        this.season = season
-        this.animals = animals
-        this.characters = characters
-        this.family = family
-        this.userInformation = userInformation
+        this.apply {
+            this.genre = genre
+            this.genreImage = genreImage
+            this.season = season
+            this.animals = animals
+            this.characters = characters
+            this.family = family
+            this.userInformation = userInformation
+        }
     }
 
     fun clearLoadingData() {
-        this.genre = ""
-        this.genreImage = 0
-        this.season = ""
-        this.animals = emptyList()
-        this.characters = emptyList()
-        this.family = emptyList()
-        this.userInformation = null
+        updateLoadingData(
+            genre = "",
+            genreImage = 0,
+            season = "",
+            animals = emptyList(),
+            characters = emptyList(),
+            family = emptyList(),
+            userInformation = null
+        )
     }
 }
