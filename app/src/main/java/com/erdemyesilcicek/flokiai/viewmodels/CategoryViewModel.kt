@@ -4,13 +4,18 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import com.erdemyesilcicek.flokiai.datas.CategoryCard
 
+/**
+ * ViewModel responsible for managing category selections across different types.
+ */
 class CategoryViewModel : ViewModel() {
+    // Single selection categories
     private val _selectedGenre = mutableStateListOf<CategoryCard>()
     val selectedGenre: List<CategoryCard> get() = _selectedGenre
 
     private val _selectedSeason = mutableStateListOf<CategoryCard>()
     val selectedSeason: List<CategoryCard> get() = _selectedSeason
 
+    // Multiple selection categories (max 3)
     private val _selectedAnimals = mutableStateListOf<CategoryCard>()
     val selectedAnimals: List<CategoryCard> get() = _selectedAnimals
 
@@ -20,38 +25,37 @@ class CategoryViewModel : ViewModel() {
     private val _selectedFamily = mutableStateListOf<CategoryCard>()
     val selectedFamily: List<CategoryCard> get() = _selectedFamily
 
+    private fun handleSingleSelection(category: CategoryCard, selectionList: MutableList<CategoryCard>) {
+        selectionList.clear()
+        selectionList.add(category)
+    }
+
+    private fun handleMultipleSelection(category: CategoryCard, selectionList: MutableList<CategoryCard>) {
+        if (selectionList.contains(category)) {
+            selectionList.remove(category)
+        } else if (selectionList.size < 3) {
+            selectionList.add(category)
+        }
+    }
+
     fun selectGenre(category: CategoryCard) {
-        _selectedGenre.clear()
-        _selectedGenre.add(category)
+        handleSingleSelection(category, _selectedGenre)
     }
 
     fun selectSeason(category: CategoryCard) {
-        _selectedSeason.clear()
-        _selectedSeason.add(category)
+        handleSingleSelection(category, _selectedSeason)
     }
 
     fun selectAnimal(category: CategoryCard) {
-        if (_selectedAnimals.contains(category)) {
-            _selectedAnimals.remove(category)
-        } else if (_selectedAnimals.size < 3) {
-            _selectedAnimals.add(category)
-        }
+        handleMultipleSelection(category, _selectedAnimals)
     }
 
     fun selectCharacter(category: CategoryCard) {
-        if (_selectedCharacters.contains(category)) {
-            _selectedCharacters.remove(category)
-        } else if (_selectedCharacters.size < 3) {
-            _selectedCharacters.add(category)
-        }
+        handleMultipleSelection(category, _selectedCharacters)
     }
 
     fun selectFamily(category: CategoryCard) {
-        if (_selectedFamily.contains(category)) {
-            _selectedFamily.remove(category)
-        } else if (_selectedFamily.size < 3) {
-            _selectedFamily.add(category)
-        }
+        handleMultipleSelection(category, _selectedFamily)
     }
 
     fun clearAllSelections() {
