@@ -2,6 +2,7 @@ package com.erdemyesilcicek.flokiai.auth
 
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 
 class AuthViewModel : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
@@ -13,32 +14,23 @@ class AuthViewModel : ViewModel() {
         onSuccess: (Boolean) -> Unit,
         onError: (String) -> Unit
     ) {
-        if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            onError("Please fill all the fields.")
-            return
-        }
-        if (password != confirmPassword) {
-            onError("Passwords do not match.")
-            return
+        when {
+            !validateFields(email, password, confirmPassword, onError) -> return
+            password != confirmPassword -> {
+                onError("Passwords do not match.")
+                return
+            }
         }
 
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    if (auth.currentUser != null) {
+                    auth.currentUser?.let {
                         sendEmailVerification(onSuccess, onError)
                         onSuccess(true)
-                    } else {
-                        onError("User registration failed.")
-                    }
+                    } ?: onError("User registration failed.")
                 } else {
-                    if (task.exception?.message?.contains("email address is already in use") == true) {
-                        onError("This email address is already in use.")
-                    } else if (task.exception?.message?.contains("least 6 characters") == true) {
-                        onError("Password must be at least 6 characters.")
-                    } else {
-                        onError(task.exception?.localizedMessage ?: "Unknown error occurred.")
-                    }
+                    handleAuthError(task.exception, onError)
                 }
             }
     }
@@ -49,21 +41,14 @@ class AuthViewModel : ViewModel() {
         onSuccess: (Boolean) -> Unit,
         onError: (String) -> Unit
     ) {
-        if (email.isEmpty() || password.isEmpty()) {
-            onError("Please fill all the fields.")
-            return
-        }
+        if (!validateFields(email, password, onError)) return
+
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    if (user?.isEmailVerified == true) {
-                        onSuccess(true)
-                    } else {
-                        onSuccess(false)
-                    }
+                    onSuccess(auth.currentUser?.isEmailVerified == true)
                 } else {
-                    onError(task.exception?.localizedMessage ?: "Giriş başarısız.")
+                    handleAuthError(task.exception, onError)
                 }
             }
     }
@@ -76,7 +61,7 @@ class AuthViewModel : ViewModel() {
             auth.signOut()
             onSuccess(true)
         } catch (e: Exception) {
-            onError(e.message ?: "Unknown error occurred.")
+            onError(e.message ?: "An error occurred during sign out.")
         }
     }
 
@@ -89,12 +74,13 @@ class AuthViewModel : ViewModel() {
             onError("Please enter your email address.")
             return
         }
+        
         auth.sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     onSuccess(true)
                 } else {
-                    onError("Reset password email could not be sent.")
+                    onError("Failed to send password reset email. ${task.exception?.localizedMessage ?: ""}")
                 }
             }
     }
@@ -103,15 +89,45 @@ class AuthViewModel : ViewModel() {
         onSuccess: (Boolean) -> Unit,
         onError: (String) -> Unit
     ) {
-        if (auth.currentUser == null) {
-            return
-        }
-        auth.currentUser?.sendEmailVerification()!!.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                onSuccess(true)
-            } else {
-                onError(task.exception?.message ?: "Unknown error occurred.")
+        auth.currentUser?.let { user ->
+            user.sendEmailVerification().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    onSuccess(true)
+                } else {
+                    onError(task.exception?.message ?: "Failed to send verification email.")
+                }
             }
         }
+    }
+
+    private fun validateFields(email: String, password: String, onError: (String) -> Unit): Boolean {
+        return when {
+            email.isEmpty() || password.isEmpty() -> {
+                onError("Please fill all the fields.")
+                false
+            }
+            else -> true
+        }
+    }
+
+    private fun validateFields(email: String, password: String, confirmPassword: String, onError: (String) -> Unit): Boolean {
+        return when {
+            email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() -> {
+                onError("Please fill all the fields.")
+                false
+            }
+            else -> true
+        }
+    }
+
+    private fun handleAuthError(exception: Exception?, onError: (String) -> Unit) {
+        val errorMessage = when {
+            exception?.message?.contains("email address is already in use") == true -> 
+                "This email address is already in use."
+            exception?.message?.contains("least 6 characters") == true -> 
+                "Password must be at least 6 characters."
+            else -> exception?.localizedMessage ?: "Authentication failed."
+        }
+        onError(errorMessage)
     }
 }
