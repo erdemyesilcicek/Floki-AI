@@ -11,10 +11,10 @@ import kotlinx.coroutines.launch
 class UserInformationViewModel(private val repository: UserInformationRepository) : ViewModel() {
 
     private val _userInformation = MutableLiveData<UserInformationModel?>()
-    val userInformation: LiveData<UserInformationModel?> get() = _userInformation
+    val userInformation: LiveData<UserInformationModel?> = _userInformation
 
     private val _error = MutableLiveData<String?>()
-    val error: LiveData<String?> get() = _error
+    val error: LiveData<String?> = _error
 
     init {
         loadUserInformation()
@@ -22,14 +22,7 @@ class UserInformationViewModel(private val repository: UserInformationRepository
 
     fun loadUserInformation() {
         viewModelScope.launch {
-            val result = repository.getUserInformation()
-            result.onSuccess {
-                _userInformation.value = it
-                _error.value = null
-            }.onFailure {
-                _userInformation.value = null
-                _error.value = it.message
-            }
+            handleResult(repository.getUserInformation())
         }
     }
 
@@ -47,14 +40,24 @@ class UserInformationViewModel(private val repository: UserInformationRepository
 
     fun clearUserInformation() {
         viewModelScope.launch {
-            val result = repository.clearUserInformation()
-            result.onSuccess {
-                _userInformation.value = UserInformationModel()
-                _error.value = null
-            }.onFailure {
-                _error.value = it.message
-            }
+            repository.clearUserInformation()
+                .onSuccess {
+                    _userInformation.value = null
+                    _error.value = null
+                }
+                .onFailure {
+                    _error.value = it.message
+                }
         }
-        _userInformation.value = null
+    }
+    
+    private fun handleResult(result: Result<UserInformationModel?>) {
+        result.onSuccess { model ->
+            _userInformation.value = model
+            _error.value = null
+        }.onFailure { error ->
+            _userInformation.value = null
+            _error.value = error.message
+        }
     }
 }
