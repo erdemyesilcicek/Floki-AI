@@ -17,7 +17,7 @@ class GeminiViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val generativeModel = GenerativeModel(
-                    modelName = "gemini-1.5-flash",
+                    modelName = "gemini-2.0-flash",
                     apiKey = BuildConfig.API_KEY,
                     generationConfig = generationConfig {
                         temperature = 1f
