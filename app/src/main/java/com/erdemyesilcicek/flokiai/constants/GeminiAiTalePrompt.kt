@@ -8,8 +8,11 @@ fun GeminiAiTalePrompt(
     animals: List<String>,
     characters: List<String>,
     family: List<String>,
-    userInformation: UserInformationModel?
+    userInformation: UserInformationModel?,
+
 ): String {
+    return "Write a medium-long ${userInformation?.language} children's ${genre} story that is both educational and entertaining. The story should take place in the ${season} and feature the following animals: ${animals}. It should also include the characters: ${characters}. The family members involved in the story are ${family}. whose species is (${userInformation?.petSpecies}). The main character is ${userInformation?.yourName}, an ${userInformation?.age}-year-old ${userInformation?.gender}. Make sure each animal and character plays a unique and meaningful role in the narrative. Use pronouns or varied expressions to avoid repetitive naming. Ensure the story progresses logically and smoothly, and include short, personality-driven dialogues to enhance engagement and bring the characters to life. The story should subtly convey an important value such as friendship, courage, or honesty, without being overly didactic. Return the result in JSON format with the following fields: TaleTitle (the title of the story), TaleItself (the complete story written in ${userInformation?.language}), TaleSummary (a one-sentence summary that encapsulates the central moral or message of the tale), and EstimatedReadTimeMinutes (an estimated average reading time in minutes). Make sure the story is enjoyable for children, while also carrying an educational value."
+    /*
     return "Write a story for children that is educational, entertaining, and based on the following parameters and instructions. Each parameter should have a unique role in the story, and the narration should be simple, fluent, and engaging to capture children's attention.\n" +
             "\n" +
             "Parameters:\n" +
@@ -73,4 +76,6 @@ fun GeminiAiTalePrompt(
             "At the end of the story, include a message or lesson for children naturally through the events. This message might focus on themes like \"friendship,\" \"courage,\" or \"love for nature.\"\n" +
             "Any problem-solving should involve the main character's efforts and interactions with animals or characters, emphasizing the importance of collaboration and perseverance." +
             "Return in JSON format"
+
+     */
 }

@@ -63,6 +63,7 @@ fun AiCreatedTalePage(navController: NavController) {
                             val taleItself = document.data.get("TaleItself").toString()
                             val taleTitle = document.data.get("TaleTitle").toString()
                             val taleSummary = document.data.get("TaleSummary").toString()
+                            val estimatedReadTimeMinutes = document.data.get("EstimatedReadTimeMinutes").toString()
                             val UserId = document.data.get("userId").toString()
                             val genreImage = document.data.get("GenreImage").toString().toInt()
                             val taleId = document.id
@@ -72,6 +73,7 @@ fun AiCreatedTalePage(navController: NavController) {
                                 TaleItself = taleItself,
                                 TaleTitle = taleTitle,
                                 TaleSummary = taleSummary,
+                                EstimatedReadTimeMinutes = estimatedReadTimeMinutes,
                                 userId = UserId,
                                 GenreImage = genreImage,
                                 taleId = taleId

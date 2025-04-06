@@ -105,6 +105,9 @@
     <string name="user_information_page_title_sibling_name">Name des Geschwisters</string>
     <string name="user_information_page_label_enter_sibling_name">Name des Geschwisters eingeben</string>
 
+    <string name="user_information_page_title_pet_species_name">Haustierart</string>
+    <string name="user_information_page_label_enter_pet_species_name">Haustierart eingeben</string>
+
     <string name="user_information_page_title_pet_name">Name des Haustiers</string>
     <string name="user_information_page_label_enter_pet_name">Name des Haustiers eingeben</string>
 

@@ -43,7 +43,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 fun AiTaleCard(
     navController: NavController,
     aiTale: AiTale,
-    db: FirebaseFirestore
+    db: FirebaseFirestore,
+
 ) {
     ElevatedCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 9.dp),
@@ -104,7 +105,7 @@ fun AiTaleCard(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.End
                 ) {
-                    Text(text ="5 min ", color = MaterialTheme.colorScheme.tertiary)
+                    Text(text = aiTale.EstimatedReadTimeMinutes, color = MaterialTheme.colorScheme.tertiary)
                     Icon(
                         painter = painterResource(id = R.drawable.hugeclock),
                         contentDescription = "Clock",

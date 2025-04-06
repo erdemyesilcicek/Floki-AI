@@ -105,6 +105,9 @@
     <string name="user_information_page_title_sibling_name">Kardeş İsmi</string>
     <string name="user_information_page_label_enter_sibling_name">Kardeş İsmi Girin</string>
 
+    <string name="user_information_page_title_pet_species_name">Evcil Hayvan Türü</string>
+    <string name="user_information_page_label_enter_pet_species_name">Evcil Hayvan Türü Girin</string>
+
     <string name="user_information_page_title_pet_name">Evcil Hayvan</string>
     <string name="user_information_page_label_enter_pet_name">Evcil Hayvan İsmini Girin</string>
 

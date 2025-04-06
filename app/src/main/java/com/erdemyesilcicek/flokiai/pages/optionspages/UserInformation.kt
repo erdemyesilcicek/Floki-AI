@@ -81,9 +81,55 @@ fun UserInformation(
     var momName by remember { mutableStateOf(userInfo?.momName ?: "") }
     var siblingName by remember { mutableStateOf(userInfo?.siblingName ?: "") }
     var petName by remember { mutableStateOf(userInfo?.petName ?: "") }
+    var petSpecies by remember { mutableStateOf(userInfo?.petSpecies ?: "") }
 
     val optionsLanguage = listOf("English", "German", "Turkish")
     val optionsGender = listOf("None", "Male", "Female")
+    val optionsPetSpecies = listOf(
+        "None",
+        "Bear",
+        "Bird",
+        "Boar",
+        "Buffalo",
+        "Camel",
+        "Cat",
+        "Cheetah",
+        "Chicken",
+        "Cow",
+        "Deer",
+        "Crocodile",
+        "Dolphin",
+        "Donkey",
+        "Duck",
+        "Eagle",
+        "Fish",
+        "Frog",
+        "Goat",
+        "Gorilla",
+        "Hamster",
+        "Hedgehog",
+        "Dog",
+        "Elephant",
+        "Ferret",
+        "Fox",
+        "Lion",
+        "Monkey",
+        "Seal",
+        "Wolf",
+        "Giraffe",
+        "Horse",
+        "Mouse",
+        "Panda",
+        "Parrot",
+        "Penguin",
+        "Rabbit",
+        "Raccoon",
+        "Hamster",
+        "Sheep",
+        "Tiger",
+        "Zebra",
+        "Other",
+    )
 
     val scrollState = rememberScrollState()
 
@@ -139,7 +185,8 @@ fun UserInformation(
                         momName = momName,
                         siblingName = siblingName,
                         petName = petName,
-                        language = language
+                        language = language,
+                        petSpecies = petSpecies
                     )
                     userInformationViewModel
                         .updateUserInformation(updatedUserInfo).let {
@@ -200,7 +247,7 @@ fun UserInformation(
                                 color = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.padding(bottom = 16.dp)
                             )
-                            
+
                             CustomDropdownMenu(
                                 title = stringResource(id = R.string.user_information_page_title_tale_language),
                                 label = stringResource(id = R.string.user_information_page_label_select_language),
@@ -247,7 +294,7 @@ fun UserInformation(
                                 color = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.padding(bottom = 16.dp)
                             )
-                            
+
                             CustomTextInput(
                                 title = stringResource(id = R.string.user_information_page_title_name),
                                 label = stringResource(id = R.string.user_information_page_label_enter_name),
@@ -258,7 +305,7 @@ fun UserInformation(
                                 keyboardType = KeyboardType.Text,
                                 isBigCanvas = false
                             )
-                            
+
                             CustomTextInput(
                                 title = stringResource(id = R.string.user_information_page_title_age),
                                 label = stringResource(id = R.string.user_information_page_label_enter_age),
@@ -269,7 +316,7 @@ fun UserInformation(
                                 keyboardType = KeyboardType.Number,
                                 isBigCanvas = false
                             )
-                            
+
                             CustomDropdownMenu(
                                 title = stringResource(id = R.string.user_information_page_title_gender),
                                 label = stringResource(id = R.string.user_information_page_label_select_gender),
@@ -315,7 +362,7 @@ fun UserInformation(
                                 color = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.padding(bottom = 16.dp)
                             )
-                            
+
                             CustomTextInput(
                                 title = stringResource(id = R.string.user_information_page_title_dad_name),
                                 label = stringResource(id = R.string.user_information_page_label_enter_dad_name),
@@ -326,7 +373,7 @@ fun UserInformation(
                                 keyboardType = KeyboardType.Text,
                                 isBigCanvas = false
                             )
-                            
+
                             CustomTextInput(
                                 title = stringResource(id = R.string.user_information_page_title_mom_name),
                                 label = stringResource(id = R.string.user_information_page_label_enter_mom_name),
@@ -337,7 +384,7 @@ fun UserInformation(
                                 keyboardType = KeyboardType.Text,
                                 isBigCanvas = false
                             )
-                            
+
                             CustomTextInput(
                                 title = stringResource(id = R.string.user_information_page_title_sibling_name),
                                 label = stringResource(id = R.string.user_information_page_label_enter_sibling_name),
@@ -348,7 +395,7 @@ fun UserInformation(
                                 keyboardType = KeyboardType.Text,
                                 isBigCanvas = false
                             )
-                            
+
                             CustomTextInput(
                                 title = stringResource(id = R.string.user_information_page_title_pet_name),
                                 label = stringResource(id = R.string.user_information_page_label_enter_pet_name),
@@ -358,6 +405,13 @@ fun UserInformation(
                                 isVisual = true,
                                 keyboardType = KeyboardType.Text,
                                 isBigCanvas = false
+                            )
+                            CustomDropdownMenu(
+                                title = stringResource(id = R.string.user_information_page_title_pet_species_name),
+                                label = stringResource(id = R.string.user_information_page_label_enter_pet_species_name),
+                                options = optionsPetSpecies,
+                                selectedOption = petSpecies,
+                                onOptionSelected = { petSpecies = it }
                             )
                         }
                     }

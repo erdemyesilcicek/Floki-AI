@@ -9,4 +9,5 @@ data class UserInformationModel(
     var momName : String = "",
     var siblingName : String = "",
     var petName : String = "",
+    var petSpecies : String = "",
 )
